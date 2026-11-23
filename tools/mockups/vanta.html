@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vanta — concept</title>
+<link rel="stylesheet" href="./base.css">
+<style>
+body{background:#080708;color:#f1ece8}
+.stage{position:absolute;inset:0;overflow:hidden}
+.stage img{position:absolute;left:50%;top:46%;width:118vw;max-width:none;transform:translate(-50%,-50%);-webkit-mask-image:radial-gradient(closest-side,#000 70%,transparent);mask-image:radial-gradient(closest-side,#000 70%,transparent)}
+.top{position:absolute;inset:0 0 auto;display:flex;justify-content:space-between;align-items:center;padding:26px 40px}
+.logo{font-size:22px;letter-spacing:.18em;font-weight:300}
+.chapters{position:absolute;top:84px;left:40px;display:flex;gap:6px}
+.chapters span{padding:9px 14px;border-radius:100px;box-shadow:inset 0 0 0 1px rgba(241,236,232,.2);color:#958a86}
+.chapters span.on{background:#f1ece8;color:#080708;box-shadow:none}
+.title{position:absolute;left:40px;top:150px}
+.title h1{font-size:64px;line-height:.9}
+.title p{color:#958a86;margin-top:10px}
+.panel{position:absolute;left:40px;right:40px;bottom:36px;display:grid;grid-template-columns:repeat(3,1fr) 1.1fr;gap:12px}
+.opt{padding:16px;border-radius:4px;background:rgba(20,18,19,.66);backdrop-filter:blur(12px);box-shadow:inset 0 0 0 1px rgba(241,236,232,.1)}
+.opt.on{box-shadow:inset 0 0 0 1px #d63a2c}
+.opt b{display:block;height:46px;border-radius:3px;margin-bottom:14px}
+.opt h3{font-size:16px;font-weight:500}.opt p{color:#958a86;margin-top:4px}
+.sum{padding:16px 18px;border-radius:4px;background:#f1ece8;color:#080708;display:flex;flex-direction:column;justify-content:space-between}
+.sum .r{display:flex;justify-content:space-between;align-items:end}
+.sum h3{font-size:26px;font-weight:500;letter-spacing:-.02em}
+.prog{position:absolute;left:40px;right:40px;bottom:0;height:2px;background:rgba(241,236,232,.1)}.prog i{display:block;width:50%;height:100%;background:#d63a2c}
+@media (max-width:600px){
+  .top{padding:18px}.logo{font-size:17px}
+  .stage img{width:190vw;top:50%}
+  .chapters{left:18px;top:62px;gap:4px}.chapters span{padding:7px 10px;font-size:10px}
+  .title{left:18px;top:110px}.title h1{font-size:40px}
+  .panel{left:0;right:0;bottom:0;grid-template-columns:1fr 1fr 1fr;padding:16px 18px 24px;background:#0e0d0e;border-radius:16px 16px 0 0;gap:8px}
+  .opt{padding:10px}.opt b{height:34px;margin-bottom:8px}.opt h3{font-size:13px}.opt p{font-size:9px}
+  .sum{grid-column:1/-1;flex-direction:row;align-items:center;padding:14px}
+  .sum h3{font-size:18px}
+  .prog{display:none}
+}
+</style></head>
+<body>
+<div class="stage"><img src="/media/works/vanta/car_side-2200.webp" alt=""></div>
+<div class="top"><span class="logo wide">Vanta</span><span class="mono">Configurator — GT concept</span></div>
+<div class="chapters mono"><span>01 Stance</span><span class="on">02 Paint</span><span>03 Wheels</span><span>04 Cabin</span></div>
+<div class="title"><h1 class="wide">Carmine<br>Candy</h1><p class="mono">Tri-coat · Metallic flake · Clearcoat</p></div>
+<div class="panel">
+  <div class="opt on"><b style="background:linear-gradient(135deg,#5a0c08,#c5321f 60%,#ff8a6a)"></b><h3>Carmine Candy</h3><p class="mono">Selected</p></div>
+  <div class="opt"><b style="background:linear-gradient(135deg,#bfbab4,#f2f0ec 60%,#d9c9e8)"></b><h3>Pearl</h3><p class="mono">Iridescent</p></div>
+  <div class="opt"><b style="background:linear-gradient(135deg,#141414,#3b3c40 60%,#6a6c70)"></b><h3>Torched Graphite</h3><p class="mono">Satin</p></div>
+  <div class="sum"><p class="mono">Configuration 02 / 04</p><div class="r"><h3>Continue to wheels</h3><span class="mono">→</span></div></div>
+</div>
+<div class="prog"><i></i></div>
+<script type="module" src="./mock.js"></script>
+</body></html>

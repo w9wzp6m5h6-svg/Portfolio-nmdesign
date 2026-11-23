@@ -1,0 +1,7 @@
+*,*::before,*::after{box-sizing:border-box}html,body{margin:0}body{font-family:'Inter Tight Variable',sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden;height:100vh}
+img{display:block;max-width:100%}p,h1,h2,h3,ul{margin:0;padding:0;list-style:none}
+.mono{font-family:'Geist Mono Variable',monospace;font-size:11px;letter-spacing:.02em;text-transform:uppercase}
+.wide{font-family:'Archivo Variable',sans-serif;font-variation-settings:'wdth' 125;font-weight:800;text-transform:uppercase;letter-spacing:-.03em}
+.serif{font-family:'Instrument Serif',serif}
+.only-m{display:none}
+@media (max-width:600px){.only-d{display:none!important}.only-m{display:revert}}
