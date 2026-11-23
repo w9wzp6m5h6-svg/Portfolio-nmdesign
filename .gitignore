@@ -5,3 +5,4 @@ tools/qa/out
 tools/qa/out-prod
 .DS_Store
 tools/qa/fixtures
+tools/qa/out-final
