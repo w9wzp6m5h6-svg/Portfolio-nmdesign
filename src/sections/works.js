@@ -1,6 +1,6 @@
 /**
- * Selected works grid — cards rendered from data, revealed with a clip wipe,
- * images drift inside their frame (parallax) while scrolling.
+ * Projets — le projet réel est mis en avant dans son propre bloc, puis la grille
+ * éditoriale des concepts. Révélation par masque, parallaxe dans le cadre.
  */
 import { gsap, ScrollTrigger } from '../core/scroll.js';
 import { env } from '../core/env.js';
@@ -13,12 +13,13 @@ const SIZES = {
   d: '(max-width: 900px) 84vw, 26vw',
   e: '100vw',
   f: '(max-width: 900px) 100vw, 66vw',
+  feature: '100vw',
 };
 
 function cardHTML(p) {
   return `
   <article class="card" data-layout="${p.layout}" style="--ratio:${p.cover.ratio};--pos:${p.coverPos || '50% 50%'}">
-    <a class="card__link" href="#/work/${p.slug}" data-slug="${p.slug}" data-cursor="View project" aria-label="${p.title}: ${p.subtitle}">
+    <a class="card__link" href="#/work/${p.slug}" data-slug="${p.slug}" data-cursor="Découvrir le projet" aria-label="${p.title} : ${p.subtitle}">
       <div class="card__media">
         <div class="card__parallax"><img src="${p.cover.src}" srcset="${p.cover.srcset}" sizes="${SIZES[p.layout]}" alt="${p.cover.alt}" loading="lazy" decoding="async" /></div>
       </div>
@@ -26,7 +27,7 @@ function cardHTML(p) {
         <span class="card__num mono">${p.num}</span>
         <h3 class="card__title"><span class="card__title-inner">${p.title}</span><span class="card__arrow" aria-hidden="true">→</span></h3>
         <span class="card__status mono">${p.status}</span>
-        <span class="card__cat mono">${p.category}</span>
+        <span class="card__cat mono">${p.real ? '<span class="card__badge">Projet réel</span>' : ''}${p.category}</span>
       </div>
     </a>
   </article>`;
@@ -34,14 +35,17 @@ function cardHTML(p) {
 
 export function initWorks() {
   const grid = document.querySelector('[data-works]');
-  grid.innerHTML = projects.map(cardHTML).join('');
+  const featured = document.querySelector('[data-featured]');
+  featured.innerHTML = projects.filter((p) => p.real).map(cardHTML).join('');
+  grid.innerHTML = projects.filter((p) => !p.real).map(cardHTML).join('');
+  const cards = document.querySelectorAll('.works .card');
 
   if (env.reducedMotion) {
-    grid.querySelectorAll('.card').forEach((c) => c.classList.add('is-revealed'));
+    cards.forEach((c) => c.classList.add('is-revealed'));
     return;
   }
 
-  grid.querySelectorAll('.card').forEach((card) => {
+  cards.forEach((card) => {
     const media = card.querySelector('.card__media');
     const img = media.querySelector('.card__parallax');
     const meta = card.querySelectorAll('.card__num, .card__title-inner, .card__status, .card__cat');

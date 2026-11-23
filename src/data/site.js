@@ -5,8 +5,8 @@
  */
 export const site = {
   name: 'Noah Milsztajn',
-  role: 'Digital Designer',
-  positioning: ['Digital Design', 'Creative Development', 'Interactive Experiences'],
+  role: 'Designer numérique',
+  positioning: ['Direction artistique', 'Design d’interface', 'Expériences web & 3D'],
 
   /** e.g. 'hello@yourdomain.com' — leave empty until a real address exists */
   email: '',

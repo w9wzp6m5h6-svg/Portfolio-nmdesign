@@ -245,3 +245,39 @@
   .p-live__link { flex-direction: column; align-items: start; }
   .p-next__thumb { display: none; }
 }
+
+/* Projet réel ------------------------------------------------------------ */
+.p-badge {
+  display: inline-flex; align-items: center; gap: 8px; margin-right: 16px;
+  padding: 6px 12px 6px 10px; border-radius: 100px;
+  background: var(--p-fg); color: var(--p-bg);
+}
+.p-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--p-accent); }
+.p-title[data-style='gallery'] {
+  font-family: var(--f-serif); font-weight: 400; letter-spacing: -0.03em;
+  font-size: clamp(3.8rem, 1rem + 11vw, 14rem); line-height: 0.88;
+}
+.project[data-title='gallery'] .p-statement { font-family: var(--f-serif); font-weight: 400; letter-spacing: -0.03em; }
+.project[data-title='gallery'] .p-hero { color: var(--p-fg); }
+.p-hero__wall {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(70% 60% at 35% 18%, rgb(255 255 255 / 0.8), transparent 70%),
+    linear-gradient(180deg, #f7f5f1, #ebe7e0);
+}
+.p-hero__wall::before { content: ''; position: absolute; left: 0; right: 0; top: calc(var(--header-h) + 8px); height: 2px; background: var(--p-line); }
+
+.p-intentions__title { grid-column: 1 / 5; font-size: var(--fs-h3); letter-spacing: -0.025em; line-height: 1.05; font-weight: 500; }
+.p-intentions__list { grid-column: 6 / 13; border-top: 1px solid var(--p-line); }
+.p-intentions__list li {
+  display: grid; grid-template-columns: 3em 1fr auto; gap: var(--gutter); align-items: baseline;
+  padding: 18px 0; border-bottom: 1px solid var(--p-line);
+}
+.p-intentions__n { color: var(--p-accent); }
+.p-intentions__list h4 { font-weight: 500; font-size: var(--fs-lead); letter-spacing: -0.015em; line-height: 1.2; }
+.p-intentions__list p { margin-top: 4px; color: color-mix(in srgb, var(--p-fg) 68%, var(--p-bg)); font-size: var(--fs-small); }
+.p-intentions__s { padding: 4px 10px; border-radius: 100px; box-shadow: inset 0 0 0 1px var(--p-line); }
+@media (max-width: 900px) {
+  .p-intentions__title, .p-intentions__list { grid-column: 1 / -1; }
+  .p-intentions__title { margin-bottom: 24px; }
+}

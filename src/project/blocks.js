@@ -67,7 +67,7 @@ const renderers = {
 
   type: (b) => `
     <section class="p-block">
-      <p class="mono p-caption" data-reveal style="margin-bottom:18px">Typography</p>
+      <p class="mono p-caption" data-reveal style="margin-bottom:18px">Typographie</p>
       <div class="p-grid p-type">
         ${b.families.map(([name, role, glyph]) => `
           <div class="p-type__item" data-reveal>
@@ -90,18 +90,37 @@ const renderers = {
       ${caption(b.caption)}
     </section>`,
 
+  /** Fonctionnalités : statut affiché seulement quand il est renseigné (livré, intégré, prévu, prototype) */
+  intentions: (b) => `
+    <section class="p-block p-grid p-intentions">
+      <h3 class="p-intentions__title" data-split>${esc(b.title)}</h3>
+      <ol class="p-intentions__list">
+        ${b.items.map(([t, d, status], i) => `
+          <li data-reveal>
+            <span class="p-intentions__n mono">${String(i + 1).padStart(2, '0')}</span>
+            <div><h4>${esc(t)}</h4><p>${esc(d)}</p></div>
+            ${status ? `<span class="p-intentions__s mono">${esc(status)}</span>` : ''}
+          </li>`).join('')}
+      </ol>
+    </section>`,
+
+  /** Captures du site réel : rien n'est affiché tant qu'aucune capture n'est fournie */
+  captures: (b) => (b.items?.length
+    ? `<section class="p-block"><div class="p-grid p-gallery">${b.items.map((im) => figure(im, { sizes: '(max-width: 900px) 100vw, 33vw' })).join('')}</div>${caption(b.caption)}</section>`
+    : ''),
+
   live: (b) => b.module === 'object'
     ? `<section class="p-block">
         <div class="p-live__link" data-reveal>
           <div><h3 class="p-live__title">${esc(b.title)}</h3><p class="p-live__text">${esc(b.text)}</p></div>
-          <a class="btn" href="#object" data-goto-object>Open the 3D stage<span class="btn__arrow" aria-hidden="true">→</span></a>
+          <a class="btn" href="#object" data-goto-object>Ouvrir la scène 3D<span class="btn__arrow" aria-hidden="true">→</span></a>
         </div>
       </section>`
     : `<section class="p-block p-live" data-live="${b.module}">
         <div class="p-live__head" data-reveal>
           <div><h3 class="p-live__title">${esc(b.title)}</h3><p class="p-live__text">${esc(b.text)}</p></div>
         </div>
-        <div class="p-live__stage" data-cursor="${b.module === 'afterimage' ? 'Move to disturb' : 'Live generator'}"><canvas aria-hidden="true"></canvas></div>
+        <div class="p-live__stage" data-cursor="${b.module === 'afterimage' ? 'Bougez pour perturber' : 'Générateur en direct'}"><canvas aria-hidden="true"></canvas></div>
         <div class="p-live__controls" data-live-controls></div>
       </section>`,
 };
@@ -111,9 +130,9 @@ export function renderProject(p, next) {
   return `
     <article class="p-article">
       <header class="p-hero">
-        <div class="p-hero__media">${figure(hero, { eager: true }).replace('data-parallax', 'data-hero-media').replace(/style="aspect-ratio:[^"]+"/, 'style="position:absolute;inset:0"')}</div>
+        ${p.heroPlain ? '<div class="p-hero__wall" aria-hidden="true"></div>' : `<div class="p-hero__media">${figure(hero, { eager: true }).replace('data-parallax', 'data-hero-media').replace(/style="aspect-ratio:[^"]+"/, 'style="position:absolute;inset:0"')}</div>`}
         <div class="p-hero__content">
-          <p class="p-hero__num mono" data-hero-fade>${p.num} — ${esc(p.category)}</p>
+          <p class="p-hero__num mono" data-hero-fade>${p.real ? '<span class="p-badge">Projet réel</span>' : ''}${p.num} — ${esc(p.category)}</p>
           <h2 class="p-hero__title p-title" id="project-title" data-style="${p.theme.title}" data-hero-title>${esc(p.title)}</h2>
           <p class="p-hero__sub" data-hero-fade>${esc(p.subtitle)}</p>
         </div>
@@ -122,19 +141,19 @@ export function renderProject(p, next) {
         <section class="p-grid p-intro">
           <dl class="p-intro__meta" data-reveal>
             ${p.meta.map(([k, v]) => `<div><dt class="mono">${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}
-            <div><dt class="mono">Status</dt><dd>${esc(p.status)}</dd></div>
+            <div><dt class="mono">Statut</dt><dd>${esc(p.status)}</dd></div>
           </dl>
           <p class="p-intro__lead" data-split>${esc(p.lead)}</p>
         </section>
         ${p.blocks.map((b) => renderers[b.type]?.(b) ?? '').join('')}
       </div>
       <footer class="p-next">
-        <a class="p-next__link" href="#/work/${next.slug}" data-next="${next.slug}" data-cursor="Next project">
-          <span class="p-next__k mono">Next project — ${next.num}</span>
+        <a class="p-next__link" href="#/work/${next.slug}" data-next="${next.slug}" data-cursor="Projet suivant">
+          <span class="p-next__k mono">Projet suivant — ${next.num}</span>
           <span class="p-next__title">${esc(next.title)}</span>
           <span class="p-next__thumb"><img src="${next.cover.src.replace(/-\d+\.webp$/, '-800.webp')}" alt="" loading="lazy" decoding="async" /></span>
         </a>
-        <p class="p-next__credits mono">${esc(p.status)}. A self-initiated concept by Noah Milsztajn, not a commissioned project.${USES_3D_ASSETS.includes(p.slug) ? ' 3D assets via Khronos glTF Sample Assets (licences in the site footer).' : ''}</p>
+        <p class="p-next__credits mono">${p.real ? 'Projet réel, réalisé pour la galerie Cynthia Rimo à Valbonne.' : `${esc(p.status)}. Concept personnel de Noah Milsztajn, pas une commande client.`}${USES_3D_ASSETS.includes(p.slug) ? ' Modèles 3D : Khronos glTF Sample Assets (licences en pied de page).' : ''}</p>
       </footer>
     </article>`;
 }

@@ -17,7 +17,7 @@ export const model = {
   hd: `models/sneaker-hd.${import.meta.env?.VITE_MODEL_FORMAT || 'glb'}`,
   lite: `models/sneaker-lite.${import.meta.env?.VITE_MODEL_FORMAT || 'glb'}`,
   rotation: [0, 0, 0],
-  credit: '3D model: “Materials Variants Shoe” © 2021 Shopify, CC BY 4.0. Staging, shaders & interaction by Noah Milsztajn.',
+  credit: 'Modèle 3D : « Materials Variants Shoe » © 2021 Shopify, CC BY 4.0. Mise en scène, shaders et interactions : Noah Milsztajn.',
 };
 
 export const variants = [
@@ -28,33 +28,33 @@ export const variants = [
 
 export const hotspots = [
   {
-    id: 'heel', label: 'Heel counter',
+    id: 'heel', label: 'Contrefort',
     pos: [-0.46, 0.3, 0.0], normal: [-1, 0.25, 0.25],
-    text: 'A firmer panel wraps the heel to lock the foot in place. Here it is a separate dark overlay with its own grain.',
+    text: 'Une pièce plus rigide enveloppe le talon pour maintenir le pied. Ici, un empiècement sombre avec son propre grain.',
   },
   {
-    id: 'tab', label: 'Pull loops',
+    id: 'tab', label: 'Boucles de chaussage',
     pos: [-0.09, 0.47, 0.0], normal: [-0.3, 1, 0.6],
-    text: 'Twin loops on the tongue and the heel. Small details, but they are the first thing your hand touches.',
+    text: 'Deux boucles, sur la languette et au talon. Un petit détail, mais c’est la première chose que la main touche.',
   },
   {
-    id: 'laces', label: 'Lacing',
+    id: 'laces', label: 'Laçage',
     pos: [0.1, 0.31, 0.0], normal: [0.35, 1, 0.3],
-    text: 'Round laces through reinforced eyelets. The lace path is real geometry, not a texture, so it casts its own shadows.',
+    text: 'Des lacets ronds dans des œillets renforcés. Les lacets sont modélisés en volume, pas peints : ils projettent leurs propres ombres.',
   },
   {
-    id: 'upper', label: 'Knit upper',
+    id: 'upper', label: 'Tige en maille',
     pos: [0.34, 0.16, 0.08], normal: [0.7, 0.45, 0.6],
-    text: 'An engineered mesh: the normal map carries the open-knit cells, so the light picks out every row.',
+    text: 'Une maille technique : le relief de chaque cellule est porté par la texture, et la lumière accroche chaque rangée.',
   },
   {
-    id: 'overlay', label: 'Bonded stripes',
+    id: 'overlay', label: 'Bandes thermocollées',
     pos: [-0.02, 0.18, 0.16], normal: [0, 0.1, 1],
-    text: 'Two bonded overlays add structure across the midfoot and give the shoe its graphic signature.',
+    text: 'Deux bandes collées structurent le milieu du pied et donnent à la chaussure sa signature graphique.',
   },
   {
-    id: 'midsole', label: 'Foam midsole',
+    id: 'midsole', label: 'Semelle en mousse',
     pos: [0.0, 0.05, 0.17], normal: [0.1, -0.15, 1],
-    text: 'A full-length foam unit with a gentle rocker. Matte and slightly rough, kept bright to frame the upper.',
+    text: 'Une semelle intermédiaire en mousse sur toute la longueur, au léger balancier. Mate, un peu rugueuse, gardée claire pour cadrer la tige.',
   },
 ];

@@ -18,6 +18,7 @@ const MAP = {
   rooms: ['interior_cover', 'interior_chair', 'interior_pouf'],
   afterimage: ['art_cover', 'art_a', 'art_b', 'art_c'],
   oscillo: ['osc_cover', 'osc_posters', 'osc_system'],
+  rimo: ['rimo_cover'],
   screens: ['ui_stride_d', 'ui_stride_m', 'ui_opale_d', 'ui_opale_m', 'ui_vanta_d', 'ui_vanta_m', 'ui_rooms_d', 'ui_rooms_m', 'ui_oscillo_d', 'ui_oscillo_m'],
 };
 

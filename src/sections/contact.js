@@ -10,14 +10,14 @@ import { site } from '../data/site.js';
 function renderActions(root) {
   const parts = [];
   if (site.email) {
-    parts.push(`<a class="btn" href="mailto:${site.email}" data-cursor="Write to me">${site.email}<span class="btn__arrow" aria-hidden="true">→</span></a>`);
-    parts.push(`<button class="btn btn--ghost contact__copy" type="button" data-copy="${site.email}">Copy address<span class="contact__copied mono" aria-live="polite">Copied</span></button>`);
+    parts.push(`<a class="btn" href="mailto:${site.email}" data-cursor="M’écrire">Parlons de votre projet<span class="btn__arrow" aria-hidden="true">→</span></a>`);
+    parts.push(`<button class="btn btn--ghost contact__copy" type="button" data-copy="${site.email}">${site.email}<span class="contact__copied mono" aria-live="polite">Adresse copiée</span></button>`);
   }
   site.socials.forEach((s) => {
     parts.push(`<a class="btn btn--ghost" href="${s.url}" target="_blank" rel="noopener noreferrer">${s.label}<span class="btn__arrow" aria-hidden="true">↗</span></a>`);
   });
   if (!parts.length) {
-    parts.push('<p class="contact__note">Contact details are being finalised and will be published here.</p>');
+    parts.push('<p class="contact__note mono">Coordonnées bientôt disponibles.</p>');
   }
   root.innerHTML = parts.join('');
 

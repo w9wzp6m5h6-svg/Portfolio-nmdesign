@@ -6,6 +6,7 @@
 import '@fontsource-variable/archivo/wdth.css';
 import '@fontsource-variable/geist-mono/wght.css';
 import '@fontsource/instrument-serif/400-italic.css';
+import '@fontsource/instrument-serif/400.css';
 import { Afterimage } from '../../src/project/live/afterimage.js';
 import { drawSignalMark, OSC_COLORS } from '../../src/project/live/oscillo.js';
 
@@ -38,6 +39,41 @@ const pieces = {
       piece.pushGoal = 1;
       piece.frame(1 / 30);
     }
+  },
+
+  /** Cynthia Rimo — couverture typographique (aucune capture ni œuvre inventée) */
+  async rimo_cover() {
+    canvas.width = W; canvas.height = H;
+    const g = canvas.getContext('2d');
+    const wall = g.createLinearGradient(0, 0, 0, H);
+    wall.addColorStop(0, '#f7f5f1'); wall.addColorStop(1, '#ece8e1');
+    g.fillStyle = wall; g.fillRect(0, 0, W, H);
+    // soft light pool, like a gallery spot
+    const spot = g.createRadialGradient(W * 0.38, H * 0.2, 0, W * 0.38, H * 0.2, W * 0.6);
+    spot.addColorStop(0, 'rgba(255,255,255,0.75)'); spot.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = spot; g.fillRect(0, 0, W, H);
+    // picture rail
+    g.fillStyle = 'rgba(21,20,19,0.12)'; g.fillRect(0, H * 0.085, W, Math.max(2, H * 0.002));
+    const ink = '#151413';
+    const pad = W * 0.07;
+    // name
+    g.fillStyle = ink; g.textBaseline = 'alphabetic';
+    g.font = `400 ${H * 0.25}px "Instrument Serif"`;
+    g.fillText('Cynthia', pad - H * 0.01, H * 0.5);
+    g.font = `italic 400 ${H * 0.25}px "Instrument Serif"`;
+    g.fillText('Rimo', pad + H * 0.18, H * 0.72);
+    mono(g, "GALERIE D'ART — VALBONNE", pad, H * 0.8, H * 0.022, '#77726a');
+    // cartel (museum label)
+    const cw = W * 0.2, ch = H * 0.2, cx = W - pad - cw, cy = H - pad * 0.9 - ch;
+    g.save(); g.shadowColor = 'rgba(0,0,0,0.12)'; g.shadowBlur = W * 0.01; g.shadowOffsetY = W * 0.003;
+    g.fillStyle = '#fbfaf8'; g.fillRect(cx, cy, cw, ch); g.restore();
+    const cs = H * 0.018;
+    mono(g, 'PROJET RÉEL', cx + cw * 0.08, cy + ch * 0.14, cs, ink);
+    g.font = `italic 400 ${H * 0.04}px "Instrument Serif"`; g.fillStyle = ink; g.textBaseline = 'top';
+    g.fillText('Expérience digitale', cx + cw * 0.08, cy + ch * 0.32);
+    mono(g, 'DIRECTION ARTISTIQUE', cx + cw * 0.08, cy + ch * 0.62, cs * 0.9, '#77726a');
+    mono(g, 'ART & CULTURE', cx + cw * 0.08, cy + ch * 0.62 + cs * 1.6, cs * 0.9, '#77726a');
+    g.fillStyle = '#b3261e'; g.beginPath(); g.arc(cx + cw * 0.88, cy + ch * 0.2, H * 0.011, 0, Math.PI * 2); g.fill();
   },
 
   async osc_cover() {
@@ -132,6 +168,8 @@ const pieces = {
 try {
   await document.fonts.load('800 expanded 100px "Archivo Variable"');
   await document.fonts.load('400 20px "Geist Mono Variable"');
+  await document.fonts.load('400 100px "Instrument Serif"');
+  await document.fonts.load('italic 400 100px "Instrument Serif"');
   await document.fonts.ready;
   await pieces[q.get('piece')]();
   await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));

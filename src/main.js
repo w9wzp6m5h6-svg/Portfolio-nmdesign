@@ -13,6 +13,7 @@ import { initHero } from './sections/hero.js';
 import { initWorks } from './sections/works.js';
 import { initObject } from './sections/object.js';
 import { initContact } from './sections/contact.js';
+import { initAbout } from './sections/about.js';
 import { initProjectView } from './project/view.js';
 
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -26,6 +27,7 @@ const hero = initHero();
 initWorks();
 initObject();
 initContact();
+initAbout();
 const projectView = initProjectView();
 
 // reveals need final fonts for correct line breaks

@@ -73,7 +73,7 @@ if (base) {
     await page.waitForFunction(() => document.querySelector('.object').classList.contains('is-ready'), null, { timeout: 60000 }).catch(() => {});
     const ready = await page.evaluate(() => document.querySelector('.object').classList.contains('is-ready'));
     ok(`[${label}] 3D object loaded`, ready);
-    for (const slug of ['stride', 'vanta', 'opale', 'rooms', 'afterimage', 'oscillo']) {
+    for (const slug of (projects || []).map((p) => p.slug)) {
       await page.evaluate((s) => { location.hash = `#/work/${s}`; }, slug);
       await page.waitForTimeout(2600);
       const open = await page.evaluate(() => document.querySelector('.project').classList.contains('is-open'));

@@ -9,9 +9,9 @@ import { env } from '../../core/env.js';
 
 /** Each study: a 3-stop light ramp (shadow → body → highlight) + an alternate body tint. */
 export const STUDIES = [
-  { id: 'ember', name: 'A — Ember', ramp: ['#040303', '#7a1f08', '#ffc98a'], alt: '#ff5a1f', feedback: 0.82, bands: 0, speed: 1 },
-  { id: 'tide', name: 'B — Tide', ramp: ['#02040b', '#0d2a72', '#a9dcff'], alt: '#2b4bff', feedback: 0.86, bands: 0, speed: 0.8 },
-  { id: 'ghost', name: 'C — Ghost', ramp: ['#000000', '#3a3a40', '#ecebf2'], alt: '#ecebf2', feedback: 0.78, bands: 1, speed: 0.6 },
+  { id: 'ember', name: 'A — Braise', ramp: ['#040303', '#7a1f08', '#ffc98a'], alt: '#ff5a1f', feedback: 0.82, bands: 0, speed: 1 },
+  { id: 'tide', name: 'B — Marée', ramp: ['#02040b', '#0d2a72', '#a9dcff'], alt: '#2b4bff', feedback: 0.86, bands: 0, speed: 0.8 },
+  { id: 'ghost', name: 'C — Fantôme', ramp: ['#000000', '#3a3a40', '#ecebf2'], alt: '#ecebf2', feedback: 0.78, bands: 1, speed: 0.6 },
 ];
 
 const vert = /* glsl */ `varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }`;

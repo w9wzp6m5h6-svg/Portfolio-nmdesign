@@ -36,5 +36,5 @@ Dépose le **contenu** de `dist/` sur n'importe quel hébergeur statique (Netlif
 ## À compléter
 
 - **E‑mail et réseaux :** `source/src/data/site.js`, puis `npm run build`.
-- **Photo de profil (fond jaune) :** elle n'a pas été fournie ; la section About fonctionne sans.
-- **Modèle Air Jordan 1 Low Travis Scott « Reverse Mocha » :** à remplacer quand tu auras un fichier sous licence — marche à suivre dans `source/README.md`.
+- **Captures du site Cynthia Rimo** et statut de ses fonctionnalités : marche à suivre dans `source/README.md`.
+- **Modèle 3D Air Jordan 1 Travis Scott (Mocha / Reverse Mocha) :** à intégrer quand tu auras un fichier `.glb` sous licence — marche à suivre dans `source/README.md`.

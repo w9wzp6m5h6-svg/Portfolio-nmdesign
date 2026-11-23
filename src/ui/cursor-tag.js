@@ -16,7 +16,8 @@ export function initCursorTag() {
 
   const update = (target) => {
     const el = target?.closest?.('[data-cursor]');
-    const label = el?.dataset.cursor || null;
+    // ignore anything behind an open overlay (inert regions)
+    const label = el && !el.closest('[inert]') ? el.dataset.cursor : null;
     if (label === active) return;
     active = label;
     if (label) {
@@ -36,7 +37,13 @@ export function initCursorTag() {
     update(e.target);
   }, { passive: true });
   window.addEventListener('scroll', recheck, { passive: true, capture: true });
-  window.addEventListener('click', () => { active = null; update(null); setTimeout(recheck, 1400); }, { capture: true });
+  // a click usually changes the page under the cursor (overlay, menu): hide now, re-evaluate later
+  window.addEventListener('click', () => {
+    active = null;
+    gsap.to(tag, { opacity: 0, scale: 0.85, duration: 0.2, ease: 'power2.out', overwrite: 'auto' });
+    setTimeout(recheck, 1400);
+    setTimeout(recheck, 3000);
+  }, { capture: true });
 
   document.documentElement.addEventListener('pointerleave', () => {
     active = null;

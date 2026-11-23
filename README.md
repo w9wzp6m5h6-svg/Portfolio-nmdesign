@@ -1,6 +1,6 @@
 # Noah Milsztajn — Portfolio V2
 
-Portfolio créatif dédié au web design, à l'UI/UX design et au développement d'expériences web immersives. Projets, expérimentations 3D, interfaces interactives et créations digitales.
+Portfolio de Noah Milsztajn, designer numérique autodidacte : direction artistique, design d'interface, expériences web, 3D et interaction. Site entièrement en français.
 
 **Stack :** Vite · JavaScript (ES modules) · Three.js · GSAP + ScrollTrigger · Lenis · polices auto‑hébergées (Fontsource).
 
@@ -29,10 +29,16 @@ Le navigateur s'ouvre sur `http://localhost:4173/`. Le contenu de `dist/` peut a
 | --- | --- |
 | Adresse e‑mail de contact | `src/data/site.js` → `email` |
 | Réseaux sociaux | `src/data/site.js` → `socials` |
-| Photo de profil (fond jaune) | non fournie — voir ci‑dessous |
-| Modèle 3D Air Jordan 1 Low Travis Scott « Reverse Mocha » | non disponible sous licence libre — voir ci‑dessous |
+| Modèle 3D Air Jordan 1 Travis Scott (Mocha / Reverse Mocha) | non fourni — voir « Remplacer la sneaker 3D » |
+| Captures du site Cynthia Rimo | non fournies — voir ci‑dessous |
+| Statut des fonctionnalités Cynthia Rimo | à préciser (livré / intégré / prévu / prototype) |
 
 Tant que l'e‑mail et les réseaux sont vides, la section Contact affiche une phrase neutre (aucune fausse adresse). Dès qu'ils sont remplis, les boutons « e‑mail », « copier l'adresse » et les liens apparaissent automatiquement.
+
+### Cynthia Rimo (projet réel)
+
+- **Captures du vrai site** : dépose les images (WebP de préférence, 800 / 1400 / 2200 px de large, nommées `rimo_xxx-800.webp`, etc.) dans `public/media/works/rimo/`, puis renseigne le bloc `captures` du projet dans `src/data/projects.js` avec `img('rimo', 'rimo_xxx', '16 / 10')`. Tant qu'il est vide, rien ne s'affiche (aucune fausse capture).
+- **Statut des fonctionnalités** : dans le bloc `intentions`, ajoute un 3e élément à chaque ligne : `'livré'`, `'intégré'`, `'prévu'` ou `'prototype'`. Il apparaît alors sous forme d'étiquette. Sans statut, la liste est présentée comme les intentions de conception du projet.
 
 ### Remplacer la sneaker 3D
 

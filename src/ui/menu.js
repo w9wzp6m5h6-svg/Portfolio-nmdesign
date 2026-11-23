@@ -21,7 +21,7 @@ export function initMenu() {
     if (next === open) return;
     open = next;
     toggle.setAttribute('aria-expanded', String(open));
-    toggleLabel.textContent = open ? 'Close' : 'Menu';
+    toggleLabel.textContent = open ? 'Fermer' : 'Menu';
     tl?.kill();
     const d = env.reducedMotion ? 0 : 1;
 

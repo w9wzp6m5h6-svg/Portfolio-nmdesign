@@ -91,10 +91,10 @@ export function mountOscillo(block) {
   let raf = 0; let running = false; let last = 0;
 
   controls.innerHTML = `
-    <label class="mono">Word <input type="text" value="${state.text}" maxlength="12" spellcheck="false" autocomplete="off" aria-label="Word to encode" data-osc-text /></label>
-    <label class="mono">Frequency <input type="range" min="0" max="1" step="0.01" value="${state.freq}" data-osc-freq /></label>
+    <label class="mono">Mot <input type="text" value="${state.text}" maxlength="12" spellcheck="false" autocomplete="off" aria-label="Mot à encoder" data-osc-text /></label>
+    <label class="mono">Fréquence <input type="range" min="0" max="1" step="0.01" value="${state.freq}" data-osc-freq /></label>
     <label class="mono">Amplitude <input type="range" min="0" max="1" step="0.01" value="${state.amp}" data-osc-amp /></label>
-    <button type="button" class="chip" aria-pressed="true" data-osc-play>Signal on</button>`;
+    <button type="button" class="chip" aria-pressed="true" data-osc-play>Signal actif</button>`;
   controls.querySelector('[data-osc-text]').addEventListener('input', (e) => { state.text = e.target.value.replace(/[^\p{L}\p{N} &-]/gu, '') || ' '; draw(); });
   controls.querySelector('[data-osc-freq]').addEventListener('input', (e) => { state.freq = +e.target.value; draw(); });
   controls.querySelector('[data-osc-amp]').addEventListener('input', (e) => { state.amp = +e.target.value; draw(); });
@@ -102,7 +102,7 @@ export function mountOscillo(block) {
   play.addEventListener('click', () => {
     state.playing = !state.playing;
     play.setAttribute('aria-pressed', String(state.playing));
-    play.textContent = state.playing ? 'Signal on' : 'Signal off';
+    play.textContent = state.playing ? 'Signal actif' : 'Signal coupé';
     if (state.playing) start(); else draw();
   });
   stage.style.background = OSC_COLORS.bg;

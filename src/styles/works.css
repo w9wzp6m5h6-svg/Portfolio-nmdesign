@@ -88,3 +88,25 @@
 @media (max-width: 560px) {
   .card[data-layout='b'], .card[data-layout='d'] { grid-column: 2 / -1; }
 }
+
+/* Projet réel mis en avant -------------------------------------------- */
+.works__featured { padding: 0 var(--margin); }
+.card[data-layout='feature'] .card__title { font-size: clamp(2rem, 1rem + 3.4vw, 4.6rem); }
+.card[data-layout='feature'] .card__meta { padding-top: 24px; }
+.card__badge {
+  display: inline-flex; align-items: center; gap: 8px; margin-right: 14px;
+  color: var(--bone);
+}
+.card__badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+
+.works__divider {
+  display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gutter); align-items: baseline;
+  margin: clamp(96px, 14vw, 200px) var(--margin) clamp(48px, 6vw, 88px);
+  padding-top: 18px; border-top: 1px solid var(--line-strong);
+}
+.works__divider .mono { grid-column: 1 / 5; color: var(--bone); }
+.works__divider-note { grid-column: 9 / 13; color: var(--fog); font-size: var(--fs-small); max-width: 40ch; }
+@media (max-width: 900px) {
+  .works__divider .mono, .works__divider-note { grid-column: 1 / -1; }
+  .works__divider-note { margin-top: 10px; }
+}

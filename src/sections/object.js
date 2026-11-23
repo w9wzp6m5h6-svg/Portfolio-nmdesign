@@ -32,8 +32,8 @@ export function initObject() {
   if (!hotspots.length) panel.root.hidden = true;
 
   canvas.tabIndex = 0;
-  canvas.setAttribute('aria-label', 'Interactive 3D sneaker. Drag, or use the arrow keys, to rotate. Plus and minus to zoom.');
-  canvas.dataset.cursor = 'Drag to rotate';
+  canvas.setAttribute('aria-label', 'Sneaker 3D interactive. Glissez, ou utilisez les flèches du clavier, pour la faire pivoter. Plus et moins pour zoomer.');
+  canvas.dataset.cursor = 'Faire pivoter';
 
   // swatches ----------------------------------------------------------------
   swatchWrap.innerHTML = variants.map((v, i) => `
@@ -46,7 +46,7 @@ export function initObject() {
     const b = document.createElement('button');
     b.type = 'button';
     b.className = 'hotspot';
-    b.setAttribute('aria-label', `Detail ${i + 1}: ${h.label}`);
+    b.setAttribute('aria-label', `Détail ${i + 1} : ${h.label}`);
     b.innerHTML = `<span class="hotspot__dot"></span><span class="hotspot__label mono">${String(i + 1).padStart(2, '0')} ${h.label}</span>`;
     b.addEventListener('click', () => selectSpot(i));
     layer.append(b);
@@ -73,7 +73,7 @@ export function initObject() {
   function clearSpot() {
     activeSpot = null;
     spotEls.forEach((el) => el.classList.remove('is-active'));
-    setPanel('—', 'Choose a point', 'Select one of the markers on the shoe to move the camera to that detail.');
+    setPanel('—', 'Choisissez un point', 'Sélectionnez un repère sur la chaussure : la caméra vient se placer sur ce détail.');
   }
 
   function placeHotspots(s) {
@@ -109,7 +109,7 @@ export function initObject() {
   // lazy boot ---------------------------------------------------------------
   async function boot() {
     if (!env.webgl) {
-      loadingText.textContent = 'WebGL is not available on this device.';
+      loadingText.textContent = 'La 3D (WebGL) n’est pas disponible sur cet appareil.';
       return;
     }
     const { SneakerStage } = await import('../three/sneaker-stage.js');
@@ -122,11 +122,11 @@ export function initObject() {
     try {
       available = await stage.load(url, (p) => {
         loadingBar.style.transform = `scaleX(${p})`;
-        loadingText.textContent = `Loading object — ${Math.round(p * 100)}%`;
+        loadingText.textContent = `Chargement de l’objet — ${Math.round(p * 100)} %`;
       }, { rotation: model.rotation });
     } catch (err) {
       console.error('[object] failed to load model', err);
-      loadingText.textContent = 'The 3D object could not be loaded.';
+      loadingText.textContent = 'L’objet 3D n’a pas pu être chargé. Rechargez la page pour réessayer.';
       return;
     }
     // only offer colourways that the loaded file actually contains

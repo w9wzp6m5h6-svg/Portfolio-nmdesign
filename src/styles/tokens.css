@@ -17,6 +17,8 @@
   --line-strong: rgb(237 235 229 / 0.24);
   --accent: #ff4f2b;   /* signal — used sparingly */
   --accent-ink: #1a0802;
+  --ochre: #d88b2c;    /* signature de la section À propos, prise dans le portrait */
+  --ochre-deep: #7a3d0e;
 
   /* type */
   --f-display: 'Archivo Variable', 'Archivo', 'Helvetica Neue', Arial, sans-serif;

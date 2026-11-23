@@ -104,7 +104,7 @@ export function initProjectView() {
         }).scrollTrigger);
       });
       const heroImg = content.querySelector('[data-hero-media] img');
-      triggers.push(gsap.to(heroImg, {
+      if (heroImg) triggers.push(gsap.to(heroImg, {
         yPercent: 10, ease: 'none',
         scrollTrigger: { trigger: heroImg.closest('.p-hero'), scroller, start: 'top top', end: 'bottom top', scrub: true },
       }).scrollTrigger);
@@ -167,7 +167,7 @@ export function initProjectView() {
       await gsap.timeline()
         .to(clone, { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight, borderRadius: 0, duration: 1.15, ease: 'expo.inOut' })
         .set(scroller, { autoAlpha: 1 })
-        .to(clone, { autoAlpha: 0, duration: p.hero ? 0.6 : 0.01, ease: 'power2.out' })
+        .to(clone, { autoAlpha: 0, duration: p.hero || p.heroPlain ? 0.6 : 0.01, ease: 'power2.out' })
         .add(heroIn(), '-=0.6')
         .then();
       gsap.set(clone, { clearProps: 'all' });
@@ -221,7 +221,8 @@ export function initProjectView() {
     gsap.set(content, { yPercent: 0, autoAlpha: 1 });
     const hero = content.querySelector('.p-hero');
     gsap.fromTo(hero, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.2 * d, ease: 'expo.inOut', clearProps: 'clipPath' });
-    gsap.fromTo(hero.querySelector('img'), { scale: 1.2 }, { scale: 1, duration: 1.8 * d, ease: 'expo.out' });
+    const heroImg = hero.querySelector('img');
+    if (heroImg) gsap.fromTo(heroImg, { scale: 1.2 }, { scale: 1, duration: 1.8 * d, ease: 'expo.out' });
     heroIn(0.5 * d);
     closeBtn.focus({ preventScroll: true });
     busy = false;
