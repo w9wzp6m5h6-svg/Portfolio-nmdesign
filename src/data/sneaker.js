@@ -13,8 +13,9 @@
  */
 export const model = {
   title: 'Knit<br />Runner <em class="serif">/01</em>',
-  hd: 'models/sneaker-hd.glb',
-  lite: 'models/sneaker-lite.glb',
+  // VITE_MODEL_FORMAT=json → packed models for hosts that refuse .glb (npm run build:artifact)
+  hd: `models/sneaker-hd.${import.meta.env?.VITE_MODEL_FORMAT || 'glb'}`,
+  lite: `models/sneaker-lite.${import.meta.env?.VITE_MODEL_FORMAT || 'glb'}`,
   rotation: [0, 0, 0],
   credit: '3D model: “Materials Variants Shoe” © 2021 Shopify, CC BY 4.0. Staging, shaders & interaction by Noah Milsztajn.',
 };

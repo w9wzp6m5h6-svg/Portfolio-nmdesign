@@ -161,7 +161,16 @@ export class SneakerStage {
   async load(url, onProgress, { rotation } = {}) {
     const loader = new GLTFLoader();
     loader.setMeshoptDecoder(MeshoptDecoder);
-    const gltf = await loader.loadAsync(url, (e) => e.total && onProgress?.(e.loaded / e.total));
+    const progress = (e) => e.total && onProgress?.(e.loaded / e.total);
+    let gltf;
+    if (url.endsWith('.json')) {
+      // packed model ({ "glb": "<base64>" }) for hosts that do not serve .glb files
+      const text = await new THREE.FileLoader().loadAsync(url, progress);
+      const bin = Uint8Array.from(atob(JSON.parse(text).glb), (ch) => ch.charCodeAt(0));
+      gltf = await loader.parseAsync(bin.buffer, '');
+    } else {
+      gltf = await loader.loadAsync(url, progress);
+    }
     this.variantsApi = await readVariants(gltf);
 
     // fit: length 1, resting on the floor, centred

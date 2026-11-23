@@ -6,3 +6,4 @@ tools/qa/out-prod
 .DS_Store
 tools/qa/fixtures
 tools/qa/out-final
+build-artifact
