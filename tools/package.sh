@@ -5,7 +5,9 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 NAME=NMDESIGN-PORTFOLIO-FINAL
 npm run build >/dev/null
-STAGE="$(mktemp -d)/$NAME"
+TMP="$(mktemp -d)"
+trap 'rm -rf -- "$TMP"' EXIT
+STAGE="$TMP/$NAME"
 mkdir -p "$STAGE/source"
 cp -R dist "$STAGE/dist"
 cp -R demo "$STAGE/demo"

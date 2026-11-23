@@ -7,19 +7,31 @@ import { gsap, ScrollTrigger } from '../core/scroll.js';
 import { env } from '../core/env.js';
 import { site } from '../data/site.js';
 
+const escAttr = (v) => String(v).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
 function renderActions(root) {
-  const parts = [];
+  const lines = [];
+  let cta = '';
   if (site.email) {
-    parts.push(`<a class="btn" href="mailto:${site.email}" data-cursor="M’écrire">Parlons de votre projet<span class="btn__arrow" aria-hidden="true">→</span></a>`);
-    parts.push(`<button class="btn btn--ghost contact__copy" type="button" data-copy="${site.email}">${site.email}<span class="contact__copied mono" aria-live="polite">Adresse copiée</span></button>`);
+    const mailto = `mailto:${site.email}${site.emailSubject ? `?subject=${encodeURIComponent(site.emailSubject)}` : ''}`;
+    cta = `<a class="btn contact__cta" href="${escAttr(mailto)}" data-cursor="M’écrire">Parlons de votre projet<span class="btn__arrow" aria-hidden="true">→</span></a>`;
+    lines.push(`
+      <li class="contact__line-item">
+        <span class="mono contact__label">Me contacter par e-mail</span>
+        <a class="contact__value" href="mailto:${escAttr(site.email)}">${escAttr(site.email)}</a>
+        <button class="chip contact__copy" type="button" data-copy="${escAttr(site.email)}">Copier<span class="contact__copied mono" aria-live="polite">Adresse copiée</span></button>
+      </li>`);
   }
   site.socials.forEach((s) => {
-    parts.push(`<a class="btn btn--ghost" href="${s.url}" target="_blank" rel="noopener noreferrer">${s.label}<span class="btn__arrow" aria-hidden="true">↗</span></a>`);
+    lines.push(`
+      <li class="contact__line-item">
+        <span class="mono contact__label">${escAttr(s.label)}</span>
+        <a class="contact__value" href="${escAttr(s.url)}" target="_blank" rel="noopener noreferrer">${escAttr(s.handle || s.label)}<span aria-hidden="true"> ↗</span><span class="visually-hidden"> (nouvel onglet)</span></a>
+      </li>`);
   });
-  if (!parts.length) {
-    parts.push('<p class="contact__note mono">Coordonnées bientôt disponibles.</p>');
-  }
-  root.innerHTML = parts.join('');
+  root.innerHTML = lines.length
+    ? `${cta}<ul class="contact__list">${lines.join('')}</ul>`
+    : '<p class="contact__note mono">Coordonnées bientôt disponibles.</p>';
 
   root.querySelector('[data-copy]')?.addEventListener('click', async (e) => {
     const b = e.currentTarget;
@@ -27,7 +39,15 @@ function renderActions(root) {
       await navigator.clipboard.writeText(b.dataset.copy);
       b.classList.add('is-copied');
       setTimeout(() => b.classList.remove('is-copied'), 1800);
-    } catch { /* clipboard unavailable: the mailto link remains */ }
+    } catch {
+      // presse-papiers indisponible : on sélectionne l'adresse pour une copie manuelle
+      const value = b.parentElement.querySelector('.contact__value');
+      const range = document.createRange();
+      range.selectNodeContents(value);
+      const sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
   });
 }
 

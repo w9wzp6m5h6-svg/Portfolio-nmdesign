@@ -4,6 +4,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 [hidden] { display: none !important; }
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 html, body { margin: 0; padding: 0; }
 html {
   -webkit-text-size-adjust: 100%;
@@ -64,7 +65,8 @@ em { font-style: normal; }
 /* split-text primitives (masks for line/word reveals) ------------------- */
 .line { display: block; overflow: clip; overflow-clip-margin: 0.12em; }
 .line > span { display: inline-block; will-change: transform; }
-.split-line { display: block; overflow: clip; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+/* top padding keeps capital accents (É, À) inside the reveal mask */
+.split-line { display: block; overflow: clip; padding: 0.16em 0 0.08em; margin: -0.16em 0 -0.08em; }
 .split-line__inner { display: block; }
 
 /* utilities ------------------------------------------------------------- */

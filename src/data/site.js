@@ -1,16 +1,17 @@
 /**
- * Personal details. Only real information goes here.
- * The contact section renders an e-mail button and social links
- * automatically as soon as they are filled in.
+ * Coordonnées. Uniquement des informations réelles, fournies par Noah.
+ * La section Contact se construit automatiquement à partir de ce fichier.
  */
 export const site = {
   name: 'Noah Milsztajn',
   role: 'Designer numérique',
   positioning: ['Direction artistique', 'Design d’interface', 'Expériences web & 3D'],
 
-  /** e.g. 'hello@yourdomain.com' — leave empty until a real address exists */
-  email: '',
+  email: 'nm.officestudiodesign@gmail.com',
+  /** objet pré-rempli du bouton « Parlons de votre projet » */
+  emailSubject: 'Projet — depuis votre portfolio',
 
-  /** e.g. [{ label: 'Instagram', url: 'https://instagram.com/…' }, { label: 'LinkedIn', url: '…' }] */
-  socials: [],
+  socials: [
+    { label: 'Instagram', handle: '@noah.mlzn_', url: 'https://www.instagram.com/noah.mlzn_/' },
+  ],
 };
