@@ -31,10 +31,12 @@ python3 -m http.server 4173 --directory dist
 
 ## Mettre en ligne
 
-Dépose le **contenu** de `dist/` sur n'importe quel hébergeur statique (Netlify Drop, Vercel, GitHub Pages, OVH, o2switch…). Il fonctionne à la racine d'un domaine comme dans un sous‑dossier. Aucun serveur spécial n'est nécessaire.
+Dépose le **contenu** de `dist/` sur n'importe quel hébergeur statique (Netlify, Vercel, Cloudflare Pages, OVH, o2switch…). Il fonctionne à la racine d'un domaine comme dans un sous‑dossier.
+
+**Avant de publier**, suis `MISE-EN-LIGNE.md` : mentions légales à compléter, adresse du site pour le sitemap, envoi du formulaire, Google Search Console.
 
 ## À compléter
 
-- **E‑mail et réseaux :** `source/src/data/site.js`, puis `npm run build`.
+- **Mentions légales** (statut, SIRET, hébergeur) : `source/src/data/site.js`, puis `npm run build`.
 - **Captures du site Cynthia Rimo** et statut de ses fonctionnalités : marche à suivre dans `source/README.md`.
-- **Modèle 3D Air Jordan 1 Travis Scott (Mocha / Reverse Mocha) :** à intégrer quand tu auras un fichier `.glb` sous licence — marche à suivre dans `source/README.md`.
+- **Modèle 3D Air Jordan 1 Travis Scott (Mocha) :** à intégrer quand tu m'enverras le fichier `.glb` — marche à suivre dans `source/README.md`.

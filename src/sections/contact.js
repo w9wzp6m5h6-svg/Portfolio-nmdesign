@@ -5,7 +5,7 @@
  */
 import { gsap, ScrollTrigger } from '../core/scroll.js';
 import { env } from '../core/env.js';
-import { site } from '../data/site.js';
+import { site, mailto } from '../data/site.js';
 
 const escAttr = (v) => String(v).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
@@ -13,12 +13,11 @@ function renderActions(root) {
   const lines = [];
   let cta = '';
   if (site.email) {
-    const mailto = `mailto:${site.email}${site.emailSubject ? `?subject=${encodeURIComponent(site.emailSubject)}` : ''}`;
-    cta = `<a class="btn contact__cta" href="${escAttr(mailto)}" data-cursor="M’écrire">Parlons de votre projet<span class="btn__arrow" aria-hidden="true">→</span></a>`;
+    cta = `<button class="btn contact__cta" type="button" data-open-brief>Parlons de votre projet<span class="btn__arrow" aria-hidden="true">→</span></button>`;
     lines.push(`
       <li class="contact__line-item">
         <span class="mono contact__label">Me contacter par e-mail</span>
-        <a class="contact__value" href="mailto:${escAttr(site.email)}">${escAttr(site.email)}</a>
+        <a class="contact__value" href="${escAttr(mailto())}">${escAttr(site.email)}</a>
         <button class="chip contact__copy" type="button" data-copy="${escAttr(site.email)}">Copier<span class="contact__copied mono" aria-live="polite">Adresse copiée</span></button>
       </li>`);
   }

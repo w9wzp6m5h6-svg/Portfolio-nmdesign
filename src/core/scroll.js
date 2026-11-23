@@ -35,7 +35,7 @@ export function initScroll() {
     if (!target) return;
     e.preventDefault();
     scrollToTarget(target);
-    history.replaceState(null, '', id === '#top' ? location.pathname : id);
+    try { history.replaceState(null, '', id === '#top' ? location.pathname + location.search : id); } catch { /* cadre restreint */ }
     // move focus for keyboard / screen-reader users without a jump
     if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
     target.focus({ preventScroll: true });

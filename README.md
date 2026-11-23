@@ -27,13 +27,19 @@ Le navigateur s'ouvre sur `http://localhost:4173/`. Le contenu de `dist/` peut a
 
 | Quoi | Où |
 | --- | --- |
-| Adresse e‑mail de contact | `src/data/site.js` → `email` |
-| Réseaux sociaux | `src/data/site.js` → `socials` |
-| Modèle 3D Air Jordan 1 Travis Scott (Mocha / Reverse Mocha) | non fourni — voir « Remplacer la sneaker 3D » |
-| Captures du site Cynthia Rimo | non fournies — voir ci‑dessous |
-| Statut des fonctionnalités Cynthia Rimo | à préciser (livré / intégré / prévu / prototype) |
+| Mentions légales (statut, SIRET, adresse, hébergeur) | `src/data/site.js` → `legal` — **obligatoire avant publication** |
+| Adresse publique du site (canonical, sitemap) | `.env` → `SITE_URL` (voir `.env.example`) |
+| Envoi direct du formulaire (facultatif) | `.env` → `VITE_FORM_ENDPOINT` (Formspree / Web3Forms) |
+| Modèle 3D Air Jordan 1 Travis Scott (Mocha) | non fourni — voir « Remplacer la sneaker 3D » |
+| Captures du site Cynthia Rimo et statut de ses fonctionnalités | non fournis — voir ci‑dessous |
 
-Tant que l'e‑mail et les réseaux sont vides, la section Contact affiche une phrase neutre (aucune fausse adresse). Dès qu'ils sont remplis, les boutons « e‑mail », « copier l'adresse » et les liens apparaissent automatiquement.
+La marche à suivre complète (domaine, hébergement, formulaire, Google Search Console) est dans **`MISE-EN-LIGNE.md`**.
+
+E‑mail, Instagram, objet des e‑mails et informations légales sont centralisés dans `src/data/site.js` : contact, pied de page, formulaire et mentions légales se mettent à jour ensemble.
+
+### Portrait
+
+`tools/retouch-portrait.py` produit les versions du site (carré pour ordinateur, 4:5 pour mobile) depuis l'original conservé hors git dans `tools/source-photos/`. Retouche sobre : courbe tonale, étalonnage ocre, clarté et netteté légères, vignettage, grain fin. La source fait 1163 × 775 px : l'agrandissement ×2 est une interpolation, il n'ajoute pas de vrai détail (une vraie version 4K demande une photo source en haute définition).
 
 ### Cynthia Rimo (projet réel)
 
@@ -70,7 +76,7 @@ src/
   sections/                hero, works, object (3D), contact
   three/                   hero-gl (nom en WebGL), sneaker-stage (viewer 3D), variants
   project/                 view (overlay + routes #/work/…), blocks (mises en page), live/ (pièces temps réel)
-  styles/                  tokens, base, chrome, hero, works, object, about-contact, project
+  styles/                  tokens, base, chrome, hero, works, object, about-contact, project, commerce
 public/
   models/                  sneaker-hd.glb (1.8 Mo) · sneaker-lite.glb (0.55 Mo, mobile / appareils modestes)
 dist/                      version de production (générée par npm run build)

@@ -12,7 +12,7 @@
   --bone: #edebe5;
   --bone-dim: #c9c7c1;
   --fog: #8f949b;      /* cold grey — secondary text */
-  --fog-2: #61656c;    /* tertiary / captions */
+  --fog-2: #7a7f87;    /* tertiary / captions — 4.7:1 sur --ink (AA) */
   --line: rgb(237 235 229 / 0.12);
   --line-strong: rgb(237 235 229 / 0.24);
   --accent: #ff4f2b;   /* signal — used sparingly */

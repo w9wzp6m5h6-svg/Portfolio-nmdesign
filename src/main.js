@@ -15,6 +15,7 @@ import { initObject } from './sections/object.js';
 import { initContact } from './sections/contact.js';
 import { initAbout } from './sections/about.js';
 import { initProjectView } from './project/view.js';
+import { initCommerce } from './sections/commerce.js';
 
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
@@ -29,6 +30,7 @@ initObject();
 initContact();
 initAbout();
 const projectView = initProjectView();
+const commerce = initCommerce();
 
 // reveals need final fonts for correct line breaks
 document.fonts.ready.then(() => {
@@ -40,6 +42,7 @@ document.fonts.ready.then(() => {
 runLoader({ onReveal: () => hero.play() }).then(() => {
   ScrollTrigger.refresh();
   projectView.openFromURL();
+  commerce.openFromURL();
   // honour a section anchor in the URL (e.g. shared link to #object)
   const anchor = location.hash && !location.hash.startsWith('#/') && document.querySelector(location.hash);
   if (anchor) anchor.scrollIntoView();

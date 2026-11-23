@@ -36,7 +36,8 @@ export function splitWords(el) {
  */
 export function splitLines(el) {
   const original = el.innerHTML;
-  if (!el.hasAttribute('aria-label')) el.setAttribute('aria-label', el.textContent.replace(/\s+/g, ' ').trim());
+  // texte intégral pour lecteurs d'écran et robots (un aria-label n'est pas lu sur un <p>)
+  const plain = el.textContent.replace(/\s+/g, ' ').trim();
   const words = splitWords(el);
   const lines = [];
   let current = [];
@@ -58,7 +59,11 @@ export function splitLines(el) {
     });
     return `<span class="split-line" aria-hidden="true"><span class="split-line__inner">${parts.join(' ')}</span></span>`;
   });
-  el.innerHTML = html.join('');
+  const sr = document.createElement('span');
+  sr.className = 'visually-hidden';
+  sr.textContent = plain;
+  el.innerHTML = html.join(' ');
+  el.prepend(sr);
   return {
     lines: [...el.querySelectorAll('.split-line__inner')],
     revert: () => { el.innerHTML = original; },

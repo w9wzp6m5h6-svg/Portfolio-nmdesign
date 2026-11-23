@@ -13,7 +13,7 @@ html {
 }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
-.lenis.lenis-stopped { overflow: clip; }
+.lenis.lenis-stopped { overflow: hidden; overflow: clip; }
 
 body {
   background: var(--ink);
@@ -25,7 +25,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  overflow-x: clip;
+  overflow-x: hidden; overflow-x: clip;
 }
 body.is-loading { overflow: hidden; }
 
@@ -63,10 +63,10 @@ em { font-style: normal; }
   letter-spacing: -0.01em;
 }
 /* split-text primitives (masks for line/word reveals) ------------------- */
-.line { display: block; overflow: clip; overflow-clip-margin: 0.12em; }
+.line { display: block; overflow: hidden; overflow: clip; overflow-clip-margin: 0.12em; }
 .line > span { display: inline-block; will-change: transform; }
 /* top padding keeps capital accents (É, À) inside the reveal mask */
-.split-line { display: block; overflow: clip; padding: 0.16em 0 0.08em; margin: -0.16em 0 -0.08em; }
+.split-line { display: block; overflow: hidden; overflow: clip; padding: 0.16em 0 0.08em; margin: -0.16em 0 -0.08em; }
 .split-line__inner { display: block; }
 
 /* utilities ------------------------------------------------------------- */

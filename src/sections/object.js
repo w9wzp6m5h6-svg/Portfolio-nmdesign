@@ -107,15 +107,37 @@ export function initObject() {
   section.querySelector('[data-reset]').addEventListener('click', () => { stage?.reset(); clearSpot(); });
 
   // lazy boot ---------------------------------------------------------------
+  // repli élégant : rendu fixe de l'objet à la place de la scène 3D
+  function showFallback(message) {
+    stage = null;
+    const img = document.createElement('img');
+    img.className = 'object__fallback';
+    img.src = asset('media/works/stride/shoe_profile-1400.webp');
+    img.alt = 'Rendu de la sneaker en maille, vue de profil';
+    img.decoding = 'async';
+    canvas.replaceWith(img);
+    loadingText.textContent = message;
+    section.classList.add('is-fallback');
+    controls.hidden = true;
+    panel.root.hidden = true;
+    hint.hidden = true;
+  }
+
   async function boot() {
     if (!env.webgl) {
-      loadingText.textContent = 'La 3D (WebGL) n’est pas disponible sur cet appareil.';
+      showFallback('Vue 3D indisponible sur cet appareil : voici un rendu de l’objet.');
       return;
     }
-    const { SneakerStage } = await import('../three/sneaker-stage.js');
-    stage = new SneakerStage(canvas, {
-      onFrame: placeHotspots,
-    });
+    try {
+      const { SneakerStage } = await import('../three/sneaker-stage.js');
+      stage = new SneakerStage(canvas, {
+        onFrame: placeHotspots,
+      });
+    } catch (err) {
+      console.warn('[object] WebGL indisponible', err);
+      showFallback('Vue 3D indisponible sur cet appareil : voici un rendu de l’objet.');
+      return;
+    }
     stage.onInteract = () => gsap.to(hint, { autoAlpha: 0, duration: 0.6 });
     const url = asset(env.lite ? model.lite : model.hd);
     let available = [];
@@ -126,7 +148,8 @@ export function initObject() {
       }, { rotation: model.rotation });
     } catch (err) {
       console.error('[object] failed to load model', err);
-      loadingText.textContent = 'L’objet 3D n’a pas pu être chargé. Rechargez la page pour réessayer.';
+      stage?.dispose?.();
+      showFallback('L’objet 3D n’a pas pu être chargé : voici un rendu fixe. Rechargez la page pour réessayer.');
       return;
     }
     // only offer colourways that the loaded file actually contains

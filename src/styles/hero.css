@@ -4,13 +4,13 @@
 
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: 100vh;  min-height: 100svh;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto 1fr auto auto;
   column-gap: var(--gutter);
   padding: calc(var(--header-h) + clamp(16px, 4vh, 48px)) var(--margin) var(--margin);
-  overflow: clip;
+  overflow: hidden; overflow: clip;
   isolation: isolate;
 }
 
@@ -62,7 +62,7 @@
   margin: 0 -0.02em;
 }
 .hero.has-gl .hero__word { color: transparent; }
-.hero__line { display: block; overflow: clip; overflow-clip-margin: 0.05em; padding-top: 0.06em; }
+.hero__line { display: block; overflow: hidden; overflow: clip; overflow-clip-margin: 0.05em; padding-top: 0.06em; }
 .hero__line--1 { grid-column: 1; grid-row: 1; }
 .hero__line--2 { grid-column: 1 / -1; grid-row: 2; }
 .hero__word { display: inline-block; white-space: nowrap; }

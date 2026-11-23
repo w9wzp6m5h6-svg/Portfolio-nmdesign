@@ -3,14 +3,61 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Noah Milsztajn — Designer numérique</title>
-  <meta name="description" content="Noah Milsztajn, designer numérique autodidacte : direction artistique, design d'interface, expériences web, 3D et interaction." />
+  <title>Noah Milsztajn — Web designer &amp; créatif digital · Côte d'Azur</title>
+  <meta name="description" content="Web designer et créatif digital sur la Côte d'Azur : sites sur mesure, UI/UX, direction artistique, motion et 3D pour artistes, galeries, restaurants et marques." />
+  <meta name="author" content="Noah Milsztajn" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="theme-color" content="#0b0b0c" />
-  <meta property="og:title" content="Noah Milsztajn — Designer numérique" />
-  <meta property="og:description" content="Direction artistique, design d'interface, expériences web, 3D et interaction." />
+  <meta name="format-detection" content="telephone=no" />
+  <meta property="og:site_name" content="Noah Milsztajn" />
+  <meta property="og:title" content="Noah Milsztajn — Web designer &amp; créatif digital" />
+  <meta property="og:description" content="Sites et expériences numériques sur mesure : web design, UI/UX, direction artistique, motion et 3D. Basé sur la Côte d'Azur." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
   <meta property="og:image" content="/media/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Noah Milsztajn — portfolio de design numérique" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <!-- %SEO_URL% : canonical, og:url et URL absolues injectés au build si SITE_URL est défini -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "#noah",
+        "name": "Noah Milsztajn",
+        "jobTitle": "Web designer & créatif digital",
+        "email": "mailto:nm.officestudiodesign@gmail.com",
+        "sameAs": ["https://www.instagram.com/noah.mlzn_/"],
+        "knowsAbout": ["Web design", "UI/UX", "Direction artistique", "Motion design", "3D temps réel", "Expériences interactives"]
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "#studio",
+        "name": "Noah Milsztajn — Web design & créations digitales",
+        "description": "Sites et expériences numériques sur mesure : web design, UI/UX, direction artistique, motion et 3D.",
+        "founder": { "@id": "#noah" },
+        "email": "nm.officestudiodesign@gmail.com",
+        "image": "/media/og.jpg",
+        "priceRange": "À partir de 149 €",
+        "areaServed": ["Valbonne", "Antibes", "Cannes", "Mougins", "Nice", "Beaulieu-sur-Mer", "Saint-Jean-Cap-Ferrat", "Côte d'Azur"],
+        "sameAs": ["https://www.instagram.com/noah.mlzn_/"],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Formules",
+          "itemListElement": [
+            { "@type": "Offer", "name": "Essential", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 149, "priceCurrency": "EUR" } },
+            { "@type": "Offer", "name": "Portfolio", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 249, "priceCurrency": "EUR" } },
+            { "@type": "Offer", "name": "Signature", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 399, "priceCurrency": "EUR" } },
+            { "@type": "Offer", "name": "Premium", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 550, "priceCurrency": "EUR" } }
+          ]
+        }
+      }
+    ]
+  }
+  </script>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 </head>
 <body class="is-loading">
@@ -46,6 +93,7 @@
       <a href="#top" data-nav="top"><span class="roll" data-text="Accueil">Accueil</span></a>
       <a href="#work" data-nav="work"><span class="roll" data-text="Projets">Projets</span></a>
       <a href="#about" data-nav="about"><span class="roll" data-text="À propos">À propos</span></a>
+      <a href="#offers" data-nav="offers"><span class="roll" data-text="Offres">Offres</span></a>
       <a href="#contact" data-nav="contact" class="header__cta"><span class="roll" data-text="Contact">Contact</span></a>
     </nav>
     <button class="header__menu mono" type="button" aria-expanded="false" aria-controls="menu">
@@ -61,10 +109,12 @@
       <a href="#top"><span class="menu__num mono">00</span><span class="menu__label">Accueil</span></a>
       <a href="#work"><span class="menu__num mono">01</span><span class="menu__label">Projets</span></a>
       <a href="#about"><span class="menu__num mono">02</span><span class="menu__label">À propos</span></a>
-      <a href="#contact"><span class="menu__num mono">03</span><span class="menu__label">Contact</span></a>
+      <a href="#offers"><span class="menu__num mono">03</span><span class="menu__label">Offres</span></a>
+      <a href="#process"><span class="menu__num mono">04</span><span class="menu__label">Méthode</span></a>
+      <a href="#contact"><span class="menu__num mono">05</span><span class="menu__label">Contact</span></a>
     </nav>
     <div class="menu__foot mono">
-      <span>Direction artistique</span><span>Design d'interface</span><span>Expériences web &amp; 3D</span>
+      <span>Web design</span><span>Direction artistique</span><span>Expériences web &amp; 3D</span>
     </div>
   </div>
 
@@ -95,8 +145,8 @@
       <h1 class="hero__name">
         <span class="hero__line hero__line--1"><span class="hero__word">Noah</span></span>
         <span class="hero__role" data-intro>
-          <span class="mono hero__role-title">Designer numérique</span>
-          <span class="mono hero__role-list">Direction artistique<br />Design d'interface<br />Expériences web &amp; 3D</span>
+          <span class="mono hero__role-title">Web designer &amp; créatif digital</span>
+          <span class="mono hero__role-list">Web design · UI/UX<br />Direction artistique<br />Motion &amp; expériences 3D</span>
         </span>
         <span class="hero__line hero__line--2"><span class="hero__word">Milsztajn</span></span>
       </h1>
@@ -104,7 +154,7 @@
       <div class="hero__bottom mono" data-intro>
         <a class="hero__scroll" href="#work"><span class="hero__scroll-line" aria-hidden="true"></span>Découvrir les projets</a>
         <span class="hero__hint">Passez le curseur sur le nom</span>
-        <span>Autodidacte · Interfaces · 3D</span>
+        <span>Côte d'Azur · Interfaces · 3D</span>
       </div>
     </section>
 
@@ -195,7 +245,11 @@
         <figure class="portrait" data-portrait>
           <div class="portrait__frame">
             <div class="portrait__img">
-              <img src="/media/about/noah-1163.webp" srcset="/media/about/noah-800.webp 800w, /media/about/noah-1163.webp 1163w" sizes="(max-width: 900px) 100vw, 46vw" alt="Portrait de Noah Milsztajn, souriant, lunettes et pull crème, devant un mur jaune orangé" loading="lazy" decoding="async" />
+              <picture>
+                <source media="(max-width: 900px)" type="image/webp" srcset="/media/about/noah-portrait-600.webp 600w, /media/about/noah-portrait-900.webp 900w, /media/about/noah-portrait-1192.webp 1192w" sizes="95vw" />
+                <source type="image/webp" srcset="/media/about/noah-square-800.webp 800w, /media/about/noah-square-1200.webp 1200w, /media/about/noah-square-1550.webp 1550w" sizes="46vw" />
+                <img src="/media/about/noah-square-1200.webp" width="1200" height="1200" alt="Portrait de Noah Milsztajn, souriant, lunettes et pull crème, pouces tendus devant un mur jaune orangé" loading="lazy" decoding="async" />
+              </picture>
             </div>
           </div>
           <span class="portrait__name serif" aria-hidden="true">Noah</span>
@@ -268,13 +322,160 @@
       </div>
     </section>
 
-    <!-- 04 — Contact ----------------------------------------------------->
-    <section class="contact" id="contact" data-section="04" data-label="Contact">
+    <!-- 04 — Offres ------------------------------------------------------>
+    <section class="offers" id="offers" data-section="04" data-label="Offres">
+      <header class="section-head">
+        <p class="section-head__num mono">(04)</p>
+        <h2 class="section-head__title" data-split>Offres</h2>
+      </header>
+
+      <div class="offers__intro">
+        <p class="offers__kicker mono">Digital design / Creative experiences</p>
+        <p class="offers__lead" data-reveal>Je conçois des sites et des expériences numériques sur mesure, pensés comme une extension de votre univers. Pas un modèle rempli à la chaîne : une direction artistique, des détails soignés et une expérience dont on se souvient.</p>
+        <ul class="offers__services mono" aria-label="Disciplines">
+          <li>Web design</li><li>UI / UX</li><li>Direction artistique</li><li>Visual design</li><li>Motion design</li><li>Interactions</li><li>Expériences 3D</li><li>Expériences immersives</li>
+        </ul>
+      </div>
+
+      <div class="offers__for" data-reveal>
+        <h3 class="offers__for-k mono">Pour qui</h3>
+        <p class="offers__for-list">Galeries d'art, artistes, restaurants, boutiques et concept stores, mode, beauté, lifestyle, hôtellerie, architectes, designers d'intérieur et entreprises premium.</p>
+        <p class="offers__for-zone mono">Basé sur la Côte d'Azur — Valbonne, Antibes, Cannes, Mougins, Nice, Beaulieu-sur-Mer, Saint-Jean-Cap-Ferrat. À distance partout ailleurs.</p>
+      </div>
+
+      <ol class="plans" aria-label="Formules">
+        <li class="plan">
+          <p class="plan__num mono">01</p>
+          <h3 class="plan__name">Essential</h3>
+          <p class="plan__price"><span class="mono">À partir de</span> <strong>149 €</strong></p>
+          <p class="plan__pitch">Une page claire et soignée pour présenter votre activité.</p>
+          <ul class="plan__list">
+            <li>Landing page</li><li>Présentation de l'activité</li><li>Design personnalisé</li><li>Responsive</li><li>Contact</li>
+          </ul>
+          <button class="btn btn--ghost plan__cta" type="button" data-open-brief="Essential">Choisir Essential<span class="btn__arrow" aria-hidden="true">→</span></button>
+        </li>
+        <li class="plan">
+          <p class="plan__num mono">02</p>
+          <h3 class="plan__name">Portfolio</h3>
+          <p class="plan__price"><span class="mono">À partir de</span> <strong>249 €</strong></p>
+          <p class="plan__pitch">Un site complet pour montrer votre travail ou votre marque.</p>
+          <ul class="plan__list">
+            <li>Site multi-sections</li><li>Portfolio ou présentation de marque</li><li>Direction artistique</li><li>Animations</li><li>Responsive</li><li>Contact</li>
+          </ul>
+          <button class="btn btn--ghost plan__cta" type="button" data-open-brief="Portfolio">Choisir Portfolio<span class="btn__arrow" aria-hidden="true">→</span></button>
+        </li>
+        <li class="plan plan--signature">
+          <p class="plan__num mono">03 <span class="plan__flag">Sur mesure</span></p>
+          <h3 class="plan__name">Signature</h3>
+          <p class="plan__price"><span class="mono">À partir de</span> <strong>399 €</strong></p>
+          <p class="plan__pitch">Une expérience pensée de A à Z autour de votre identité.</p>
+          <ul class="plan__list">
+            <li>Design sur mesure</li><li>Direction artistique approfondie</li><li>Animations</li><li>Interactions</li><li>Expérience personnalisée</li><li>Sections spécifiques</li>
+          </ul>
+          <button class="btn plan__cta" type="button" data-open-brief="Signature">Choisir Signature<span class="btn__arrow" aria-hidden="true">→</span></button>
+        </li>
+        <li class="plan">
+          <p class="plan__num mono">04</p>
+          <h3 class="plan__name">Premium</h3>
+          <p class="plan__price"><span class="mono">À partir de</span> <strong>550 €</strong></p>
+          <p class="plan__pitch">Un projet ambitieux, immersif, sans compromis créatif.</p>
+          <ul class="plan__list">
+            <li>Projet personnalisé</li><li>Direction artistique complète</li><li>Expérience immersive</li><li>Motion</li><li>3D selon le projet</li><li>Fonctionnalités avancées</li>
+          </ul>
+          <button class="btn btn--ghost plan__cta" type="button" data-open-brief="Premium">Choisir Premium<span class="btn__arrow" aria-hidden="true">→</span></button>
+        </li>
+      </ol>
+
+      <div class="offers__bottom">
+        <div class="addons">
+          <h3 class="addons__k mono">Prestations complémentaires</h3>
+          <dl class="addons__list">
+            <div><dt>Motion &amp; animations</dt><dd>à partir de 80 €</dd></div>
+            <div><dt>3D</dt><dd>à partir de 150 €</dd></div>
+            <div><dt>Refonte visuelle</dt><dd>sur devis</dd></div>
+            <div><dt>Fonctionnalités spécifiques</dt><dd>sur devis</dd></div>
+            <div><dt>Expériences immersives</dt><dd>sur devis</dd></div>
+          </dl>
+          <p class="addons__note">Tous les tarifs sont des prix de départ. Chaque projet fait l'objet d'une proposition détaillée — périmètre, livrables, délais et prix — validée ensemble avant de commencer.</p>
+        </div>
+
+        <aside class="launch" aria-labelledby="launch-title">
+          <p class="launch__k mono">Offre de lancement</p>
+          <h3 class="launch__title" id="launch-title">First Creative <em class="serif">Projects</em></h3>
+          <p class="launch__text">J'ouvre trois collaborations à des artistes et à des portfolios que j'ai envie d'accompagner. Une manière de construire ensemble, avec la même exigence que pour n'importe quel projet.</p>
+          <p class="launch__price"><span class="mono">À partir de</span> <strong>199 €</strong> <span class="mono launch__seats">3 projets sélectionnés</span></p>
+          <button class="btn launch__cta" type="button" data-open-brief="First Creative Projects">Proposer mon projet<span class="btn__arrow" aria-hidden="true">→</span></button>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 05 — Méthode ----------------------------------------------------->
+    <section class="process" id="process" data-section="05" data-label="Méthode">
+      <header class="section-head">
+        <p class="section-head__num mono">(05)</p>
+        <h2 class="section-head__title" data-split>From idea <em>to experience</em></h2>
+        <p class="section-head__note">Avant d'écrire la moindre ligne, vous savez ce qui va se passer, combien cela coûte et quand ce sera livré.</p>
+      </header>
+
+      <ol class="steps">
+        <li class="step">
+          <p class="step__num mono">Step 01</p>
+          <div class="step__body">
+            <h3 class="step__title">Discovery</h3>
+            <p class="step__text">Vous me présentez votre activité, votre univers, vos besoins et votre objectif. J'écoute, je pose les bonnes questions.</p>
+          </div>
+        </li>
+        <li class="step">
+          <p class="step__num mono">Step 02</p>
+          <div class="step__body">
+            <h3 class="step__title">Project &amp; direction</h3>
+            <p class="step__text">Nous définissons ensemble le type de projet, les fonctionnalités nécessaires, le budget, l'ambition créative et la direction artistique.</p>
+          </div>
+        </li>
+        <li class="step">
+          <p class="step__num mono">Step 03</p>
+          <div class="step__body">
+            <h3 class="step__title">Proposal</h3>
+            <p class="step__text">Je prépare une proposition claire, écrite, que vous pouvez relire à tête reposée.</p>
+            <ul class="step__list mono"><li>Périmètre</li><li>Livrables</li><li>Direction artistique</li><li>Fonctionnalités</li><li>Tarif</li><li>Délais estimés</li><li>Conditions</li></ul>
+          </div>
+        </li>
+        <li class="step">
+          <p class="step__num mono">Step 04</p>
+          <div class="step__body">
+            <h3 class="step__title">Validation</h3>
+            <p class="step__text">Rien ne commence sans votre accord : proposition, prix, périmètre, délais et conditions de paiement sont validés, puis un acompte est versé selon les conditions convenues.</p>
+          </div>
+        </li>
+        <li class="step">
+          <p class="step__num mono">Step 05</p>
+          <div class="step__body">
+            <h3 class="step__title">Creation</h3>
+            <p class="step__text">Recherche, direction artistique, design, développement et interactions. Vous suivez l'avancement, avec des révisions prévues dès le départ.</p>
+          </div>
+        </li>
+        <li class="step">
+          <p class="step__num mono">Step 06</p>
+          <div class="step__body">
+            <h3 class="step__title">Delivery</h3>
+            <p class="step__text">Vérifications, corrections et optimisation sur ordinateur, tablette et mobile, puis livraison — et mise en ligne si elle est incluse dans la prestation.</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="process__end">
+        <p class="process__end-text">Prêt à passer à l'étape 01 ?</p>
+        <button class="btn" type="button" data-open-brief>Start a project<span class="btn__arrow" aria-hidden="true">→</span></button>
+      </div>
+    </section>
+
+    <!-- 06 — Contact ----------------------------------------------------->
+    <section class="contact" id="contact" data-section="06" data-label="Contact">
       <svg class="contact__mark" viewBox="-6 -6 132 112" fill="none" aria-hidden="true">
         <polyline class="contact__line" points="0,100 0,0 60,100 60,0 90,60 120,0 120,100" />
       </svg>
       <div class="contact__content">
-        <p class="mono contact__kicker">(04) Me contacter</p>
+        <p class="mono contact__kicker">(06) Me contacter</p>
         <h2 class="contact__title" data-split>Créons quelque chose <em class="serif">ensemble.</em></h2>
         <p class="contact__intro">Une idée, un projet ou simplement envie d'échanger ? Je suis toujours ouvert à découvrir de nouveaux projets et à donner vie à de nouvelles idées.</p>
         <div class="contact__actions" data-contact></div>
@@ -283,12 +484,156 @@
   </main>
 
   <footer class="footer">
+    <div class="footer__top">
+      <p class="footer__claim">Noah Milsztajn<br /><span class="serif">Digital design &amp; creative experiences</span></p>
+      <button class="btn footer__cta" type="button" data-open-brief>Démarrer un projet<span class="btn__arrow" aria-hidden="true">→</span></button>
+    </div>
+    <div class="footer__cols">
+      <nav class="footer__col" aria-label="Plan du site">
+        <p class="footer__k mono">Navigation</p>
+        <ul>
+          <li><a href="#top">Accueil</a></li>
+          <li><a href="#work">Projets</a></li>
+          <li><a href="#offers">Offres</a></li>
+          <li><a href="#process">Méthode</a></li>
+          <li><a href="#about">À propos</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer__col">
+        <p class="footer__k mono">Contact</p>
+        <ul data-footer-contact></ul>
+      </div>
+      <div class="footer__col">
+        <p class="footer__k mono">Informations</p>
+        <ul>
+          <li><button class="footer__link" type="button" data-open-legal="legal">Mentions légales</button></li>
+          <li><button class="footer__link" type="button" data-open-legal="privacy">Confidentialité</button></li>
+          <li><a href="#top">Retour en haut ↑</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <p class="footer__k mono">Zone</p>
+        <p class="footer__zone">Côte d'Azur — Valbonne, Antibes, Cannes, Nice. Projets à distance partout ailleurs.</p>
+      </div>
+    </div>
     <div class="footer__row">
       <span class="mono">© <span data-year>2026</span> Noah Milsztajn</span>
       <span class="mono footer__credits">Modèles 3D : Shopify (CC BY 4.0), Darmstadt Graphics Group / Eric Chadwick (CC BY 4.0), Wayfair (CC0 / CC BY 4.0), via Khronos glTF Sample Assets. Les concepts présentés sont des projets personnels.</span>
-      <a class="mono footer__top" href="#top">Retour en haut ↑</a>
     </div>
   </footer>
+
+  <!-- Demande de projet ------------------------------------------------->
+  <dialog class="sheet brief" id="brief" aria-labelledby="brief-title">
+    <div class="sheet__panel" data-lenis-prevent>
+      <div class="sheet__head">
+        <p class="mono sheet__k">Start a project</p>
+        <button class="sheet__close mono" type="button" data-close>Fermer<span class="project__close-x" aria-hidden="true"></span></button>
+      </div>
+      <h2 class="sheet__title" id="brief-title">Parlons de votre <em class="serif">projet.</em></h2>
+      <p class="sheet__intro">Quelques questions pour comprendre votre besoin. Je vous réponds avec une première orientation, puis une proposition claire si nous avançons ensemble. Les champs marqués * sont obligatoires.</p>
+
+      <form class="brief__form" novalidate>
+        <div class="field">
+          <label for="f-name">Nom *</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required maxlength="120" />
+        </div>
+        <div class="field">
+          <label for="f-email">E-mail *</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="160" />
+        </div>
+        <div class="field">
+          <label for="f-activity">Activité *</label>
+          <input id="f-activity" name="activity" type="text" required maxlength="160" placeholder="Galerie, restaurant, artiste, boutique…" />
+        </div>
+        <div class="field">
+          <label for="f-type">Type de projet</label>
+          <select id="f-type" name="type">
+            <option value="">Je ne sais pas encore</option>
+            <option>Essential</option>
+            <option>Portfolio</option>
+            <option>Signature</option>
+            <option>Premium</option>
+            <option>First Creative Projects</option>
+            <option>Refonte visuelle</option>
+            <option>Autre</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-budget">Budget</label>
+          <select id="f-budget" name="budget">
+            <option value="">À définir ensemble</option>
+            <option>Moins de 250 €</option>
+            <option>250 – 400 €</option>
+            <option>400 – 550 €</option>
+            <option>550 – 1 000 €</option>
+            <option>Plus de 1 000 €</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-goal">Objectif</label>
+          <input id="f-goal" name="goal" type="text" maxlength="200" placeholder="Attirer des clients, présenter une collection…" />
+        </div>
+        <div class="field field--wide">
+          <label for="f-desc">Description du projet *</label>
+          <textarea id="f-desc" name="description" rows="5" required maxlength="2000"></textarea>
+        </div>
+        <div class="field">
+          <label for="f-link">Site actuel ou Instagram</label>
+          <input id="f-link" name="link" type="text" maxlength="200" placeholder="https://… ou @compte" />
+        </div>
+        <div class="field">
+          <label for="f-insp">Inspirations</label>
+          <input id="f-insp" name="inspirations" type="text" maxlength="400" placeholder="Sites, marques, ambiances…" />
+        </div>
+        <div class="field field--hp" aria-hidden="true">
+          <label for="f-company">Ne pas remplir</label>
+          <input id="f-company" name="company" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        <p class="brief__privacy field--wide">Vos réponses servent uniquement à vous recontacter au sujet de votre projet. <button class="footer__link" type="button" data-open-legal="privacy">Confidentialité</button></p>
+        <p class="brief__error field--wide" role="alert" hidden></p>
+        <div class="brief__submit field--wide">
+          <button class="btn" type="submit">Envoyer ma demande<span class="btn__arrow" aria-hidden="true">→</span></button>
+          <p class="brief__how mono" data-brief-how></p>
+        </div>
+      </form>
+
+      <div class="brief__done" hidden tabindex="-1">
+        <p class="brief__done-title" data-done-title></p>
+        <p class="brief__done-text" data-done-text></p>
+        <div class="brief__done-actions" data-done-actions></div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Mentions légales / confidentialité --------------------------------->
+  <dialog class="sheet legal" id="legal" aria-labelledby="legal-title">
+    <div class="sheet__panel" data-lenis-prevent>
+      <div class="sheet__head">
+        <p class="mono sheet__k">Informations</p>
+        <button class="sheet__close mono" type="button" data-close>Fermer<span class="project__close-x" aria-hidden="true"></span></button>
+      </div>
+      <h2 class="sheet__title" id="legal-title">Mentions légales</h2>
+      <div class="legal__body">
+        <section id="legal-legal" aria-labelledby="legal-h-legal">
+          <h3 id="legal-h-legal">Éditeur du site</h3>
+          <dl class="legal__dl" data-legal-editor></dl>
+          <h3>Hébergement</h3>
+          <dl class="legal__dl" data-legal-host></dl>
+          <h3>Propriété intellectuelle</h3>
+          <p>Les textes, visuels, maquettes et le code de ce site sont la propriété de Noah Milsztajn, sauf mention contraire. Les modèles 3D utilisés dans les concepts appartiennent à leurs auteurs respectifs et sont utilisés selon leurs licences (voir crédits en pied de page). Les projets présentés comme « concepts » sont des explorations personnelles, sans lien commercial avec les marques ou lieux évoqués.</p>
+        </section>
+        <section id="legal-privacy" aria-labelledby="legal-h-privacy">
+          <h3 id="legal-h-privacy">Confidentialité</h3>
+          <p>Ce site ne dépose aucun cookie, n'utilise aucun outil de mesure d'audience ni de publicité, et ne charge aucune police ou script depuis un service tiers.</p>
+          <p data-legal-form></p>
+          <p>Les informations transmises ne servent qu'à répondre à votre demande et à préparer une éventuelle proposition. Elles ne sont ni revendues ni partagées. Elles sont conservées le temps nécessaire à nos échanges, puis supprimées au plus tard trois ans après le dernier contact.</p>
+          <p>Conformément au RGPD, vous pouvez demander l'accès, la rectification ou la suppression de vos données en écrivant à <a data-legal-email href="#contact"></a>. Vous pouvez également adresser une réclamation à la CNIL.</p>
+          <p>Le lien Instagram mène vers un service externe, soumis à sa propre politique de confidentialité.</p>
+        </section>
+      </div>
+    </div>
+  </dialog>
 
   <!-- Étude de cas (remplie par JS) -->
   <div class="project" role="dialog" aria-modal="true" aria-labelledby="project-title" inert>

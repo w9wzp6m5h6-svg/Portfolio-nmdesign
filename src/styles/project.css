@@ -51,7 +51,7 @@
 
 /* --- hero --------------------------------------------------------------- */
 .p-hero {
-  position: relative; height: 100svh; min-height: 560px;
+  position: relative; height: 100vh; height: 100svh; min-height: 560px;
   overflow: hidden; color: #fff;
 }
 .p-hero__media { position: absolute; inset: 0; }

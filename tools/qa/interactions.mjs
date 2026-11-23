@@ -34,8 +34,10 @@ const watch = (page) => {
   await page.click('.header__menu');
   await page.waitForTimeout(1600); // let the opening animation finish, as a person would
   await page.keyboard.press('Escape');
-  await page.waitForTimeout(2500); // the close animation (~1.1 s) runs slower in headless WebGL
-  check('Esc closes menu', !(await page.evaluate(() => document.getElementById('menu').classList.contains('is-open'))));
+  // état fermé immédiat (aria + inert), puis fin de l'animation (lente en WebGL logiciel headless)
+  check('Esc closes menu (aria-expanded=false, menu inert)', await page.evaluate(() => document.querySelector('.header__menu').getAttribute('aria-expanded') === 'false' && document.getElementById('menu').inert));
+  const closed = await page.waitForFunction(() => !document.getElementById('menu').classList.contains('is-open'), null, { timeout: 20000 }).then(() => true, () => false);
+  check('Esc: close animation completes', closed);
   check('scroll unlocked after close', await page.evaluate(() => getComputedStyle(document.documentElement).overflow !== 'hidden'));
   await page.close();
 }
