@@ -11,6 +11,16 @@ npm run build     # → dist/ (site statique, déployable partout)
 npm run preview   # sert dist/ sur http://localhost:4173
 ```
 
+### Démonstration (sans rien installer d'autre que Node.js ou Python)
+
+Le site de production est dans `dist/`. Il doit être servi par un petit serveur local (l'ouvrir en double‑cliquant sur `index.html` casse les modules JS et la 3D — limitation de sécurité de tous les navigateurs).
+
+- **Mac :** double‑clic sur `demo/Lancer le portfolio (Mac).command`
+- **Windows :** double‑clic sur `demo/Lancer le portfolio (Windows).bat`
+- **Terminal :** `node demo/serve.mjs` (ou `python3 -m http.server 4173 --directory dist`)
+
+Le navigateur s'ouvre sur `http://localhost:4173/`. Le contenu de `dist/` peut aussi être déposé tel quel sur n'importe quel hébergeur statique (Netlify, Vercel, GitHub Pages, OVH…), à la racine ou dans un sous‑dossier.
+
 ---
 
 ## Ce qu'il faut compléter
@@ -19,8 +29,19 @@ npm run preview   # sert dist/ sur http://localhost:4173
 | --- | --- |
 | Adresse e‑mail de contact | `src/data/site.js` → `email` |
 | Réseaux sociaux | `src/data/site.js` → `socials` |
+| Photo de profil (fond jaune) | non fournie — voir ci‑dessous |
+| Modèle 3D Air Jordan 1 Low Travis Scott « Reverse Mocha » | non disponible sous licence libre — voir ci‑dessous |
 
-Tant que ces champs sont vides, la section Contact affiche une phrase neutre (aucune fausse adresse). Dès qu'ils sont remplis, les boutons « e‑mail », « copier l'adresse » et les liens apparaissent automatiquement.
+Tant que l'e‑mail et les réseaux sont vides, la section Contact affiche une phrase neutre (aucune fausse adresse). Dès qu'ils sont remplis, les boutons « e‑mail », « copier l'adresse » et les liens apparaissent automatiquement.
+
+### Remplacer la sneaker 3D
+
+1. Récupère un fichier `.glb` (ou `.gltf`) dont la licence autorise ton usage.
+2. `node tools/prepare-sneaker.mjs chemin/vers/modele.glb` → génère `public/models/sneaker-hd.glb` et `sneaker-lite.glb`.
+3. Dans `src/data/sneaker.js` : mets à jour `model` (titre, crédit, `rotation` pour que la pointe soit vers +x) et repositionne les `hotspots` (ou `hotspots = []` pour les masquer).
+4. `npm run build`.
+
+Rotation, zoom, X‑Ray, éclairage et version mobile fonctionnent avec n'importe quel modèle. Les boutons de coloris n'apparaissent que si le fichier contient des variantes de matériaux.
 
 ---
 
@@ -46,6 +67,8 @@ src/
   styles/                  tokens, base, chrome, hero, works, object, about-contact, project
 public/
   models/                  sneaker-hd.glb (1.8 Mo) · sneaker-lite.glb (0.55 Mo, mobile / appareils modestes)
+dist/                      version de production (générée par npm run build)
+demo/                      serveur local sans dépendance + lanceurs Mac / Windows
   media/works/<projet>/    visuels WebP responsive (800 / 1400 / 2200 px)
 tools/                     outils de production (non publiés)
   fetch-models.sh          télécharge les modèles 3D sources
@@ -53,6 +76,7 @@ tools/                     outils de production (non publiés)
   capture/                 captures des pièces génératives (Afterimage, Oscillo)
   mockups/                 maquettes UI HTML des concepts → captures desktop / mobile
   optimize-images.mjs      PNG → WebP responsive
+  prepare-sneaker.mjs      optimise un modèle .glb pour la scène 3D
   qa/                      tests Playwright (captures, interactions, projets, objet 3D, perf)
 ```
 

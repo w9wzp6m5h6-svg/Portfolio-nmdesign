@@ -1,7 +1,7 @@
 node_modules
-dist
 tools/render/models
 tools/render/out
 tools/qa/out
 tools/qa/out-prod
 .DS_Store
+tools/qa/fixtures

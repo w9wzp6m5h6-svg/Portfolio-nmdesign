@@ -4,7 +4,8 @@
  */
 import { gsap, ScrollTrigger } from '../core/scroll.js';
 import { env } from '../core/env.js';
-import { variants, hotspots } from '../data/sneaker.js';
+import { model, variants, hotspots } from '../data/sneaker.js';
+import { asset } from '../core/asset.js';
 
 export function initObject() {
   const section = document.querySelector('.object');
@@ -22,6 +23,13 @@ export function initObject() {
   const hint = section.querySelector('.object__hint');
   let stage = null;
   let activeSpot = null;
+  const controls = section.querySelector('.object__controls');
+
+  section.querySelector('.object__title').innerHTML = model.title;
+  section.querySelector('.object__credit').textContent = model.credit;
+  // controls stay disabled until the model is ready, so no button ever does nothing
+  controls.querySelectorAll('button').forEach((b) => { b.disabled = true; });
+  if (!hotspots.length) panel.root.hidden = true;
 
   canvas.tabIndex = 0;
   canvas.setAttribute('aria-label', 'Interactive 3D sneaker. Drag, or use the arrow keys, to rotate. Plus and minus to zoom.');
@@ -109,18 +117,24 @@ export function initObject() {
       onFrame: placeHotspots,
     });
     stage.onInteract = () => gsap.to(hint, { autoAlpha: 0, duration: 0.6 });
-    const url = env.lite ? '/models/sneaker-lite.glb' : '/models/sneaker-hd.glb';
+    const url = asset(env.lite ? model.lite : model.hd);
+    let available = [];
     try {
-      await stage.load(url, (p) => {
+      available = await stage.load(url, (p) => {
         loadingBar.style.transform = `scaleX(${p})`;
         loadingText.textContent = `Loading object — ${Math.round(p * 100)}%`;
-      });
+      }, { rotation: model.rotation });
     } catch (err) {
       console.error('[object] failed to load model', err);
       loadingText.textContent = 'The 3D object could not be loaded.';
       return;
     }
-    stage.setVariant(variants[0].id);
+    // only offer colourways that the loaded file actually contains
+    const offered = variants.filter((v) => available.includes(v.id));
+    swatchWrap.querySelectorAll('[data-variant]').forEach((b) => { if (!available.includes(b.dataset.variant)) b.remove(); });
+    if (!offered.length) swatchWrap.closest('.object__group').hidden = true;
+    else stage.setVariant(offered[0].id);
+    controls.querySelectorAll('button').forEach((b) => { b.disabled = false; });
     section.classList.add('is-ready');
     if (import.meta.env.DEV) window.__stage = stage;
 

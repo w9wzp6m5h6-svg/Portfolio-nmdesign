@@ -1,8 +1,24 @@
 /**
- * Sneaker stage content. Anchor positions are in the normalised model space
- * used by the stage (shoe length = 1, resting on y = 0, toe towards +x,
- * lateral side towards +z). Verified with tools/render debug_hs_* scenes.
+ * Sneaker stage content.
+ *
+ * TO USE ANOTHER SHOE (e.g. a licensed Air Jordan 1 Low model):
+ *   1. node tools/prepare-sneaker.mjs path/to/your-model.glb   → writes public/models/sneaker-hd.glb + sneaker-lite.glb
+ *   2. update `model` below (name, credit, rotation so the toe points to +x)
+ *   3. re-place the `hotspots` for the new geometry, or set `hotspots = []` to hide them
+ *   Colourway buttons only appear when the file contains KHR_materials_variants.
+ *
+ * Anchor positions are in the normalised model space used by the stage
+ * (shoe length = 1, resting on y = 0, toe towards +x, lateral side towards +z).
+ * Verified for the current model with the tools/render debug_hs_* scenes.
  */
+export const model = {
+  title: 'Knit<br />Runner <em class="serif">/01</em>',
+  hd: 'models/sneaker-hd.glb',
+  lite: 'models/sneaker-lite.glb',
+  rotation: [0, 0, 0],
+  credit: '3D model: “Materials Variants Shoe” © 2021 Shopify, CC BY 4.0. Staging, shaders & interaction by Noah Milsztajn.',
+};
+
 export const variants = [
   { id: 'street', name: 'Street', c1: '#1c1c1e', c2: '#ff5a5f' },
   { id: 'beach', name: 'Beach', c1: '#d9b8b4', c2: '#3a3a3c' },

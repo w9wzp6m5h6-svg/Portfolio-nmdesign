@@ -153,8 +153,12 @@ export class SneakerStage {
     this.bindControls();
   }
 
-  /** Loads the GLB; resolves with the list of variant names present in the file. */
-  async load(url, onProgress) {
+  /**
+   * Loads any GLB. Resolves with the colourway names the stage can sweep between
+   * (empty when the model has no KHR_materials_variants — the UI then hides them).
+   * @param {{ rotation?: number[] }} opts — orientation fix so the toe points to +x
+   */
+  async load(url, onProgress, { rotation } = {}) {
     const loader = new GLTFLoader();
     loader.setMeshoptDecoder(MeshoptDecoder);
     const gltf = await loader.loadAsync(url, (e) => e.total && onProgress?.(e.loaded / e.total));
@@ -162,63 +166,71 @@ export class SneakerStage {
 
     // fit: length 1, resting on the floor, centred
     const root = gltf.scene;
+    if (rotation) root.rotation.set(...rotation);
     const box = new THREE.Box3().setFromObject(root);
     const size = box.getSize(new THREE.Vector3());
-    const s = 1 / Math.max(size.x, size.y, size.z);
-    root.scale.setScalar(s);
+    root.scale.multiplyScalar(1 / Math.max(size.x, size.y, size.z));
     box.setFromObject(root);
     const c = box.getCenter(new THREE.Vector3());
-    root.position.set(-c.x, -box.min.y, -c.z);
+    root.position.set(root.position.x - c.x, root.position.y - box.min.y, root.position.z - c.z);
 
-    root.traverse((o) => {
-      if (!o.isMesh) return;
-      this.mesh = o;
-      o.geometry.computeBoundingBox();
-    });
-    const gb = this.mesh.geometry.boundingBox;
+    this.meshes = [];
+    root.traverse((o) => { if (o.isMesh) this.meshes.push(o); });
 
-    // one sweep-capable material driven by the variant base-colour maps
+    // colourway sweep: available for single-mesh models with material variants
     this.variantMaps = {};
-    for (const name of this.variantsApi.names) {
-      const m = (await this.variantsApi.materialsFor(name)).get(this.mesh);
-      this.variantMaps[name] = m.map;
-    }
-    this.studioMat = makeSweepMaterial(this.mesh.material, this.accent);
-    this.studioMat.userData.sweep.uMinX.value = gb.min.x;
-    this.studioMat.userData.sweep.uMaxX.value = gb.max.x;
-    this.mesh.material = this.studioMat;
     this.currentVariant = null;
+    const single = this.meshes.length === 1 ? this.meshes[0] : null;
+    let names = [];
+    if (single && this.variantsApi.names.length && single.material.map) {
+      single.geometry.computeBoundingBox();
+      const gb = single.geometry.boundingBox;
+      for (const name of this.variantsApi.names) {
+        const m = (await this.variantsApi.materialsFor(name)).get(single);
+        if (m?.map) this.variantMaps[name] = m.map;
+      }
+      this.sweepMat = makeSweepMaterial(single.material, this.accent);
+      this.sweepMat.userData.sweep.uMinX.value = gb.min.x;
+      this.sweepMat.userData.sweep.uMaxX.value = gb.max.x;
+      single.material = this.sweepMat;
+      names = Object.keys(this.variantMaps);
+    }
 
-    // X-Ray: fresnel shell + wireframe sharing the same geometry
+    // studio materials (for the X-Ray crossfade) + X-Ray shell and wireframe per mesh
+    this.studioMats = [...new Set(this.meshes.flatMap((m) => (Array.isArray(m.material) ? m.material : [m.material])))];
     this.xrayMat = makeXrayMaterial();
-    this.xrayShell = new THREE.Mesh(this.mesh.geometry, this.xrayMat);
     this.wireMat = new THREE.MeshBasicMaterial({ color: 0xdfe8ff, wireframe: true, transparent: true, opacity: 0, depthWrite: false });
-    this.wire = new THREE.Mesh(this.mesh.geometry, this.wireMat);
-    this.xrayShell.visible = this.wire.visible = false;
-    this.mesh.add(this.xrayShell, this.wire);
+    this.xrayParts = [];
+    for (const mesh of this.meshes) {
+      const shell = new THREE.Mesh(mesh.geometry, this.xrayMat);
+      const wire = new THREE.Mesh(mesh.geometry, this.wireMat);
+      shell.visible = wire.visible = false;
+      mesh.add(shell, wire);
+      this.xrayParts.push(shell, wire);
+    }
 
     this.scene.add(root);
     this.root = root;
     this.renderer.compile(this.scene, this.camera);
     this.resize();
     this.invalidate();
-    return this.variantsApi.names;
+    return names;
   }
 
   setVariant(name, { instant = false } = {}) {
     const map = this.variantMaps?.[name];
     if (!map || name === this.currentVariant) return;
-    const u = this.studioMat.userData.sweep;
+    const u = this.sweepMat.userData.sweep;
     const first = this.currentVariant === null;
     this.currentVariant = name;
     if (first || instant || env.reducedMotion) {
-      this.studioMat.map = map; u.uMapB.value = map; u.uProgress.value = 0;
-      this.studioMat.needsUpdate = first;
+      this.sweepMat.map = map; u.uMapB.value = map; u.uProgress.value = 0;
+      this.sweepMat.needsUpdate = first;
       this.invalidate();
       return;
     }
     // finish any running sweep first
-    if (this.anim.sweep) { this.studioMat.map = u.uMapB.value; }
+    if (this.anim.sweep) { this.sweepMat.map = u.uMapB.value; }
     u.uMapB.value = map;
     u.uProgress.value = 0;
     this.anim.sweep = { start: performance.now(), duration: 1250 }; // wall-clock: same speed on slow GPUs
@@ -390,11 +402,11 @@ export class SneakerStage {
     // colourway sweep
     if (this.anim.sweep) {
       const sw = this.anim.sweep;
-      const u = this.studioMat.userData.sweep;
+      const u = this.sweepMat.userData.sweep;
       const p = Math.min((performance.now() - sw.start) / sw.duration, 1);
       u.uProgress.value = p < 0.5 ? 4 * p ** 3 : 1 - Math.pow(-2 * p + 2, 3) / 2;
       if (p >= 1) {
-        this.studioMat.map = u.uMapB.value;
+        this.sweepMat.map = u.uMapB.value;
         u.uProgress.value = 0;
         this.anim.sweep = null;
       }
@@ -425,13 +437,15 @@ export class SneakerStage {
   }
 
   applyXray(x) {
-    if (!this.mesh) return;
+    if (!this.meshes) return;
     const studio = 1 - x;
-    this.studioMat.transparent = studio < 1;
-    this.studioMat.opacity = studio;
-    this.studioMat.depthWrite = studio > 0.5;
-    this.mesh.material.visible = studio > 0.001;
-    this.xrayShell.visible = this.wire.visible = x > 0.001;
+    for (const m of this.studioMats) {
+      m.transparent = studio < 1;
+      m.opacity = studio;
+      m.depthWrite = studio > 0.5;
+      m.visible = studio > 0.001;
+    }
+    for (const part of this.xrayParts) part.visible = x > 0.001;
     this.xrayMat.uniforms.uOpacity.value = x;
     this.wireMat.opacity = x * 0.09;
     this.shadow.material.opacity = 0.9 * (1 - x * 0.7);

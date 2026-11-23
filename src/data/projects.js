@@ -6,6 +6,8 @@
  * sequence of blocks, so no two case studies share the same layout.
  */
 
+import { asset } from '../core/asset.js';
+
 const L = [800, 1400, 2200]; // landscape renders
 const P = [800, 1400];       // portrait renders
 const M = [800];             // mobile screen captures
@@ -13,8 +15,8 @@ const D = [800, 1400];       // desktop screen captures
 
 /** Responsive image descriptor */
 const img = (project, name, ratio, widths = L, alt = '') => ({
-  src: `/media/works/${project}/${name}-${widths[Math.min(1, widths.length - 1)]}.webp`,
-  srcset: widths.map((w) => `/media/works/${project}/${name}-${w}.webp ${w}w`).join(', '),
+  src: asset(`media/works/${project}/${name}-${widths[Math.min(1, widths.length - 1)]}.webp`),
+  srcset: widths.map((w) => `${asset(`media/works/${project}/${name}-${w}.webp`)} ${w}w`).join(', '),
   ratio,
   alt,
 });

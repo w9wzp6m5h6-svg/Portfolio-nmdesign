@@ -3,6 +3,7 @@
    ========================================================================== */
 
 *, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html, body { margin: 0; padding: 0; }
 html {
   -webkit-text-size-adjust: 100%;
@@ -102,6 +103,7 @@ em { font-style: normal; }
   color: var(--bone-dim);
   transition: color var(--d-micro) var(--ease-soft), background-color var(--d-micro) var(--ease-soft), border-color var(--d-micro) var(--ease-soft);
 }
+.chip:disabled, .swatch:disabled { opacity: 0.4; cursor: default; }
 .chip--icon { width: 36px; padding: 0; font-size: 15px; }
 .chip.is-active, .chip[aria-pressed='true'] { background: var(--bone); color: var(--ink); border-color: var(--bone); }
 @media (hover: hover) {
