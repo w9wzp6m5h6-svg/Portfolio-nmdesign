@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Quiet Rooms — concept</title>
+<link rel="stylesheet" href="./base.css">
+<style>
+body{background:#e4ddd3;color:#23201c}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:24px 40px}
+.logo{font-size:24px;font-weight:300;letter-spacing:-.04em}
+.links{display:flex;gap:28px;color:#776f64}.links span:first-child{color:#23201c}
+.grid{display:grid;grid-template-columns:1fr 2.1fr;gap:24px;padding:12px 40px 40px;height:calc(100vh - 80px)}
+.left{display:flex;flex-direction:column;justify-content:space-between}
+h1{font-size:76px;font-weight:300;letter-spacing:-.06em;line-height:.95}
+h1 em{font-family:'Instrument Serif',serif;font-style:italic;letter-spacing:-.03em}
+.intro{color:#776f64;font-size:15px;line-height:1.55;max-width:32ch;margin-top:22px}
+.index li{display:grid;grid-template-columns:36px 1fr auto;padding:11px 0;border-top:1px solid rgba(35,32,28,.14);font-size:15px}
+.index li span:first-child,.index li span:last-child{font-family:'Geist Mono Variable',monospace;font-size:11px;color:#776f64}
+.index li.on{color:#b0532d}
+.photo{position:relative;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover}
+.cap{position:absolute;left:18px;bottom:16px;right:18px;display:flex;justify-content:space-between;color:#23201c}
+@media (max-width:600px){
+  .nav{padding:18px}.logo{font-size:20px}
+  .grid{grid-template-columns:1fr;padding:6px 18px 18px;height:auto;gap:18px}
+  .photo{order:-1;height:300px}
+  h1{font-size:48px}
+  .intro{font-size:14px;margin-top:14px}
+  .index{margin-top:22px}
+}
+</style></head>
+<body>
+<nav class="nav"><span class="logo">quiet rooms</span><span class="links mono only-d"><span>Rooms</span><span>Studio</span><span>Journal</span><span>Contact</span></span><span class="mono only-m">Menu</span></nav>
+<main class="grid">
+  <section class="left">
+    <div><h1>spaces for <em>slow</em> living</h1>
+      <p class="intro">An interior and architecture studio working with light, proportion and very few objects.</p></div>
+    <ul class="index">
+      <li><span>01</span><span>Maison Albe</span><span>2026</span></li>
+      <li class="on"><span>02</span><span>North Light Flat</span><span>2026</span></li>
+      <li><span>03</span><span>Atelier Pavé</span><span>2025</span></li>
+      <li><span>04</span><span>The Green Room</span><span>2025</span></li>
+    </ul>
+  </section>
+  <figure class="photo" style="margin:0"><img src="/media/works/rooms/interior_cover-1400.webp" alt="">
+    <figcaption class="cap mono"><span>North Light Flat — Living</span><span>02 / 04</span></figcaption></figure>
+</main>
+<script type="module" src="./mock.js"></script>
+</body></html>

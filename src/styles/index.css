@@ -1,0 +1,14 @@
+@import '@fontsource-variable/archivo/wdth.css';
+@import '@fontsource/instrument-serif/400.css';
+@import '@fontsource/instrument-serif/400-italic.css';
+@import '@fontsource-variable/inter-tight/wght.css';
+@import '@fontsource-variable/geist-mono/wght.css';
+
+@import './tokens.css';
+@import './base.css';
+@import './chrome.css';
+@import './hero.css';
+@import './works.css';
+@import './object.css';
+@import './about-contact.css';
+@import './project.css';

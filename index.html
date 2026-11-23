@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Noah Milsztajn — Digital Designer</title>
+  <meta name="description" content="Noah Milsztajn — digital design, creative development and interactive experiences. Interfaces, identities and real-time 3D for the web." />
+  <meta name="theme-color" content="#0b0b0c" />
+  <meta property="og:title" content="Noah Milsztajn — Digital Designer" />
+  <meta property="og:description" content="Digital design, creative development and interactive experiences." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/media/og.jpg" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+</head>
+<body class="is-loading">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Intro / loader ------------------------------------------------------>
+  <div class="loader" aria-hidden="true">
+    <div class="loader__inner">
+      <svg class="loader__mark mark" viewBox="-6 -6 132 112" fill="none">
+        <polyline class="mark__line" points="0,100 0,0 60,100 60,0 90,60 120,0 120,100" />
+      </svg>
+      <div class="loader__meta">
+        <span class="mono">Noah Milsztajn</span>
+        <span class="mono loader__count"><span class="loader__num">000</span></span>
+      </div>
+    </div>
+    <button class="loader__skip mono" type="button" tabindex="-1">Skip intro</button>
+  </div>
+
+  <!-- Header -------------------------------------------------------------->
+  <header class="header">
+    <a class="header__brand" href="#top" aria-label="Noah Milsztajn — back to top">
+      <svg class="mark mark--brand" viewBox="-6 -6 132 112" fill="none" aria-hidden="true">
+        <polyline class="mark__line" points="0,100 0,0 60,100 60,0 90,60 120,0 120,100" />
+      </svg>
+      <span class="header__name">Noah Milsztajn</span>
+    </a>
+    <div class="header__index mono" aria-hidden="true">
+      <span class="header__index-num">00</span>
+      <span class="header__index-roll"><span class="header__index-label">Index</span></span>
+    </div>
+    <nav class="header__nav" aria-label="Primary">
+      <a href="#work" data-nav="work"><span class="roll" data-text="Work">Work</span></a>
+      <a href="#object" data-nav="object"><span class="roll" data-text="Object">Object</span></a>
+      <a href="#about" data-nav="about"><span class="roll" data-text="About">About</span></a>
+      <a href="#contact" data-nav="contact" class="header__cta"><span class="roll" data-text="Contact">Contact</span></a>
+    </nav>
+    <button class="header__menu mono" type="button" aria-expanded="false" aria-controls="menu">
+      <span class="header__menu-label">Menu</span>
+      <span class="header__menu-icon" aria-hidden="true"><i></i><i></i></span>
+    </button>
+  </header>
+
+  <!-- Fullscreen menu (mobile / tablet) ---------------------------------->
+  <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu" inert>
+    <div class="menu__bg"></div>
+    <nav class="menu__nav" aria-label="Menu">
+      <a href="#top"><span class="menu__num mono">00</span><span class="menu__label">Home</span></a>
+      <a href="#work"><span class="menu__num mono">01</span><span class="menu__label">Selected Works</span></a>
+      <a href="#object"><span class="menu__num mono">02</span><span class="menu__label">The Object</span></a>
+      <a href="#about"><span class="menu__num mono">03</span><span class="menu__label">About</span></a>
+      <a href="#contact"><span class="menu__num mono">04</span><span class="menu__label">Contact</span></a>
+    </nav>
+    <div class="menu__foot mono">
+      <span>Digital Design</span><span>Creative Development</span><span>Interactive Experiences</span>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- 00 — Hero ------------------------------------------------------>
+    <section class="hero" id="top" data-section="00" data-label="Index">
+      <canvas class="hero__gl" aria-hidden="true"></canvas>
+      <div class="hero__grid" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+
+      <div class="hero__top">
+        <p class="hero__edition mono" data-intro>
+          <span>Portfolio</span><span>Edition 2026</span>
+        </p>
+        <p class="hero__tagline serif" data-intro>
+          <span class="line"><span>Digital objects,</span></span>
+          <span class="line"><span>designed to be <em>felt.</em></span></span>
+        </p>
+      </div>
+
+      <div class="hero__readout mono" aria-hidden="true">
+        <span>X <b class="hero__x">0.500</b></span>
+        <span>Y <b class="hero__y">0.500</b></span>
+      </div>
+
+      <h1 class="hero__name">
+        <span class="hero__line hero__line--1"><span class="hero__word">Noah</span></span>
+        <span class="hero__role" data-intro>
+          <span class="mono hero__role-title">Digital Designer</span>
+          <span class="mono hero__role-list">Digital Design<br />Creative Development<br />Interactive Experiences</span>
+        </span>
+        <span class="hero__line hero__line--2"><span class="hero__word">Milsztajn</span></span>
+      </h1>
+
+      <div class="hero__bottom mono" data-intro>
+        <a class="hero__scroll" href="#work"><span class="hero__scroll-line" aria-hidden="true"></span>Scroll to explore</a>
+        <span class="hero__hint">Move your cursor across the name</span>
+        <span>Selected works 01 — 06</span>
+      </div>
+    </section>
+
+    <!-- Manifesto ----------------------------------------------------->
+    <section class="manifesto" aria-label="Statement">
+      <p class="manifesto__eyebrow mono"><span class="dot"></span>Statement</p>
+      <p class="manifesto__text" data-words>
+        I design interfaces, identities and web experiences where <em>design and code</em> are the same gesture. Fewer things on screen, each one with a reason to be there, and motion that <em>means</em> something.
+      </p>
+      <ul class="manifesto__fields mono" aria-label="Fields">
+        <li><span>01</span>Art Direction</li>
+        <li><span>02</span>UI / UX &amp; Web Design</li>
+        <li><span>03</span>Creative Development</li>
+        <li><span>04</span>Motion &amp; 3D</li>
+      </ul>
+    </section>
+
+    <!-- 01 — Works ---------------------------------------------------->
+    <section class="works" id="work" data-section="01" data-label="Selected Works">
+      <header class="section-head">
+        <p class="section-head__num mono">(01)</p>
+        <h2 class="section-head__title" data-split>Selected <em class="serif">Works</em></h2>
+        <p class="section-head__note">Six projects, six art directions. These are self-initiated concepts and explorations. None of them was a commissioned client project; each one is a chance to push an idea all the way.</p>
+      </header>
+      <div class="works__grid" data-works></div>
+    </section>
+
+    <!-- 02 — The Object (3D sneaker) ---------------------------------->
+    <section class="object" id="object" data-section="02" data-label="The Object" aria-label="Interactive 3D sneaker">
+      <div class="object__stage">
+        <canvas class="object__gl" aria-label="Interactive 3D sneaker. Drag to rotate." role="img"></canvas>
+        <div class="object__hotspots" aria-hidden="false"></div>
+        <div class="object__loading mono" aria-live="polite"><span class="object__loading-bar"><i></i></span><span class="object__loading-text">Loading object — 0%</span></div>
+      </div>
+
+      <div class="object__ui">
+        <header class="object__head">
+          <p class="mono object__kicker">(02) The Object</p>
+          <h2 class="object__title">Knit<br />Runner <em class="serif">/01</em></h2>
+          <p class="object__lead">A real scanned sneaker, staged in real time. Turn it, zoom in, open the details, swap the colourway.</p>
+        </header>
+
+        <div class="object__panel" aria-live="polite">
+          <p class="mono object__panel-k">Detail <span class="object__panel-i">—</span></p>
+          <h3 class="object__panel-t">Choose a point</h3>
+          <p class="object__panel-d">Select one of the markers on the shoe to move the camera to that detail.</p>
+        </div>
+
+        <div class="object__controls">
+          <fieldset class="object__group">
+            <legend class="mono">Colourway</legend>
+            <div class="object__swatches" data-variants></div>
+          </fieldset>
+          <fieldset class="object__group">
+            <legend class="mono">View</legend>
+            <div class="object__seg" role="group">
+              <button type="button" class="chip is-active" data-mode="studio" aria-pressed="true">Studio</button>
+              <button type="button" class="chip" data-mode="xray" aria-pressed="false">X-Ray</button>
+            </div>
+          </fieldset>
+          <div class="object__group object__group--zoom">
+            <span class="mono">Zoom</span>
+            <div class="object__seg">
+              <button type="button" class="chip chip--icon" data-zoom="-1" aria-label="Zoom out">−</button>
+              <button type="button" class="chip chip--icon" data-zoom="1" aria-label="Zoom in">+</button>
+              <button type="button" class="chip" data-reset>Reset</button>
+            </div>
+          </div>
+        </div>
+        <p class="object__hint mono" aria-hidden="true"><span class="object__hint-icon"></span><span class="object__hint-text">Drag to rotate</span></p>
+      </div>
+      <p class="object__credit mono">3D model: “Materials Variants Shoe” © 2021 Shopify, CC BY 4.0. Staging, shaders &amp; interaction by Noah Milsztajn.</p>
+    </section>
+
+    <!-- 03 — About ---------------------------------------------------->
+    <section class="about" id="about" data-section="03" data-label="About">
+      <header class="section-head">
+        <p class="section-head__num mono">(03)</p>
+        <h2 class="section-head__title" data-split>About</h2>
+      </header>
+      <div class="about__body">
+        <p class="about__lead" data-reveal>
+          I'm Noah, a self-taught digital designer. I learned by taking apart the websites I admired, then rebuilding them until they felt like mine.
+        </p>
+        <div class="about__cols">
+          <div class="about__col" data-reveal>
+            <p>What pulls me in is the space where design becomes something you can touch: an interface that reacts, a brand that moves, an object you can turn in your hands on a screen. I care about type, about spacing, and about the half-second of motion that makes something feel right.</p>
+            <p>I don't separate the drawing from the building. Designing in the browser lets me judge an idea by how it behaves, not just how it looks in a still frame.</p>
+          </div>
+          <div class="about__col" data-reveal>
+            <p>Most of the work on this site is self-initiated: concepts I give myself to explore a field, from luxury retail to automotive interfaces and generative art. They're how I practise, and how I find out what I want to make next.</p>
+            <p>I'm looking for teams and people who care about the details as much as the big idea.</p>
+          </div>
+        </div>
+        <dl class="about__list">
+          <div data-reveal><dt class="mono">Practice</dt><dd>Art direction · UI/UX · Web design · Visual identity</dd></div>
+          <div data-reveal><dt class="mono">Building</dt><dd>Creative development · Motion · Real-time 3D · Shaders</dd></div>
+          <div data-reveal><dt class="mono">Curious about</dt><dd>Product design · Sneaker culture · Editorial layout · Generative systems</dd></div>
+          <div data-reveal><dt class="mono">Path</dt><dd>Self-taught, learning by making, one project at a time</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- 04 — Contact -------------------------------------------------->
+    <section class="contact" id="contact" data-section="04" data-label="Contact">
+      <svg class="contact__mark" viewBox="-6 -6 132 112" fill="none" aria-hidden="true">
+        <polyline class="contact__line" points="0,100 0,0 60,100 60,0 90,60 120,0 120,100" />
+      </svg>
+      <div class="contact__content">
+        <p class="mono contact__kicker">(04) Contact</p>
+        <h2 class="contact__title" data-split>Let's make something <em class="serif">people can feel.</em></h2>
+        <div class="contact__actions" data-contact></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__row">
+      <span class="mono">© <span data-year>2026</span> Noah Milsztajn</span>
+      <span class="mono footer__credits">3D assets: Shopify (CC BY 4.0), Darmstadt Graphics Group / Eric Chadwick (CC BY 4.0), Wayfair (CC0 / CC BY 4.0), via Khronos glTF Sample Assets. All projects are self-initiated concepts.</span>
+      <a class="mono footer__top" href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <!-- Project case study (populated by JS) -->
+  <div class="project" role="dialog" aria-modal="true" aria-labelledby="project-title" inert>
+    <div class="project__media-clone" aria-hidden="true"></div>
+    <div class="project__scroller">
+      <div class="project__content"></div>
+    </div>
+    <div class="project__bar">
+      <span class="mono project__bar-index"></span>
+      <button class="project__close mono" type="button"><span>Close</span><span class="project__close-x" aria-hidden="true"></span></button>
+    </div>
+    <div class="project__progress" aria-hidden="true"><i></i></div>
+  </div>
+
+  <div class="cursor-tag mono" aria-hidden="true"><span class="cursor-tag__text"></span></div>
+  <noscript><style>.loader{display:none}.hero__name{color:var(--bone)}</style></noscript>
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+/**
+ * Noah Milsztajn — Portfolio V2
+ * Boot order: styles → smooth scroll → sections (static) → intro → hero arrival.
+ */
+import './styles/index.css';
+import { initScroll, ScrollTrigger } from './core/scroll.js';
+import { runLoader } from './ui/loader.js';
+import { initHeader } from './ui/header.js';
+import { initMenu } from './ui/menu.js';
+import { initCursorTag } from './ui/cursor-tag.js';
+import { initReveals } from './ui/reveals.js';
+import { initHero } from './sections/hero.js';
+import { initWorks } from './sections/works.js';
+import { initObject } from './sections/object.js';
+import { initContact } from './sections/contact.js';
+import { initProjectView } from './project/view.js';
+
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+
+document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
+
+initScroll();
+initMenu();
+initCursorTag();
+const hero = initHero();
+initWorks();
+initObject();
+initContact();
+const projectView = initProjectView();
+
+// reveals need final fonts for correct line breaks
+document.fonts.ready.then(() => {
+  initReveals();
+  initHeader();
+  ScrollTrigger.refresh();
+});
+
+runLoader({ onReveal: () => hero.play() }).then(() => {
+  ScrollTrigger.refresh();
+  projectView.openFromURL();
+  // honour a section anchor in the URL (e.g. shared link to #object)
+  const anchor = location.hash && !location.hash.startsWith('#/') && document.querySelector(location.hash);
+  if (anchor) anchor.scrollIntoView();
+});

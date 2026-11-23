@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Oscillo — concept</title>
+<link rel="stylesheet" href="./base.css">
+<style>
+body{background:#1b2bff;color:#f3f1ea}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:22px 40px}
+.nav .links{display:flex;gap:28px}
+.tix{background:#e6ff3b;color:#0a0b1e;padding:12px 18px;border-radius:100px}
+.hero{padding:0 40px;position:relative}
+canvas{width:100%;height:46vh;display:block}
+.bar{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(243,241,234,.3);margin:0 40px}
+.bar div{padding:16px 0}.bar b{display:block;font-size:28px;font-weight:500;letter-spacing:-.02em;margin-top:6px}
+.lineup{margin:0 40px;display:grid;grid-template-columns:1fr 2fr;gap:24px;padding-top:30px;border-top:1px solid rgba(243,241,234,.3)}
+.lineup h2{font-size:15px;font-weight:400}
+.lineup ul{display:grid;grid-template-columns:1fr 1fr;gap:4px 24px}
+.lineup li{font-size:30px;letter-spacing:-.02em;line-height:1.25}
+.lineup li span{color:#e6ff3b}
+.band{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;padding:22px 40px;background:#e6ff3b;color:#0a0b1e}
+.band .wide{font-size:54px;line-height:1}
+@media (max-width:600px){
+  .nav{padding:16px 18px}.tix{padding:9px 14px}
+  .hero{padding:0 18px}canvas{height:30vh}
+  .bar{margin:0 18px;grid-template-columns:1fr 1fr}.bar b{font-size:22px}
+  .lineup{margin:12px 18px 0;grid-template-columns:1fr;padding-top:18px}
+  .lineup ul{grid-template-columns:1fr}.lineup li{font-size:24px}
+  .band{flex-direction:column;align-items:flex-start;gap:8px;padding:18px}.band .wide{font-size:40px}
+}
+</style></head>
+<body>
+<nav class="nav mono"><span>Oscillo — Edition 01</span><span class="links only-d"><span>Programme</span><span>Venue</span><span>Info</span></span><span class="tix">Tickets</span></nav>
+<section class="hero"><canvas id="mark"></canvas></section>
+<div class="bar mono"><div>Dates<b>12—14.06</b></div><div>Stages<b>Three</b></div><div class="only-d">Doors<b>22:00</b></div><div class="only-d">Signal<b>96 Hz</b></div></div>
+<section class="lineup"><h2 class="mono">Programme — night by night</h2>
+  <ul><li>Night 01 <span>/ Low Frequencies</span></li><li>Night 02 <span>/ Light Studies</span></li><li>Night 03 <span>/ Full Spectrum</span></li><li>Closing <span>/ Sunrise Set</span></li></ul></section>
+<a class="band"><span class="wide">Tune in</span><span class="mono">Passes from €49 — limited release →</span></a>
+<script type="module">
+  import './mock.js';
+  import { drawSignalMark, OSC_COLORS } from '../../src/project/live/oscillo.js';
+  await document.fonts.load('800 expanded 100px "Archivo Variable"');
+  const c = document.getElementById('mark');
+  const dpr = window.devicePixelRatio || 1;
+  c.width = c.clientWidth * dpr; c.height = c.clientHeight * dpr;
+  const g = c.getContext('2d');
+  drawSignalMark(g, 0, c.height * 0.08, c.width, c.height * 0.84, { text: 'OSCILLO', freq: 0.42, amp: 0.38, t: 1.7, color: OSC_COLORS.fg, accent: OSC_COLORS.accent, rows: innerWidth < 600 ? 30 : 48 });
+</script>
+</body></html>

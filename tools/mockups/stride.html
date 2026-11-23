@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Stride — concept</title>
+<link rel="stylesheet" href="./base.css">
+<style>
+body{background:#0c0c0d;color:#edebe5}
+.nav{position:absolute;inset:0 0 auto;display:flex;justify-content:space-between;align-items:center;padding:26px 40px;z-index:3}
+.logo{font-size:22px}.links{display:flex;gap:34px}.links span:first-child{color:#ff5a4e}
+.bag{display:flex;gap:10px;align-items:center}.bag i{width:20px;height:20px;border-radius:50%;background:#ff5a4e;color:#111;font-style:normal;display:grid;place-items:center;font-size:10px}
+.hero{position:relative;height:100vh;overflow:hidden;background:radial-gradient(70% 70% at 50% 46%,#2a2b2e,#08080a)}
+.bigword{position:absolute;left:0;right:0;top:15%;text-align:center;font-size:22vw;line-height:.8;color:#18191b;letter-spacing:-.05em}
+.shoe{position:absolute;left:50%;top:50%;width:min(74vw,1080px);transform:translate(-50%,-50%)}
+.shoe img{width:100%;mix-blend-mode:lighten}
+.meta{position:absolute;left:40px;bottom:40px;z-index:2}
+.meta h1{font-size:54px;line-height:.9}
+.meta p{margin:12px 0 22px;color:#8f949b;font-size:15px;max-width:30ch}
+.row{display:flex;gap:10px;align-items:center}
+.btn{height:48px;padding:0 22px;border-radius:100px;display:inline-flex;align-items:center;gap:12px;font-family:'Geist Mono Variable',monospace;font-size:12px;text-transform:uppercase}
+.btn.primary{background:#edebe5;color:#0c0c0d}.btn.ghost{box-shadow:inset 0 0 0 1px rgba(237,235,229,.3)}
+.price{font-size:28px;margin-right:18px;font-weight:500}
+.side{position:absolute;right:40px;bottom:40px;width:250px;z-index:2}
+.side li{display:flex;justify-content:space-between;border-top:1px solid rgba(237,235,229,.14);padding:11px 0}
+.side li span:first-child{color:#8f949b}
+.cw{position:absolute;right:40px;top:50%;transform:translateY(-50%);display:grid;gap:12px;z-index:2}
+.cw b{width:30px;height:30px;border-radius:50%;display:block;box-shadow:0 0 0 1px rgba(255,255,255,.2)}
+.cw b.on{box-shadow:0 0 0 2px #0c0c0d,0 0 0 3px #edebe5}
+.tick{position:absolute;left:40px;top:50%;transform:translateY(-50%);display:grid;gap:8px;color:#61656c}.tick span.on{color:#edebe5}
+.d3{position:absolute;left:50%;bottom:44px;transform:translateX(-50%);display:flex;gap:10px;align-items:center;color:#8f949b}
+.d3 i{width:28px;height:14px;border:1px solid #61656c;border-radius:10px;position:relative}.d3 i::after{content:'';position:absolute;left:4px;top:3px;width:6px;height:6px;border-radius:50%;background:#edebe5}
+@media (max-width:600px){
+  .nav{padding:18px}.logo{font-size:18px}
+  .bigword{top:17%;font-size:30vw}
+  .shoe{width:128vw;top:40%}
+  .meta{left:18px;right:18px;bottom:26px}.meta h1{font-size:38px}.meta p{font-size:14px;margin:10px 0 16px}
+  .price{font-size:22px;margin-right:auto}
+  .cw{right:18px;top:auto;bottom:220px;transform:none;display:flex}
+  .cw b{width:24px;height:24px}
+  .btn{height:44px;padding:0 18px}
+}
+</style></head>
+<body>
+<div class="hero">
+  <nav class="nav"><span class="logo wide">Stride</span>
+    <span class="links mono only-d"><span>Knit Runner</span><span>Technology</span><span>Colourways</span><span>Journal</span></span>
+    <span class="bag mono"><span class="only-d">Bag</span><i>1</i></span></nav>
+  <div class="bigword wide">Knit</div>
+  <div class="shoe"><img src="/media/works/stride/shoe_cover-2200.webp" alt=""></div>
+  <div class="tick mono only-d"><span>01 Launch</span><span class="on">02 Product</span><span>03 Detail</span><span>04 Colour</span></div>
+  <div class="cw"><b class="on" style="background:linear-gradient(135deg,#1c1c1e 55%,#ff5a5f 55%)"></b><b style="background:linear-gradient(135deg,#d9b8b4 55%,#3a3a3c 55%)"></b><b style="background:linear-gradient(135deg,#1f8fc4 55%,#163a5a 55%)"></b></div>
+  <div class="meta">
+    <p class="mono" style="color:#ff5a4e;margin:0 0 12px">New — Street colourway</p>
+    <h1 class="wide">Knit<br>Runner</h1>
+    <p>An engineered-mesh runner with a full-length foam midsole. Turn it, open it, wear it.</p>
+    <div class="row"><span class="price">€160</span><span class="btn primary">Add to bag →</span><span class="btn ghost only-d">Explore in 3D</span></div>
+  </div>
+  <ul class="side mono only-d"><li><span>Upper</span><span>Engineered knit</span></li><li><span>Midsole</span><span>Full-length foam</span></li><li><span>Drop</span><span>8 mm</span></li><li><span>Weight</span><span>248 g</span></li></ul>
+  <div class="d3 mono only-d"><i></i>Drag to rotate</div>
+</div>
+<script type="module" src="./mock.js"></script>
+</body></html>

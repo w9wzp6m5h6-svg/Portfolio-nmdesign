@@ -1,0 +1,163 @@
+/**
+ * The Object — binds the sneaker stage to its interface.
+ * The 3D module and model only load when the section approaches the viewport.
+ */
+import { gsap, ScrollTrigger } from '../core/scroll.js';
+import { env } from '../core/env.js';
+import { variants, hotspots } from '../data/sneaker.js';
+
+export function initObject() {
+  const section = document.querySelector('.object');
+  const canvas = section.querySelector('.object__gl');
+  const layer = section.querySelector('.object__hotspots');
+  const loadingText = section.querySelector('.object__loading-text');
+  const loadingBar = section.querySelector('.object__loading-bar i');
+  const swatchWrap = section.querySelector('[data-variants]');
+  const panel = {
+    i: section.querySelector('.object__panel-i'),
+    t: section.querySelector('.object__panel-t'),
+    d: section.querySelector('.object__panel-d'),
+    root: section.querySelector('.object__panel'),
+  };
+  const hint = section.querySelector('.object__hint');
+  let stage = null;
+  let activeSpot = null;
+
+  canvas.tabIndex = 0;
+  canvas.setAttribute('aria-label', 'Interactive 3D sneaker. Drag, or use the arrow keys, to rotate. Plus and minus to zoom.');
+  canvas.dataset.cursor = 'Drag to rotate';
+
+  // swatches ----------------------------------------------------------------
+  swatchWrap.innerHTML = variants.map((v, i) => `
+    <button type="button" class="swatch" data-variant="${v.id}" aria-pressed="${i === 0}" style="--c1:${v.c1};--c2:${v.c2}">
+      <span class="swatch__chip" aria-hidden="true"></span><span class="swatch__name">${v.name}</span>
+    </button>`).join('');
+
+  // hotspots ----------------------------------------------------------------
+  const spotEls = hotspots.map((h, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'hotspot';
+    b.setAttribute('aria-label', `Detail ${i + 1}: ${h.label}`);
+    b.innerHTML = `<span class="hotspot__dot"></span><span class="hotspot__label mono">${String(i + 1).padStart(2, '0')} ${h.label}</span>`;
+    b.addEventListener('click', () => selectSpot(i));
+    layer.append(b);
+    return b;
+  });
+
+  function setPanel(kicker, title, text) {
+    const nodes = [panel.t, panel.d];
+    gsap.timeline()
+      .to(nodes, { autoAlpha: 0, y: -6, duration: 0.2, ease: 'power2.in' })
+      .add(() => { panel.i.textContent = kicker; panel.t.textContent = title; panel.d.textContent = text; })
+      .fromTo(nodes, { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.6, ease: 'expo.out', stagger: 0.05 });
+  }
+
+  function selectSpot(i) {
+    if (!stage) return;
+    activeSpot = i;
+    const h = hotspots[i];
+    spotEls.forEach((el, j) => el.classList.toggle('is-active', j === i));
+    stage.focus(h);
+    setPanel(`${String(i + 1).padStart(2, '0')} / ${String(hotspots.length).padStart(2, '0')}`, h.label, h.text);
+  }
+
+  function clearSpot() {
+    activeSpot = null;
+    spotEls.forEach((el) => el.classList.remove('is-active'));
+    setPanel('—', 'Choose a point', 'Select one of the markers on the shoe to move the camera to that detail.');
+  }
+
+  function placeHotspots(s) {
+    hotspots.forEach((h, i) => {
+      const p = s.project(h.pos, h.normal);
+      const el = spotEls[i];
+      el.style.transform = `translate3d(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px, 0)`;
+      el.classList.toggle('is-behind', !p.visible);
+      el.tabIndex = p.visible ? 0 : -1;
+    });
+  }
+
+  // controls ----------------------------------------------------------------
+  swatchWrap.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-variant]');
+    if (!b || !stage) return;
+    swatchWrap.querySelectorAll('[data-variant]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    stage.setVariant(b.dataset.variant);
+  });
+  section.querySelectorAll('[data-mode]').forEach((b) => b.addEventListener('click', () => {
+    if (!stage) return;
+    section.querySelectorAll('[data-mode]').forEach((x) => {
+      const on = x === b;
+      x.classList.toggle('is-active', on);
+      x.setAttribute('aria-pressed', String(on));
+    });
+    stage.setMode(b.dataset.mode);
+    section.classList.toggle('is-xray', b.dataset.mode === 'xray');
+  }));
+  section.querySelectorAll('[data-zoom]').forEach((b) => b.addEventListener('click', () => stage?.zoom(+b.dataset.zoom)));
+  section.querySelector('[data-reset]').addEventListener('click', () => { stage?.reset(); clearSpot(); });
+
+  // lazy boot ---------------------------------------------------------------
+  async function boot() {
+    if (!env.webgl) {
+      loadingText.textContent = 'WebGL is not available on this device.';
+      return;
+    }
+    const { SneakerStage } = await import('../three/sneaker-stage.js');
+    stage = new SneakerStage(canvas, {
+      onFrame: placeHotspots,
+    });
+    stage.onInteract = () => gsap.to(hint, { autoAlpha: 0, duration: 0.6 });
+    const url = env.lite ? '/models/sneaker-lite.glb' : '/models/sneaker-hd.glb';
+    try {
+      await stage.load(url, (p) => {
+        loadingBar.style.transform = `scaleX(${p})`;
+        loadingText.textContent = `Loading object — ${Math.round(p * 100)}%`;
+      });
+    } catch (err) {
+      console.error('[object] failed to load model', err);
+      loadingText.textContent = 'The 3D object could not be loaded.';
+      return;
+    }
+    stage.setVariant(variants[0].id);
+    section.classList.add('is-ready');
+    if (import.meta.env.DEV) window.__stage = stage;
+
+    ScrollTrigger.create({
+      trigger: section, start: 'top bottom', end: 'bottom top',
+      onToggle: (self) => (self.isActive ? stage.start() : stage.stop()),
+    });
+    if (ScrollTrigger.isInViewport(section)) stage.start();
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stage.stop();
+      else if (ScrollTrigger.isInViewport(section)) stage.start();
+    });
+    new ResizeObserver(() => stage.resize()).observe(canvas);
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    if (entries.some((e) => e.isIntersecting)) {
+      io.disconnect();
+      // boot in idle time so parsing/compiling never lands in the middle of a scroll gesture
+      const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 120));
+      idle(() => boot(), { timeout: 1200 });
+    }
+  }, { rootMargin: '120% 0px' });
+  io.observe(section);
+
+  // entrance
+  if (!env.reducedMotion) {
+    const title = section.querySelector('.object__title');
+    gsap.from([section.querySelector('.object__kicker'), title, section.querySelector('.object__lead')], {
+      y: 40, autoAlpha: 0, duration: 1.2, ease: 'expo.out', stagger: 0.08,
+      scrollTrigger: { trigger: section, start: 'top 70%', once: true },
+    });
+    gsap.from([panel.root, section.querySelector('.object__controls')], {
+      y: 24, autoAlpha: 0, duration: 1, ease: 'expo.out', stagger: 0.1,
+      scrollTrigger: { trigger: section, start: 'top 40%', once: true },
+    });
+  }
+
+  return { selectSpot, clearSpot, get activeSpot() { return activeSpot; } };
+}
