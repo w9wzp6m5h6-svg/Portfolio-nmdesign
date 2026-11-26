@@ -1,0 +1,51 @@
+# Vérifications automatiques avant mise en ligne (voir SECURITE.md).
+# Bloque une fusion vers main si : dépendance vulnérable, build cassé,
+# fichier sensible ou secret dans le site publié, page sans CSP.
+name: Sécurité et build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# le jeton GitHub de ce workflow ne peut que lire le dépôt
+permissions:
+  contents: read
+
+concurrency:
+  group: securite-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      # versions exactes du package-lock.json, sans exécuter les scripts d'installation des paquets
+      - name: Installation
+        run: npm ci --ignore-scripts
+
+      # aucune vulnérabilité connue dans ce qui est envoyé aux visiteurs
+      - name: Audit des dépendances du site
+        run: npm audit --omit=dev --audit-level=moderate
+
+      # outils de développement : échec seulement pour une faille élevée ou critique
+      # (les alertes modérées glob/minimatch de @gltf-transform/cli sont un risque accepté, voir SECURITE.md)
+      - name: Audit des outils de développement
+        run: npm audit --audit-level=high
+
+      - name: Build
+        run: npm run build
+
+      - name: Contrôle du dossier publié
+        run: npm run check:security

@@ -1,0 +1,19 @@
+# Propositions de mises à jour automatiques (pull requests à relire, jamais fusionnées seules).
+# Les alertes et correctifs de sécurité Dependabot s'activent en plus dans
+# Settings → Code security (voir SECURITE.md).
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      mineures:
+        update-types: [minor, patch]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
