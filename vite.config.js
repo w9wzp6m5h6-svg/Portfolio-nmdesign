@@ -165,7 +165,8 @@ function security({ enabled, endpoint, siteUrl }) {
       this.emitFile({ type: 'asset', fileName: '.htaccess', source: `${apache}\n` });
       // RFC 9116 : où signaler une faille. Expires est recalculé à chaque build.
       const base = siteUrl ? siteUrl.replace(/\/+$/, '') + '/' : '';
-      const expires = new Date(Date.now() + 360 * 24 * 3600 * 1000).toISOString();
+      const now = new Date(); // à la journée près : deux builds du même jour donnent des fichiers identiques
+      const expires = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 360)).toISOString();
       const securityTxt = [`Contact: mailto:${site.email}`, `Expires: ${expires}`, 'Preferred-Languages: fr, en', base && `Canonical: ${base}.well-known/security.txt`].filter(Boolean).join('\n');
       this.emitFile({ type: 'asset', fileName: '.well-known/security.txt', source: `${securityTxt}\n` });
     },
