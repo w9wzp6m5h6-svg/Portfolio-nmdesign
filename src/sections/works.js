@@ -7,6 +7,8 @@
 import { gsap, ScrollTrigger } from '../core/scroll.js';
 import { env } from '../core/env.js';
 import { projects } from '../data/projects.js';
+import { applyCss } from '../core/css.js';
+import { esc } from '../core/escape.js';
 
 const SIZES = {
   wide: '(max-width: 900px) 100vw, 92vw',
@@ -14,16 +16,19 @@ const SIZES = {
 };
 
 function cardHTML(p, { size, showSummary }) {
+  // vignette : l'écran du site quand il existe (cadré en haut), sinon le visuel de couverture
+  const visual = p.card || p.cover;
+  const pos = p.card ? '50% 0%' : (p.coverPos || '50% 50%');
   return `
-  <article class="card card--${size}" data-tags="${(p.tags || []).join(' ')}" style="--pos:${p.coverPos || '50% 50%'}">
-    <a class="card__link" href="#/work/${p.slug}" data-slug="${p.slug}" data-cursor="Voir le projet" aria-label="${p.title} — ${p.subtitle}">
+  <article class="card card--${size}" data-tags="${(p.tags || []).join(' ')}" data-css="--pos:${pos}">
+    <a class="card__link" href="#/work/${esc(p.slug)}" data-slug="${esc(p.slug)}" data-cursor="Voir le projet" aria-label="${esc(`${p.title} — ${p.subtitle}`)}">
       <div class="card__media">
-        <img src="${p.cover.src}" srcset="${p.cover.srcset}" sizes="${SIZES[size]}" alt="${p.cover.alt}" loading="lazy" decoding="async" />
+        <img src="${visual.src}" srcset="${visual.srcset}" sizes="${SIZES[size]}" alt="${esc(visual.alt)}" loading="lazy" decoding="async" />
       </div>
       <div class="card__meta">
-        <h3 class="card__title"><span class="card__num mono">${p.num}</span>${p.title}<span class="card__arrow" aria-hidden="true">→</span></h3>
-        <p class="card__cat mono"><span class="card__badge${p.real ? ' is-real' : ''}">${p.real ? 'Projet réel' : 'Concept'}</span>${p.category}</p>
-        ${showSummary ? `<p class="card__summary">${p.subtitle}</p>` : ''}
+        <h3 class="card__title"><span class="card__num mono">${esc(p.num)}</span>${esc(p.title)}<span class="card__arrow" aria-hidden="true">→</span></h3>
+        <p class="card__cat mono"><span class="card__badge${p.real ? ' is-real' : ''}">${p.real ? 'Projet réel' : 'Concept'}</span>${esc(p.category)}</p>
+        ${showSummary ? `<p class="card__summary">${esc(p.subtitle)}</p>` : ''}
       </div>
     </a>
   </article>`;
@@ -48,12 +53,14 @@ export function initWorks() {
   if (mode === 'home') {
     const list = projects.filter((p) => p.selected);
     grid.innerHTML = list.map((p, i) => cardHTML(p, { size: i === 0 ? 'wide' : 'half', showSummary: true })).join('');
+    applyCss(grid);
     reveal([...grid.children]);
     return;
   }
 
   // le projet réel ouvre la grille en grand format, les concepts suivent par deux
   grid.innerHTML = projects.map((p) => cardHTML(p, { size: p.real ? 'wide' : 'half', showSummary: true })).join('');
+  applyCss(grid);
   const cards = [...grid.children];
   reveal(cards);
 

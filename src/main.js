@@ -46,6 +46,10 @@ runLoader({ onReveal: () => hero.play() }).then(() => {
   projectView.openFromURL();
   commerce.openFromURL();
   // honour a section anchor in the URL (e.g. shared link to #object)
-  const anchor = location.hash && !location.hash.startsWith('#/') && document.querySelector(location.hash);
-  if (anchor) anchor.scrollIntoView();
+  // getElementById : une ancre arbitraire (ex. « #1abc », « #<x> ») ne peut ni planter ni cibler autre chose qu'un id
+  let anchor = null;
+  if (location.hash.length > 1 && !location.hash.startsWith('#/')) {
+    try { anchor = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch { /* ancre mal encodée : ignorée */ }
+  }
+  anchor?.scrollIntoView();
 });

@@ -6,10 +6,13 @@ Portfolio de Noah Milsztajn, designer numérique autodidacte : direction artisti
 
 ```bash
 npm install
-npm run dev       # http://localhost:5173
-npm run build     # → dist/ (site statique, déployable partout)
-npm run preview   # sert dist/ sur http://localhost:4173
+npm run dev                # http://localhost:5173 (cette machine uniquement ; sur téléphone : npm run dev -- --host)
+npm run build              # → dist/ (site statique, déployable partout)
+npm run preview            # sert dist/ sur http://localhost:4173
+npm run check:security     # contrôle de sécurité du dossier dist/
 ```
+
+**Sécurité :** CSP stricte, en-têtes HTTP, formulaire anti‑abus, vérifications automatiques. Tout est décrit dans [`SECURITE.md`](SECURITE.md), avec ce qu'il te reste à activer sur tes comptes.
 
 ### Démonstration (sans rien installer d'autre que Node.js ou Python)
 
@@ -17,9 +20,9 @@ Le site de production est dans `dist/`. Il doit être servi par un petit serveur
 
 - **Mac :** double‑clic sur `demo/Lancer le portfolio (Mac).command`
 - **Windows :** double‑clic sur `demo/Lancer le portfolio (Windows).bat`
-- **Terminal :** `node demo/serve.mjs` (ou `python3 -m http.server 4173 --directory dist`)
+- **Terminal :** `node demo/serve.mjs` (ou `python3 -m http.server 4173 --bind 127.0.0.1 --directory dist`)
 
-Le navigateur s'ouvre sur `http://localhost:4173/`. Le contenu de `dist/` peut aussi être déposé tel quel sur n'importe quel hébergeur statique (Netlify, Vercel, GitHub Pages, OVH…), à la racine ou dans un sous‑dossier.
+Le navigateur s'ouvre sur `http://127.0.0.1:4173/` (accessible depuis ton ordinateur uniquement). Le contenu de `dist/` peut aussi être déposé tel quel sur n'importe quel hébergeur statique (Netlify, Vercel, GitHub Pages, OVH…), à la racine ou dans un sous‑dossier.
 
 ---
 
@@ -77,7 +80,8 @@ src/
                            assemblés au build par vite.config.js (<!-- include:nom -->, {{href:page}})
   main.js                  ordre de démarrage (chaque section ne s'initialise que si elle est sur la page)
   data/                    contenu : site.js, projects.js, sneaker.js
-  core/                    env (capacités appareil), scroll (Lenis+GSAP), split (découpe texte)
+  core/                    env (capacités appareil), scroll (Lenis+GSAP), split (découpe texte),
+                           escape (échappement HTML), css (styles dynamiques compatibles CSP)
   ui/                      loader, header, menu, cursor-tag, reveals, transitions (fondu entre pages)
   sections/                hero, works (accueil + page Projets), object (3D), about, contact, commerce (formulaire, mentions)
   three/                   hero-gl (nom en WebGL), sneaker-stage (viewer 3D), variants
@@ -85,7 +89,10 @@ src/
   styles/                  tokens, base, chrome, hero, works, object, about-contact, project, commerce
 public/
   models/                  sneaker-hd.glb (1.8 Mo) · sneaker-lite.glb (0.55 Mo, mobile / appareils modestes)
-dist/                      version de production (générée par npm run build)
+dist/                      version de production (générée par npm run build), avec _headers, .htaccess, .well-known/security.txt
+vercel.json                en-têtes HTTP de sécurité (source unique, dérivée au build vers _headers et .htaccess)
+.github/                   workflow « Sécurité et build » + Dependabot
+SECURITE.md                protections en place, actions manuelles, incident, restauration
 demo/                      serveur local sans dépendance + lanceurs Mac / Windows
   media/works/<projet>/    visuels WebP responsive (800 / 1400 / 2200 px)
 tools/                     outils de production (non publiés)
@@ -95,7 +102,7 @@ tools/                     outils de production (non publiés)
   mockups/                 maquettes UI HTML des concepts → captures desktop / mobile
   optimize-images.mjs      PNG → WebP responsive
   prepare-sneaker.mjs      optimise un modèle .glb pour la scène 3D
-  qa/                      tests Playwright (captures, interactions, projets, objet 3D, perf)
+  qa/                      tests Playwright (captures, interactions, projets, objet 3D, perf) + check-security.mjs
 ```
 
 ### Ajouter ou modifier un projet

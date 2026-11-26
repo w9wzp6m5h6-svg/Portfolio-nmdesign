@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "check:security": "node tools/qa/check-security.mjs dist",
     "build:artifact": "ARTIFACT=1 VITE_MODEL_FORMAT=json vite build --outDir build-artifact && node tools/pack-models-json.mjs build-artifact"
   },
   "dependencies": {
@@ -20,7 +21,7 @@
   },
   "devDependencies": {
     "@gltf-transform/cli": "^4.5.1",
-    "sharp": "^0.34.5",
+    "sharp": "^0.35.5",
     "vite": "^7.3.8"
   }
 }

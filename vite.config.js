@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv } from 'vite';
 import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { resolve, relative, dirname } from 'node:path';
 import { site } from './src/data/site.js';
 
@@ -96,14 +97,90 @@ function seo(siteUrl) {
   };
 }
 
+/**
+ * Sécurité au build (voir SECURITE.md).
+ *  - Content-Security-Policy en <meta> sur chaque page : scripts et styles du
+ *    site uniquement (pas de 'unsafe-inline' ni de 'unsafe-eval'). Les seules
+ *    exceptions sont justifiées et étroites :
+ *      'wasm-unsafe-eval' → décodeur WebAssembly (meshopt) du modèle 3D ;
+ *      'sha256-…'         → le seul bloc <style> du site, dans <noscript> ;
+ *      blob:              → textures extraites du fichier .glb par three.js.
+ *    L'adresse du service de formulaire, si elle est définie, est ajoutée à connect-src.
+ *  - En-têtes HTTP : vercel.json est la source unique ; le build en dérive
+ *    _headers (Netlify, Cloudflare Pages) et .htaccess (Apache : OVH, o2switch…).
+ *  - /.well-known/security.txt : adresse pour signaler une faille (RFC 9116).
+ *  - Désactivé pour la version d'aperçu (ARTIFACT=1), servie dans un cadre qui a sa propre politique.
+ */
+function formEndpointOrigin(endpoint) {
+  if (!endpoint) return '';
+  let url;
+  try { url = new URL(endpoint); } catch { throw new Error(`VITE_FORM_ENDPOINT invalide : « ${endpoint} »`); }
+  if (url.protocol !== 'https:') throw new Error('VITE_FORM_ENDPOINT doit commencer par https:// (les réponses du formulaire ne doivent jamais transiter en clair).');
+  return url.origin;
+}
+
+function security({ enabled, endpoint, siteUrl }) {
+  const origin = formEndpointOrigin(endpoint);
+  const rules = JSON.parse(readFileSync(resolve(ROOT, 'vercel.json'), 'utf8')).headers || [];
+  const sha256 = (text) => `'sha256-${createHash('sha256').update(text, 'utf8').digest('base64')}'`;
+  return {
+    name: 'nm-security',
+    apply: 'build',
+    transformIndexHtml: { order: 'post', handler(html) {
+      if (!enabled) return html;
+      const styleHashes = [...html.matchAll(/<style>([\s\S]*?)<\/style>/g)].map((m) => sha256(m[1]));
+      const csp = [
+        "default-src 'self'",
+        "script-src 'self' 'wasm-unsafe-eval'",
+        ["style-src 'self'", ...styleHashes].join(' '),
+        "img-src 'self' blob:",
+        "font-src 'self'",
+        ['connect-src', "'self'", 'blob:', origin].filter(Boolean).join(' '),
+        "object-src 'none'",
+        "base-uri 'self'",
+        "form-action 'self'",
+      ].join('; ');
+      const charset = '<meta charset="utf-8" />';
+      if (html.split(charset).length !== 2) throw new Error('nm-security : <meta charset> introuvable ou en double');
+      return html.replace(charset, `${charset}\n  <meta http-equiv="Content-Security-Policy" content="${csp}" />`);
+    } },
+    generateBundle() {
+      if (!enabled) return;
+      const glob = (source) => source.replace('(.*)', '*');
+      const netlify = rules.map((r) => `${glob(r.source)}\n${r.headers.map((h) => `  ${h.key}: ${h.value}`).join('\n')}`).join('\n\n');
+      this.emitFile({ type: 'asset', fileName: '_headers', source: `# Généré au build à partir de vercel.json : modifier vercel.json, pas ce fichier.\n${netlify}\n` });
+      const all = rules.find((r) => r.source === '/(.*)')?.headers || [];
+      const assets = rules.find((r) => r.source === '/assets/(.*)')?.headers || [];
+      const apache = [
+        '# Généré au build à partir de vercel.json : modifier vercel.json, pas ce fichier.',
+        '# Hébergement Apache (OVH, o2switch…). Si le site affiche une erreur 500 après dépôt,',
+        "# l'hébergeur n'autorise pas ces directives : supprimer ce fichier et voir SECURITE.md.",
+        '<IfModule mod_headers.c>',
+        ...all.map((h) => `  Header always set ${h.key} "${h.value}"`),
+        '  <If "%{REQUEST_URI} =~ m#/assets/#">',
+        ...assets.map((h) => `    Header set ${h.key} "${h.value}"`),
+        '  </If>',
+        '</IfModule>',
+      ].join('\n');
+      this.emitFile({ type: 'asset', fileName: '.htaccess', source: `${apache}\n` });
+      // RFC 9116 : où signaler une faille. Expires est recalculé à chaque build.
+      const base = siteUrl ? siteUrl.replace(/\/+$/, '') + '/' : '';
+      const expires = new Date(Date.now() + 360 * 24 * 3600 * 1000).toISOString();
+      const securityTxt = [`Contact: mailto:${site.email}`, `Expires: ${expires}`, 'Preferred-Languages: fr, en', base && `Canonical: ${base}.well-known/security.txt`].filter(Boolean).join('\n');
+      this.emitFile({ type: 'asset', fileName: '.well-known/security.txt', source: `${securityTxt}\n` });
+    },
+  };
+}
+
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, ROOT, '');
   const siteUrl = process.env.SITE_URL || env.SITE_URL || '';
   const explicitIndex = (process.env.ARTIFACT || env.ARTIFACT) === '1';
+  const endpoint = process.env.VITE_FORM_ENDPOINT || env.VITE_FORM_ENDPOINT || '';
   return {
     // chemins relatifs : le build fonctionne à la racine d'un domaine, dans un sous-dossier ou en démo locale
     base: './',
-    plugins: [pages({ explicitIndex }), seo(siteUrl)],
+    plugins: [pages({ explicitIndex }), seo(siteUrl), security({ enabled: !explicitIndex, endpoint, siteUrl })],
     build: {
       target: 'es2020',
       // three.js (~140 kB gzip) est un chunk chargé à la demande
@@ -113,6 +190,7 @@ export default defineConfig(({ mode }) => {
         input: Object.fromEntries(Object.entries(PAGES).map(([k, p]) => [k, resolve(ROOT, p.file)])),
       },
     },
-    server: { host: true },
+    // serveur de développement : cette machine uniquement. Pour tester sur téléphone : npm run dev -- --host
+    server: { host: 'localhost' },
   };
 });

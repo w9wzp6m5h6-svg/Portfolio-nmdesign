@@ -6,8 +6,8 @@
 import { gsap, ScrollTrigger } from '../core/scroll.js';
 import { env } from '../core/env.js';
 import { site, mailto } from '../data/site.js';
+import { esc as escAttr } from '../core/escape.js';
 
-const escAttr = (v) => String(v).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 function renderActions(root) {
   const lines = [];

@@ -10,9 +10,9 @@ if %errorlevel%==0 (
 )
 where py >nul 2>nul
 if %errorlevel%==0 (
-  echo Node.js not found - using Python. Open http://localhost:4173/
-  start "" "http://localhost:4173/"
-  py -m http.server 4173 --directory "%DIST%"
+  echo Node.js not found - using Python. Open http://127.0.0.1:4173/
+  start "" "http://127.0.0.1:4173/"
+  py -m http.server 4173 --bind 127.0.0.1 --directory "%DIST%"
   goto :eof
 )
 echo Install Node.js (https://nodejs.org) or Python 3, then double-click again.

@@ -9,4 +9,5 @@ tools/qa/out-final
 build-artifact
 tools/source-photos
 .env
-.env.local
+.env.*
+!.env.example

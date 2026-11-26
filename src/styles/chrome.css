@@ -161,7 +161,6 @@
 @media (max-width: 760px) {
   .footer__row { grid-template-columns: 1fr; }
   .footer__credits { justify-self: start; text-align: left; }
-  .footer__cta { width: 100%; justify-content: space-between; }
 }
 @media (max-width: 620px) {
   .footer__col:nth-child(2) { grid-column: 1 / -1; order: -1; }

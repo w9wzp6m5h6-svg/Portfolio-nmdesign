@@ -6,6 +6,8 @@ import { gsap, ScrollTrigger } from '../core/scroll.js';
 import { env } from '../core/env.js';
 import { model, variants, hotspots } from '../data/sneaker.js';
 import { asset } from '../core/asset.js';
+import { applyCss } from '../core/css.js';
+import { esc } from '../core/escape.js';
 
 export function initObject() {
   const section = document.querySelector('.object');
@@ -38,9 +40,10 @@ export function initObject() {
 
   // swatches ----------------------------------------------------------------
   swatchWrap.innerHTML = variants.map((v, i) => `
-    <button type="button" class="swatch" data-variant="${v.id}" aria-pressed="${i === 0}" style="--c1:${v.c1};--c2:${v.c2}">
-      <span class="swatch__chip" aria-hidden="true"></span><span class="swatch__name">${v.name}</span>
+    <button type="button" class="swatch" data-variant="${v.id}" aria-pressed="${i === 0}" data-css="--c1:${v.c1};--c2:${v.c2}">
+      <span class="swatch__chip" aria-hidden="true"></span><span class="swatch__name">${esc(v.name)}</span>
     </button>`).join('');
+  applyCss(swatchWrap);
 
   // hotspots ----------------------------------------------------------------
   const spotEls = hotspots.map((h, i) => {
@@ -48,7 +51,7 @@ export function initObject() {
     b.type = 'button';
     b.className = 'hotspot';
     b.setAttribute('aria-label', `Détail ${i + 1} : ${h.label}`);
-    b.innerHTML = `<span class="hotspot__dot"></span><span class="hotspot__label mono">${String(i + 1).padStart(2, '0')} ${h.label}</span>`;
+    b.innerHTML = `<span class="hotspot__dot"></span><span class="hotspot__label mono">${String(i + 1).padStart(2, '0')} ${esc(h.label)}</span>`;
     b.addEventListener('click', () => selectSpot(i));
     layer.append(b);
     return b;

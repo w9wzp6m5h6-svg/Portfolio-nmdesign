@@ -4,6 +4,7 @@
  *  - sinon        → concept personnel ou exploration, jamais présenté comme une commande client
  *  - `selected`   → apparaît dans la sélection de l'accueil (toute la liste est sur la page Projets)
  *  - `tags`       → filtres de la page Projets : real, web, 3d, identity
+ *  - `card`       → visuel des vignettes (écran du site) ; à défaut, `cover`
  *
  * Chaque projet a son propre thème (couleurs, traitement du titre) et sa propre
  * suite de blocs : deux études de cas ne partagent jamais la même mise en page.
@@ -92,6 +93,7 @@ export const projects = [
     status: 'Concept — 2026',
     layout: 'a',
     cover: img('stride', 'shoe_cover', '16 / 10', L, 'Chaussure noire en maille flottant au-dessus de son ombre'),
+    card: img('screens', 'ui_stride_d', '16 / 10', D, "Site Stride (concept) : page de lancement de la chaussure, version ordinateur"), // vignette des grilles : le site, pas seulement l'objet
     coverPos: '50% 55%',
     theme: { bg: '#0c0c0d', fg: '#edebe5', muted: '#8f949b', line: 'rgb(237 235 229 / 0.14)', accent: '#ff5a4e', title: 'display' },
     meta: [
@@ -128,6 +130,7 @@ export const projects = [
     status: 'Concept — 2026',
     layout: 'b',
     cover: img('vanta', 'car_wheel', '4 / 5', P, "Roue et passage de roue d'une voiture concept graphite"),
+    card: img('screens', 'ui_vanta_d', '16 / 10', D, "Site Vanta (concept) : configurateur, chapitre peinture, version ordinateur"), // vignette des grilles : le site, pas seulement l'objet
     coverPos: '35% 50%',
     hero: img('vanta', 'car_cover', '16 / 10', L, 'Voiture concept graphite dans un studio sombre'),
     theme: { bg: '#080708', fg: '#f1ece8', muted: '#958a86', line: 'rgb(241 236 232 / 0.12)', accent: '#d63a2c', title: 'display' },
@@ -164,6 +167,7 @@ export const projects = [
     status: 'Concept — 2026',
     layout: 'c',
     cover: img('opale', 'glasses_cover', '16 / 10', L, 'Lunettes aviateur sur papier chaud, ombre longue'),
+    card: img('screens', 'ui_opale_d', '16 / 10', D, "Site Maison Opale (concept) : page produit, version ordinateur"), // vignette des grilles : le site, pas seulement l'objet
     coverPos: '50% 50%',
     theme: { bg: '#efe9df', fg: '#1d1a16', muted: '#7d7466', line: 'rgb(29 26 22 / 0.14)', accent: '#9c7a44', title: 'serif', light: true },
     meta: [
@@ -194,6 +198,7 @@ export const projects = [
     status: 'Concept — 2026',
     layout: 'd',
     cover: img('rooms', 'interior_chair', '4 / 5', P, 'Fauteuil en velours orange dans une pièce ensoleillée'),
+    card: img('screens', 'ui_rooms_d', '16 / 10', D, "Site Quiet Rooms (concept) : page d'accueil, version ordinateur"), // vignette des grilles : le site, pas seulement l'objet
     coverPos: '50% 60%',
     hero: img('rooms', 'interior_cover', '16 / 10', L, 'Pièce ensoleillée avec un fauteuil en velours vert, un pouf et une lampe'),
     theme: { bg: '#e4ddd3', fg: '#23201c', muted: '#776f64', line: 'rgb(35 32 28 / 0.14)', accent: '#b0532d', title: 'light', light: true },
@@ -251,6 +256,7 @@ export const projects = [
     status: 'Concept — 2026',
     layout: 'f',
     cover: img('oscillo', 'osc_cover', '16 / 10', L, "Logo du festival Oscillo modulé par une onde"),
+    card: img('screens', 'ui_oscillo_d', '16 / 10', D, "Site du festival Oscillo (concept) : page d'accueil, version ordinateur"), // vignette des grilles : le site, pas seulement l'objet
     coverPos: '50% 50%',
     live: 'oscillo',
     theme: { bg: '#1b2bff', fg: '#f3f1ea', muted: '#b9bdf5', line: 'rgb(243 241 234 / 0.22)', accent: '#e6ff3b', title: 'wide' },

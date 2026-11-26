@@ -86,6 +86,16 @@ for (const vp of [{ name: 'desktop', width: 1440, height: 900 }, { name: 'mobile
     const orig = HTMLAnchorElement.prototype.click;
     HTMLAnchorElement.prototype.click = function () { if (this.href.startsWith('mailto:')) { window.__mail = this.href; return; } return orig.call(this); };
   });
+  // anti-robot : un envoi en moins de 3 s après l'ouverture est retenu (message honnête, rien n'est préparé)
+  const tooFast = await page.evaluate(() => {
+    const dlg = document.getElementById('brief');
+    dlg.close();
+    document.querySelector('.plan [data-open-brief="Signature"]').click();
+    document.querySelector('#brief [type="submit"]').click();
+    return { mail: window.__mail, msg: document.querySelector('.brief__error').textContent, visible: !document.querySelector('.brief__error').hidden };
+  });
+  ok(`${vp.name}: envoi trop rapide retenu (anti-robot)`, !tooFast.mail && tooFast.visible && /Un instant/.test(tooFast.msg), tooFast.msg);
+  await page.waitForTimeout(3100); // un humain met plus de 3 s à remplir le formulaire
   await page.click('#brief [type="submit"]');
   await page.waitForTimeout(300);
   const href = await page.evaluate(() => window.__mail);

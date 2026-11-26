@@ -14,6 +14,7 @@ cp -R demo "$STAGE/demo"
 cp release/LISEZ-MOI.md "$STAGE/LISEZ-MOI.md"
 cp CREDITS.md "$STAGE/CREDITS.md"
 cp MISE-EN-LIGNE.md "$STAGE/MISE-EN-LIGNE.md"
+cp SECURITE.md "$STAGE/SECURITE.md"
 # source = files tracked by git, minus build output and release artefacts
 git ls-files | grep -v -E '^(dist/|release/|NMDESIGN-PORTFOLIO-FINAL\.zip$)' | while read -r f; do
   mkdir -p "$STAGE/source/$(dirname "$f")"; cp "$f" "$STAGE/source/$f"

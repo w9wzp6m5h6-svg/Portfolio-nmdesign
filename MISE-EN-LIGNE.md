@@ -10,12 +10,16 @@ Le site est prêt techniquement. Ces étapes demandent **ton intervention** (com
 
 ## 2. Héberger
 
-Dépose le **contenu** de `dist/` sur un hébergeur statique : Netlify (glisser‑déposer), Vercel, Cloudflare Pages, GitHub Pages, OVH, o2switch… Puis relie ton domaine dans l'interface de l'hébergeur (il donne les enregistrements DNS à copier chez le registrar). Active le HTTPS (automatique chez Netlify, Vercel, Cloudflare).
+Recommandé : **Vercel** (import du dépôt GitHub, Vite détecté tout seul, en-têtes de sécurité de `vercel.json` appliqués). Autres choix : Netlify, Cloudflare Pages (fichier `_headers` inclus), OVH, o2switch (fichier `.htaccess` inclus). Évite GitHub Pages : il n'accepte pas les en-têtes de sécurité. Relie ensuite ton domaine dans l'interface de l'hébergeur (il donne les enregistrements DNS à copier chez le registrar) et active le HTTPS (automatique chez Vercel, Netlify, Cloudflare).
+
+**Sécurité des comptes** (double authentification Gmail, GitHub, hébergeur, domaine ; réglages Vercel) : suis `SECURITE.md`, section 3.
 
 Vérifie ensuite sur le site en ligne :
 - [ ] `https://ton-domaine/robots.txt` et `https://ton-domaine/sitemap.xml` s'ouvrent ;
 - [ ] l'aperçu de partage (colle l'URL dans WhatsApp, iMessage ou https://www.opengraph.xyz) ;
-- [ ] le formulaire « Démarrer un projet » et les liens e‑mail / Instagram depuis ton iPhone et un ordinateur.
+- [ ] le formulaire « Démarrer un projet » et les liens e‑mail / Instagram depuis ton iPhone et un ordinateur ;
+- [ ] les en-têtes de sécurité : colle l'adresse du site sur https://securityheaders.com (Content-Security-Policy, Strict-Transport-Security, X-Frame-Options… doivent apparaître) ;
+- [ ] `https://ton-domaine/.well-known/security.txt` s'ouvre.
 
 ## 3. Formulaire « Démarrer un projet »
 
@@ -53,6 +57,7 @@ Pour la recherche locale (« web designer Valbonne »…), crée aussi une fiche
 - Open Graph + Twitter card, image de partage 1200 × 630.
 - Données structurées schema.org (Person + ProfessionalService avec zones desservies et formules) : vérifiables sur https://search.google.com/test/rich-results une fois en ligne.
 - Aucun cookie, aucun traceur, aucune police ou script tiers.
+- Content-Security-Policy stricte sur chaque page, en-têtes de sécurité HTTP, `security.txt` (détails dans `SECURITE.md`).
 - Quatre pages indexables, chacune avec son titre et sa description : Accueil, Projets (`/projets/`), À propos (`/a-propos/`), Offres (`/offres/`). Elles sont toutes dans le sitemap.
 - Les études de cas s'ouvrent par `#/work/…` par-dessus la page : elles ne sont pas des pages indexables séparées.
 

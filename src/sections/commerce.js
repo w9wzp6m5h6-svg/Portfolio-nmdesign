@@ -12,11 +12,17 @@
  */
 import { site, mailto } from '../data/site.js';
 import { lockScroll, unlockScroll } from '../core/scroll.js';
+import { esc } from '../core/escape.js';
 
-const ENDPOINT = import.meta.env?.VITE_FORM_ENDPOINT || '';
+const ENDPOINT = import.meta.env?.VITE_FORM_ENDPOINT || ''; // https:// obligatoire (vérifié au build)
 const ACCESS_KEY = import.meta.env?.VITE_FORM_ACCESS_KEY || ''; // clé publique Web3Forms, si utilisée
 
-const esc = (v) => String(v).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+/* Anti-abus côté navigateur. Le vrai plafond d'envois se règle chez le service
+   d'envoi (voir SECURITE.md) : ici on écarte seulement les robots les plus simples
+   et les doubles envois, sans jamais afficher de fausse confirmation. */
+const MIN_FILL_MS = 3000; // un robot remplit et envoie en une fraction de seconde
+const RESEND_DELAY_MS = 60000; // délai après un envoi réussi
+
 const serviceName = () => { try { return new URL(ENDPOINT).hostname.replace(/^www\./, ''); } catch { return 'un service d’envoi'; } };
 
 /* Feuilles ---------------------------------------------------------------- */
@@ -79,9 +85,14 @@ function initBrief(openLegal) {
     : 'Votre messagerie s’ouvrira avec la demande pré-remplie : il vous restera à l’envoyer.';
 
   const reset = () => { form.hidden = false; done.hidden = true; error.hidden = true; };
+  let openedAt = 0;
+  let sending = false;
+  let sentAt = 0;
+  const showError = (text) => { error.textContent = text; error.hidden = false; };
 
   const open = (type) => {
     reset();
+    openedAt = Date.now();
     if (typeof type === 'string' && type) {
       const sel = form.elements.type;
       if ([...sel.options].some((o) => o.value === type || o.text === type)) sel.value = type;
@@ -171,6 +182,12 @@ function initBrief(openLegal) {
   };
 
   const viaEndpoint = async (d) => {
+    if (sending) return;
+    if (sentAt && Date.now() - sentAt < RESEND_DELAY_MS) {
+      showError('Votre demande vient d’être envoyée. Patientez une minute avant d’en envoyer une autre.');
+      return;
+    }
+    sending = true;
     submitBtn.disabled = true;
     const label = submitBtn.firstChild.textContent;
     submitBtn.firstChild.textContent = 'Envoi…';
@@ -184,6 +201,7 @@ function initBrief(openLegal) {
       });
       const json = await res.json().catch(() => ({}));
       if (!res.ok || json.success === false || json.ok === false) throw new Error(json.message || `HTTP ${res.status}`);
+      sentAt = Date.now();
       form.reset();
       showDone('Demande envoyée. Merci !', `Je reviens vers vous à l’adresse <strong>${esc(d.email)}</strong>.`, [button('Fermer', 'chip', sheet.close)]);
     } catch {
@@ -191,6 +209,7 @@ function initBrief(openLegal) {
       error.hidden = false;
       error.querySelector('[data-fallback]').addEventListener('click', () => viaMail(d));
     } finally {
+      sending = false;
       submitBtn.disabled = false;
       submitBtn.firstChild.textContent = label;
     }
@@ -200,6 +219,7 @@ function initBrief(openLegal) {
     e.preventDefault();
     if (form.elements.company.value) return; // robot (champ piège rempli)
     if (!validate()) return;
+    if (Date.now() - openedAt < MIN_FILL_MS) { showError('Un instant : relisez votre demande, puis envoyez-la.'); return; }
     const d = data();
     if (ENDPOINT) viaEndpoint(d);
     else viaMail(d);

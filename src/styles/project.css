@@ -134,6 +134,7 @@
 .p-figure--wide { grid-column: 2 / 12; }
 .p-caption { margin-top: 14px; color: var(--p-muted); max-width: 52ch; }
 .p-caption.mono { text-transform: none; letter-spacing: 0; font-size: var(--fs-micro); }
+.p-caption--head { margin-bottom: 18px; }
 
 .p-pair { align-items: start; }
 .p-pair > :first-child { grid-column: 1 / 6; }

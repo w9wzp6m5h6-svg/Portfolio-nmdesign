@@ -11,6 +11,7 @@ import { pageHref } from '../core/asset.js';
 import { env } from '../core/env.js';
 import { projects } from '../data/projects.js';
 import { renderProject } from './blocks.js';
+import { applyCss } from '../core/css.js';
 import { splitLines } from '../core/split.js';
 
 const ROUTE = /^#\/work\/([\w-]+)$/;
@@ -79,6 +80,7 @@ export function initProjectView() {
     current = p;
     applyTheme(p);
     content.innerHTML = renderProject(p, nextOf(p));
+    applyCss(content);
     barIndex.textContent = `${p.num} / ${String(projects.length).padStart(2, '0')} — ${p.title}`;
     scroller.scrollTop = 0;
 
@@ -161,7 +163,11 @@ export function initProjectView() {
     if (media && fromImg && d) {
       // shared-element transition: the card image grows into the fullscreen hero
       const r = media.getBoundingClientRect();
-      clone.innerHTML = `<img src="${fromImg.currentSrc || fromImg.src}" alt="" style="object-position:${getComputedStyle(fromImg).objectPosition}">`;
+      const img = document.createElement('img');
+      img.src = fromImg.currentSrc || fromImg.src;
+      img.alt = '';
+      img.style.objectPosition = getComputedStyle(fromImg).objectPosition;
+      clone.replaceChildren(img);
       card.classList.add('is-opening');
       gsap.set(scroller, { autoAlpha: 0 });
       gsap.set(clone, { visibility: 'visible', top: r.top, left: r.left, width: r.width, height: r.height, borderRadius: 2 });

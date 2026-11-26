@@ -2,11 +2,12 @@
  * Case-study block renderers. Each project composes these differently,
  * so the same system produces six distinct layouts.
  */
+import { esc } from '../core/escape.js';
+
 const USES_3D_ASSETS = ['stride', 'vanta', 'opale', 'rooms'];
-const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 export function figure(img, { cls = '', sizes = '100vw', eager = false } = {}) {
-  return `<figure class="p-figure ${cls}" style="aspect-ratio:${img.ratio}" data-parallax>
+  return `<figure class="p-figure ${cls}" data-css="aspect-ratio:${img.ratio}" data-parallax>
     <img src="${img.src}" srcset="${img.srcset}" sizes="${sizes}" alt="${esc(img.alt)}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" />
   </figure>`;
 }
@@ -56,23 +57,23 @@ const renderers = {
 
   palette: (b) => `
     <section class="p-block">
-      <p class="mono p-caption" data-reveal style="margin-bottom:18px">Palette</p>
+      <p class="mono p-caption p-caption--head" data-reveal>Palette</p>
       <div class="p-grid p-palette">
         ${b.colors.map(([n, hex]) => {
           const light = parseInt(hex.slice(1, 3), 16) * 0.299 + parseInt(hex.slice(3, 5), 16) * 0.587 + parseInt(hex.slice(5, 7), 16) * 0.114 > 150;
-          return `<div class="p-swatch mono" data-reveal style="background:${hex};color:${light ? '#111' : '#f3f1ea'}"><span>${esc(n)}</span><span>${hex.toUpperCase()}</span></div>`;
+          return `<div class="p-swatch mono" data-reveal data-css="background:${hex};color:${light ? '#111' : '#f3f1ea'}"><span>${esc(n)}</span><span>${hex.toUpperCase()}</span></div>`;
         }).join('')}
       </div>
     </section>`,
 
   type: (b) => `
     <section class="p-block">
-      <p class="mono p-caption" data-reveal style="margin-bottom:18px">Typographie</p>
+      <p class="mono p-caption p-caption--head" data-reveal>Typographie</p>
       <div class="p-grid p-type">
         ${b.families.map(([name, role, glyph]) => `
           <div class="p-type__item" data-reveal>
             <p class="mono">${esc(name)}</p>
-            <div class="p-type__glyph" style="font-family:'${name}', '${name} Variable', serif;${name.includes('Serif') ? 'font-style:italic' : ''}">${esc(glyph)}</div>
+            <div class="p-type__glyph" data-css="font-family:'${name}', '${name} Variable', serif;${name.includes('Serif') ? 'font-style:italic' : ''}">${esc(glyph)}</div>
             <p>${esc(role)}</p>
           </div>`).join('')}
       </div>
@@ -130,7 +131,7 @@ export function renderProject(p, next) {
   return `
     <article class="p-article">
       <header class="p-hero">
-        ${p.heroPlain ? '<div class="p-hero__wall" aria-hidden="true"></div>' : `<div class="p-hero__media">${figure(hero, { eager: true }).replace('data-parallax', 'data-hero-media').replace(/style="aspect-ratio:[^"]+"/, 'style="position:absolute;inset:0"')}</div>`}
+        ${p.heroPlain ? '<div class="p-hero__wall" aria-hidden="true"></div>' : `<div class="p-hero__media">${figure(hero, { eager: true }).replace('data-parallax', 'data-hero-media').replace(/data-css="aspect-ratio:[^"]+"/, 'data-css="position:absolute;inset:0"')}</div>`}
         <div class="p-hero__content">
           <p class="p-hero__num mono" data-hero-fade>${p.real ? '<span class="p-badge">Projet réel</span>' : ''}${p.num} — ${esc(p.category)}</p>
           <h2 class="p-hero__title p-title" id="project-title" data-style="${p.theme.title}" data-hero-title>${esc(p.title)}</h2>

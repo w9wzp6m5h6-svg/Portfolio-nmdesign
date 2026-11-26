@@ -7,7 +7,7 @@
    - **Mac :** `Lancer le portfolio (Mac).command`
      (la première fois : clic droit → *Ouvrir* → *Ouvrir*, car macOS bloque les scripts téléchargés)
    - **Windows :** `Lancer le portfolio (Windows).bat`
-3. Le navigateur s'ouvre sur **http://localhost:4173/**. Pour arrêter : ferme la fenêtre du terminal.
+3. Le navigateur s'ouvre sur **http://127.0.0.1:4173/** (accessible depuis ton ordinateur uniquement, pas depuis le réseau). Pour arrêter : ferme la fenêtre du terminal.
 
 Le lanceur a besoin de **Node.js** (https://nodejs.org, version LTS) ou de **Python 3** (déjà présent sur la plupart des Mac).
 
@@ -17,7 +17,7 @@ En ligne de commande, depuis ce dossier :
 
 ```bash
 node demo/serve.mjs                               # ou :
-python3 -m http.server 4173 --directory dist
+python3 -m http.server 4173 --bind 127.0.0.1 --directory dist
 ```
 
 ## Contenu
@@ -31,7 +31,9 @@ python3 -m http.server 4173 --directory dist
 
 ## Mettre en ligne
 
-Dépose le **contenu** de `dist/` sur n'importe quel hébergeur statique (Netlify, Vercel, Cloudflare Pages, OVH, o2switch…). Il fonctionne à la racine d'un domaine comme dans un sous‑dossier.
+Dépose le **contenu** de `dist/` sur n'importe quel hébergeur statique (Vercel, Netlify, Cloudflare Pages, OVH, o2switch…). Il fonctionne à la racine d'un domaine comme dans un sous‑dossier. Les en-têtes de sécurité sont inclus (`_headers`, `.htaccess`) : en FTP, pense à envoyer aussi les fichiers cachés (`.htaccess`, `.well-known/`).
+
+**Sécurité :** lis `SECURITE.md` (dans `source/`) : double authentification Gmail / GitHub / hébergeur, réglages Vercel, que faire en cas de problème.
 
 **Avant de publier**, suis `MISE-EN-LIGNE.md` : mentions légales à compléter, adresse du site pour le sitemap, envoi du formulaire, Google Search Console.
 

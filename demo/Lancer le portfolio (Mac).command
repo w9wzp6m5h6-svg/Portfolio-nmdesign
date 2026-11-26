@@ -6,9 +6,9 @@ DIST="../dist"
 if command -v node >/dev/null 2>&1; then
   node serve.mjs "$DIST"
 elif command -v python3 >/dev/null 2>&1; then
-  echo "Node.js not found — using Python. Open http://localhost:4173/"
-  (sleep 1; open "http://localhost:4173/") &
-  python3 -m http.server 4173 --directory "$DIST"
+  echo "Node.js not found — using Python. Open http://127.0.0.1:4173/"
+  (sleep 1; open "http://127.0.0.1:4173/") &
+  python3 -m http.server 4173 --bind 127.0.0.1 --directory "$DIST"
 else
   echo "Install Node.js (https://nodejs.org) or Python 3, then double-click again."
   read -r -p "Press Enter to close."

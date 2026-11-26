@@ -25,7 +25,7 @@
 .card__link { display: grid; gap: 18px; }
 .card__media {
   position: relative; overflow: hidden; border-radius: var(--radius);
-  aspect-ratio: 4 / 3; background: var(--graphite-2);
+  aspect-ratio: 16 / 10; background: var(--graphite-2);
 }
 .card--wide .card__media { aspect-ratio: 21 / 9; }
 .card__media img {

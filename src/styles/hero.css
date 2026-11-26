@@ -4,7 +4,7 @@
 
 .hero {
   position: relative;
-  min-height: 92vh; min-height: 92svh;
+  min-height: 80vh; min-height: 80svh;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   grid-template-rows: auto 1fr auto auto;
@@ -51,6 +51,10 @@
 @media (max-width: 900px) {
   .hero__pitch, .hero__actions { grid-column: 1 / -1; }
   .hero__actions { justify-content: flex-start; }
+}
+/* tablette en portrait : le nom, limité par la largeur, laisserait un grand vide au-dessus */
+@media (min-width: 701px) and (orientation: portrait) {
+  .hero { min-height: 62vh; min-height: 62svh; }
 }
 @media (max-width: 700px) {
   .hero { min-height: 88vh; min-height: 88svh; }
