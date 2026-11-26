@@ -26,11 +26,17 @@ const watch = (page) => {
   check('menu toggle aria-expanded=true', (await page.getAttribute('.header__menu', 'aria-expanded')) === 'true');
   check('page scroll locked', await page.evaluate(() => getComputedStyle(document.documentElement).overflow === 'hidden'));
   await page.screenshot({ path: 'tools/qa/out/menu-mobile.png' });
-  await page.click('.menu__nav a[href="#about"]');
+  await page.click('.menu__nav a[href="#contact"]');
   await page.waitForTimeout(2500);
   check('menu closes on link', !(await page.evaluate(() => document.getElementById('menu').classList.contains('is-open'))));
-  const aboutTop = await page.evaluate(() => document.getElementById('about').getBoundingClientRect().top);
-  check(`menu link scrolls to About (top=${Math.round(aboutTop)})`, Math.abs(aboutTop) < 80);
+  const cTop = await page.evaluate(() => document.getElementById('contact').getBoundingClientRect().top);
+  check(`menu link scrolls to Contact (top=${Math.round(cTop)})`, Math.abs(cTop) < 80);
+  // lien de page dans le menu → page À propos
+  await page.click('.header__menu'); await page.waitForTimeout(1600);
+  await Promise.all([page.waitForNavigation({ timeout: 15000 }).catch(() => null), page.click('.menu__nav a[data-nav="about"]')]);
+  await page.waitForTimeout(2500);
+  check(`menu → page À propos (${new URL(page.url()).pathname})`, /a-propos\/(index\.html)?$/.test(new URL(page.url()).pathname));
+  check('page visible after transition', await page.evaluate(() => !document.documentElement.classList.contains('is-leaving')));
   await page.click('.header__menu');
   await page.waitForTimeout(1600); // let the opening animation finish, as a person would
   await page.keyboard.press('Escape');
@@ -48,21 +54,31 @@ const watch = (page) => {
   watch(page);
   await page.goto(BASE + '/', { waitUntil: 'networkidle' });
   await page.waitForTimeout(4000);
-  for (const id of ['work', 'about', 'contact', 'top']) {
-    await page.click(`.header__nav a[data-nav="${id}"]`);
-    await page.waitForTimeout(id === 'about' ? 9000 : 4000); // headless WebGL boots the 3D stage on the CPU when the scroll passes it
-    const top = await page.evaluate((id) => document.getElementById(id).getBoundingClientRect().top, id);
-    check(`nav → #${id} (top=${Math.round(top)})`, Math.abs(top) < 80);
+  // navigation entre pages (aria-current sur la page active)
+  for (const [key, re] of [['projects', /projets\//], ['about', /a-propos\//], ['offers', /offres\//]]) {
+    await Promise.all([page.waitForNavigation({ timeout: 20000 }).catch(() => null), page.click(`.header__nav a[data-nav="${key}"]`)]);
+    await page.waitForTimeout(2500);
+    const cur = await page.evaluate((k) => document.querySelector(`.header__nav a[data-nav="${k}"]`)?.getAttribute('aria-current'), key);
+    check(`nav → ${key} (${new URL(page.url()).pathname}, aria-current=${cur})`, re.test(page.url()) && cur === 'page');
   }
-  await page.click('.header__brand');
-  await page.waitForTimeout(2200);
-  check('brand returns to top', (await page.evaluate(() => scrollY)) < 40);
+  await page.click('.header__nav a[data-nav="contact"]');
+  await page.waitForTimeout(4000);
+  const ct = await page.evaluate(() => document.getElementById('contact').getBoundingClientRect().top);
+  check(`nav → #contact (top=${Math.round(ct)})`, Math.abs(ct) < 80);
+  await page.click('.footer a[href="#top"]');
+  await page.waitForTimeout(3000);
+  check('footer « Retour en haut »', (await page.evaluate(() => scrollY)) < 40);
+  await Promise.all([page.waitForNavigation({ timeout: 20000 }).catch(() => null), page.click('.header__brand')]);
+  await page.waitForTimeout(2500);
+  check('brand returns to home', (await page.evaluate(() => document.body.dataset.page)) === 'home');
   // keyboard: Tab from a fresh page reaches the skip link first
   await page.reload({ waitUntil: 'networkidle' });
   await page.waitForTimeout(3500);
   await page.keyboard.press('Tab');
   check('first Tab = skip link', await page.evaluate(() => document.activeElement?.classList.contains('skip-link')));
-  // object keyboard control
+  // object keyboard control (page Projets)
+  await page.goto(BASE + '/projets/', { waitUntil: 'networkidle' });
+  await page.waitForTimeout(3000);
   await page.evaluate(() => document.getElementById('object').scrollIntoView());
   await page.waitForTimeout(5000);
   await page.focus('.object__gl');
@@ -90,10 +106,11 @@ const watch = (page) => {
 }
 
 /* --- horizontal overflow at many widths --- */
+for (const path of ['/', '/projets/', '/a-propos/', '/offres/'])
 for (const w of [320, 360, 390, 414, 600, 768, 834, 1024, 1180, 1280, 1440, 1920, 2560]) {
   const page = await browser.newPage({ viewport: { width: w, height: 900 } });
-  await page.goto(BASE + '/', { waitUntil: 'networkidle' });
-  await page.waitForTimeout(3500);
+  await page.goto(BASE + path, { waitUntil: 'networkidle' });
+  await page.waitForTimeout(1500);
   const res = await page.evaluate(() => {
     const vw = document.documentElement.clientWidth;
     const offenders = [];
@@ -103,8 +120,8 @@ for (const w of [320, 360, 390, 414, 600, 768, 834, 1024, 1180, 1280, 1440, 1920
     });
     return { scrollW: document.documentElement.scrollWidth, vw, offenders: offenders.slice(0, 5) };
   });
-  check(`no horizontal scroll at ${w}px (scrollWidth ${res.scrollW})`, res.scrollW <= res.vw);
-  if (res.offenders.length) console.log('      overflowing:', res.offenders.join(' | '));
+  check(`${path} no horizontal scroll at ${w}px (scrollWidth ${res.scrollW})`, res.scrollW <= res.vw);
+  if (res.offenders.length && res.scrollW > res.vw) console.log('      overflowing:', res.offenders.join(' | '));
   await page.close();
 }
 

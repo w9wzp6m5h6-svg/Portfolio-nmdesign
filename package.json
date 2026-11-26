@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "build:artifact": "VITE_MODEL_FORMAT=json vite build --outDir build-artifact && node tools/pack-models-json.mjs build-artifact"
+    "build:artifact": "ARTIFACT=1 VITE_MODEL_FORMAT=json vite build --outDir build-artifact && node tools/pack-models-json.mjs build-artifact"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0",

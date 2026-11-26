@@ -52,6 +52,7 @@ function renderActions(root) {
 
 export function initContact() {
   const section = document.querySelector('.contact');
+  if (!section) return;
   const svg = section.querySelector('.contact__mark');
   const line = svg.querySelector('.contact__line');
   renderActions(section.querySelector('[data-contact]'));

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr" data-root="{{root}}">
+<head>
+  <title>Projets — NM Design · Noah Milsztajn</title>
+  <meta name="description" content="Les réalisations de NM Design : le site de la galerie Cynthia Rimo à Valbonne et des concepts de sites, d'expériences 3D et d'identités interactives." />
+  <meta property="og:title" content="Projets — NM Design" />
+  <meta property="og:description" content="Un projet réel pour une galerie d'art à Valbonne et des concepts de design digital, 3D et interaction." />
+  <!-- %SEO_URL% -->
+<!-- include:head -->
+</head>
+<body class="is-loading" data-page="projects">
+<!-- include:header -->
+
+  <main id="main">
+    <header class="page-head" id="top" data-section="projects" data-label="Projets">
+      <p class="page-head__k mono">Projets</p>
+      <h1 class="page-head__title">Réalisations <em>&amp; concepts</em></h1>
+      <p class="page-head__lead">Un projet réel, conçu pour une galerie d'art à Valbonne, et des concepts personnels : chacun explore une direction artistique jusqu'au bout. Les concepts ne sont pas des commandes clients.</p>
+    </header>
+
+    <section class="works works--all" id="work" aria-label="Tous les projets">
+      <div class="works__filters" role="group" aria-label="Filtrer les projets" data-filters>
+        <button class="chip" type="button" aria-pressed="true" data-filter="all">Tous</button>
+        <button class="chip" type="button" aria-pressed="false" data-filter="real">Projet réel</button>
+        <button class="chip" type="button" aria-pressed="false" data-filter="web">Sites web</button>
+        <button class="chip" type="button" aria-pressed="false" data-filter="3d">3D &amp; WebGL</button>
+        <button class="chip" type="button" aria-pressed="false" data-filter="identity">Identité &amp; génératif</button>
+        <span class="works__count mono" aria-live="polite" data-count></span>
+      </div>
+      <div class="works__grid" data-works="all"></div>
+    </section>
+
+<!-- include:object -->
+
+<!-- include:contact -->
+  </main>
+
+<!-- include:footer -->
+</body>
+</html>

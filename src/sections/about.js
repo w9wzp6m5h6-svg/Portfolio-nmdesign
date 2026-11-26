@@ -8,6 +8,7 @@ import { env } from '../core/env.js';
 
 export function initAbout() {
   const section = document.querySelector('.about');
+  if (!section) return;
   const portrait = section.querySelector('[data-portrait]');
   const img = portrait.querySelector('img');
   const name = portrait.querySelector('.portrait__name');

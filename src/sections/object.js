@@ -9,6 +9,7 @@ import { asset } from '../core/asset.js';
 
 export function initObject() {
   const section = document.querySelector('.object');
+  if (!section) return;
   const canvas = section.querySelector('.object__gl');
   const layer = section.querySelector('.object__hotspots');
   const loadingText = section.querySelector('.object__loading-text');

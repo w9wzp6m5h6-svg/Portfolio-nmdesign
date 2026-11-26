@@ -42,23 +42,17 @@
   grid-column: 1 / 4;
   display: inline-flex; align-items: center; gap: 14px; justify-self: start;
 }
-.header__brand .mark { width: 30px; }
+.header__brand .mark { width: 26px; }
 .header__brand .mark__line { stroke-width: 11; }
 .header__name {
-  font-family: var(--f-mono); font-size: var(--fs-micro); text-transform: uppercase; letter-spacing: 0.02em;
+  font-family: var(--f-display); font-variation-settings: 'wdth' 125; font-weight: 800;
+  font-size: 0.8125rem; text-transform: uppercase; letter-spacing: 0.01em;
   overflow: hidden; white-space: nowrap;
 }
-.header__index {
-  grid-column: 5 / 8;
-  display: flex; gap: 12px; align-items: baseline;
-}
-.header__index-num { color: var(--fog); font-variant-numeric: tabular-nums; }
-.header__index-roll { display: inline-block; overflow: hidden; height: 1.4em; }
-.header__index-label { display: inline-block; }
 .header__nav {
   grid-column: 8 / 13; justify-self: end;
-  display: flex; gap: clamp(18px, 2.4vw, 40px);
-  font-family: var(--f-mono); font-size: var(--fs-micro); text-transform: uppercase; letter-spacing: 0.02em;
+  display: flex; gap: clamp(20px, 2.4vw, 36px);
+  font-family: var(--f-mono); font-size: var(--fs-micro); text-transform: uppercase; letter-spacing: 0.05em;
 }
 .header__nav a { position: relative; padding: 8px 0; }
 .header__nav a::before {
@@ -70,7 +64,6 @@
 .header__menu { display: none; }
 
 @media (max-width: 900px) {
-  .header__index { display: none; }
   .header__nav { display: none; }
   .header__brand { grid-column: 1 / 9; }
   .header__menu {
@@ -110,7 +103,7 @@
 .menu__label {
   display: inline-block;
   font-family: var(--f-display); font-variation-settings: 'wdth' 125; font-weight: 800;
-  text-transform: uppercase; font-size: min(clamp(2rem, 9vw, 4.5rem), 7.5vh); line-height: 1; letter-spacing: -0.03em;
+  text-transform: uppercase; font-size: min(clamp(1.9rem, 8vw, 3.25rem), 7vh); line-height: 1; letter-spacing: -0.03em;
 }
 .menu__foot {
   position: relative; display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--fog);
@@ -143,7 +136,7 @@
 .footer__claim {
   font-family: var(--f-display); font-variation-settings: 'wdth' 125; font-weight: 800;
   text-transform: uppercase; letter-spacing: -0.03em; line-height: 0.95;
-  font-size: clamp(1.8rem, 1rem + 3vw, 3.6rem);
+  font-size: var(--fs-h2);
 }
 .footer__claim .serif { text-transform: none; font-weight: 400; font-variation-settings: normal; color: var(--ochre); letter-spacing: -0.02em; }
 .footer__cols { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px var(--gutter); }
@@ -178,3 +171,14 @@
 }
 /* téléphone en paysage : le menu garde toute la hauteur pour les liens */
 @media (max-height: 500px) { .menu__foot { display: none; } }
+
+/* Transition entre pages -------------------------------------------------- */
+main, .footer { transition: opacity 0.28s var(--ease-soft); }
+html.is-leaving main, html.is-leaving .footer { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { main, .footer { transition: none; } }
+
+/* Pied de page : marque */
+.footer__brand { display: inline-flex; align-items: flex-start; gap: 16px; }
+.footer__brand .mark { width: 34px; flex: none; margin-top: 4px; }
+.footer__brand .mark__line { stroke-width: 10; }
+.footer__claim .serif { display: block; }

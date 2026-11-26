@@ -60,20 +60,26 @@ Rotation, zoom, X‑Ray, éclairage et version mobile fonctionnent avec n'import
 ## Direction artistique
 
 - **Palette** : encre `#0b0b0c`, graphite, os `#edebe5`, gris froid `#8f949b`, un seul accent « signal » `#ff4f2b`. Chaque projet a sa propre palette dans sa page.
-- **Typographie** : Archivo Expanded (titres monumentaux), Instrument Serif italique (contrepoint éditorial), Inter Tight (texte), Geist Mono (métadonnées).
+- **Typographie** : Archivo Expanded (mot-symbole et titres de page), Instrument Serif italique (contrepoint éditorial), Inter Tight (texte et titres de section), Geist Mono (navigation, métadonnées). Échelle unique dans `tokens.css` : texte 16–17 px, chapeau 18–22 px, titres de section 28–46 px, titre de page 40–72 px. Un seul très grand élément sur le site : « NM DESIGN » en page d'accueil.
+- **Grille** : 12 colonnes, mêmes marges partout. Axe A (colonne 1) pour les libellés, axe B (colonne 4) pour les titres et textes.
 - **Monogramme NM** : un seul trait continu. Le jambage droit du N est le jambage gauche du M. Il se dessine à l'intro, vole dans le header, puis revient en grand dans la section Contact, où ses sommets réagissent comme une corde qu'on pince.
 - **Mouvement** : deux courbes pour tout le site (`--ease-out` pour les arrivées, `--ease-in-out` pour les transitions) et des durées partagées (`src/styles/tokens.css`).
 
 ## Structure
 
 ```
-index.html                 squelette sémantique (lisible sans JS)
+index.html                 Accueil : hero NM DESIGN, projets sélectionnés, présentation courte, contact
+projets/index.html         Projets : tous les projets (filtres), lab 3D, contact
+a-propos/index.html        À propos : portrait, récit, qualités, parcours, approche, contact
+offres/index.html          Offres : formules et tarifs, compléments, offre de lancement, méthode, contact
 src/
-  main.js                  ordre de démarrage
+  partials/                gabarits partagés (head, header + menu, contact, footer, fenêtres, scène 3D)
+                           assemblés au build par vite.config.js (<!-- include:nom -->, {{href:page}})
+  main.js                  ordre de démarrage (chaque section ne s'initialise que si elle est sur la page)
   data/                    contenu : site.js, projects.js, sneaker.js
   core/                    env (capacités appareil), scroll (Lenis+GSAP), split (découpe texte)
-  ui/                      loader, header, menu, cursor-tag, reveals
-  sections/                hero, works, object (3D), contact
+  ui/                      loader, header, menu, cursor-tag, reveals, transitions (fondu entre pages)
+  sections/                hero, works (accueil + page Projets), object (3D), about, contact, commerce (formulaire, mentions)
   three/                   hero-gl (nom en WebGL), sneaker-stage (viewer 3D), variants
   project/                 view (overlay + routes #/work/…), blocks (mises en page), live/ (pièces temps réel)
   styles/                  tokens, base, chrome, hero, works, object, about-contact, project, commerce
@@ -93,6 +99,8 @@ tools/                     outils de production (non publiés)
 ```
 
 ### Ajouter ou modifier un projet
+
+`selected: true` place un projet dans la sélection de l'accueil (trois projets) ; `tags` alimente les filtres de la page Projets (`real`, `web`, `3d`, `identity`).
 
 Tout est dans `src/data/projects.js` : titre, catégorie, statut, thème (couleurs + style de titre), et une liste de `blocks` (`text`, `statement`, `image`, `pair`, `gallery`, `chapters`, `screens`, `palette`, `type`, `live`). Chaque projet peut composer sa page différemment.
 

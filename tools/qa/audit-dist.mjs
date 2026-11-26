@@ -21,8 +21,24 @@ const has = (p) => files.includes(p.replace(/^\.\//, '').replace(/^\//, '').spli
 
 /* --- static references --- */
 const refs = new Set();
-const html = readFileSync(join(dist, 'index.html'), 'utf8');
-for (const m of html.matchAll(/(?:href|src|content)="(\.\/[^"#]+)"/g)) refs.add(m[1]);
+// toutes les pages : chaque chemin relatif est résolu depuis le dossier de la page
+const PAGES = ['index.html', 'projets/index.html', 'a-propos/index.html', 'offres/index.html'];
+let html = '';
+for (const pg of PAGES) {
+  ok(`page présente : ${pg}`, files.includes(pg));
+  if (!files.includes(pg)) continue;
+  const h = readFileSync(join(dist, pg), 'utf8');
+  html += h;
+  const dir = pg.includes('/') ? pg.slice(0, pg.lastIndexOf('/') + 1) : '';
+  for (const m of h.matchAll(/(?:href|src|content|srcset)="(\.{1,2}\/[^"#]*)"/g)) {
+    for (const part of m[1].split(',')) {
+      const u = part.trim().split(' ')[0];
+      if (!u) continue;
+      const resolved = new URL(u, `http://x/${dir}`).pathname.slice(1);
+      refs.add(resolved === '' || resolved.endsWith('/') ? resolved + 'index.html' : resolved);
+    }
+  }
+}
 for (const f of files.filter((f) => f.endsWith('.css'))) {
   for (const m of readFileSync(join(dist, f), 'utf8').matchAll(/url\(([^)]+)\)/g)) {
     const u = m[1].replace(/["']/g, '');
@@ -65,7 +81,18 @@ if (base) {
     page.on('response', (r) => { if (r.status() >= 400) bad.push(`${r.status()} ${r.url()}`); else loaded.add(r.url()); });
     page.on('pageerror', (e) => errs.push(e.message));
     page.on('console', (m) => m.type() === 'error' && errs.push(m.text()));
-    await page.goto(base, { waitUntil: 'networkidle' });
+    // pages secondaires : chargement complet + images
+    for (const path of ['', 'a-propos/', 'offres/']) {
+      await page.goto(base + path, { waitUntil: 'networkidle' });
+      await page.waitForTimeout(2500);
+      const H0 = await page.evaluate(() => document.documentElement.scrollHeight);
+      for (let y = 0; y < H0; y += 700) { await page.evaluate((y) => window.scrollTo(0, y), y); await page.waitForTimeout(250); }
+      await page.waitForTimeout(800);
+      const br = await page.evaluate(() => [...document.querySelectorAll('main img')].filter((i) => i.complete && i.naturalWidth === 0).map((i) => i.src));
+      ok(`[${label}] /${path}: no broken images`, br.length === 0, br.join(', '));
+    }
+    // page Projets : toutes les études de cas + scène 3D
+    await page.goto(base + 'projets/', { waitUntil: 'networkidle' });
     await page.waitForTimeout(4000);
     const H = await page.evaluate(() => document.documentElement.scrollHeight);
     for (let y = 0; y < H; y += 600) { await page.evaluate((y) => window.scrollTo(0, y), y); await page.waitForTimeout(350); }
@@ -88,7 +115,7 @@ if (base) {
       await page.waitForTimeout(1500);
     }
     const brokenMain = await page.evaluate(() => [...document.querySelectorAll('main img')].filter((i) => i.complete && i.naturalWidth === 0).map((i) => i.src));
-    ok(`[${label}] main page: no broken images`, brokenMain.length === 0, brokenMain.join(', '));
+    ok(`[${label}] /projets/: no broken images`, brokenMain.length === 0, brokenMain.join(', '));
     const fonts = await page.evaluate(() => [...document.fonts].filter((f) => f.status === 'loaded').map((f) => f.family));
     ok(`[${label}] fonts loaded`, ['Archivo Variable', 'Instrument Serif', 'Inter Tight Variable', 'Geist Mono Variable'].every((f) => fonts.some((x) => x.includes(f))), [...new Set(fonts)].join(', '));
     ok(`[${label}] three.js chunk loaded`, [...loaded].some((u) => /three\.module-.*\.js/.test(u)));

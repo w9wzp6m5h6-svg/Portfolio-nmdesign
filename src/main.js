@@ -16,12 +16,15 @@ import { initContact } from './sections/contact.js';
 import { initAbout } from './sections/about.js';
 import { initProjectView } from './project/view.js';
 import { initCommerce } from './sections/commerce.js';
+import { initPageTransitions } from './ui/transitions.js';
 
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
 document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
 
 initScroll();
+initPageTransitions();
+initHeader();
 initMenu();
 initCursorTag();
 const hero = initHero();
@@ -35,7 +38,6 @@ const commerce = initCommerce();
 // reveals need final fonts for correct line breaks
 document.fonts.ready.then(() => {
   initReveals();
-  initHeader();
   ScrollTrigger.refresh();
 });
 

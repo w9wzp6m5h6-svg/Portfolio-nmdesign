@@ -1,0 +1,36 @@
+  <a class="skip-link" href="#main">Aller au contenu</a>
+
+<!-- include:loader -->
+
+  <!-- En-tête ------------------------------------------------------------->
+  <header class="header">
+    <a class="header__brand" href="{{href:home}}" aria-label="NM Design — accueil">
+      <svg class="mark mark--brand" viewBox="-6 -6 132 112" fill="none" aria-hidden="true">
+        <polyline class="mark__line" points="0,100 0,0 60,100 60,0 90,60 120,0 120,100" />
+      </svg>
+      <span class="header__name">NM Design</span>
+    </a>
+    <nav class="header__nav" aria-label="Navigation principale">
+      <a href="{{href:projects}}" data-nav="projects"><span class="roll" data-text="Projets">Projets</span></a>
+      <a href="{{href:about}}" data-nav="about"><span class="roll" data-text="À propos">À propos</span></a>
+      <a href="{{href:offers}}" data-nav="offers"><span class="roll" data-text="Offres">Offres</span></a>
+      <a href="#contact" data-nav="contact" class="header__cta"><span class="roll" data-text="Contact">Contact</span></a>
+    </nav>
+    <button class="header__menu mono" type="button" aria-expanded="false" aria-controls="menu">
+      <span class="header__menu-label">Menu</span>
+      <span class="header__menu-icon" aria-hidden="true"><i></i><i></i></span>
+    </button>
+  </header>
+
+  <!-- Menu plein écran (mobile / tablette) -------------------------------->
+  <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu" inert>
+    <div class="menu__bg"></div>
+    <nav class="menu__nav" aria-label="Menu">
+      <a href="{{href:home}}" data-nav="home"><span class="menu__num mono">01</span><span class="menu__label">Accueil</span></a>
+      <a href="{{href:projects}}" data-nav="projects"><span class="menu__num mono">02</span><span class="menu__label">Projets</span></a>
+      <a href="{{href:about}}" data-nav="about"><span class="menu__num mono">03</span><span class="menu__label">À propos</span></a>
+      <a href="{{href:offers}}" data-nav="offers"><span class="menu__num mono">04</span><span class="menu__label">Offres</span></a>
+      <a href="#contact"><span class="menu__num mono">05</span><span class="menu__label">Contact</span></a>
+    </nav>
+    <div class="menu__foot mono" data-menu-contact></div>
+  </div>

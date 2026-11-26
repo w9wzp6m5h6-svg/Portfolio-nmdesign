@@ -88,7 +88,7 @@
 .object__title {
   font-family: var(--f-display); font-variation-settings: 'wdth' 125; font-weight: 800;
   text-transform: uppercase; letter-spacing: -0.035em; line-height: 0.86;
-  font-size: clamp(2.6rem, 1.2rem + 4.6vw, 6.2rem);
+  font-size: var(--fs-h2);
 }
 .object__title em { font-family: var(--f-serif); text-transform: none; letter-spacing: -0.02em; font-weight: 400; color: var(--accent); font-variation-settings: normal; }
 .object__lead { margin-top: 20px; color: var(--fog); max-width: 34ch; font-size: var(--fs-small); }
@@ -165,7 +165,7 @@
     padding: calc(var(--header-h) + 8px) var(--margin) 0; max-width: none;
     pointer-events: none;
   }
-  .object__title { font-size: clamp(2.4rem, 11vw, 4rem); }
+  .object__title { font-size: var(--fs-h2); }
   .object__lead { display: none; }
   .object__hint { order: 2; margin: 14px 0 0; align-self: center; }
   .object__controls { order: 3; align-self: stretch; justify-items: start; gap: 16px; padding: 24px var(--margin) 0; }
@@ -180,3 +180,6 @@
 .object__fallback { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: 50% 55%; padding: 8% 6%; }
 .object.is-fallback .object__loading { top: auto; bottom: 18px; transform: translateX(-50%); text-align: center; max-width: 90%; }
 .object.is-fallback .object__loading-bar { display: none; }
+
+/* les étiquettes des repères restent dans la scène (aucun défilement horizontal sur mobile) */
+.object__stage { overflow: hidden; }

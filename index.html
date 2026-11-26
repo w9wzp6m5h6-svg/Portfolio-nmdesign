@@ -1,655 +1,75 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-root="{{root}}">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Noah Milsztajn — Web designer &amp; créatif digital · Côte d'Azur</title>
-  <meta name="description" content="Web designer et créatif digital sur la Côte d'Azur : sites sur mesure, UI/UX, direction artistique, motion et 3D pour artistes, galeries, restaurants et marques." />
-  <meta name="author" content="Noah Milsztajn" />
-  <meta name="robots" content="index, follow, max-image-preview:large" />
-  <meta name="theme-color" content="#0b0b0c" />
-  <meta name="format-detection" content="telephone=no" />
-  <meta property="og:site_name" content="Noah Milsztajn" />
-  <meta property="og:title" content="Noah Milsztajn — Web designer &amp; créatif digital" />
-  <meta property="og:description" content="Sites et expériences numériques sur mesure : web design, UI/UX, direction artistique, motion et 3D. Basé sur la Côte d'Azur." />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="fr_FR" />
-  <meta property="og:image" content="/media/og.jpg" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Noah Milsztajn — portfolio de design numérique" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <!-- %SEO_URL% : canonical, og:url et URL absolues injectés au build si SITE_URL est défini -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Person",
-        "@id": "#noah",
-        "name": "Noah Milsztajn",
-        "jobTitle": "Web designer & créatif digital",
-        "email": "mailto:nm.officestudiodesign@gmail.com",
-        "sameAs": ["https://www.instagram.com/noah.mlzn_/"],
-        "knowsAbout": ["Web design", "UI/UX", "Direction artistique", "Motion design", "3D temps réel", "Expériences interactives"]
-      },
-      {
-        "@type": "ProfessionalService",
-        "@id": "#studio",
-        "name": "Noah Milsztajn — Web design & créations digitales",
-        "description": "Sites et expériences numériques sur mesure : web design, UI/UX, direction artistique, motion et 3D.",
-        "founder": { "@id": "#noah" },
-        "email": "nm.officestudiodesign@gmail.com",
-        "image": "/media/og.jpg",
-        "priceRange": "À partir de 149 €",
-        "areaServed": ["Valbonne", "Antibes", "Cannes", "Mougins", "Nice", "Beaulieu-sur-Mer", "Saint-Jean-Cap-Ferrat", "Côte d'Azur"],
-        "sameAs": ["https://www.instagram.com/noah.mlzn_/"],
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Formules",
-          "itemListElement": [
-            { "@type": "Offer", "name": "Essential", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 149, "priceCurrency": "EUR" } },
-            { "@type": "Offer", "name": "Portfolio", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 249, "priceCurrency": "EUR" } },
-            { "@type": "Offer", "name": "Signature", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 399, "priceCurrency": "EUR" } },
-            { "@type": "Offer", "name": "Premium", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 550, "priceCurrency": "EUR" } }
-          ]
-        }
-      }
-    ]
-  }
-  </script>
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <title>NM Design — Noah Milsztajn, web designer &amp; créatif digital · Côte d'Azur</title>
+  <meta name="description" content="NM Design, studio de design digital de Noah Milsztajn : sites web sur mesure, UI/UX, direction artistique, motion et 3D pour artistes, galeries, restaurants et marques de la Côte d'Azur." />
+  <meta property="og:title" content="NM Design — Noah Milsztajn, web designer &amp; créatif digital" />
+  <meta property="og:description" content="Sites web, design digital et expériences interactives sur mesure. Basé sur la Côte d'Azur." />
+  <!-- %SEO_URL% -->
+<!-- include:head -->
 </head>
-<body class="is-loading">
-  <a class="skip-link" href="#main">Aller au contenu</a>
-
-  <!-- Intro / chargement -------------------------------------------------->
-  <div class="loader" aria-hidden="true">
-    <div class="loader__inner">
-      <svg class="loader__mark mark" viewBox="-6 -6 132 112" fill="none">
-        <polyline class="mark__line" points="0,100 0,0 60,100 60,0 90,60 120,0 120,100" />
-      </svg>
-      <div class="loader__meta">
-        <span class="mono">Noah Milsztajn</span>
-        <span class="mono loader__count"><span class="loader__num">000</span></span>
-      </div>
-    </div>
-    <button class="loader__skip mono" type="button" tabindex="-1">Passer l'intro</button>
-  </div>
-
-  <!-- En-tête ------------------------------------------------------------->
-  <header class="header">
-    <a class="header__brand" href="#top" aria-label="Noah Milsztajn — retour à l'accueil">
-      <svg class="mark mark--brand" viewBox="-6 -6 132 112" fill="none" aria-hidden="true">
-        <polyline class="mark__line" points="0,100 0,0 60,100 60,0 90,60 120,0 120,100" />
-      </svg>
-      <span class="header__name">Noah Milsztajn</span>
-    </a>
-    <div class="header__index mono" aria-hidden="true">
-      <span class="header__index-num">00</span>
-      <span class="header__index-roll"><span class="header__index-label">Accueil</span></span>
-    </div>
-    <nav class="header__nav" aria-label="Navigation principale">
-      <a href="#top" data-nav="top"><span class="roll" data-text="Accueil">Accueil</span></a>
-      <a href="#work" data-nav="work"><span class="roll" data-text="Projets">Projets</span></a>
-      <a href="#about" data-nav="about"><span class="roll" data-text="À propos">À propos</span></a>
-      <a href="#offers" data-nav="offers"><span class="roll" data-text="Offres">Offres</span></a>
-      <a href="#contact" data-nav="contact" class="header__cta"><span class="roll" data-text="Contact">Contact</span></a>
-    </nav>
-    <button class="header__menu mono" type="button" aria-expanded="false" aria-controls="menu">
-      <span class="header__menu-label">Menu</span>
-      <span class="header__menu-icon" aria-hidden="true"><i></i><i></i></span>
-    </button>
-  </header>
-
-  <!-- Menu plein écran (mobile / tablette) -------------------------------->
-  <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu" inert>
-    <div class="menu__bg"></div>
-    <nav class="menu__nav" aria-label="Menu">
-      <a href="#top"><span class="menu__num mono">00</span><span class="menu__label">Accueil</span></a>
-      <a href="#work"><span class="menu__num mono">01</span><span class="menu__label">Projets</span></a>
-      <a href="#about"><span class="menu__num mono">02</span><span class="menu__label">À propos</span></a>
-      <a href="#offers"><span class="menu__num mono">03</span><span class="menu__label">Offres</span></a>
-      <a href="#process"><span class="menu__num mono">04</span><span class="menu__label">Méthode</span></a>
-      <a href="#contact"><span class="menu__num mono">05</span><span class="menu__label">Contact</span></a>
-    </nav>
-    <div class="menu__foot mono">
-      <span>Web design</span><span>Direction artistique</span><span>Expériences web &amp; 3D</span>
-    </div>
-  </div>
+<body class="is-loading" data-page="home">
+<!-- include:header -->
 
   <main id="main">
-    <!-- 00 — Accueil ----------------------------------------------------->
-    <section class="hero" id="top" data-section="00" data-label="Accueil">
+    <!-- Hero -------------------------------------------------------------->
+    <section class="hero" id="top" data-section="home" data-label="Accueil">
       <canvas class="hero__gl" aria-hidden="true"></canvas>
-      <div class="hero__grid" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-
-      <div class="hero__top">
-        <p class="hero__edition mono" data-intro>
-          <span>Portfolio</span><span>Édition 2026</span>
-        </p>
-        <div class="hero__pitch">
-          <p class="hero__tagline serif" data-intro>
-            <span class="line"><span>Design, technologie</span></span>
-            <span class="line"><span>et <em>émotion.</em></span></span>
-          </p>
-          <p class="hero__sub" data-intro>Je conçois des expériences numériques : direction artistique, interfaces, 3D et interaction.</p>
-        </div>
-      </div>
-
-      <div class="hero__readout mono" aria-hidden="true">
-        <span>X <b class="hero__x">0.500</b></span>
-        <span>Y <b class="hero__y">0.500</b></span>
-      </div>
-
+      <p class="hero__eyebrow mono" data-intro><span>Studio de design digital</span><span>Noah Milsztajn — Côte d'Azur</span></p>
       <h1 class="hero__name">
-        <span class="hero__line hero__line--1"><span class="hero__word">Noah</span></span>
-        <span class="hero__role" data-intro>
-          <span class="mono hero__role-title">Web designer &amp; créatif digital</span>
-          <span class="mono hero__role-list">Web design · UI/UX<br />Direction artistique<br />Motion &amp; expériences 3D</span>
-        </span>
-        <span class="hero__line hero__line--2"><span class="hero__word">Milsztajn</span></span>
+        <span class="visually-hidden">NM Design — Noah Milsztajn, web designer et créatif digital</span>
+        <span class="hero__line" aria-hidden="true"><span class="hero__word">NM</span></span>
+        <span class="hero__line" aria-hidden="true"><span class="hero__word">DESIGN</span></span>
       </h1>
-
-      <div class="hero__bottom mono" data-intro>
-        <a class="hero__scroll" href="#work"><span class="hero__scroll-line" aria-hidden="true"></span>Découvrir les projets</a>
-        <span class="hero__hint">Passez le curseur sur le nom</span>
-        <span>Côte d'Azur · Interfaces · 3D</span>
+      <div class="hero__bottom">
+        <p class="hero__pitch" data-intro>Sites web, design digital et expériences interactives pour les marques, les artistes et les lieux qui veulent <em class="serif">marquer les esprits.</em></p>
+        <div class="hero__actions" data-intro>
+          <a class="btn" href="{{href:projects}}">Voir les projets<span class="btn__arrow" aria-hidden="true">→</span></a>
+          <button class="btn btn--ghost" type="button" data-open-brief>Démarrer un projet</button>
+        </div>
       </div>
     </section>
 
-    <!-- Manifeste -------------------------------------------------------->
-    <section class="manifesto" aria-label="Manifeste">
-      <p class="manifesto__eyebrow mono"><span class="dot"></span>Manifeste</p>
-      <p class="manifesto__text" data-words>
-        Je conçois des interfaces, des identités et des expériences web où <em>le design et le code</em> ne font qu'un. Peu d'éléments à l'écran, chacun à sa place, et un mouvement qui a <em>du sens.</em>
-      </p>
-      <ul class="manifesto__fields mono" aria-label="Domaines">
-        <li><span>01</span>Direction artistique</li>
-        <li><span>02</span>Design d'interface &amp; web</li>
-        <li><span>03</span>3D &amp; motion design</li>
-        <li><span>04</span>Interaction &amp; immersion</li>
-      </ul>
-    </section>
-
-    <!-- 01 — Projets ----------------------------------------------------->
-    <section class="works" id="work" data-section="01" data-label="Projets">
+    <!-- Projets sélectionnés --------------------------------------------->
+    <section class="works works--home" id="work" data-section="work" data-label="Projets">
       <header class="section-head">
-        <p class="section-head__num mono">(01)</p>
-        <h2 class="section-head__title" data-split>Projets <em class="serif">sélectionnés</em></h2>
-        <p class="section-head__note">Un projet réel, conçu pour une vraie galerie, et six concepts personnels : autant de directions artistiques pour pousser une idée jusqu'au bout.</p>
+        <p class="section-head__num mono">Projets sélectionnés</p>
+        <h2 class="section-head__title">Un projet réel, des concepts poussés <em>jusqu'au bout.</em></h2>
+        <a class="section-head__more link-arrow" href="{{href:projects}}">Tous les projets <span aria-hidden="true">→</span></a>
       </header>
-      <div class="works__featured" data-featured></div>
-      <div class="works__divider">
-        <p class="mono">Concepts &amp; explorations</p>
-        <p class="works__divider-note">Projets personnels, imaginés et réalisés pour explorer un domaine. Ce ne sont pas des commandes clients.</p>
+      <div class="works__grid" data-works="home"></div>
+      <div class="works__more">
+        <a class="link-arrow" href="{{href:projects}}">Découvrir tous les projets <span aria-hidden="true">→</span></a>
       </div>
-      <div class="works__grid" data-works></div>
     </section>
 
-    <!-- L'objet (sneaker 3D) --------------------------------------------->
-    <section class="object" id="object" data-section="02" data-label="L'objet" aria-label="Sneaker 3D interactive">
-      <div class="object__stage">
-        <canvas class="object__gl" role="img"></canvas>
-        <div class="object__hotspots"></div>
-        <div class="object__loading mono" aria-live="polite"><span class="object__loading-bar"><i></i></span><span class="object__loading-text">Chargement de l'objet — 0 %</span></div>
-      </div>
-
-      <div class="object__ui">
-        <header class="object__head">
-          <p class="mono object__kicker">(02) L'objet</p>
-          <h2 class="object__title">Knit<br />Runner <em class="serif">/01</em></h2>
-          <p class="object__lead">Une vraie sneaker scannée, mise en scène en temps réel. Faites-la pivoter, zoomez, explorez ses détails, changez de coloris.</p>
-        </header>
-
-        <div class="object__panel" aria-live="polite">
-          <p class="mono object__panel-k">Détail <span class="object__panel-i">—</span></p>
-          <h3 class="object__panel-t">Choisissez un point</h3>
-          <p class="object__panel-d">Sélectionnez un repère sur la chaussure : la caméra vient se placer sur ce détail.</p>
-        </div>
-
-        <div class="object__controls">
-          <fieldset class="object__group">
-            <legend class="mono">Coloris</legend>
-            <div class="object__swatches" data-variants></div>
-          </fieldset>
-          <fieldset class="object__group">
-            <legend class="mono">Vue</legend>
-            <div class="object__seg" role="group">
-              <button type="button" class="chip is-active" data-mode="studio" aria-pressed="true">Studio</button>
-              <button type="button" class="chip" data-mode="xray" aria-pressed="false">Rayons X</button>
-            </div>
-          </fieldset>
-          <div class="object__group object__group--zoom">
-            <span class="mono">Zoom</span>
-            <div class="object__seg">
-              <button type="button" class="chip chip--icon" data-zoom="-1" aria-label="Dézoomer">−</button>
-              <button type="button" class="chip chip--icon" data-zoom="1" aria-label="Zoomer">+</button>
-              <button type="button" class="chip" data-reset>Réinitialiser</button>
-            </div>
-          </div>
-        </div>
-        <p class="object__hint mono" aria-hidden="true"><span class="object__hint-icon"></span><span class="object__hint-text">Glissez pour faire pivoter</span></p>
-      </div>
-      <p class="object__credit mono"></p>
-    </section>
-
-    <!-- 03 — À propos ---------------------------------------------------->
-    <section class="about" id="about" data-section="03" data-label="À propos">
-      <header class="section-head">
-        <p class="section-head__num mono">(03)</p>
-        <h2 class="section-head__title" data-split>À propos</h2>
-      </header>
-
-      <div class="about__intro">
-        <figure class="portrait" data-portrait>
-          <div class="portrait__frame">
-            <div class="portrait__img">
-              <picture>
-                <source media="(max-width: 900px)" type="image/webp" srcset="/media/about/noah-portrait-600.webp 600w, /media/about/noah-portrait-900.webp 900w, /media/about/noah-portrait-1192.webp 1192w" sizes="95vw" />
-                <source type="image/webp" srcset="/media/about/noah-square-800.webp 800w, /media/about/noah-square-1200.webp 1200w, /media/about/noah-square-1550.webp 1550w" sizes="46vw" />
-                <img src="/media/about/noah-square-1200.webp" width="1200" height="1200" alt="Portrait de Noah Milsztajn, souriant, lunettes et pull crème, pouces tendus devant un mur jaune orangé" loading="lazy" decoding="async" />
-              </picture>
-            </div>
-          </div>
-          <span class="portrait__name serif" aria-hidden="true">Noah</span>
-          <figcaption class="portrait__cap mono"><span>Noah Milsztajn</span><span>Designer numérique autodidacte</span></figcaption>
-        </figure>
-
-        <div class="about__text">
-          <p class="about__hello serif" data-split>Je m'appelle Noah.</p>
-          <div class="about__story">
-            <p data-reveal>Mon parcours ne suit pas une trajectoire classique. Avant la création numérique, j'ai évolué dans des univers très différents, du travail manuel à la restauration. Ces expériences m'ont appris la rigueur, l'adaptabilité, le sens du détail, et à comprendre ce que les autres attendent vraiment.</p>
-            <p data-reveal>C'est la curiosité qui m'a mené vers le design, le web et la création digitale. J'ai appris par moi-même : en explorant, en expérimentant, en construisant, et en recommençant quand quelque chose ne fonctionnait pas.</p>
-            <p data-reveal>Aujourd'hui, je conçois des expériences numériques qui mêlent direction artistique, design d'interface, 3D et interaction. J'aime donner vie à une idée, travailler les détails et créer des univers qui ne se limitent pas à un simple écran.</p>
-          </div>
-          <p class="about__statement" data-split>Je ne veux pas seulement créer de beaux sites. Je veux créer des expériences <em class="serif">qui marquent.</em></p>
-        </div>
-      </div>
-
-      <div class="about__skills">
-        <p class="mono about__skills-k">Ce que le terrain m'a appris</p>
-        <ul class="about__skills-list" data-reveal>
-          <li>Discipline</li><li>Adaptabilité</li><li>Sens du détail</li><li>Organisation</li><li>Réactivité</li>
-          <li>Autonomie</li><li>Travail d'équipe</li><li>Apprendre vite</li><li>Comprendre les besoins</li><li>Résoudre les problèmes</li>
+    <!-- Présentation courte ----------------------------------------------->
+    <section class="intro-about" id="studio" data-section="studio" data-label="Le studio">
+      <figure class="intro-about__media">
+        <picture>
+          <source media="(max-width: 900px)" type="image/webp" srcset="/media/about/noah-portrait-600.webp 600w, /media/about/noah-portrait-900.webp 900w" sizes="90vw" />
+          <source type="image/webp" srcset="/media/about/noah-square-800.webp 800w, /media/about/noah-square-1200.webp 1200w" sizes="34vw" />
+          <img src="/media/about/noah-square-800.webp" width="800" height="800" alt="Portrait de Noah Milsztajn, fondateur de NM Design, souriant devant un mur jaune orangé" loading="lazy" decoding="async" />
+        </picture>
+        <figcaption class="mono"><span>Noah Milsztajn</span><span>Fondateur, designer</span></figcaption>
+      </figure>
+      <div class="intro-about__text">
+        <p class="intro-about__k mono">Le studio</p>
+        <h2 class="intro-about__title">Je ne veux pas seulement créer de beaux sites. Je veux créer des expériences <em class="serif">qui marquent.</em></h2>
+        <p class="intro-about__body">NM Design, c'est moi, Noah : designer autodidacte, passé par la restauration et le travail manuel avant le numérique. J'en ai gardé la rigueur, le sens du détail et l'écoute. Je conçois chaque site comme une extension de votre univers, de la direction artistique au développement.</p>
+        <ul class="intro-about__fields mono" aria-label="Domaines">
+          <li>Direction artistique</li><li>Web design &amp; UI/UX</li><li>Motion &amp; 3D</li><li>Interaction</li>
         </ul>
-      </div>
-
-      <div class="journey" data-journey>
-        <header class="journey__head">
-          <p class="mono journey__k">Parcours</p>
-          <h3 class="journey__title" data-split>Cinq chapitres, <em class="serif">une même exigence.</em></h3>
-        </header>
-        <div class="journey__layout">
-          <div class="journey__aside" aria-hidden="true">
-            <span class="journey__num"><span class="journey__num-inner">01</span></span>
-            <span class="journey__bar"><i></i></span>
-            <span class="journey__total mono">/ 05</span>
-          </div>
-          <ol class="journey__list">
-            <li class="chapter" data-chapter="01">
-              <p class="chapter__k mono">01 — Les premières expériences</p>
-              <h4 class="chapter__t">Apprendre avec les mains</h4>
-              <p class="chapter__d">Travail manuel, paysage, apprentissage : ma découverte du monde professionnel. Le goût du travail bien fait, et l'idée qu'un résultat se construit geste après geste.</p>
-              <p class="chapter__tags mono">Paysage · Apprentissage · Travail manuel</p>
-            </li>
-            <li class="chapter" data-chapter="02">
-              <p class="chapter__k mono">02 — Le terrain</p>
-              <h4 class="chapter__t">Tenir le rythme</h4>
-              <p class="chapter__d">La restauration et le service, dans des établissements exigeants : Ambrosia à Beaulieu-sur-Mer, Léo Léa à Saint-Jean-Cap-Ferrat, le Café des Arcades à Valbonne. Un service ne pardonne pas l'approximation : il faut être rapide, précis, organisé, et attentif à chaque personne.</p>
-              <p class="chapter__tags mono">Service · Organisation · Travail d'équipe</p>
-            </li>
-            <li class="chapter" data-chapter="03">
-              <p class="chapter__k mono">03 — La curiosité</p>
-              <h4 class="chapter__t">Regarder les écrans autrement</h4>
-              <p class="chapter__d">La découverte du design, du web et de la création digitale. Comprendre pourquoi certains sites, certaines marques, certaines images marquent plus que d'autres, et vouloir savoir comment ils sont faits.</p>
-              <p class="chapter__tags mono">Design · Web · Outils créatifs</p>
-            </li>
-            <li class="chapter" data-chapter="04">
-              <p class="chapter__k mono">04 — L'autodidacte</p>
-              <h4 class="chapter__t">Apprendre en faisant</h4>
-              <p class="chapter__d">Me former seul : étudier les univers qui m'inspirent, tester des outils, construire des projets, casser, recommencer. Chaque problème résolu devient une compétence, et chaque échec une indication.</p>
-              <p class="chapter__tags mono">Expérimentation · Persévérance · Résolution de problèmes</p>
-            </li>
-            <li class="chapter" data-chapter="05">
-              <p class="chapter__k mono">05 — La création numérique</p>
-              <h4 class="chapter__t">Aujourd'hui</h4>
-              <p class="chapter__d">Direction artistique, design d'interface, sites web, 3D, interactions et expériences immersives. Le même sens du détail qu'en salle, appliqué à l'écran.</p>
-              <p class="chapter__tags mono">Direction artistique · Interface · 3D · Interaction</p>
-            </li>
-          </ol>
+        <div class="intro-about__links">
+          <a class="link-arrow" href="{{href:about}}">En savoir plus <span aria-hidden="true">→</span></a>
+          <a class="link-arrow" href="{{href:offers}}">Offres, à partir de 149 € <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>
 
-    <!-- 04 — Offres ------------------------------------------------------>
-    <section class="offers" id="offers" data-section="04" data-label="Offres">
-      <header class="section-head">
-        <p class="section-head__num mono">(04)</p>
-        <h2 class="section-head__title" data-split>Offres</h2>
-      </header>
-
-      <div class="offers__intro">
-        <p class="offers__kicker mono">Digital design / Creative experiences</p>
-        <p class="offers__lead" data-reveal>Je conçois des sites et des expériences numériques sur mesure, pensés comme une extension de votre univers. Pas un modèle rempli à la chaîne : une direction artistique, des détails soignés et une expérience dont on se souvient.</p>
-        <ul class="offers__services mono" aria-label="Disciplines">
-          <li>Web design</li><li>UI / UX</li><li>Direction artistique</li><li>Visual design</li><li>Motion design</li><li>Interactions</li><li>Expériences 3D</li><li>Expériences immersives</li>
-        </ul>
-      </div>
-
-      <div class="offers__for" data-reveal>
-        <h3 class="offers__for-k mono">Pour qui</h3>
-        <p class="offers__for-list">Galeries d'art, artistes, restaurants, boutiques et concept stores, mode, beauté, lifestyle, hôtellerie, architectes, designers d'intérieur et entreprises premium.</p>
-        <p class="offers__for-zone mono">Basé sur la Côte d'Azur — Valbonne, Antibes, Cannes, Mougins, Nice, Beaulieu-sur-Mer, Saint-Jean-Cap-Ferrat. À distance partout ailleurs.</p>
-      </div>
-
-      <ol class="plans" aria-label="Formules">
-        <li class="plan">
-          <p class="plan__num mono">01</p>
-          <h3 class="plan__name">Essential</h3>
-          <p class="plan__price"><span class="mono">À partir de</span> <strong>149 €</strong></p>
-          <p class="plan__pitch">Une page claire et soignée pour présenter votre activité.</p>
-          <ul class="plan__list">
-            <li>Landing page</li><li>Présentation de l'activité</li><li>Design personnalisé</li><li>Responsive</li><li>Contact</li>
-          </ul>
-          <button class="btn btn--ghost plan__cta" type="button" data-open-brief="Essential">Choisir Essential<span class="btn__arrow" aria-hidden="true">→</span></button>
-        </li>
-        <li class="plan">
-          <p class="plan__num mono">02</p>
-          <h3 class="plan__name">Portfolio</h3>
-          <p class="plan__price"><span class="mono">À partir de</span> <strong>249 €</strong></p>
-          <p class="plan__pitch">Un site complet pour montrer votre travail ou votre marque.</p>
-          <ul class="plan__list">
-            <li>Site multi-sections</li><li>Portfolio ou présentation de marque</li><li>Direction artistique</li><li>Animations</li><li>Responsive</li><li>Contact</li>
-          </ul>
-          <button class="btn btn--ghost plan__cta" type="button" data-open-brief="Portfolio">Choisir Portfolio<span class="btn__arrow" aria-hidden="true">→</span></button>
-        </li>
-        <li class="plan plan--signature">
-          <p class="plan__num mono">03 <span class="plan__flag">Sur mesure</span></p>
-          <h3 class="plan__name">Signature</h3>
-          <p class="plan__price"><span class="mono">À partir de</span> <strong>399 €</strong></p>
-          <p class="plan__pitch">Une expérience pensée de A à Z autour de votre identité.</p>
-          <ul class="plan__list">
-            <li>Design sur mesure</li><li>Direction artistique approfondie</li><li>Animations</li><li>Interactions</li><li>Expérience personnalisée</li><li>Sections spécifiques</li>
-          </ul>
-          <button class="btn plan__cta" type="button" data-open-brief="Signature">Choisir Signature<span class="btn__arrow" aria-hidden="true">→</span></button>
-        </li>
-        <li class="plan">
-          <p class="plan__num mono">04</p>
-          <h3 class="plan__name">Premium</h3>
-          <p class="plan__price"><span class="mono">À partir de</span> <strong>550 €</strong></p>
-          <p class="plan__pitch">Un projet ambitieux, immersif, sans compromis créatif.</p>
-          <ul class="plan__list">
-            <li>Projet personnalisé</li><li>Direction artistique complète</li><li>Expérience immersive</li><li>Motion</li><li>3D selon le projet</li><li>Fonctionnalités avancées</li>
-          </ul>
-          <button class="btn btn--ghost plan__cta" type="button" data-open-brief="Premium">Choisir Premium<span class="btn__arrow" aria-hidden="true">→</span></button>
-        </li>
-      </ol>
-
-      <div class="offers__bottom">
-        <div class="addons">
-          <h3 class="addons__k mono">Prestations complémentaires</h3>
-          <dl class="addons__list">
-            <div><dt>Motion &amp; animations</dt><dd>à partir de 80 €</dd></div>
-            <div><dt>3D</dt><dd>à partir de 150 €</dd></div>
-            <div><dt>Refonte visuelle</dt><dd>sur devis</dd></div>
-            <div><dt>Fonctionnalités spécifiques</dt><dd>sur devis</dd></div>
-            <div><dt>Expériences immersives</dt><dd>sur devis</dd></div>
-          </dl>
-          <p class="addons__note">Tous les tarifs sont des prix de départ. Chaque projet fait l'objet d'une proposition détaillée — périmètre, livrables, délais et prix — validée ensemble avant de commencer.</p>
-        </div>
-
-        <aside class="launch" aria-labelledby="launch-title">
-          <p class="launch__k mono">Offre de lancement</p>
-          <h3 class="launch__title" id="launch-title">First Creative <em class="serif">Projects</em></h3>
-          <p class="launch__text">J'ouvre trois collaborations à des artistes et à des portfolios que j'ai envie d'accompagner. Une manière de construire ensemble, avec la même exigence que pour n'importe quel projet.</p>
-          <p class="launch__price"><span class="mono">À partir de</span> <strong>199 €</strong> <span class="mono launch__seats">3 projets sélectionnés</span></p>
-          <button class="btn launch__cta" type="button" data-open-brief="First Creative Projects">Proposer mon projet<span class="btn__arrow" aria-hidden="true">→</span></button>
-        </aside>
-      </div>
-    </section>
-
-    <!-- 05 — Méthode ----------------------------------------------------->
-    <section class="process" id="process" data-section="05" data-label="Méthode">
-      <header class="section-head">
-        <p class="section-head__num mono">(05)</p>
-        <h2 class="section-head__title" data-split>From idea <em>to experience</em></h2>
-        <p class="section-head__note">Avant d'écrire la moindre ligne, vous savez ce qui va se passer, combien cela coûte et quand ce sera livré.</p>
-      </header>
-
-      <ol class="steps">
-        <li class="step">
-          <p class="step__num mono">Step 01</p>
-          <div class="step__body">
-            <h3 class="step__title">Discovery</h3>
-            <p class="step__text">Vous me présentez votre activité, votre univers, vos besoins et votre objectif. J'écoute, je pose les bonnes questions.</p>
-          </div>
-        </li>
-        <li class="step">
-          <p class="step__num mono">Step 02</p>
-          <div class="step__body">
-            <h3 class="step__title">Project &amp; direction</h3>
-            <p class="step__text">Nous définissons ensemble le type de projet, les fonctionnalités nécessaires, le budget, l'ambition créative et la direction artistique.</p>
-          </div>
-        </li>
-        <li class="step">
-          <p class="step__num mono">Step 03</p>
-          <div class="step__body">
-            <h3 class="step__title">Proposal</h3>
-            <p class="step__text">Je prépare une proposition claire, écrite, que vous pouvez relire à tête reposée.</p>
-            <ul class="step__list mono"><li>Périmètre</li><li>Livrables</li><li>Direction artistique</li><li>Fonctionnalités</li><li>Tarif</li><li>Délais estimés</li><li>Conditions</li></ul>
-          </div>
-        </li>
-        <li class="step">
-          <p class="step__num mono">Step 04</p>
-          <div class="step__body">
-            <h3 class="step__title">Validation</h3>
-            <p class="step__text">Rien ne commence sans votre accord : proposition, prix, périmètre, délais et conditions de paiement sont validés, puis un acompte est versé selon les conditions convenues.</p>
-          </div>
-        </li>
-        <li class="step">
-          <p class="step__num mono">Step 05</p>
-          <div class="step__body">
-            <h3 class="step__title">Creation</h3>
-            <p class="step__text">Recherche, direction artistique, design, développement et interactions. Vous suivez l'avancement, avec des révisions prévues dès le départ.</p>
-          </div>
-        </li>
-        <li class="step">
-          <p class="step__num mono">Step 06</p>
-          <div class="step__body">
-            <h3 class="step__title">Delivery</h3>
-            <p class="step__text">Vérifications, corrections et optimisation sur ordinateur, tablette et mobile, puis livraison — et mise en ligne si elle est incluse dans la prestation.</p>
-          </div>
-        </li>
-      </ol>
-
-      <div class="process__end">
-        <p class="process__end-text">Prêt à passer à l'étape 01 ?</p>
-        <button class="btn" type="button" data-open-brief>Start a project<span class="btn__arrow" aria-hidden="true">→</span></button>
-      </div>
-    </section>
-
-    <!-- 06 — Contact ----------------------------------------------------->
-    <section class="contact" id="contact" data-section="06" data-label="Contact">
-      <svg class="contact__mark" viewBox="-6 -6 132 112" fill="none" aria-hidden="true">
-        <polyline class="contact__line" points="0,100 0,0 60,100 60,0 90,60 120,0 120,100" />
-      </svg>
-      <div class="contact__content">
-        <p class="mono contact__kicker">(06) Me contacter</p>
-        <h2 class="contact__title" data-split>Créons quelque chose <em class="serif">ensemble.</em></h2>
-        <p class="contact__intro">Une idée, un projet ou simplement envie d'échanger ? Je suis toujours ouvert à découvrir de nouveaux projets et à donner vie à de nouvelles idées.</p>
-        <div class="contact__actions" data-contact></div>
-      </div>
-    </section>
+<!-- include:contact -->
   </main>
 
-  <footer class="footer">
-    <div class="footer__top">
-      <p class="footer__claim">Noah Milsztajn<br /><span class="serif">Digital design &amp; creative experiences</span></p>
-      <button class="btn footer__cta" type="button" data-open-brief>Démarrer un projet<span class="btn__arrow" aria-hidden="true">→</span></button>
-    </div>
-    <div class="footer__cols">
-      <nav class="footer__col" aria-label="Plan du site">
-        <p class="footer__k mono">Navigation</p>
-        <ul>
-          <li><a href="#top">Accueil</a></li>
-          <li><a href="#work">Projets</a></li>
-          <li><a href="#offers">Offres</a></li>
-          <li><a href="#process">Méthode</a></li>
-          <li><a href="#about">À propos</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="footer__col">
-        <p class="footer__k mono">Contact</p>
-        <ul data-footer-contact></ul>
-      </div>
-      <div class="footer__col">
-        <p class="footer__k mono">Informations</p>
-        <ul>
-          <li><button class="footer__link" type="button" data-open-legal="legal">Mentions légales</button></li>
-          <li><button class="footer__link" type="button" data-open-legal="privacy">Confidentialité</button></li>
-          <li><a href="#top">Retour en haut ↑</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <p class="footer__k mono">Zone</p>
-        <p class="footer__zone">Côte d'Azur — Valbonne, Antibes, Cannes, Nice. Projets à distance partout ailleurs.</p>
-      </div>
-    </div>
-    <div class="footer__row">
-      <span class="mono">© <span data-year>2026</span> Noah Milsztajn</span>
-      <span class="mono footer__credits">Modèles 3D : Shopify (CC BY 4.0), Darmstadt Graphics Group / Eric Chadwick (CC BY 4.0), Wayfair (CC0 / CC BY 4.0), via Khronos glTF Sample Assets. Les concepts présentés sont des projets personnels.</span>
-    </div>
-  </footer>
-
-  <!-- Demande de projet ------------------------------------------------->
-  <dialog class="sheet brief" id="brief" aria-labelledby="brief-title">
-    <div class="sheet__panel" data-lenis-prevent>
-      <div class="sheet__head">
-        <p class="mono sheet__k">Start a project</p>
-        <button class="sheet__close mono" type="button" data-close>Fermer<span class="project__close-x" aria-hidden="true"></span></button>
-      </div>
-      <h2 class="sheet__title" id="brief-title">Parlons de votre <em class="serif">projet.</em></h2>
-      <p class="sheet__intro">Quelques questions pour comprendre votre besoin. Je vous réponds avec une première orientation, puis une proposition claire si nous avançons ensemble. Les champs marqués * sont obligatoires.</p>
-
-      <form class="brief__form" novalidate>
-        <div class="field">
-          <label for="f-name">Nom *</label>
-          <input id="f-name" name="name" type="text" autocomplete="name" required maxlength="120" />
-        </div>
-        <div class="field">
-          <label for="f-email">E-mail *</label>
-          <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="160" />
-        </div>
-        <div class="field">
-          <label for="f-activity">Activité *</label>
-          <input id="f-activity" name="activity" type="text" required maxlength="160" placeholder="Galerie, restaurant, artiste, boutique…" />
-        </div>
-        <div class="field">
-          <label for="f-type">Type de projet</label>
-          <select id="f-type" name="type">
-            <option value="">Je ne sais pas encore</option>
-            <option>Essential</option>
-            <option>Portfolio</option>
-            <option>Signature</option>
-            <option>Premium</option>
-            <option>First Creative Projects</option>
-            <option>Refonte visuelle</option>
-            <option>Autre</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="f-budget">Budget</label>
-          <select id="f-budget" name="budget">
-            <option value="">À définir ensemble</option>
-            <option>Moins de 250 €</option>
-            <option>250 – 400 €</option>
-            <option>400 – 550 €</option>
-            <option>550 – 1 000 €</option>
-            <option>Plus de 1 000 €</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="f-goal">Objectif</label>
-          <input id="f-goal" name="goal" type="text" maxlength="200" placeholder="Attirer des clients, présenter une collection…" />
-        </div>
-        <div class="field field--wide">
-          <label for="f-desc">Description du projet *</label>
-          <textarea id="f-desc" name="description" rows="5" required maxlength="2000"></textarea>
-        </div>
-        <div class="field">
-          <label for="f-link">Site actuel ou Instagram</label>
-          <input id="f-link" name="link" type="text" maxlength="200" placeholder="https://… ou @compte" />
-        </div>
-        <div class="field">
-          <label for="f-insp">Inspirations</label>
-          <input id="f-insp" name="inspirations" type="text" maxlength="400" placeholder="Sites, marques, ambiances…" />
-        </div>
-        <div class="field field--hp" aria-hidden="true">
-          <label for="f-company">Ne pas remplir</label>
-          <input id="f-company" name="company" type="text" tabindex="-1" autocomplete="off" />
-        </div>
-        <p class="brief__privacy field--wide">Vos réponses servent uniquement à vous recontacter au sujet de votre projet. <button class="footer__link" type="button" data-open-legal="privacy">Confidentialité</button></p>
-        <p class="brief__error field--wide" role="alert" hidden></p>
-        <div class="brief__submit field--wide">
-          <button class="btn" type="submit">Envoyer ma demande<span class="btn__arrow" aria-hidden="true">→</span></button>
-          <p class="brief__how mono" data-brief-how></p>
-        </div>
-      </form>
-
-      <div class="brief__done" hidden tabindex="-1">
-        <p class="brief__done-title" data-done-title></p>
-        <p class="brief__done-text" data-done-text></p>
-        <div class="brief__done-actions" data-done-actions></div>
-      </div>
-    </div>
-  </dialog>
-
-  <!-- Mentions légales / confidentialité --------------------------------->
-  <dialog class="sheet legal" id="legal" aria-labelledby="legal-title">
-    <div class="sheet__panel" data-lenis-prevent>
-      <div class="sheet__head">
-        <p class="mono sheet__k">Informations</p>
-        <button class="sheet__close mono" type="button" data-close>Fermer<span class="project__close-x" aria-hidden="true"></span></button>
-      </div>
-      <h2 class="sheet__title" id="legal-title">Mentions légales</h2>
-      <div class="legal__body">
-        <section id="legal-legal" aria-labelledby="legal-h-legal">
-          <h3 id="legal-h-legal">Éditeur du site</h3>
-          <dl class="legal__dl" data-legal-editor></dl>
-          <h3>Hébergement</h3>
-          <dl class="legal__dl" data-legal-host></dl>
-          <h3>Propriété intellectuelle</h3>
-          <p>Les textes, visuels, maquettes et le code de ce site sont la propriété de Noah Milsztajn, sauf mention contraire. Les modèles 3D utilisés dans les concepts appartiennent à leurs auteurs respectifs et sont utilisés selon leurs licences (voir crédits en pied de page). Les projets présentés comme « concepts » sont des explorations personnelles, sans lien commercial avec les marques ou lieux évoqués.</p>
-        </section>
-        <section id="legal-privacy" aria-labelledby="legal-h-privacy">
-          <h3 id="legal-h-privacy">Confidentialité</h3>
-          <p>Ce site ne dépose aucun cookie, n'utilise aucun outil de mesure d'audience ni de publicité, et ne charge aucune police ou script depuis un service tiers.</p>
-          <p data-legal-form></p>
-          <p>Les informations transmises ne servent qu'à répondre à votre demande et à préparer une éventuelle proposition. Elles ne sont ni revendues ni partagées. Elles sont conservées le temps nécessaire à nos échanges, puis supprimées au plus tard trois ans après le dernier contact.</p>
-          <p>Conformément au RGPD, vous pouvez demander l'accès, la rectification ou la suppression de vos données en écrivant à <a data-legal-email href="#contact"></a>. Vous pouvez également adresser une réclamation à la CNIL.</p>
-          <p>Le lien Instagram mène vers un service externe, soumis à sa propre politique de confidentialité.</p>
-        </section>
-      </div>
-    </div>
-  </dialog>
-
-  <!-- Étude de cas (remplie par JS) -->
-  <div class="project" role="dialog" aria-modal="true" aria-labelledby="project-title" inert>
-    <div class="project__media-clone" aria-hidden="true"></div>
-    <div class="project__scroller">
-      <div class="project__content"></div>
-    </div>
-    <div class="project__bar">
-      <span class="mono project__bar-index"></span>
-      <button class="project__close mono" type="button"><span>Fermer</span><span class="project__close-x" aria-hidden="true"></span></button>
-    </div>
-    <div class="project__progress" aria-hidden="true"><i></i></div>
-  </div>
-
-  <div class="cursor-tag mono" aria-hidden="true"><span class="cursor-tag__text"></span></div>
-  <noscript><style>.loader{display:none}.hero__name{color:var(--bone)}</style></noscript>
-  <script type="module" src="/src/main.js"></script>
+<!-- include:footer -->
 </body>
 </html>

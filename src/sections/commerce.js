@@ -263,6 +263,9 @@ function renderFooterContact() {
   if (site.email) items.push(`<li><a href="${esc(mailto())}">${esc(site.email)}</a></li>`);
   site.socials.forEach((s) => items.push(`<li><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.label)} ${esc(s.handle || '')} ↗<span class="visually-hidden"> (nouvel onglet)</span></a></li>`));
   ul.innerHTML = items.join('');
+  // menu mobile : coordonnées directement accessibles
+  const menu = document.querySelector('[data-menu-contact]');
+  if (menu) menu.innerHTML = `<a href="${esc(mailto())}">${esc(site.email)}</a>${site.socials.map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.label)} ↗<span class="visually-hidden"> (nouvel onglet)</span></a>`).join('')}`;
 }
 
 /* Méthode : les étapes s'allument à l'entrée -------------------------------- */

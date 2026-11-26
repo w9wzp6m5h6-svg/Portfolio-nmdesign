@@ -53,8 +53,9 @@ Pour la recherche locale (« web designer Valbonne »…), crée aussi une fiche
 - Open Graph + Twitter card, image de partage 1200 × 630.
 - Données structurées schema.org (Person + ProfessionalService avec zones desservies et formules) : vérifiables sur https://search.google.com/test/rich-results une fois en ligne.
 - Aucun cookie, aucun traceur, aucune police ou script tiers.
-- Les études de cas s'ouvrent par `#/work/…` : elles ne sont pas des pages indexables séparées. Seule la page d'accueil est dans le sitemap (c'est cohérent pour un site d'une page).
+- Quatre pages indexables, chacune avec son titre et sa description : Accueil, Projets (`/projets/`), À propos (`/a-propos/`), Offres (`/offres/`). Elles sont toutes dans le sitemap.
+- Les études de cas s'ouvrent par `#/work/…` par-dessus la page : elles ne sont pas des pages indexables séparées.
 
 ## 6. Lien direct pour ta prospection
 
-`https://ton-domaine.fr/#demarrer` ouvre directement le formulaire de demande de projet — utile dans ta bio Instagram ou tes messages.
+`https://ton-domaine.fr/#demarrer` (ou `/offres/#demarrer`) ouvre directement le formulaire de demande de projet — utile dans ta bio Instagram ou tes messages.

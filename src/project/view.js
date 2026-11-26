@@ -7,6 +7,7 @@
  */
 import Lenis from 'lenis';
 import { gsap, ScrollTrigger, lockScroll, unlockScroll, scrollToTarget } from '../core/scroll.js';
+import { pageHref } from '../core/asset.js';
 import { env } from '../core/env.js';
 import { projects } from '../data/projects.js';
 import { renderProject } from './blocks.js';
@@ -249,7 +250,9 @@ export function initProjectView() {
     const goto = e.target.closest('[data-goto-object]');
     if (goto && root.contains(goto)) {
       e.preventDefault();
-      close().then(() => setTimeout(() => scrollToTarget(document.getElementById('object')), 50));
+      const lab = document.getElementById('object');
+      if (lab) close().then(() => setTimeout(() => scrollToTarget(lab), 50));
+      else location.href = `${pageHref('projects') || 'projets/'}#object`;
     }
   });
 

@@ -23,11 +23,11 @@ for (const vp of [{ name: 'desktop', width: 1440, height: 900 }, { name: 'mobile
   page.on('pageerror', (e) => errors.push(e.message));
   page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
   page.on('requestfailed', (r) => errors.push(`failed ${r.url()}`));
-  await page.goto(URL, { waitUntil: 'networkidle' });
+  await page.goto(URL + 'offres/', { waitUntil: 'networkidle' });
   await page.waitForFunction(() => !document.body.classList.contains('is-loading'), null, { timeout: 30000 }).catch(() => {});
   await page.waitForTimeout(800);
 
-  for (const id of ['about', 'offers', 'process', 'contact']) {
+  for (const id of ['offers', 'process', 'contact']) {
     await page.evaluate((i) => document.getElementById(i).scrollIntoView(), id);
     await page.waitForTimeout(500);
     const el = await page.$(`#${id}`);
@@ -52,11 +52,13 @@ for (const vp of [{ name: 'desktop', width: 1440, height: 900 }, { name: 'mobile
     ok(`${vp.name}: ancre ${l.href} existe`, exists);
   }
 
-  // navigation pied de page → Offres
-  await page.click('.footer a[href="#offers"]');
-  await page.waitForTimeout(1200);
-  const offTop = await page.evaluate(() => document.getElementById('offers').getBoundingClientRect().top);
-  ok(`${vp.name}: lien pied de page « Offres » fait défiler`, Math.abs(offTop) < 4, `top=${offTop}`);
+  // pied de page → ancre Contact de la page courante
+  await page.click('.footer a[href="#contact"]');
+  await page.waitForTimeout(1500);
+  const cTop = await page.evaluate(() => document.getElementById('contact').getBoundingClientRect().top);
+  ok(`${vp.name}: lien pied de page « Contact » fait défiler`, Math.abs(cTop) < 4, `top=${cTop}`);
+  await page.evaluate(() => document.getElementById('offers').scrollIntoView());
+  await page.waitForTimeout(400);
 
   // demande de projet depuis une formule
   await page.click('.plan [data-open-brief="Signature"]');

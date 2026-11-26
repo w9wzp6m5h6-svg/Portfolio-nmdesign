@@ -1,0 +1,46 @@
+    <!-- L'objet (sneaker 3D) --------------------------------------------->
+    <section class="object" id="object" data-section="lab" data-label="Lab 3D" aria-label="Sneaker 3D interactive">
+      <div class="object__stage">
+        <canvas class="object__gl" role="img"></canvas>
+        <div class="object__hotspots"></div>
+        <div class="object__loading mono" aria-live="polite"><span class="object__loading-bar"><i></i></span><span class="object__loading-text">Chargement de l'objet — 0 %</span></div>
+      </div>
+
+      <div class="object__ui">
+        <header class="object__head">
+          <p class="mono object__kicker">Lab — objet interactif</p>
+          <h2 class="object__title">Knit<br />Runner <em class="serif">/01</em></h2>
+          <p class="object__lead">Une sneaker en 3D temps réel, mise en scène dans le navigateur. Faites-la pivoter, zoomez, explorez ses détails, changez de coloris.</p>
+        </header>
+
+        <div class="object__panel" aria-live="polite">
+          <p class="mono object__panel-k">Détail <span class="object__panel-i">—</span></p>
+          <h3 class="object__panel-t">Choisissez un point</h3>
+          <p class="object__panel-d">Sélectionnez un repère sur la chaussure : la caméra vient se placer sur ce détail.</p>
+        </div>
+
+        <div class="object__controls">
+          <fieldset class="object__group">
+            <legend class="mono">Coloris</legend>
+            <div class="object__swatches" data-variants></div>
+          </fieldset>
+          <fieldset class="object__group">
+            <legend class="mono">Vue</legend>
+            <div class="object__seg" role="group">
+              <button type="button" class="chip is-active" data-mode="studio" aria-pressed="true">Studio</button>
+              <button type="button" class="chip" data-mode="xray" aria-pressed="false">Rayons X</button>
+            </div>
+          </fieldset>
+          <div class="object__group object__group--zoom">
+            <span class="mono">Zoom</span>
+            <div class="object__seg">
+              <button type="button" class="chip chip--icon" data-zoom="-1" aria-label="Dézoomer">−</button>
+              <button type="button" class="chip chip--icon" data-zoom="1" aria-label="Zoomer">+</button>
+              <button type="button" class="chip" data-reset>Réinitialiser</button>
+            </div>
+          </div>
+        </div>
+        <p class="object__hint mono" aria-hidden="true"><span class="object__hint-icon"></span><span class="object__hint-text">Glissez pour faire pivoter</span></p>
+      </div>
+      <p class="object__credit mono"></p>
+    </section>

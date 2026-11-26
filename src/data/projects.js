@@ -2,6 +2,8 @@
  * Projets.
  *  - `real: true`  → projet réel (mis en avant, séparé des concepts)
  *  - sinon        → concept personnel ou exploration, jamais présenté comme une commande client
+ *  - `selected`   → apparaît dans la sélection de l'accueil (toute la liste est sur la page Projets)
+ *  - `tags`       → filtres de la page Projets : real, web, 3d, identity
  *
  * Chaque projet a son propre thème (couleurs, traitement du titre) et sa propre
  * suite de blocs : deux études de cas ne partagent jamais la même mise en page.
@@ -28,6 +30,8 @@ export const projects = [
   /* ------------------------------------------------------------------ */
   {
     slug: 'cynthia-rimo',
+    tags: ['real', 'web'], // filtres de la page Projets
+    selected: true, // affiché sur l'accueil
     real: true,
     num: '01',
     title: 'Cynthia Rimo',
@@ -37,7 +41,7 @@ export const projects = [
     layout: 'feature',
     heroPlain: true, // en-tête composé en HTML : le nom reste entier sur mobile
     cover: img('rimo', 'rimo_cover', '16 / 9', L, 'Cynthia Rimo, galerie d’art à Valbonne : composition typographique sur fond blanc'),
-    coverPos: '50% 50%',
+    coverPos: '22% 50%',
     theme: { bg: '#f5f3ef', fg: '#151413', muted: '#77726a', line: 'rgb(21 20 19 / 0.14)', accent: '#b3261e', title: 'gallery', light: true },
     meta: [
       ['Type', 'Projet réel'],
@@ -79,6 +83,8 @@ export const projects = [
   /* ------------------------------------------------------------------ */
   {
     slug: 'stride',
+    tags: ['web', '3d'], // filtres de la page Projets
+    selected: true, // affiché sur l'accueil
     num: '02',
     title: 'Stride',
     subtitle: "Expérience de lancement d'une chaussure de running en maille",
@@ -114,6 +120,7 @@ export const projects = [
 
   {
     slug: 'vanta',
+    tags: ['3d', 'web'], // filtres de la page Projets
     num: '03',
     title: 'Vanta',
     subtitle: "Un configurateur cinématographique pour un grand tourisme concept",
@@ -148,6 +155,8 @@ export const projects = [
 
   {
     slug: 'opale',
+    tags: ['web', '3d'], // filtres de la page Projets
+    selected: true, // affiché sur l'accueil
     num: '04',
     title: 'Maison Opale',
     subtitle: "E-commerce éditorial pour une maison de lunettes imaginaire",
@@ -177,6 +186,7 @@ export const projects = [
 
   {
     slug: 'rooms',
+    tags: ['web'], // filtres de la page Projets
     num: '05',
     title: 'Quiet Rooms',
     subtitle: "Site d'un studio d'architecture intérieure",
@@ -205,6 +215,7 @@ export const projects = [
 
   {
     slug: 'afterimage',
+    tags: ['3d', 'identity'], // filtres de la page Projets
     num: '06',
     title: 'Afterimage',
     subtitle: 'Études de lumière génératives en GLSL',
@@ -232,6 +243,7 @@ export const projects = [
 
   {
     slug: 'oscillo',
+    tags: ['identity', 'web'], // filtres de la page Projets
     num: '07',
     title: 'Oscillo',
     subtitle: "Identité et expérience digitale d'un festival sonore imaginaire",
