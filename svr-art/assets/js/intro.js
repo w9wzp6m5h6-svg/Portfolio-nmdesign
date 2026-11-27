@@ -1,11 +1,11 @@
-/* SVR ART — intro: the Mac is the portal.
-   1. Darkness, then a light; the closed laptop appears in a studio.
-   2. The lid opens, with weight.
-   3. The screen wakes on the original S/R ART logo.
-   4. The camera squares up; the website appears *inside* the screen while the logo
-      travels to its place in the navigation; the screen grows until it is the window.
+/* SVR ART — intro: the Mac is the portal. Under 4 seconds, framed like a clip.
+   0.0  black, letterbox, REC — a light, the closed laptop, one push-in
+   0.7  the lid opens, with weight
+   1.8  the screen wakes on the original S/R ART logo
+   2.5  the clip is already playing inside the screen; the logo goes to the bar
+   2.9  the screen becomes the window; the bars open; a short flash — the site
    Phones and portrait tablets: a single aluminium device. Returning visitors (7 days):
-   a short signature entrance. Reduced motion: no intro. Skip at any moment.
+   a 1-second signature entrance. Reduced motion: no intro. Skip at any moment.
    Every frame is a pure function of time — ?intro=1&t=4.2 freezes a frame for review. */
 (function () {
   'use strict';
@@ -53,8 +53,9 @@
   var keysEl = intro.querySelector('[data-mac-keys]');
   var skipBtn = intro.querySelector('[data-intro-skip]');
   var hdrLogo = document.querySelector('[data-hdr-logo]');
-  var heroImg = document.querySelector('.hero__main img');
-  var inertEls = [document.querySelector('[data-header]'), document.getElementById('main'), document.querySelector('.site-footer')];
+  var tcEl = intro.querySelector('[data-intro-tc]');
+  var pad2 = function (n) { return (n < 10 ? '0' : '') + n; };
+  var inertEls = [document.querySelector('[data-header]'), document.getElementById('main'), document.querySelector('.foot')];
 
   /* ---------- start ---------- */
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
@@ -63,6 +64,7 @@
   root.classList.add('intro-active');
   inertEls.forEach(function (el) { if (el) el.inert = true; });
   if (mode === 'short') intro.classList.add('intro--short');
+  if (window.SVRClip) window.SVRClip.start();
   else keysEl.innerHTML = keyboardSVG();
 
   var kind = 'short';            // 'laptop' | 'device' | 'short'
@@ -108,13 +110,11 @@
       setVar('--sh', sh + 'px');
       setVar('--logo-w', '44%');
       geom.logoPct = 0.44;
-      geom.cz0 = P * (1 - 1 / 0.7);
-      geom.cz1 = P * (1 - 1 / 0.86);
-      geom.czD = P * (1 - sw / (0.6 * vw));
-      geom.cy0 = -(lh * 0.5 + bd * 0.24);
-      geom.cy1 = -lh * 0.3;
+      geom.cz0 = P * (1 - 1 / 0.68);                 // far, low, the closed laptop
+      geom.czD = P * (1 - sw / (0.6 * vw));          // close, the open screen facing us
+      geom.cy0 = -(lh * 0.5 + bd * 0.2);
       geom.cyD = -(bzt + sh / 2 - lh / 2);
-      T = { e: 5.8, end: 7.9 };
+      T = { e: 2.45, end: 3.9 };
     } else if (kind === 'device') {
       var a = vw / vh;
       var dsw = Math.min(vw * 0.6, vh * 0.6 * a);
@@ -130,10 +130,10 @@
       setVar('--sh', dsh + 'px');
       setVar('--logo-w', '70%');
       geom.logoPct = 0.7;
-      T = { e: 3.4, end: 5.3 };
+      T = { e: 2.1, end: 3.55 };
     } else {
       geom.logoPct = small ? 0.58 : 0.3;
-      T = { e: 0, end: 1.75 };
+      T = { e: 0, end: 1.05 };
     }
 
     // 1. where the screen sits once it faces the camera, and the zoom that maps it onto the window
@@ -190,62 +190,71 @@
   }
 
   /* ---------- the timeline ---------- */
+  function bump(t, a, peak, b) {                     // 0 → 1 → 0
+    return t < a || t > b ? 0 : (t < peak ? (t - a) / (peak - a) : 1 - (t - peak) / (b - peak));
+  }
   function scene(t) {
     var g = geom;
     if (kind === 'laptop') {
-      var d = easeInOut(seg(t, 4.2, 5.8));                               // 4. approach
-      var screen = easeOut(seg(t, 2.95, 3.5));
-      var settle = seg(t, 3.05, 3.8);
+      var cam = easeInOut(seg(t, 0.05, 2.05));                           // one push-in, from far to the screen
+      var screen = easeOut(seg(t, 1.75, 2.0));
+      var settle = seg(t, 1.62, 2.1);
       return {
-        bgo: easeOut(seg(t, 0.15, 1.9)),
-        po: easeOut(seg(t, 0.35, 1.75)),
-        floor: easeOut(seg(t, 0.6, 2.2)) * (1 - d * 0.7),
-        veil: (1 - 0.5 * easeOut(seg(t, 0.2, 2.2))) * (1 - d),
-        cap: easeOut(seg(t, 0.8, 1.6)) * (1 - easeIn(seg(t, 2.7, 3.2))),
-        sweep: easeInOut(seg(t, 0.7, 2.2)),                               // 1. light on aluminium
-        lid: lerp(-90, 12, easeInOut(seg(t, 1.5, 3.25))) + 2 * Math.sin(Math.PI * settle) * (1 - settle),  // 2. weight
-        cz: lerp(lerp(g.cz0, g.cz1, easeOut(seg(t, 0, 4.2))), g.czD, d),
-        cy: lerp(lerp(g.cy0, g.cy1, easeInOut(seg(t, 1.3, 3.6))), g.cyD, d),
-        cg: lerp(lerp(-28, -21, easeInOut(seg(t, 0.3, 4.0))), -12, d),
-        screen: screen,                                                   // 3. the screen wakes
-        glow: screen * (0.9 - 0.45 * d),
-        ov: easeOut(seg(t, 3.15, 3.95)),
-        letters: easeOut(seg(t, 3.4, 4.3)),
-        sheen: easeInOut(seg(t, 4.0, 5.1)),
-        zoom: easeInOutQuart(seg(t, 6.45, 7.9)),
-        glide: easeInOut(seg(t, 5.95, 7.05)),
-        bgfade: easeInOut(seg(t, 6.05, 6.9))
+        hud: easeOut(seg(t, 0, 0.35)) * (1 - seg(t, T.e + 0.1, T.e + 0.4)),
+        bars: 1 - easeInOut(seg(t, 3.15, 3.8)),
+        flash: 0.32 * bump(t, 3.72, 3.78, 3.9),
+        bgo: easeOut(seg(t, 0.1, 0.9)),
+        po: easeOut(seg(t, 0.15, 0.85)),
+        floor: easeOut(seg(t, 0.3, 1.2)),
+        veil: (1 - 0.5 * easeOut(seg(t, 0.1, 1.2))) * (1 - easeInOut(seg(t, 1.6, 2.4))),
+        cap: easeOut(seg(t, 0.35, 0.7)) * (1 - easeIn(seg(t, 1.9, 2.2))),
+        sweep: easeInOut(seg(t, 0.25, 1.05)),                             // light across the aluminium
+        lid: lerp(-90, 12, easeInOut(seg(t, 0.7, 1.75))) + 2.2 * Math.sin(Math.PI * settle) * (1 - settle),  // weight
+        cz: lerp(g.cz0, g.czD, cam),
+        cy: lerp(g.cy0, g.cyD, easeInOut(seg(t, 0.5, 2.0))),
+        cg: lerp(-20, -12, easeInOut(seg(t, 0.3, 2.0))),
+        screen: screen,                                                   // the screen wakes on the logo
+        glow: screen * 0.7,
+        ov: easeOut(seg(t, 1.8, 2.1)),
+        letters: easeOut(seg(t, 1.9, 2.25)),
+        sheen: easeInOut(seg(t, 2.0, 2.55)),
+        glide: easeInOut(seg(t, 2.5, 3.2)),                               // logo → the bar
+        bgfade: easeInOut(seg(t, 2.5, 2.95)),                             // the clip shows through
+        zoom: easeInOutQuart(seg(t, 2.85, 3.85))                          // the screen becomes the window
       };
     }
     if (kind === 'device') {
-      var dd = easeInOut(seg(t, 2.4, 3.4));
-      var sc = easeOut(seg(t, 1.1, 1.55));
+      var dd = easeInOut(seg(t, 1.4, 2.05));
+      var sc = easeOut(seg(t, 0.95, 1.2));
       return {
-        bgo: easeOut(seg(t, 0.1, 1.4)),
-        po: easeOut(seg(t, 0.15, 1.2)),
+        hud: easeOut(seg(t, 0, 0.35)) * (1 - seg(t, T.e + 0.1, T.e + 0.4)),
+        bars: 1 - easeInOut(seg(t, 2.85, 3.45)),
+        flash: 0.28 * bump(t, 3.38, 3.44, 3.55),
+        bgo: easeOut(seg(t, 0.05, 0.8)),
+        po: easeOut(seg(t, 0.1, 0.7)),
         floor: 0,
-        veil: (1 - 0.5 * easeOut(seg(t, 0.1, 1.6))) * (1 - dd),
-        cap: easeOut(seg(t, 0.4, 1.0)) * (1 - easeIn(seg(t, 2.0, 2.4))),
-        sweep: easeInOut(seg(t, 0.4, 1.9)),
+        veil: (1 - 0.5 * easeOut(seg(t, 0.05, 0.9))) * (1 - dd),
+        cap: easeOut(seg(t, 0.3, 0.6)) * (1 - easeIn(seg(t, 1.5, 1.8))),
+        sweep: easeInOut(seg(t, 0.2, 1.2)),
         lid: 0,
-        cz: lerp(lerp(-g.P * 0.4, 0, easeOutExpo(seg(t, 0.1, 2.0))), g.P * 0.08, dd),
-        cy: lerp(g.vh * 0.05, 0, easeOut(seg(t, 0.1, 2.0))),
-        cg: lerp(22, 0, easeOut(seg(t, 0.1, 2.1))),
+        cz: lerp(lerp(-g.P * 0.4, 0, easeOutExpo(seg(t, 0.05, 1.3))), g.P * 0.08, dd),
+        cy: lerp(g.vh * 0.05, 0, easeOut(seg(t, 0.05, 1.3))),
+        cg: lerp(22, 0, easeOut(seg(t, 0.05, 1.35))),
         screen: sc,
         glow: 0,
-        ov: easeOut(seg(t, 1.3, 1.95)),
-        letters: easeOut(seg(t, 1.5, 2.2)),
-        sheen: easeInOut(seg(t, 2.0, 2.9)),
-        zoom: easeInOutQuart(seg(t, 4.0, 5.3)),
-        glide: easeInOut(seg(t, 3.55, 4.65)),
-        bgfade: easeInOut(seg(t, 3.65, 4.5))
+        ov: easeOut(seg(t, 1.0, 1.35)),
+        letters: easeOut(seg(t, 1.12, 1.5)),
+        sheen: easeInOut(seg(t, 1.3, 1.9)),
+        glide: easeInOut(seg(t, 2.15, 2.85)),
+        bgfade: easeInOut(seg(t, 2.15, 2.6)),
+        zoom: easeInOutQuart(seg(t, 2.5, 3.5))
       };
     }
-    return {                                                              // short entrance
-      logo: easeOut(seg(t, 0.1, 0.6)),
-      glide: easeInOut(seg(t, 0.7, 1.6)),
-      bgfade: easeOut(seg(t, 0.85, 1.6)),
-      zoom: 0
+    return {                                                              // short entrance (returning visitors)
+      logo: easeOut(seg(t, 0.05, 0.3)),
+      glide: easeInOut(seg(t, 0.4, 1.0)),
+      bgfade: easeOut(seg(t, 0.45, 0.95)),
+      zoom: 0, hud: 0, bars: 0, flash: 0
     };
   }
 
@@ -266,6 +275,9 @@
     setVar('--ov', v.ov.toFixed(4));
     setVar('--letters', v.letters.toFixed(4));
     setVar('--sheen', v.sheen.toFixed(4));
+    setVar('--hud', v.hud.toFixed(4));
+    setVar('--bars', v.bars.toFixed(4));
+    setVar('--flash', v.flash.toFixed(4));
     setVar('--zk', '1');
     return v;
   }
@@ -273,7 +285,10 @@
   function render(t) {
     var v = kind === 'short' ? scene(t) : render3D(t);
     var inScreen = kind === 'short' || t >= T.e;
-    setVar('--prog', clamp(t / T.end, 0, 1).toFixed(4));
+    if (tcEl) {                                    // REC timecode, 24 fps
+      var f = Math.floor(t * 24);
+      tcEl.textContent = '00:00:' + pad2(Math.floor(f / 24)) + ':' + pad2(f % 24);
+    }
 
     // 4. the flattened screen: the logo travels to the navigation, the page shows through
     setVar('--s2d', inScreen ? '1' : '0');
@@ -306,7 +321,7 @@
 
     if (inScreen && !revealedOnce) {
       revealedOnce = true;
-      site.reveal({ logoPending: true, delay: kind === 'short' ? 0.6 : 0.42 });
+      site.reveal({ logoPending: true, delay: kind === 'short' ? 0.3 : 0.15 });
     }
     if (g >= 1 && !landed) {
       landed = true;
@@ -416,7 +431,6 @@
   /* Start once the logo (and, for the short entrance, the first work) can be painted */
   var decode = function (el) { return el && el.decode ? el.decode().catch(function () {}) : Promise.resolve(); };
   var needed = [decode(screenLetters)];
-  if (mode === 'short') needed.push(decode(heroImg));
   Promise.race([Promise.all(needed), new Promise(function (r) { setTimeout(r, 1500); })]).then(function () {
     if (!done) raf = requestAnimationFrame(frame);
   });

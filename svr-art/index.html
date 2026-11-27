@@ -3,24 +3,24 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>SVR ART — Contemporary artist, France</title>
-  <meta name="description" content="SVR ART — contemporary painter, France. Portraits in black and white on raw wood, canvas and old sheet music.">
-  <meta name="theme-color" content="#080808">
+  <title>SVR ART — painter, new generation</title>
+  <meta name="description" content="SVR — painter, France. Faces the street already knows, painted in black and white on raw wood, canvas and old sheet music.">
+  <meta name="theme-color" content="#0b0b0b">
   <meta name="color-scheme" content="dark">
   <meta property="og:title" content="SVR ART">
-  <meta property="og:description" content="Enter the artist’s world.">
-  <meta property="og:image" content="assets/img/svr-paint-board-01-900.webp">
+  <meta property="og:description" content="Faces the street already knows.">
+  <meta property="og:image" content="assets/video/svr-clip-wide.webp">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 
   <!-- Only what the first screen needs -->
-  <link rel="preload" href="assets/fonts/bodoni-moda.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/bodoni-moda-italic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/img/svr-logo-letters.webp" as="image" fetchpriority="high">
+  <link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/geist-mono.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/img/svr-logo-letters.webp" as="image">
 
   <link rel="stylesheet" href="assets/css/style.css">
   <script>document.documentElement.classList.add('js');</script>
   <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/clip.js" defer></script>
   <script src="assets/js/viewer.js" defer></script>
   <script src="assets/js/intro.js" defer></script>
 </head>
@@ -28,14 +28,12 @@
 <body>
   <a class="skip-link" href="#work">Skip to the work</a>
 
-  <!-- ═════════════════════ Intro — the laptop as a portal (JS only) ═════════════════════
-       1 darkness, light, the closed laptop · 2 the lid opens · 3 the screen wakes on the logo
-       4 the camera squares up; the website appears inside the screen; the screen becomes the window.
-       Phones: a single aluminium device. Returning visitors: a short signature entrance. -->
+  <!-- ═════════════ Intro — the Mac is the portal (JS only) ═════════════
+       Black, REC. The closed laptop, the lid, the logo. The clip is already playing
+       inside the screen; the logo goes to the bar; the screen becomes the window. -->
   <div class="intro" data-intro hidden>
     <div class="intro__shell" data-intro-shell>
       <div class="intro__bg" aria-hidden="true"></div>
-
       <div class="intro__zoom" aria-hidden="true">
         <div class="intro__persp">
           <div class="mac">
@@ -53,7 +51,6 @@
               <div class="mac__front"></div>
               <div class="mac__reflect"></div>
             </div>
-
             <div class="mac__lid">
               <div class="mac__lid-top"></div>
               <div class="mac__lid-back"><div class="mac__sweep"></div></div>
@@ -74,16 +71,13 @@
           </div>
         </div>
       </div>
-
       <div class="intro__veil" aria-hidden="true"></div>
       <div class="intro__grain" aria-hidden="true"></div>
     </div>
 
-    <!-- The screen, flattened: the logo travels to its place in the navigation
-         while the homepage appears behind it, inside the screen. -->
     <div class="intro__zoom intro__layer2" aria-hidden="true">
       <div class="intro__screen2d" data-screen2d>
-        <div class="intro__screen2d-bg" data-screen2d-bg></div>
+        <div class="intro__screen2d-bg"></div>
         <div class="logo-badge intro__logo2d" data-logo2d>
           <span class="logo-badge__oval"></span>
           <img class="logo-badge__letters" src="assets/img/svr-logo-letters.webp" width="2162" height="1334" alt="" decoding="async">
@@ -91,96 +85,104 @@
       </div>
     </div>
 
+    <!-- cinema frame: letterbox, REC, timecode -->
+    <div class="intro__bars" aria-hidden="true"><i></i><i></i></div>
     <div class="intro__hud">
-      <p class="intro__caption" aria-hidden="true">Enter the artist’s world</p>
-      <button class="intro__skip link-arrow" type="button" data-intro-skip><span>Skip intro</span><span class="link-arrow__a" aria-hidden="true">→</span></button>
-      <span class="intro__progress" aria-hidden="true"></span>
+      <p class="intro__rec mono" aria-hidden="true"><span class="rec-dot"></span>REC <span data-intro-tc>00:00:00:00</span></p>
+      <p class="intro__caption mono" aria-hidden="true">SVR — enter the world</p>
+      <button class="intro__skip mono" type="button" data-intro-skip>Skip <span aria-hidden="true">→</span></button>
+      <span class="intro__flash" aria-hidden="true"></span>
     </div>
   </div>
 
-  <!-- ═════════════════════ Header ═════════════════════ -->
-  <header class="site-header" data-header>
-    <a class="hdr-logo logo-badge" href="#top" aria-label="SVR ART — home" data-hdr-logo>
+  <!-- ═════════════ The bar: logo · chapters · progress ═════════════ -->
+  <header class="bar" data-header>
+    <a class="bar__logo logo-badge" href="#top" aria-label="SVR ART — home" data-hdr-logo>
       <span class="logo-badge__oval"></span>
       <img class="logo-badge__letters" src="assets/img/svr-logo-letters-1081.webp" width="1081" height="667" alt="">
     </a>
 
-    <nav class="nav" aria-label="Main">
-      <ul class="nav__list">
-        <li><a class="nav__link" href="#work" data-nav="work"><span class="roll"><span>Work</span><span aria-hidden="true">Work</span></span></a></li>
-        <li><a class="nav__link" href="#studio" data-nav="studio"><span class="roll"><span>Studio</span><span aria-hidden="true">Studio</span></span></a></li>
-        <li><a class="nav__link" href="#contact" data-nav="contact"><span class="roll"><span>Contact</span><span aria-hidden="true">Contact</span></span></a></li>
-      </ul>
+    <nav class="bar__nav" aria-label="Main">
+      <ol class="bar__list">
+        <li><a class="bar__link" href="#work" data-nav="work"><span class="bar__n">01</span><span class="bar__w" data-text="Works">Works</span></a></li>
+        <li><a class="bar__link" href="#studio" data-nav="studio"><span class="bar__n">02</span><span class="bar__w" data-text="Studio">Studio</span></a></li>
+        <li><a class="bar__link" href="#contact" data-nav="contact"><span class="bar__n">03</span><span class="bar__w" data-text="Booking">Booking</span></a></li>
+      </ol>
     </nav>
 
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" data-menu-toggle>
-      <span data-menu-label>Menu</span>
-      <span class="menu-toggle__icon" aria-hidden="true"><i></i><i></i></span>
+    <a class="bar__ig mono" href="https://www.instagram.com/svr__art/" target="_blank" rel="noopener">IG <span aria-hidden="true">↗</span></a>
+
+    <button class="bar__menu mono" type="button" aria-expanded="false" aria-controls="menu" data-menu-toggle>
+      <span data-menu-label>Menu</span><span class="bar__menu-icon" aria-hidden="true"><i></i><i></i></span>
     </button>
+
+    <span class="bar__progress" aria-hidden="true"><i data-progress></i></span>
   </header>
 
   <div class="menu" id="menu" role="dialog" aria-label="Menu" hidden data-menu>
     <nav aria-label="Menu">
       <ol class="menu__list">
-        <li><a class="menu__link" href="#work"><span class="menu__index">01</span><span class="menu__word">Work</span></a></li>
-        <li><a class="menu__link" href="#studio"><span class="menu__index">02</span><span class="menu__word">Studio</span></a></li>
-        <li><a class="menu__link" href="#contact"><span class="menu__index">03</span><span class="menu__word">Contact</span></a></li>
+        <li><a class="menu__link" href="#work"><span class="menu__n mono">01</span><span class="menu__w">Works</span></a></li>
+        <li><a class="menu__link" href="#studio"><span class="menu__n mono">02</span><span class="menu__w">Studio</span></a></li>
+        <li><a class="menu__link" href="#contact"><span class="menu__n mono">03</span><span class="menu__w">Booking</span></a></li>
       </ol>
     </nav>
-    <div class="menu__foot">
-      <span>Contemporary artist — France</span>
-      <a class="link-arrow" href="https://www.instagram.com/svr__art/" target="_blank" rel="noopener"><span>Instagram</span><span class="link-arrow__a link-arrow__a--up" aria-hidden="true">↗</span></a>
+    <div class="menu__foot mono">
+      <span>Painter — FR</span>
+      <a href="https://www.instagram.com/svr__art/" target="_blank" rel="noopener">Instagram ↗</a>
     </div>
   </div>
 
   <main id="main">
 
-    <!-- ═════════════════════ Hero — the cover ═════════════════════ -->
-    <section class="hero" id="top" aria-labelledby="hero-h1" data-hero>
-      <h1 class="visually-hidden" id="hero-h1">SVR ART — contemporary artist, France</h1>
-      <div class="hero__light" aria-hidden="true"></div>
-
-      <div class="hero__copy">
-        <p class="label hero__label"><span class="mask"><span>Contemporary artist — France</span></span></p>
-        <p class="hero__title">
-          <span class="mask"><span>Faces the street</span></span>
-          <span class="mask"><span><em>already knows.</em></span></span>
-        </p>
-        <p class="hero__sub"><span class="mask"><span>Portraits in black and white — on raw wood, canvas and old sheet music.</span></span></p>
-        <a class="hero__cta link-arrow" href="#work"><span>Enter the gallery</span><span class="link-arrow__a" aria-hidden="true">→</span></a>
+    <!-- ═════════════ Hero — the clip, the name ═════════════ -->
+    <section class="hero" id="top" aria-labelledby="hero-name" data-hero>
+      <div class="hero__screen" data-clip>
+        <video class="hero__video" data-clip-video muted loop playsinline preload="auto"
+               poster="assets/video/svr-clip-wide.webp" aria-label="SVR — a ten-second clip cut from the artist's own works">
+          <source src="assets/video/svr-clip-wide.webm" type="video/webm">
+          <source src="assets/video/svr-clip-wide.mp4" type="video/mp4">
+        </video>
+        <span class="hero__noise" aria-hidden="true"></span>
+        <span class="crop crop--tl" aria-hidden="true"></span><span class="crop crop--tr" aria-hidden="true"></span>
+        <span class="crop crop--bl" aria-hidden="true"></span><span class="crop crop--br" aria-hidden="true"></span>
+        <p class="hero__rec mono" aria-hidden="true"><span class="rec-dot"></span>REC <span data-clip-tc>00:00:00:00</span></p>
+        <p class="hero__shot mono" aria-live="off"><span data-clip-n>01</span>/<span data-clip-total>10</span> — <span data-clip-label>Smoke</span></p>
+        <button class="hero__cut" type="button" data-clip-cut aria-label="Cut to the next shot"></button>
+        <button class="hero__pause mono" type="button" data-clip-toggle aria-pressed="false"><span data-clip-toggle-label>Pause</span></button>
+        <span class="hero__cursor mono" aria-hidden="true" data-clip-cursor>Cut →</span>
       </div>
 
-      <figure class="hero__main hpiece" style="--i: 0">
-        <div class="hpiece__media">
-          <img src="assets/img/svr-paint-board-01-900.webp" srcset="assets/img/svr-paint-board-01-520.webp 520w, assets/img/svr-paint-board-01-900.webp 893w"
-               sizes="(min-width: 900px) 56vw, 112vw" width="893" height="237" fetchpriority="high" decoding="async"
-               alt="Paint-Board by SVR: a mouth with gold grills, painted in black and white on a wooden skate deck.">
-        </div>
-        <figcaption class="label hpiece__cap"><span class="mask"><span>Paint-Board — gold grills</span></span></figcaption>
-      </figure>
+      <h1 class="hero__name" id="hero-name">
+        <span class="hero__name-row" data-split>SVR</span>
+        <span class="visually-hidden"> ART — painter, France</span>
+      </h1>
 
-      <figure class="hero__second hpiece" style="--i: 1">
-        <div class="hpiece__media">
-          <img src="assets/img/svr-paint-board-04-900.webp" srcset="assets/img/svr-paint-board-04-520.webp 520w, assets/img/svr-paint-board-04-900.webp 909w"
-               sizes="(min-width: 900px) 30vw, 64vw" width="909" height="242" decoding="async"
-               alt="Paint-Board by SVR: a man in profile in dark sunglasses with a cigarette, on a wooden skate deck.">
-        </div>
-      </figure>
+      <div class="hero__meta">
+        <p class="hero__line serif-i"><span class="mask"><span>Faces the street already knows.</span></span></p>
+        <p class="hero__facts mono"><span class="mask"><span>Painter — FR · Portraits in black &amp; white on raw wood, canvas &amp; old scores</span></span></p>
+      </div>
 
-      <div class="hero__scroll" aria-hidden="true"><span class="label">Scroll</span><span class="hero__scroll-line"></span></div>
+      <p class="hero__scroll mono" aria-hidden="true"><span>Scroll</span><i></i></p>
+
+      <script type="application/json" data-clip-shots>
+        {"wide":{"duration":10.042,"shots":[[0,"Smoke"],[1.292,"Gold grills"],[2.375,"Gold grills"],[2.917,"Studio"],[4.208,"Tongue"],[5.292,"The wall"],[6.583,"Hands"],[7.125,"Profile"],[8.208,"Grin"],[8.75,"Sheet music"]]},
+         "tall":{"duration":10.042,"shots":[[0,"Smoke"],[1.292,"Gold grills"],[2.375,"Studio"],[3.667,"Tongue"],[4.75,"The wall"],[6.042,"Hands"],[6.583,"Profile"],[7.667,"Grin"],[8.75,"Sheet music"]]}}
+      </script>
     </section>
 
-    <!-- ═════════════════════ 01 — Work: a private view ═════════════════════ -->
-    <section class="work" id="work" aria-labelledby="work-title" data-section="work">
-      <header class="work__head">
-        <p class="chapter__index label" data-reveal><span class="chapter__n">01</span>Work</p>
-        <h2 class="section-title" id="work-title" data-reveal>A private <em>view.</em></h2>
-        <p class="body work__intro" data-reveal>Five works, two series — portraits painted over old sheet music, and the Paint-Boards. Select a work to see it on its own.</p>
+    <!-- ═════════════ 01 — Works ═════════════ -->
+    <section class="works" id="work" aria-labelledby="works-title" data-section="work">
+      <header class="chapter">
+        <p class="chapter__n mono" data-reveal>01 — Works</p>
+        <h2 class="xxl" id="works-title" data-drift><span class="xxl__w" data-wipe>Works</span><sup class="xxl__count mono">(05)</sup></h2>
+        <p class="chapter__lede" data-reveal>Two series. Painted by hand. <em class="serif-i">Black, white, raw wood, old scores.</em></p>
       </header>
 
       <!-- Work 01 — pinned: from the face to the whole painting -->
       <div class="score" data-score>
         <div class="score__sticky">
+          <p class="score__bg" aria-hidden="true"><span>Sheet</span><span>music</span></p>
           <figure class="score__art" data-piece="0"
                   data-title="Portrait on sheet music" data-series="Sheet music portraits"
                   data-medium="Paint over collaged sheet music"
@@ -193,108 +195,109 @@
                    alt="Painting by SVR: a black-and-white portrait of a shirtless man in a white bandana, both fists raised to his forehead, smoke drifting from his lips, painted over a collage of vintage sheet music.">
             </button>
           </figure>
-
-          <!-- Words printed on the scores under the paint -->
-          <ul class="score__words" aria-hidden="true">
+          <ul class="score__words mono" aria-hidden="true">
             <li style="--wy: -0.62; --wd: 0.10">Arpèges</li>
             <li style="--wy: -0.18; --wd: 0.22">Main gauche</li>
             <li style="--wy: 0.26; --wd: 0.34">Legato</li>
             <li style="--wy: 0.70; --wd: 0.46">Gamme chromatique</li>
           </ul>
-
-          <div class="score__text">
-            <p class="label piece__n">01 <span>/ 05</span></p>
-            <h3 class="piece__title">Portrait on sheet music</h3>
-            <p class="body">Old scores, collaged, then painted over. The music stays under the skin.</p>
-            <button class="link-arrow score__view" type="button" data-open="0"><span>View the work</span><span class="link-arrow__a" aria-hidden="true">→</span></button>
+          <div class="score__tag tag">
+            <p class="tag__n mono">01<span>/05</span></p>
+            <h3 class="tag__title">Portrait on sheet music</h3>
+            <p class="tag__row mono"><span>Series</span>Sheet music portraits</p>
+            <p class="tag__row mono"><span>Medium</span>Paint over collaged scores</p>
+            <button class="tag__open mono" type="button" data-open="0">View <span aria-hidden="true">↗</span></button>
           </div>
         </div>
       </div>
 
-      <!-- Works 02–05 — an editorial rhythm, not a grid -->
-      <div class="gallery">
-        <figure class="piece piece--a" data-piece="1" data-reveal
+      <!-- Works 02–05 — the rack -->
+      <div class="rack" data-rack>
+        <h3 class="rack__title xxl xxl--md" data-drift="-1"><span class="xxl__w" data-wipe>Paint<span class="rack__dash">—</span>Boards</span></h3>
+
+        <figure class="deck" data-piece="1" data-reveal style="--dir: -1"
                 data-title="Paint-Board" data-series="Paint-Boards" data-medium="Paint on a wooden skate deck"
                 data-note="A mouth with gold grills, in black and white on the bare wood."
                 data-src="assets/img/svr-paint-board-01-900.webp" data-w="893" data-h="237">
-          <button class="piece__open" type="button" aria-label="View the work: Paint-Board, gold grills">
-            <span class="piece__media"><img src="assets/img/svr-paint-board-01-900.webp" srcset="assets/img/svr-paint-board-01-520.webp 520w, assets/img/svr-paint-board-01-900.webp 893w" sizes="(min-width: 900px) 62vw, 100vw" width="893" height="237" loading="lazy" decoding="async" alt="Paint-Board by SVR: a mouth with gold grills, painted in black and white on a wooden skate deck."></span>
+          <span class="deck__n" aria-hidden="true">02</span>
+          <button class="piece__open deck__open" type="button" aria-label="View the work: Paint-Board, gold grills">
+            <span class="deck__media"><img src="assets/img/svr-paint-board-01-900.webp" srcset="assets/img/svr-paint-board-01-520.webp 520w, assets/img/svr-paint-board-01-900.webp 893w" sizes="(min-width: 900px) 64vw, 100vw" width="893" height="237" loading="lazy" decoding="async" alt="Paint-Board by SVR: a mouth with gold grills, painted in black and white on a wooden skate deck."></span>
           </button>
-          <figcaption class="piece__cap">
-            <span class="label piece__n">02 <span>/ 05</span></span>
-            <span class="piece__title">Paint<span class="hy">-</span>Board</span>
-            <span class="piece__note">Gold grills</span>
-          </figcaption>
+          <figcaption class="deck__tag mono"><span>Paint-Board</span><span>Gold grills</span><span class="deck__view">View ↗</span></figcaption>
         </figure>
 
-        <figure class="piece piece--b" data-piece="2" data-reveal
+        <figure class="deck deck--alt" data-piece="2" data-reveal style="--dir: 1"
                 data-title="Paint-Board" data-series="Paint-Boards" data-medium="Paint on a wooden skate deck"
                 data-note="A wide grin with gold teeth, sunglasses, earrings and a cigarette."
                 data-src="assets/img/svr-paint-board-02-900.webp" data-w="886" data-h="232">
-          <button class="piece__open" type="button" aria-label="View the work: Paint-Board, sunglasses and gold teeth">
-            <span class="piece__media"><img src="assets/img/svr-paint-board-02-900.webp" srcset="assets/img/svr-paint-board-02-520.webp 520w, assets/img/svr-paint-board-02-900.webp 886w" sizes="(min-width: 900px) 46vw, 82vw" width="886" height="232" loading="lazy" decoding="async" alt="Paint-Board by SVR: a grinning face with sunglasses, earrings and a cigarette, on a wooden skate deck."></span>
+          <span class="deck__n" aria-hidden="true">03</span>
+          <button class="piece__open deck__open" type="button" aria-label="View the work: Paint-Board, sunglasses and gold teeth">
+            <span class="deck__media"><img src="assets/img/svr-paint-board-02-900.webp" srcset="assets/img/svr-paint-board-02-520.webp 520w, assets/img/svr-paint-board-02-900.webp 886w" sizes="(min-width: 900px) 64vw, 100vw" width="886" height="232" loading="lazy" decoding="async" alt="Paint-Board by SVR: a grinning face with sunglasses, earrings and a cigarette, on a wooden skate deck."></span>
           </button>
-          <figcaption class="piece__cap">
-            <span class="label piece__n">03 <span>/ 05</span></span>
-            <span class="piece__title">Paint<span class="hy">-</span>Board</span>
-            <span class="piece__note">Sunglasses, gold teeth</span>
-          </figcaption>
+          <figcaption class="deck__tag mono"><span>Paint-Board</span><span>Sunglasses, gold teeth</span><span class="deck__view">View ↗</span></figcaption>
         </figure>
 
-        <div class="gallery__pause" data-reveal aria-hidden="true">
-          <p>Black and white.<br> Raw wood.<br> <em>Old scores.</em></p>
-        </div>
-
-        <figure class="piece piece--c" data-piece="3" data-reveal
+        <figure class="deck" data-piece="3" data-reveal style="--dir: -1"
                 data-title="Paint-Board" data-series="Paint-Boards" data-medium="Paint on a wooden skate deck"
                 data-note="A woman sticking out her pierced tongue, one hand raised to her face."
                 data-src="assets/img/svr-paint-board-03-900.webp" data-w="909" data-h="239">
-          <button class="piece__open" type="button" aria-label="View the work: Paint-Board, tongue and hand">
-            <span class="piece__media"><img src="assets/img/svr-paint-board-03-900.webp" srcset="assets/img/svr-paint-board-03-520.webp 520w, assets/img/svr-paint-board-03-900.webp 909w" sizes="(min-width: 900px) 64vw, 100vw" width="909" height="239" loading="lazy" decoding="async" alt="Paint-Board by SVR: a woman sticking out her pierced tongue, hand raised to her face, on a wooden skate deck."></span>
+          <span class="deck__n" aria-hidden="true">04</span>
+          <button class="piece__open deck__open" type="button" aria-label="View the work: Paint-Board, tongue and hand">
+            <span class="deck__media"><img src="assets/img/svr-paint-board-03-900.webp" srcset="assets/img/svr-paint-board-03-520.webp 520w, assets/img/svr-paint-board-03-900.webp 909w" sizes="(min-width: 900px) 64vw, 100vw" width="909" height="239" loading="lazy" decoding="async" alt="Paint-Board by SVR: a woman sticking out her pierced tongue, hand raised to her face, on a wooden skate deck."></span>
           </button>
-          <figcaption class="piece__cap">
-            <span class="label piece__n">04 <span>/ 05</span></span>
-            <span class="piece__title">Paint<span class="hy">-</span>Board</span>
-            <span class="piece__note">Tongue, hand, hair</span>
-          </figcaption>
+          <figcaption class="deck__tag mono"><span>Paint-Board</span><span>Tongue, hand, hair</span><span class="deck__view">View ↗</span></figcaption>
         </figure>
 
-        <figure class="piece piece--d" data-piece="4" data-reveal
+        <figure class="deck deck--alt" data-piece="4" data-reveal style="--dir: 1"
                 data-title="Paint-Board" data-series="Paint-Boards" data-medium="Paint on a wooden skate deck"
                 data-note="A man in profile, dark sunglasses, a cigarette at the lips."
                 data-src="assets/img/svr-paint-board-04-900.webp" data-w="909" data-h="242">
-          <button class="piece__open" type="button" aria-label="View the work: Paint-Board, profile with cigarette">
-            <span class="piece__media"><img src="assets/img/svr-paint-board-04-900.webp" srcset="assets/img/svr-paint-board-04-520.webp 520w, assets/img/svr-paint-board-04-900.webp 909w" sizes="(min-width: 900px) 46vw, 82vw" width="909" height="242" loading="lazy" decoding="async" alt="Paint-Board by SVR: a man in profile in dark sunglasses with a cigarette, on a wooden skate deck."></span>
+          <span class="deck__n" aria-hidden="true">05</span>
+          <button class="piece__open deck__open" type="button" aria-label="View the work: Paint-Board, profile with cigarette">
+            <span class="deck__media"><img src="assets/img/svr-paint-board-04-900.webp" srcset="assets/img/svr-paint-board-04-520.webp 520w, assets/img/svr-paint-board-04-900.webp 909w" sizes="(min-width: 900px) 64vw, 100vw" width="909" height="242" loading="lazy" decoding="async" alt="Paint-Board by SVR: a man in profile in dark sunglasses with a cigarette, on a wooden skate deck."></span>
           </button>
-          <figcaption class="piece__cap">
-            <span class="label piece__n">05 <span>/ 05</span></span>
-            <span class="piece__title">Paint<span class="hy">-</span>Board</span>
-            <span class="piece__note">Profile, cigarette</span>
-          </figcaption>
+          <figcaption class="deck__tag mono"><span>Paint-Board</span><span>Profile, cigarette</span><span class="deck__view">View ↗</span></figcaption>
         </figure>
+      </div>
+
+      <!-- The index, like the back of a record sleeve -->
+      <div class="index" data-reveal>
+        <p class="index__head mono"><span>No.</span><span>Work</span><span>Series</span><span class="index__medium">Medium</span><span></span></p>
+        <ol class="index__list">
+          <li><button class="index__row" type="button" data-open="0" data-preview="assets/img/svr-portrait-sheet-music-560.webp"><span class="mono">01</span><span class="index__t">Portrait on sheet music</span><span class="mono">Sheet music</span><span class="mono index__medium">Paint over scores</span><span class="mono index__go" aria-hidden="true">↗</span></button></li>
+          <li><button class="index__row" type="button" data-open="1" data-preview="assets/img/svr-paint-board-01-520.webp"><span class="mono">02</span><span class="index__t">Gold grills</span><span class="mono">Paint-Boards</span><span class="mono index__medium">Paint on wood</span><span class="mono index__go" aria-hidden="true">↗</span></button></li>
+          <li><button class="index__row" type="button" data-open="2" data-preview="assets/img/svr-paint-board-02-520.webp"><span class="mono">03</span><span class="index__t">Sunglasses, gold teeth</span><span class="mono">Paint-Boards</span><span class="mono index__medium">Paint on wood</span><span class="mono index__go" aria-hidden="true">↗</span></button></li>
+          <li><button class="index__row" type="button" data-open="3" data-preview="assets/img/svr-paint-board-03-520.webp"><span class="mono">04</span><span class="index__t">Tongue, hand, hair</span><span class="mono">Paint-Boards</span><span class="mono index__medium">Paint on wood</span><span class="mono index__go" aria-hidden="true">↗</span></button></li>
+          <li><button class="index__row" type="button" data-open="4" data-preview="assets/img/svr-paint-board-04-520.webp"><span class="mono">05</span><span class="index__t">Profile, cigarette</span><span class="mono">Paint-Boards</span><span class="mono index__medium">Paint on wood</span><span class="mono index__go" aria-hidden="true">↗</span></button></li>
+        </ol>
+        <img class="index__preview" data-index-preview alt="" aria-hidden="true" src="assets/img/svr-paint-board-01-520.webp" width="520" height="138">
       </div>
     </section>
 
-    <!-- ═════════════════════ 02 — Studio ═════════════════════ -->
+    <!-- ═════════════ 02 — Studio ═════════════ -->
     <section class="studio" id="studio" aria-labelledby="studio-title" data-section="studio">
+      <header class="chapter">
+        <p class="chapter__n mono" data-reveal>02 — Studio</p>
+        <h2 class="xxl" id="studio-title" data-drift="-1"><span class="xxl__w" data-wipe>Studio</span></h2>
+      </header>
+
       <div class="studio__grid">
         <figure class="studio__photo" data-reveal>
-          <div class="studio__photo-frame">
+          <div class="studio__frame">
             <img src="assets/img/svr-studio-macbook-1179.webp"
                  srcset="assets/img/svr-studio-macbook-700.webp 700w, assets/img/svr-studio-macbook-1179.webp 1179w"
-                 sizes="(min-width: 900px) 38vw, 100vw" width="1179" height="1922" loading="lazy" decoding="async"
+                 sizes="(min-width: 900px) 40vw, 100vw" width="1179" height="1922" loading="lazy" decoding="async"
                  alt="SVR's studio: two Paint-Board designs with black-and-white photographs, open on a laptop screen.">
           </div>
-          <figcaption class="label label--muted">Studio — on screen, August 2024</figcaption>
+          <figcaption class="mono">Studio — on screen — 2024.08</figcaption>
         </figure>
 
         <div class="studio__text">
-          <p class="chapter__index label" data-reveal><span class="chapter__n">02</span>Studio</p>
-          <h2 class="section-title" id="studio-title" data-reveal>From the screen <em>to the wood.</em></h2>
-          <p class="body studio__body" data-reveal>The compositions start on the computer — photographs laid onto the shape of a deck. Then everything is painted by hand, in black and white, on the raw wood.</p>
+          <p class="studio__quote serif-i" data-reveal>From the screen to the wood.</p>
+          <p class="body" data-reveal>The compositions start on the computer — photographs laid onto the shape of a deck. Then everything is painted by hand, in black and white, on the raw wood.</p>
           <figure class="studio__deck" data-reveal>
             <img src="assets/img/svr-paint-board-01-900.webp" srcset="assets/img/svr-paint-board-01-520.webp 520w, assets/img/svr-paint-board-01-900.webp 893w" sizes="(min-width: 900px) 46vw, 100vw" width="893" height="237" loading="lazy" decoding="async" alt="The finished Paint-Board: the gold grills, painted by hand on wood.">
-            <figcaption class="label label--muted">On wood — the finished board</figcaption>
+            <figcaption class="mono">On wood — the finished board</figcaption>
           </figure>
         </div>
       </div>
@@ -303,55 +306,66 @@
         <div class="wall__frame" data-reveal>
           <img data-wall-img src="assets/img/svr-exhibition-view-1179.webp"
                srcset="assets/img/svr-exhibition-view-720.webp 720w, assets/img/svr-exhibition-view-1179.webp 1179w"
-               sizes="(min-width: 900px) 92vw, 100vw" width="1179" height="965" loading="lazy" decoding="async"
+               sizes="100vw" width="1179" height="965" loading="lazy" decoding="async"
                alt="Exhibition view: SVR's booth with black walls and spotlights — two Paint-Boards, a large portrait on sheet music and further portraits on canvas.">
         </div>
-        <figcaption class="wall__caption" data-reveal>
-          <p class="wall__lead">Black walls. Focused light. <em>Faces at monumental scale.</em></p>
-          <p class="label label--muted">Exhibition view — 2025</p>
+        <figcaption class="wall__cap">
+          <p class="wall__big" data-reveal>Black walls.<br>Focused light.</p>
+          <p class="mono" data-reveal>Exhibition view — 2025.12</p>
         </figcaption>
       </figure>
+
+      <!-- Log: only dated facts -->
+      <div class="log" data-reveal>
+        <p class="log__head mono">Log</p>
+        <ol class="log__list">
+          <li><span class="mono">2024.08</span><span class="log__what">Studio</span><span class="log__txt">Paint-Boards drafted on screen, then painted by hand.</span></li>
+          <li><span class="mono">2025.12</span><span class="log__what">Exhibition</span><span class="log__txt">Black walls: Paint-Boards, sheet-music portraits, canvases.</span></li>
+          <li><span class="mono log__next">Next</span><span class="log__what">You?</span><span class="log__txt">Commissions, exhibitions, collaborations — <a href="#contact">booking</a>.</span></li>
+        </ol>
+      </div>
     </section>
 
-    <!-- ═════════════════════ 03 — Contact ═════════════════════ -->
-    <section class="contact" id="contact" aria-labelledby="contact-title" data-section="contact">
-      <p class="chapter__index label" data-reveal><span class="chapter__n">03</span><span id="contact-title">Contact</span></p>
-      <p class="contact__statement" data-reveal>Commissions, exhibitions,<br> <em>collaborations.</em></p>
-      <a class="contact__link link-arrow" href="https://www.instagram.com/svr__art/" target="_blank" rel="noopener" data-reveal>
-        <span class="label label--muted contact__via">Instagram</span>
-        <span class="contact__handle">@svr__art</span><span class="link-arrow__a link-arrow__a--up" aria-hidden="true">↗</span>
+    <!-- ═════════════ 03 — Booking ═════════════ -->
+    <section class="booking" id="contact" aria-labelledby="contact-title" data-section="contact">
+      <p class="chapter__n mono" data-reveal>03 — Booking</p>
+      <h2 class="xxl xxl--fill" id="contact-title" data-drift><span class="xxl__w" data-wipe>Booking</span></h2>
+      <p class="booking__what mono" data-reveal>Commissions · Exhibitions · Collabs</p>
+      <a class="booking__dm" href="https://www.instagram.com/svr__art/" target="_blank" rel="noopener" data-reveal>
+        <span class="booking__via mono">Write on Instagram</span>
+        <span class="booking__handle">DM @svr__art <span class="booking__arrow" aria-hidden="true">↗</span></span>
       </a>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <a class="logo-badge footer-logo" href="#top" aria-label="SVR ART — back to top">
+  <footer class="foot mono">
+    <a class="foot__logo logo-badge" href="#top" aria-label="SVR ART — back to top">
       <span class="logo-badge__oval"></span>
       <img class="logo-badge__letters" src="assets/img/svr-logo-letters-1081.webp" width="1081" height="667" alt="" loading="lazy">
     </a>
-    <span class="label label--muted">Contemporary artist — France</span>
-    <a class="label link-arrow" href="https://www.instagram.com/svr__art/" target="_blank" rel="noopener"><span>Instagram</span><span class="link-arrow__a link-arrow__a--up" aria-hidden="true">↗</span></a>
-    <button class="label link-arrow footer-replay" type="button" data-replay><span>Replay intro</span><span class="link-arrow__a" aria-hidden="true">↺</span></button>
-    <span class="label label--muted">© <span data-year>2026</span> · Concept</span>
+    <span>© <span data-year>2026</span> SVR ART</span>
+    <a href="https://www.instagram.com/svr__art/" target="_blank" rel="noopener">Instagram ↗</a>
+    <button type="button" data-replay>Replay intro ↺</button>
+    <a href="#top">Top ↑</a>
   </footer>
 
-  <!-- ═════════════════════ Viewer — one work at a time ═════════════════════ -->
+  <!-- ═════════════ Viewer — one work at a time ═════════════ -->
   <dialog class="viewer" aria-labelledby="viewer-title" data-viewer>
     <div class="viewer__stage" data-viewer-stage>
       <img class="viewer__img" data-viewer-img src="assets/img/svr-portrait-sheet-music-560.webp" width="873" height="1102" alt="">
     </div>
-    <p class="viewer__count label" aria-live="polite"><span data-viewer-index>01</span> <span class="viewer__total">/ <span data-viewer-total>05</span></span></p>
-    <div class="viewer__info" data-viewer-info>
-      <p class="label label--muted" data-viewer-series></p>
-      <h2 class="viewer__title" id="viewer-title" data-viewer-title></h2>
-      <p class="viewer__medium" data-viewer-medium></p>
-      <p class="viewer__note" data-viewer-note></p>
+    <p class="viewer__count mono" aria-live="polite"><span data-viewer-index>01</span><span class="viewer__total">/<span data-viewer-total>05</span></span></p>
+    <div class="viewer__info tag" data-viewer-info>
+      <h2 class="tag__title" id="viewer-title" data-viewer-title></h2>
+      <p class="tag__row mono"><span>Series</span><span data-viewer-series></span></p>
+      <p class="tag__row mono"><span>Medium</span><span data-viewer-medium></span></p>
+      <p class="viewer__note serif-i" data-viewer-note></p>
     </div>
     <div class="viewer__nav">
-      <button class="viewer__btn link-arrow link-arrow--back" type="button" data-viewer-prev aria-label="Previous work"><span class="link-arrow__a" aria-hidden="true">←</span><span>Prev</span></button>
-      <button class="viewer__btn link-arrow" type="button" data-viewer-next aria-label="Next work"><span>Next</span><span class="link-arrow__a" aria-hidden="true">→</span></button>
+      <button class="viewer__btn mono" type="button" data-viewer-prev aria-label="Previous work"><span aria-hidden="true">←</span> Prev</button>
+      <button class="viewer__btn mono" type="button" data-viewer-next aria-label="Next work">Next <span aria-hidden="true">→</span></button>
     </div>
-    <button class="viewer__close" type="button" data-viewer-close><span>Close</span><span class="viewer__x" aria-hidden="true"></span></button>
+    <button class="viewer__close mono" type="button" data-viewer-close>Close <span class="viewer__x" aria-hidden="true"></span></button>
   </dialog>
 </body>
 </html>

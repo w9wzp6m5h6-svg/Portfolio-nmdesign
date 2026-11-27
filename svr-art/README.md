@@ -1,7 +1,8 @@
-# SVR ART — the Mac is the portal
+# SVR ART — street / underground, executed clean
 
-Concept for a client presentation: the website of SVR, contemporary painter (France).
-The Mac is the portal, the logo is the signature, the works are the heart.
+Concept for a client presentation: the website of SVR, painter, 20, France.
+A new-generation artist: the site borrows from clips, record sleeves, concert posters and
+streetwear labels — and only ever shows his own images.
 
 Static site — plain HTML / CSS / JS, no dependency, no build step.
 
@@ -13,109 +14,86 @@ npm install && npm run svr                   # from the repository root → http
 cd svr-art && python3 -m http.server 4173    # → http://localhost:4173
 ```
 
-Use a local server rather than opening `index.html` directly (browsers block
-self-hosted fonts on `file://`).
+Review parameters: `?intro=1` full intro · `?intro=short` · `?intro=0` none ·
+`?intro=1&t=2.2` freeze the intro on a given second.
 
-### Review parameters
+## Direction
 
-| URL | Effect |
+- **Palette** — coal `#0B0B0B`, concrete `#2B2B29` / `#8C8B86`, paper `#ECEBE6`,
+  and one accent, signal red `#FF3B1D`, used only for what is live or chosen:
+  REC, the current chapter, the progress of the page, hovers, cuts, the title wipes.
+- **Type** — Archivo (variable, condensed to 62 % and heavy) for XXL titles that take the
+  room; Geist Mono for the interface voice (timecodes, labels, care tags); Bodoni Moda
+  italic — the family of his logo — for the few soft lines.
+- **Texture** — analog grain on the page, video noise and scan lines on the clip only,
+  a worn-ink mask on XXL titles (like a photocopied poster). Never on the works.
+- **Details** — crop marks around the clip, care-label tags for each work, a tracklist
+  index, a log with dated facts only.
+
+## The experience
+
+1. **Intro — the Mac is the portal** (`assets/js/intro.js`, 3.9 s desktop, 3.5 s phones):
+   letterbox, REC and timecode; the closed laptop, one push-in, the lid opens with weight;
+   the screen wakes on his original logo; the clip is already playing *inside* the screen
+   while the logo goes to the bar; the screen becomes the window, the bars open, a short flash.
+   Returning visitors (7 days) or Save-Data: a 1-second signature. Reduced motion: none.
+   Skip at any time (button, `Esc`, `Space`, `Enter`, ↓, wheel, swipe).
+2. **Hero** — the clip (16:9 on wide screens, a recomposed 9:16 on phones), the name XXL,
+   one line. Click / tap the clip to *cut* to the next shot; a Pause / Play button is
+   always there (it is the default state with reduced motion or Save-Data).
+3. **01 Works** — the painting on sheet music pulls back from the face to the whole work
+   (pinned), its series name huge behind it; the Paint-Boards slide in on a rack as you
+   scroll; the index works like the back of a record sleeve (hover: red row + print).
+   Every work opens in the viewer (`assets/js/viewer.js`): prev / next, arrows, swipe, Esc.
+4. **02 Studio** — his own photo of the designs on his MacBook, the finished board, the
+   exhibition wall, and a log of dated facts.
+5. **03 Booking** — commissions, exhibitions, collabs → Instagram DM (the only contact known).
+
+The bar is a playback bar for the page: logo, three chapters (the current one is marked in
+red), Instagram, and a red progress line.
+
+## The clip (`assets/video/`)
+
+Ten seconds cut from his own images only — the painting, the four boards, the studio
+photo, the exhibition view. Hard cuts on a ~100 BPM grid, slow pushes and pans, a
+contrasted grade, one flash and one glitch per loop. Built by `tools/render-clip.py`
+(Pillow + numpy + ffmpeg); re-run it when HD originals arrive:
+
+```bash
+python3 svr-art/tools/render-clip.py
+```
+
+| File | Size |
 | --- | --- |
-| `?intro=1` | play the full intro (removed from the address bar once read) |
-| `?intro=short` | the short signature entrance |
-| `?intro=0` | no intro |
-| `?intro=1&t=4.2` | freeze the intro on a given second |
-| `?intro=1&ts=0.25` | play the intro at quarter speed |
+| `svr-clip-wide.webm` / `.mp4` (960×540) | ~1.0 / 1.5 MB |
+| `svr-clip-tall.webm` / `.mp4` (540×960) | ~1.0 / 1.4 MB |
+| posters `.webp` | ~50 kB |
 
-## Who sees what
-
-| Visitor | Entrance |
-| --- | --- |
-| First visit | full intro (~8 s on desktop, ~5 s on phones), skippable at any moment |
-| Came back within 7 days, or *Save-Data* on | short signature (1.7 s): the logo appears, then settles in the navigation |
-| `prefers-reduced-motion` | no intro, the page simply appears |
-| No JavaScript | the full page, no intro |
-
-Skip: the *Skip intro →* button, `Esc`, `Space`, `Enter`, arrow down, scroll wheel or a swipe.
-The footer's *Replay intro* plays it again.
-
-## The intro (`assets/js/intro.js`)
-
-1. **Darkness** — a light comes up; a closed aluminium laptop in a studio (back light,
-   floor pool, contact shadow, reflection, grain). A specular light crosses the lid.
-2. **Opening** — the lid opens with a slight settle at the end, for weight.
-3. **The screen wakes** — soft black, the original oval, then the letters, one pass of light.
-4. **Entering** — the camera squares up to the screen. The real homepage then appears
-   *inside the screen* while the logo travels to its place in the navigation; the screen
-   grows until it is the browser window. No cut, no loading between scenes: the page you
-   land on is the one you saw in the screen.
-
-CSS 3D only (no WebGL, no model to download). The screen takes the proportions of the
-visitor's window, which is what makes the final hand-off exact. Phones and portrait
-tablets get a single aluminium-rimmed device instead of the laptop.
-
-## The site
-
-- **Cover** — the logo in the navigation, one dominant work (Paint-Board, gold grills),
-  one secondary work, a short editorial line, a lot of black.
-- **01 · Work — a private view** — the painting on sheet music starts as a close-up on the
-  face and pulls back to the whole work (the words printed on the scores appear as
-  annotations), then the Paint-Boards in an editorial rhythm: dominant, secondary, a
-  typographic pause, dominant, offset.
-- **Viewer** (`assets/js/viewer.js`) — every work opens alone on black, growing out of its
-  place on the page. Previous / next (buttons, ← →, swipe), `Esc` or *Close*, focus returns
-  to the work. Only the information actually known is shown (series, medium as visible,
-  a description of the image) — no invented title, year or dimensions.
-- **02 · Studio** — his own photo of the board designs on his MacBook, the finished board,
-  then the exhibition wall.
-- **03 · Contact** — Instagram (the only contact known so far).
+Only the cut that fits the screen is loaded; it pauses when it leaves the screen or the tab.
 
 ## Structure
 
 ```
 svr-art/
 ├── index.html
-├── assets/css/style.css   tokens, intro scene, layout, motion — one file, in page order
-├── assets/js/site.js      hero reveal, scroll scenes, header, active section, menu
+├── assets/css/style.css   tokens, intro, bar, hero, chapters, viewer — in page order
+├── assets/js/site.js      reveals, scroll scenes, bar, menu, index print
+├── assets/js/clip.js      the hero clip: cut, timecode, shot, pause, visibility
 ├── assets/js/intro.js     intro timeline (a pure function of time) + entrances
 ├── assets/js/viewer.js    the work viewer (native <dialog>)
-├── assets/fonts/          Bodoni Moda (+ italic), Instrument Sans — self-hosted, OFL
-└── assets/img/            logo, works, studio photo (WebP)
+├── assets/fonts/          Archivo (variable), Geist Mono, Bodoni Moda italic — OFL
+├── assets/img/            logo, works, studio photo, ink texture
+├── assets/video/          the clip (wide + tall), posters, shot list
+└── tools/render-clip.py   rebuilds the clip from the images
 ```
 
-## Identity
+## To get from the artist
 
-- **Logo** — `svr-logo-letters.webp` is extracted from the artist's own logo design
-  (perspective-corrected from a photo of his screen, upscaled, edges smoothed); not redrawn.
-  The oval is rebuilt with the measured proportions (1627 × 768) and grey (`#838383`).
-  **Ask the artist for the vector file** and drop it in with the same name.
-- **Palette** — deep black `#080808`, secondary black `#111111`, off-white `#F2F0EB`,
-  editorial grey `#858585`, a bronze `#A8895B` used only for tiny states (current section,
-  arrows on hover).
-- **Type** — Bodoni Moda (a Didone, the family of his logo) for identity and titles;
-  Instrument Sans for the interface; capitals with 0.22em tracking for micro-texts.
-
-## Images — to replace with the originals
-
-All images come from phone screenshots (Instagram posts and stories), so their resolution
-is limited; the viewer never enlarges them beyond their real size on desktop.
-Replace them with HD files **using the same names**:
-
-| File | Content | Recommended |
-| --- | --- | --- |
-| `svr-logo-letters.webp` / `-1081` | logo letters, transparent | vector (SVG) |
-| `svr-portrait-sheet-music-873.webp` / `-560` | painting on sheet music, no frame | 2000 px + 900 px tall |
-| `svr-paint-board-0X-900.webp` / `-520` | Paint-Boards, cut out, transparent | 1800 px + 900 px wide |
-| `svr-studio-macbook-1179.webp` / `-700` | studio photo | 1600 px + 800 px wide |
-| `svr-exhibition-view-1179.webp` / `-720` | exhibition view | 2400 px + 1200 px wide |
-
-If sizes change, update `width` / `height` / `srcset` / `data-w` / `data-h` in `index.html`.
-
-## To confirm with the artist
-
-- Titles, years, techniques and dimensions of each work (the viewer will show them as soon
-  as they are added as `data-title`, `data-medium`, … on each work).
-- Copy written from what is visible in the work and his posts: "Faces the street already
-  knows", "The music stays under the skin", "Black and white. Raw wood. Old scores.",
-  "From the screen to the wood" and its paragraph (inferred from his August 2024 studio
-  story), "Exhibition view — 2025".
-- An e-mail address for commissions, if he wants one next to Instagram.
+- HD originals of the works and photos (same file names), the logo as a vector file,
+  and — if there are any — real videos of him at work: they would replace the cut-up clip.
+- Titles, years, techniques, dimensions of each work (the viewer shows them as soon as
+  they are added as `data-*` on each work).
+- More dated events for the log, and an e-mail for booking if he wants one.
+- Copy to confirm: "Faces the street already knows", the board descriptions,
+  "From the screen to the wood" and its paragraph (inferred from his August 2024 story),
+  the 2025.12 exhibition date (from his December 2025 story).

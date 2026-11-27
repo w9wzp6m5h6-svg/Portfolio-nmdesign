@@ -58,7 +58,6 @@
     fields.total.textContent = pad(total);
     fields.series.textContent = w.series || '';
     fields.title.textContent = w.title || '';
-    fields.title.innerHTML = fields.title.innerHTML.replace('-', '<span class="hy">-</span>');
     fields.medium.textContent = w.medium || '';
     fields.note.textContent = w.note || '';
     // keep the neighbours warm

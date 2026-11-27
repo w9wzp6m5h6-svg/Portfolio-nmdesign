@@ -1,0 +1,88 @@
+{
+ "wide": {
+  "duration": 10.042,
+  "shots": [
+   {
+    "t": 0.0,
+    "label": "Smoke"
+   },
+   {
+    "t": 1.292,
+    "label": "Gold grills"
+   },
+   {
+    "t": 2.375,
+    "label": "Gold grills"
+   },
+   {
+    "t": 2.917,
+    "label": "Studio"
+   },
+   {
+    "t": 4.208,
+    "label": "Tongue"
+   },
+   {
+    "t": 5.292,
+    "label": "The wall"
+   },
+   {
+    "t": 6.583,
+    "label": "Hands"
+   },
+   {
+    "t": 7.125,
+    "label": "Profile"
+   },
+   {
+    "t": 8.208,
+    "label": "Grin"
+   },
+   {
+    "t": 8.75,
+    "label": "Sheet music"
+   }
+  ]
+ },
+ "tall": {
+  "duration": 10.042,
+  "shots": [
+   {
+    "t": 0.0,
+    "label": "Smoke"
+   },
+   {
+    "t": 1.292,
+    "label": "Gold grills"
+   },
+   {
+    "t": 2.375,
+    "label": "Studio"
+   },
+   {
+    "t": 3.667,
+    "label": "Tongue"
+   },
+   {
+    "t": 4.75,
+    "label": "The wall"
+   },
+   {
+    "t": 6.042,
+    "label": "Hands"
+   },
+   {
+    "t": 6.583,
+    "label": "Profile"
+   },
+   {
+    "t": 7.667,
+    "label": "Grin"
+   },
+   {
+    "t": 8.75,
+    "label": "Sheet music"
+   }
+  ]
+ }
+}
