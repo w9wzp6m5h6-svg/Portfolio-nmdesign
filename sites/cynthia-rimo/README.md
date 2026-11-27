@@ -29,6 +29,8 @@ node sites/cynthia-rimo/qa/compare.cjs <original.html> sites/cynthia-rimo/index.
 - **Typographie** : Archivo condensé (titres) et Bodoni Moda italique, sur une échelle unique (`--t-hero`, `--t-h2`, `--t-statement`, `--t-h3`, `--t-row`, `--t-lead`, labels à 12 px et 0,22 em). Les tailles en ligne dans le HTML ont été retirées.
 - **Grille** : une marge (`--pad`, conteneur de 1 680 px), une gouttière, un rythme vertical (`--sec`, `--head`), et une grille de 12 colonnes pour le manifeste (déclarations à gauche, textes décalés) et pour Visiter (titre et informations en deux colonnes).
 - **Mouvement** : les courbes du portfolio NM (`--ease-out`, `--ease-in-out`, `--ease-soft`) et des durées partagées. Un seul système de révélation, joué une fois : montée et fondu, montée masquée pour les titres, très léger zoom sur les photos. Les trois mécanismes concurrents du hero et les animations pilotées par le défilement ont été supprimés.
+- **Continuité** : en défilant, la photo du hero se retire légèrement et devient une épreuve posée sur le papier (parallaxe et échelle, uniquement des transformations composées). On passe de l’image immersive au mur de la galerie.
+- **Repères** : le menu signale en or la section où l’on se trouve.
 
 ## Galerie 3D
 
@@ -36,8 +38,8 @@ Le principe (anneau 3D, ressort critique, glisser, inertie, molette, clavier) es
 
 - **Une vraie salle** : le mur naît du fond de page, la lumière zénithale reste douce et le sol rejoint la section suivante, sans aucune rupture. L’horizon se place sous les œuvres.
 - **Poids visuel égal** : chaque œuvre a la même surface, bornée en hauteur et en largeur, sur une ligne des regards commune. Les formats extrêmes (120 × 40, 40 × 120) ne paraissent plus minuscules.
-- **Profondeur lumineuse** : les œuvres latérales se fondent dans le mur au lieu d’être assombries. Elles n’ont plus de cadre ajouté (certaines photos ont déjà le leur), seulement une tranche fine et une ombre portée douce.
-- **Repères** : flèches sur la ligne des regards, légende posée au sol et alignée sur la grille. La légende affiche immédiatement l’œuvre de destination.
+- **Profondeur lumineuse** : les œuvres latérales se fondent dans le mur au lieu d’être assombries. Elles n’ont plus de cadre ajouté (certaines photos ont déjà le leur), seulement une tranche fine et une ombre portée douce. Un reflet très discret sur le sol poli, calculé par rapport à la jonction mur/sol, ancre les œuvres dans l’espace (Chrome, Safari, Edge ; ignoré ailleurs).
+- **Repères** : flèches sur la ligne des regards, légende posée au sol et alignée sur la grille. La légende affiche immédiatement l’œuvre de destination. Le curseur loupe signale l’œuvre de face, qui ouvre la fiche.
 - **Fiche** : l’image voyage de l’œuvre jusqu’à la fiche (FLIP, desktop). Sur mobile, la fiche monte comme une feuille depuis le bas. La salle suit l’œuvre consultée : à la fermeture (instantanée, 0,22 s), on se retrouve devant elle. Cela vaut aussi depuis le Portfolio et la grille filtrée.
 - **Arrivée** : à la première apparition, l’anneau glisse doucement jusqu’à la première œuvre.
 - **Mouvement réduit** : pas de glissement, positionnement direct.
@@ -51,6 +53,7 @@ Le principe (anneau 3D, ressort critique, glisser, inertie, molette, clavier) es
 - La barre de progression de la salle dépassait 100 % entre la 16ᵉ et la 1ʳᵉ œuvre.
 - Ouvrir une œuvre depuis le Portfolio ne faisait pas tourner la salle vers elle.
 - En tablette portrait ou sur écran presque carré, le titre se superposait au nom peint dans le tableau du hero.
+- Dans la grille « Trouver mon œuvre », les formats très verticaux agrandissaient leur case et décalaient la rangée.
 
 ## Responsive
 
