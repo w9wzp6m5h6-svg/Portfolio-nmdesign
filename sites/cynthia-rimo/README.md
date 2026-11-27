@@ -67,3 +67,9 @@ Tout le style est dans **un seul bloc** `<style id="remaster">` en tête du fich
 Les retouches JavaScript sont commentées `remaster` dans le code : FLIP de la fiche, synchronisation salle ↔ fiche, en-tête clair ou encre, géométrie de la salle.
 
 > Le fichier d’origine ne contient pas de vidéo : le hero est l’image de couverture, traitée comme telle (cadrage, voiles de lecture, entrée cinématique, parallaxe légère).
+
+## Mise en ligne (GitHub Pages)
+
+`docs/index.html` est la copie publiée du site : elle doit rester identique à `sites/cynthia-rimo/index.html`. Après chaque modification, recopie le fichier (git ne stocke qu’une fois deux fichiers identiques). `docs/.nojekyll` désactive le traitement Jekyll.
+
+Activation, une seule fois : *Settings → Pages → Build and deployment → Deploy from a branch*, choisir la branche du site et le dossier `/docs`. Le site est alors servi à `https://w9wzp6m5h6-svg.github.io/Portfolio-nmdesign/`.
