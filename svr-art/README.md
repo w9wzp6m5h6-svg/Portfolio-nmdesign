@@ -19,14 +19,18 @@ Review parameters: `?intro=1` full intro · `?intro=short` · `?intro=0` none ·
 
 ## Direction
 
-- **Palette** — coal `#0B0B0B`, concrete `#2B2B29` / `#8C8B86`, paper `#ECEBE6`,
-  and one accent, signal red `#FF3B1D`, used only for what is live or chosen:
-  REC, the current chapter, the progress of the page, hovers, cuts, the title wipes.
+- **Palette** — the page is paper: off-white beige `#EDE8DE`, ink `#141310`, warm
+  concrete grey `#625E56`; one accent, signal red `#FF3B1D` (fills) / `#C8290F` (red text,
+  readable on paper), used only for what is live or chosen: REC, the current chapter,
+  the progress of the page, hovers, cuts, the title wipes. The intro stays a dark studio,
+  and the clip stays dark: a black screen printed on paper. All colours are tokens at the
+  top of `style.css` (`--bg`, `--fg`, `--muted`, `--line`, `--signal`, `--signal-ink`).
 - **Type** — Archivo (variable, condensed to 62 % and heavy) for XXL titles that take the
   room; Geist Mono for the interface voice (timecodes, labels, care tags); Bodoni Moda
   italic — the family of his logo — for the few soft lines.
-- **Texture** — analog grain on the page, video noise and scan lines on the clip only,
-  a worn-ink mask on XXL titles (like a photocopied poster). Never on the works.
+- **Texture** — paper grain on the page, video noise and scan lines on the clip only,
+  a worn-ink mask on XXL titles (like a photocopied poster), a thin paper cut-out edge
+  where the name crosses the clip. Never on the works.
 - **Details** — crop marks around the clip, care-label tags for each work, a tracklist
   index, a log with dated facts only.
 
