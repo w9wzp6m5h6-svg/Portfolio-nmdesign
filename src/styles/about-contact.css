@@ -19,33 +19,33 @@
 .about__text { grid-column: 8 / 13; display: grid; gap: clamp(32px, 4vw, 56px); padding-top: clamp(8px, 2vw, 32px); }
 .about__story { display: grid; gap: 1.1em; color: var(--fg-2); max-width: 46ch; }
 .about__story p:first-child { color: var(--fg); font-size: var(--fs-lead); line-height: 1.35; letter-spacing: -0.015em; }
-.about__statement { font-size: var(--fs-h3); font-stretch: 112%; font-weight: 700; line-height: 1.05; letter-spacing: -0.035em; text-wrap: balance; }
-.about__statement em { font-family: var(--f-serif); font-style: italic; font-weight: 400; font-stretch: 100%; letter-spacing: -0.02em; }
+.about__statement { font-size: var(--fs-h3); font-family: var(--f-display); font-weight: var(--w-display); line-height: var(--lh-h3); letter-spacing: var(--ls-h3); text-wrap: balance; }
+.about__statement em { font-family: var(--f-display); font-weight: var(--w-accent); letter-spacing: -0.02em; }
 
 /* Ce que le terrain m'a appris : les mots s'allument au défilement -------- */
 .about__skills { padding: 0 var(--margin); margin-top: var(--section); }
 .about__skills-k { color: var(--fg-3); margin-bottom: 20px; }
 .about__skills-list {
   display: flex; flex-wrap: wrap; gap: 0.1em 0.5em;
-  font-size: clamp(1.6rem, 0.8rem + 2.6vw, 3.6rem); font-stretch: 115%; font-weight: 740;
+  font-size: clamp(1.6rem, 0.8rem + 2.6vw, 3.6rem); font-family: var(--f-display); font-weight: var(--w-display);
   letter-spacing: -0.045em; line-height: 1.02;
 }
 .about__skills-list li { color: var(--silver); transition: color var(--d-hover) var(--ease-soft); }
 .about__skills-list li:not(:last-child)::after { content: ' ·'; color: var(--silver); }
 .about__skills-list li.is-lit { color: var(--fg); }
-.about__skills-list li.is-lit:nth-child(3n) { font-family: var(--f-serif); font-style: italic; font-weight: 400; font-stretch: 100%; letter-spacing: -0.03em; }
+.about__skills-list li.is-lit:nth-child(3n) { font-family: var(--f-display); font-weight: var(--w-accent); letter-spacing: -0.03em; }
 
 /* Parcours ---------------------------------------------------------------- */
 .journey { padding: 0 var(--margin); margin-top: var(--section); }
 .journey__head { display: grid; gap: 18px; margin-bottom: clamp(56px, 8vw, 120px); }
 .journey__k { color: var(--fg-3); }
-.journey__title { font-size: var(--fs-h2); font-stretch: 112%; font-weight: 720; line-height: 0.95; letter-spacing: -0.04em; max-width: 18ch; }
-.journey__title em { font-family: var(--f-serif); font-style: italic; font-weight: 400; font-stretch: 100%; letter-spacing: -0.03em; }
+.journey__title { font-size: var(--fs-h2); font-family: var(--f-display); font-weight: var(--w-display); line-height: var(--lh-h2); letter-spacing: var(--ls-h2); max-width: 18ch; }
+.journey__title em { font-family: var(--f-display); font-weight: var(--w-accent); letter-spacing: -0.03em; }
 .journey__layout { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gutter); }
 .journey__aside { grid-column: 1 / 5; position: sticky; top: calc(var(--header-h) + 8vh); align-self: start; display: grid; grid-template-columns: auto 1fr; align-items: end; gap: 6px 20px; }
 .journey__num {
   grid-row: 1 / 3; display: block; overflow: hidden; height: 0.84em;
-  font-size: clamp(4.5rem, 2.4rem + 6vw, 9.5rem); font-stretch: 115%; font-weight: 780; line-height: 0.84; letter-spacing: -0.06em;
+  font-size: clamp(4.5rem, 2.4rem + 6vw, 9.5rem); font-family: var(--f-display); font-weight: var(--w-display); line-height: 0.84; letter-spacing: -0.06em;
 }
 .journey__num-inner { display: block; }
 .journey__bar { display: block; height: 3px; border-radius: 3px; background: var(--tint-2); align-self: end; margin-bottom: 0.9em; overflow: hidden; }
@@ -55,7 +55,7 @@
 .chapter { display: grid; gap: 12px; max-width: 56ch; opacity: 0.3; transition: opacity 0.8s var(--ease-out); }
 .chapter.is-active { opacity: 1; }
 .chapter__k { color: var(--fg-3); }
-.chapter__t { font-size: var(--fs-h3); font-stretch: 112%; font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; }
+.chapter__t { font-size: var(--fs-h3); font-family: var(--f-display); font-weight: var(--w-display); letter-spacing: var(--ls-h3); line-height: var(--lh-h3); }
 .chapter__d { color: var(--fg-2); }
 .chapter__tags { color: var(--fg-3); }
 
@@ -83,15 +83,15 @@
 }
 .contact__mark {
   position: absolute; z-index: -1; right: var(--margin); bottom: clamp(56px, 9vw, 140px);
-  width: min(34vw, 520px); overflow: visible; touch-action: pan-y;
+  width: min(24vw, 380px); overflow: visible; touch-action: pan-y; opacity: 0.55;
 }
 .contact__line { stroke: currentColor; stroke-width: 1.6; stroke-linejoin: round; stroke-linecap: round; fill: none; }
 .contact__kicker { color: var(--fg-3); }
 .contact__title {
-  font-size: var(--fs-giant); font-stretch: 115%; font-weight: 780;
+  font-size: var(--fs-giant); font-family: var(--f-display); font-weight: var(--w-display);
   line-height: 0.86; letter-spacing: -0.055em; max-width: 9.5em; text-wrap: balance;
 }
-.contact__title em { display: block; font-family: var(--f-serif); font-style: italic; font-weight: 400; font-stretch: 100%; letter-spacing: -0.035em; color: var(--fg-3); }
+.contact__title em { display: block; font-family: var(--f-display); font-weight: var(--w-accent); letter-spacing: -0.035em; color: var(--fg-3); }
 .contact__row { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: clamp(32px, 6vw, 96px); margin-top: clamp(16px, 3vw, 40px); }
 /* le bouton rond, magnétique */
 .contact__orb {
@@ -102,18 +102,18 @@
   overflow: hidden; isolation: isolate;
   transition: transform 0.8s var(--ease-out);
 }
-.contact__orb::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--metal); transform: scale(0); border-radius: 50%; transition: transform 0.7s var(--ease-out); }
+.contact__orb::before { content: ''; position: absolute; inset: 0; z-index: -1; background: var(--white); transform: scale(0); border-radius: 50%; transition: transform 0.7s var(--ease-out); }
 @media (hover: hover) { .contact__orb:hover::before { transform: scale(1); } }
 .contact__orb-in { display: block; pointer-events: none; }
 .contact__side { display: grid; gap: 28px; max-width: 760px; }
 .contact__intro { color: var(--fg-2); font-size: var(--fs-lead); line-height: 1.35; letter-spacing: -0.015em; max-width: 40ch; }
 .contact__note { color: var(--fg-3); max-width: 46ch; font-size: var(--fs-small); }
 .contact__list { display: grid; gap: 6px; }
-.contact__line-item { display: grid; grid-template-columns: minmax(0, 12em) minmax(0, 1fr) auto; gap: 8px var(--gutter); align-items: center; padding: 6px 0; }
+.contact__line-item { display: grid; grid-template-columns: minmax(0, 9em) minmax(0, 1fr) auto; gap: 8px var(--gutter); align-items: center; padding: 6px 0; }
 .contact__label { color: var(--fg-3); }
 .contact__value {
   justify-self: start;
-  font-size: clamp(1.25rem, 1rem + 1vw, 2rem); font-stretch: 105%; font-weight: 600; letter-spacing: -0.03em; line-height: 1.15; overflow-wrap: anywhere;
+  font-size: clamp(1.2rem, 0.85rem + 1vw, 1.75rem); font-family: var(--f-display); font-weight: var(--w-display); letter-spacing: -0.025em; line-height: 1.15; overflow-wrap: break-word;
   background: linear-gradient(currentColor, currentColor) 0 100% / 0 2px no-repeat;
   transition: background-size var(--d-hover) var(--ease-out);
 }

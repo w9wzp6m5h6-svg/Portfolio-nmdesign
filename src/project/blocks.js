@@ -3,9 +3,9 @@
  * so the same system produces six distinct layouts.
  */
 import { esc } from '../core/escape.js';
-import { asset } from '../core/asset.js';
+import { asset, pageUrl } from '../core/asset.js';
 
-const USES_3D_ASSETS = ['stride', 'vanta', 'opale', 'rooms'];
+const USES_3D_ASSETS = ['stride', 'vanta'];
 
 export function figure(img, { cls = '', sizes = '100vw', eager = false } = {}) {
   return `<figure class="p-figure ${cls}" data-css="aspect-ratio:${img.ratio}" data-parallax>
@@ -122,7 +122,56 @@ const renderers = {
           <button class="btn p-site__go" type="button" data-site-launch="${asset(b.src)}" data-site-title="Site de Cynthia Rimo — L’Empreinte, aperçu interactif">Explorer le site en direct<span class="btn__arrow" aria-hidden="true">→</span></button>
         </div>
       </div>
-      <p class="p-site__note label">Chargé seulement si vous le demandez, dans un cadre isolé qui ne communique pas avec ce portfolio. Le site charge ses polices depuis Google Fonts.</p>
+      <p class="p-site__note label label--plain">Chargé seulement si vous le demandez, dans un cadre isolé qui ne communique pas avec ce portfolio. Le site charge ses polices depuis Google Fonts.</p>
+    </section>`,
+
+  /** ÉLAN : la canette 3D, pilotable (src/concepts/elan/experience.js) */
+  can: (b) => `
+    <section class="p-block p-live p-can" data-live="can">
+      <div class="p-live__head" data-reveal>
+        <div><h3 class="p-live__title">${esc(b.title)}</h3><p class="p-live__text">${esc(b.text)}</p></div>
+      </div>
+      <div class="p-can__xp" data-can-root>
+        <div class="p-can__stage">
+          <canvas class="p-can__canvas" data-can-canvas tabindex="0" aria-label="Canette ÉLAN en 3D. Glissez pour la faire tourner ; au clavier : flèches, plus et moins pour zoomer, zéro pour revenir de face."></canvas>
+          <img class="p-can__fallback" data-can-fallback hidden src="${asset('media/works/elan/elan_can_sanguine-800.webp')}" alt="Canette ÉLAN Orange sanguine" width="800" height="1000" loading="lazy" />
+        </div>
+        <div class="p-can__side" aria-live="polite">
+          <p class="label" data-can-field="index"></p>
+          <h4 class="p-can__name" data-can-field="name"></h4>
+          <p class="p-can__notes" data-can-field="notes"></p>
+          <div class="p-can__variants" data-can-variants role="group" aria-label="Saveurs"></div>
+          <div class="p-can__tools" role="group" aria-label="Caméra">
+            <button type="button" class="chip" data-can-tool="front">Face</button>
+            <button type="button" class="chip" data-can-tool="side">Profil</button>
+            <button type="button" class="chip" data-can-tool="back">Dos</button>
+            <button type="button" class="chip" data-can-tool="top">Dessus</button>
+            <button type="button" class="chip chip--icon" data-can-tool="zoom-out" aria-label="Dézoomer">−</button>
+            <button type="button" class="chip chip--icon" data-can-tool="zoom-in" aria-label="Zoomer">+</button>
+          </div>
+          <p class="p-can__hint label">Glisser · pincer · double-clic</p>
+        </div>
+      </div>
+    </section>`,
+
+  /** PORTANT : le portant de vêtements (src/concepts/portant/rack.js) */
+  rack: (b) => `
+    <section class="p-block p-live p-rack" data-live="rack">
+      <div class="p-live__head" data-reveal>
+        <div><h3 class="p-live__title">${esc(b.title)}</h3><p class="p-live__text">${esc(b.text)}</p></div>
+      </div>
+      <div class="p-rack__xp" data-rack-root data-rack-compact></div>
+    </section>`,
+
+  /** Lien vers le site complet du concept (page du portfolio) */
+  concept: (b) => `
+    <section class="p-block">
+      <a class="p-concept" href="${pageUrl(b.href)}" data-reveal>
+        <span class="p-concept__k label">${esc(b.kicker || 'Le site de la marque')}</span>
+        <span class="p-concept__title">${esc(b.title)}</span>
+        <span class="p-concept__text">${esc(b.text)}</span>
+        <span class="btn">Ouvrir le site<span class="btn__arrow" aria-hidden="true">↗</span></span>
+      </a>
     </section>`,
 
   captures: (b) => (b.items?.length
@@ -173,7 +222,7 @@ export function renderProject(p, next) {
           <span class="p-next__title">${esc(next.title)}</span>
           <span class="p-next__thumb"><img src="${next.cover.src.replace(/-\d+\.webp$/, '-800.webp')}" alt="" loading="lazy" decoding="async" /></span>
         </a>
-        <p class="p-next__credits label">${p.real ? 'Projet réel, réalisé pour L’Empreinte — Art Gallery (Cynthia Rimo), à Valbonne.' : `${esc(p.status)}. Concept personnel de Noah Milsztajn, pas une commande client.`}${USES_3D_ASSETS.includes(p.slug) ? ' Modèles 3D : Khronos glTF Sample Assets (licences en pied de page).' : ''}</p>
+        <p class="p-next__credits label label--plain">${p.real ? 'Projet réel, réalisé pour L’Empreinte — Art Gallery (Cynthia Rimo), à Valbonne.' : `${esc(p.status)}. Concept personnel de Noah Milsztajn, pas une commande client.`}${USES_3D_ASSETS.includes(p.slug) ? ' Modèles 3D : Khronos glTF Sample Assets (licences en pied de page).' : ''}</p>
       </footer>
     </article>`;
 }

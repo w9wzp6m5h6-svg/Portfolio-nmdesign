@@ -1,10 +1,10 @@
 /**
- * Showcase des projets — le cœur du portfolio, sur fond sombre.
+ * Showcase des projets — le cœur du portfolio, sur l'ivoire.
  * Chaque projet est une scène avec sa propre mise en scène (data showcase.layout) :
  *   live    → le vrai site (L'Empreinte), explorable en direct dans la scène
- *   object  → l'objet en grand, l'écran du site flotte devant (Stride, Opale)
- *   cinema  → format cinéma 21:9, pellicule de vues (Vanta)
- *   space   → portrait d'espace, l'interface en surimpression (Quiet Rooms)
+ *   object  → l'objet en grand, l'écran du site flotte devant (Stride)
+ *   cinema  → format cinéma 21:9, pellicule de vues (PORTANT, Vanta)
+ *   space   → portrait vertical, l'interface en surimpression (ÉLAN)
  *   art     → les œuvres, une à une (Afterimage)
  *   signal  → le signal génératif d'Oscillo, en direct, piloté par le pointeur
  * Interactions : profondeur au curseur (couches à vitesses différentes), vues à

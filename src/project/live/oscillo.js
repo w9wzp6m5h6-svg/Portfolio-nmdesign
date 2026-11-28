@@ -16,7 +16,7 @@ function getMask(text, w, h, fontFamily) {
   c.width = w; c.height = h;
   const g = c.getContext('2d', { willReadFrequently: true });
   let size = h * 0.8;
-  const setFont = () => { g.font = `800 expanded ${size}px ${fontFamily}`; if ('fontStretch' in g) g.fontStretch = 'expanded'; };
+  const setFont = () => { g.font = `700 ${size}px ${fontFamily}`; };
   setFont();
   const m = g.measureText(text);
   size *= Math.min(1, (w * 0.94) / Math.max(m.width, 1));
@@ -42,7 +42,7 @@ export function drawSignalMark(ctx, x, y, w, h, o) {
   const text = (o.text || 'OSCILLO').toUpperCase().slice(0, 14);
   const res = Math.max(1, Math.round(w / 360));            // mask sampling step
   const mw = Math.round(w / res); const mh = Math.round(h / res);
-  const { mask } = getMask(text, mw, mh, o.fontFamily || '"Archivo Variable", Archivo, sans-serif');
+  const { mask } = getMask(text, mw, mh, o.fontFamily || '"Space Grotesk Variable", "Space Grotesk", sans-serif');
   const rows = o.rows || 46;
   const freq = o.freq ?? 0.5;
   const amp = o.amp ?? 0.5;
@@ -125,8 +125,7 @@ export function mountOscillo(block) {
       color: OSC_COLORS.fg, accent: OSC_COLORS.accent, rows: W < 700 ? 30 : 46,
     });
     ctx.fillStyle = OSC_COLORS.fg;
-    ctx.font = `${Math.round(W * 0.012 + 8)}px "Archivo Variable", system-ui, sans-serif`;
-    ctx.fontStretch = "condensed";
+    ctx.font = `500 ${Math.round(W * 0.011 + 7)}px "Inter Variable", system-ui, sans-serif`;
     ctx.textBaseline = 'top';
     ctx.fillText(`F ${(20 + state.freq * 180).toFixed(0)} HZ   A ${(state.amp * 100).toFixed(0)}%`, pad, pad * 0.6);
     ctx.textAlign = 'right';

@@ -59,15 +59,15 @@ export function initHero() {
   document.body.append(probe);
   const measure = (el) => {
     const cs = getComputedStyle(el.querySelector('em') || el);
-    Object.assign(probe.style, { fontFamily: cs.fontFamily, fontWeight: cs.fontWeight, fontStretch: cs.fontStretch, fontStyle: cs.fontStyle, letterSpacing: `${parseFloat(cs.letterSpacing) / parseFloat(cs.fontSize) || 0}em` });
+    Object.assign(probe.style, { fontFamily: cs.fontFamily, fontWeight: cs.fontWeight, fontStyle: cs.fontStyle, letterSpacing: `${parseFloat(cs.letterSpacing) / parseFloat(cs.fontSize) || 0}em` });
     probe.textContent = el.textContent;
     return probe.getBoundingClientRect().width;
   };
   function fit() {
     const available = title.getBoundingClientRect().width;
-    const widest = Math.max(...words.map(measure));
+    const widest = Math.max(...words.filter((w) => w.offsetParent !== null).map(measure));
     if (!(widest > 0) || !(available > 0)) return;
-    const size = Math.min((100 * available) / widest, window.innerHeight * 0.16);
+    const size = Math.min((100 * available) / widest, window.innerHeight * (window.innerWidth > 900 ? 0.17 : 0.16));
     title.style.fontSize = `${Math.floor(size * 0.98)}px`;
   }
   fit();

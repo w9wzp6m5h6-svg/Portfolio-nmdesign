@@ -2,7 +2,7 @@
 
 Portfolio de Noah Milsztajn, designer numérique autodidacte : direction artistique, design d'interface, expériences web, 3D et interaction. Site entièrement en français.
 
-**Stack :** Vite · JavaScript (ES modules) · Three.js · GSAP + ScrollTrigger · Lenis · polices auto‑hébergées (Fontsource).
+**Stack :** Vite · JavaScript (ES modules) · Three.js · GSAP + ScrollTrigger · Lenis · Space Grotesk + Inter auto‑hébergées (Fontsource).
 
 ```bash
 npm install
@@ -64,21 +64,36 @@ Rotation, zoom, X‑Ray, éclairage et version mobile fonctionnent avec n'import
 
 ## Direction artistique
 
-- **Deux tons, un seul système** : ivoire `#f2f1ed` et encre `#0d0d0e`. Les sections portent `data-tone="light"` ou `data-tone="dark"` ; en défilant, la page bascule entièrement de ton (fond et texte, transition de 0,9 s déclenchée à 55 % de l'écran, `src/ui/tone.js`). Les nuances secondaires dérivent de la couleur courante (`color-mix`), les contrastes AA sont mesurés dans les deux tons. Aucun filet ni cadre décoratif : la structure vient de l'espace, de la taille et du ton.
-- **Deux familles, pas une de plus** : Archivo (variable, chasse 62–125 % et graisse 100–900 ; titres très larges, texte, libellés en chasse étroite) et Instrument Serif italique (le mot qui compte dans chaque titre). Plus de mono. Inter Tight n'est chargé que pour le spécimen typographique du projet Opale.
-- **La couleur vient des projets** : l'interface reste ivoire / encre ; chaque scène et chaque étude de cas a sa palette.
-- **Monogramme NM** (logo original, inchangé) : il se trace dans l'en-tête au chargement et au survol, et revient en grand, discret, à la fin du contact.
-- **Entrée immédiate** : plus d'intro. Le hero arrive en ~1,2 s sans jamais bloquer le défilement : titre « Des sites qui marquent *les esprits.* », et une bobine des projets (défilement automatique, pause au survol, au focus, hors écran ; boutons précédent / suivant / pause ; inclinaison et reflet au curseur).
-- **Showcase** : une section sombre où chaque projet a sa mise en scène (`showcase.layout` dans `projects.js`) — `live` (le vrai site de L'Empreinte, explorable sur place), `object` (rendu + écran du site flottant devant), `cinema` (pleine largeur 21:9), `space` (portrait vertical), `art` (œuvres), `signal` (Oscillo : le signal se dessine en direct et réagit au curseur). Vues à parcourir sur chaque scène, profondeur au curseur, apparition en rideau, index flottant des projets sur grand écran, transition partagée de l'image vers l'étude de cas.
-- **Studio et services** : une phrase avec le portrait glissé dans le texte, puis quatre grandes lignes de services ; au survol, la ligne avance, les autres s'effacent, le texte apparaît et son pictogramme se trace.
-- **Contact** : conclusion sombre, titre géant, bouton rond magnétique « Démarrer un projet » et coordonnées en grand.
-- **Menu** : sombre, plein écran, grands libellés (la page courante en italique), bouton projet et contact en pied. L'en-tête se masque en descendant et revient en remontant.
-- **Mouvement** : courbes et durées partagées (`src/styles/tokens.css`) ; tout est coupé ou réduit avec `prefers-reduced-motion`.
+- **Base claire** : ivoire `#f2f1ed`, encre `#0d0d0e`, gris dérivés de la couleur du texte (`color-mix`). Le noir est réservé au texte, aux boutons et à la conclusion (contact, pied de page). Les couleurs fortes viennent uniquement des projets. Pas de dégradés décoratifs, pas de verre dépoli, pas d'ombres systématiques.
+- **Deux familles, pas une de plus** (`src/styles/tokens.css`) :
+  - **Space Grotesk** (300–700) : titres, accroches, grands textes, chiffres. L'accent d'un titre ne change jamais de police : il passe en graisse légère (300) et en gris (« Pas des sites. »).
+  - **Inter** (tailles optiques, 100–900) : texte, navigation, boutons, libellés. Les libellés (dates, catégories, numéros, statuts) sont en petites capitales Inter, approche +0,08 em.
+  - Échelle unique en variables : `--fs-label` 12 px · `--fs-small` 14 · `--fs-body` 16→17 · `--fs-lead` 18→24 · `--fs-h3` 22→32 · `--fs-h2` 36→72 · `--fs-mega` (titres de page) · `--fs-h1` / `--fs-giant` (accueil, conclusion). Graisses (`--w-display` 500, `--w-accent` 300), approches (`--ls-*`) et interlignages (`--lh-*`) sont des variables, réutilisées par les classes `.label`, `.t-h2`, `.t-h3`, `.t-lead`, `.display`.
+  - Chaque projet a un traitement de titre dans ces deux familles (`.p-title[data-style]`) : `can` (ÉLAN, capitales très grasses), `fashion` (PORTANT, capitales régulières espacées), `gallery` (L'Empreinte, graisse légère), `display`, `mono` (Inter fin), `wide`.
+- **Accueil** : titre monumental sur toute la largeur (« Pas des sites. / Des expériences. »), identité et métier en tête, bobine des projets en élément visuel, arrivée en ~1,2 s sans jamais bloquer le défilement.
+- **Showcase** : une mise en scène par projet (`showcase.layout`) — `live` (le vrai site de L'Empreinte), `space` (ÉLAN, portrait), `cinema` (PORTANT, Vanta), `object` (Stride), `art`, `signal` (Oscillo en direct).
+- **Mouvement** : courbes et durées partagées ; tout est coupé ou réduit avec `prefers-reduced-motion`.
+
+## Les deux concepts phares
+
+### ÉLAN — canette 3D (`concepts/elan/`, `src/concepts/elan/`)
+Marque fictive de boisson énergisante. La canette est **construite en code** avec Three.js (`can-stage.js`) : fond embouti, col, sertissage, couvercle, languette ; étiquette dessinée dans un canvas pour chaque saveur (`label.js`) ; studio à bandes verticales pour les reflets de l'aluminium ; ombre de contact.
+Interactions : rotation libre avec inertie (souris, doigt, clavier), inclinaison, zoom (boutons, pincement, Ctrl + molette, double clic), vues Face / Profil / Dos / Dessus, quatre saveurs avec remplissage de l'étiquette (shader) et demi-tour, entrée animée. Arrêt hors écran, ressources libérées à la fermeture, résolution réduite sur appareils modestes.
+Rendus fixes : `npx vite --port 5174 &` puis `node tools/render/elan.mjs` (même moteur que le site).
+
+### PORTANT — dressing digital (`concepts/portant/`, `src/concepts/portant/`)
+Boutique fictive. Le portant (`rack.js`) est une petite simulation : tringle avec inertie et ressort de pose, pièces qui se tassent et pivotent loin du centre, cintres en pendules amortis entraînés par l'accélération, tissu qui suit avec retard, pièce choisie qui avance. Nom, prix, description, matière, tailles (épuisées barrées), sac en mémoire.
+Les vêtements sont des **illustrations dessinées en code** (SVG paramétrique, `tools/garments/`), pas des photos : `node tools/garments/render.mjs`.
+Captures des deux sites pour les études de cas : `node tools/capture/concepts.mjs` (serveur de développement lancé).
+
+Les deux sites portent un bandeau « Concept fictif », ne sont pas indexés (`noindex`, hors sitemap) et n'envoient aucune donnée.
 
 ## Structure
 
 ```
-index.html                 Accueil : hero (titre + bobine des projets), showcase, studio, services, contact
+index.html                 Accueil : hero (titre monumental + bobine), showcase, studio, services, contact
+concepts/elan/             site de la marque ÉLAN (concept, canette 3D)
+concepts/portant/          site de la boutique PORTANT (concept, portant)
 projets/index.html         Projets : tous les projets (filtres), lab 3D, contact
 a-propos/index.html        À propos : portrait, récit, qualités, parcours, approche, contact
 offres/index.html          Offres : formules et tarifs, compléments, offre de lancement, méthode, contact
@@ -89,6 +104,7 @@ src/
   data/                    contenu : site.js, projects.js, sneaker.js
   core/                    env (capacités appareil), scroll (Lenis+GSAP), split (découpe texte),
                            escape (échappement HTML), css (styles dynamiques compatibles CSP)
+  concepts/                elan (canette 3D, étiquettes, site), portant (portant, données, site), socle commun
   ui/                      header, menu, tone (bascule clair / sombre), live-site (aperçu isolé du site de L'Empreinte),
                            cursor-tag, reveals, transitions (fondu entre pages)
   sections/                hero (titre + bobine), works (showcase : une scène par projet), studio, object (3D),
@@ -118,9 +134,9 @@ tools/                     outils de production (non publiés)
 
 ### Ajouter ou modifier un projet
 
-`selected: true` place un projet dans le showcase de l'accueil (quatre projets) ; `tags` alimente les filtres de la page Projets (`real`, `web`, `3d`, `identity`).
+`selected: true` place un projet dans le showcase de l'accueil (cinq projets) ; `tags` alimente les filtres de la page Projets (`real`, `web`, `3d`, `identity`).
 
-Tout est dans `src/data/projects.js` : titre, catégorie, statut, thème (couleurs + style de titre), et une liste de `blocks` (`site`, `text`, `statement`, `image`, `pair`, `gallery`, `chapters`, `screens`, `palette`, `type`, `live`), et `showcase` (mise en scène dans la liste : `layout`, `thumbs`). Chaque projet peut composer sa page différemment.
+Tout est dans `src/data/projects.js` : titre, catégorie, statut, thème (couleurs + style de titre), et une liste de `blocks` (`site`, `can`, `rack`, `concept`, `text`, `statement`, `image`, `pair`, `gallery`, `chapters`, `screens`, `palette`, `type`, `live`), et `showcase` (mise en scène dans la liste : `layout`, `thumbs`). Chaque projet peut composer sa page différemment.
 
 ### Régénérer les visuels
 
@@ -135,7 +151,7 @@ node tools/optimize-images.mjs
 
 ## Performance & accessibilité
 
-- Aucune bibliothèque 3D sur l'accueil : profondeur et inclinaisons en CSS 3D (transformations GPU). Three.js (≈135 Ko gzip) n'est chargé que sur la page Projets, quand le lab approche ; le modèle est initialisé en temps calme (`requestIdleCallback`).
+- Aucune bibliothèque 3D sur l'accueil : profondeur et inclinaisons en CSS 3D (transformations GPU). Three.js n'est chargé que par le lab, la canette ÉLAN (étude de cas ou site de la marque) : jamais avant d'en avoir besoin. Three.js (≈135 Ko gzip) n'est chargé que sur la page Projets, quand le lab approche ; le modèle est initialisé en temps calme (`requestIdleCallback`).
 - La bobine du hero, le signal d'Oscillo et les parallaxes s'arrêtent hors écran et quand l'onglet est caché. Le site de L'Empreinte (6,5 Mo) n'est chargé qu'au clic.
 - Rendu à la demande : la scène 3D ne redessine que si quelque chose bouge ; toutes les boucles s'arrêtent hors écran et quand l'onglet est caché.
 - Mode « lite » automatique (mobile, ≤ 4 cœurs, peu de mémoire, Save‑Data) : modèle allégé, résolution réduite.

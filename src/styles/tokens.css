@@ -1,8 +1,10 @@
 /* ==========================================================================
    NM Design — système visuel
-   Deux familles : Archivo (variable, largeur 62→125 %, graisse 100→900) pour
-   tout le texte, Instrument Serif italique en contrepoint. Deux tons : ivoire et
-   presque noir ; la page passe de l'un à l'autre selon la section (ui/tone.js).
+   Deux familles, pas une de plus :
+     · Space Grotesk (variable 300→700) — titres, accroches, grands textes, chiffres
+     · Inter (variable, tailles optiques, 100→900) — texte, interface, libellés
+   L'accent dans un titre ne change pas de police : il passe en graisse légère.
+   Base claire (ivoire) ; le noir sert au texte et à la conclusion (contact).
    Les couleurs secondaires dérivent de la couleur courante : elles suivent les
    transitions de ton sans règle particulière.
    Contrastes (WCAG) : --fg-2 ≈ 8:1 et --fg-3 ≈ 5.4:1 sur ivoire, 6.7:1 sur noir.
@@ -30,26 +32,47 @@
   --accent-ink: var(--bg);
   --signal: currentColor;
   --signal-deep: var(--ink);
-  --metal: linear-gradient(115deg, #cfd0d3 0%, #f6f6f4 40%, #b9bbc0 64%, #ecebe8 100%);
   --shadow-1: 0 1px 2px rgb(13 13 14 / 0.06), 0 10px 30px -14px rgb(13 13 14 / 0.25);
   --shadow-2: 0 2px 6px rgb(13 13 14 / 0.08), 0 40px 80px -30px rgb(13 13 14 / 0.45);
 
-  /* typographie */
-  --f-sans: 'Archivo Variable', 'Archivo', 'Helvetica Neue', Arial, sans-serif;
-  --f-serif: 'Instrument Serif', 'Times New Roman', serif;
-  --f-display: var(--f-sans);
-  --f-mono: var(--f-sans);
+  /* typographie --------------------------------------------------------- */
+  --f-display: 'Space Grotesk Variable', 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+  --f-text: 'Inter Variable', 'Inter', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --f-sans: var(--f-text);
 
-  --fs-label: 0.8125rem;                                    /* 13 px — libellés, navigation */
+  /* échelle : une taille par rôle, fluide entre 360 et 1600 px */
+  --fs-label: 0.75rem;                                      /* 12 px — libellés en capitales */
   --fs-micro: var(--fs-label);
-  --fs-small: 0.9375rem;                                    /* 15 px */
-  --fs-body: clamp(1rem, 0.96rem + 0.18vw, 1.125rem);       /* 16 → 18 px */
-  --fs-lead: clamp(1.25rem, 1.05rem + 0.7vw, 1.75rem);      /* 20 → 28 px */
-  --fs-h3: clamp(1.5rem, 1.2rem + 1vw, 2.25rem);            /* 24 → 36 px */
-  --fs-h2: clamp(2.25rem, 1.3rem + 3.2vw, 4.75rem);         /* 36 → 76 px */
-  --fs-mega: clamp(2.75rem, 1.1rem + 5.6vw, 7.5rem);        /* titres de page */
-  --fs-h1: clamp(3rem, 0.9rem + 7.4vw, 10rem);              /* titre d'accueil */
-  --fs-giant: clamp(3.25rem, 0.6rem + 10vw, 13rem);         /* fin de site */
+  --fs-small: 0.875rem;                                     /* 14 px — notes, boutons */
+  --fs-body: clamp(1rem, 0.97rem + 0.12vw, 1.0625rem);      /* 16 → 17 px */
+  --fs-lead: clamp(1.125rem, 1rem + 0.5vw, 1.5rem);         /* 18 → 24 px */
+  --fs-h3: clamp(1.375rem, 1.15rem + 0.9vw, 2rem);          /* 22 → 32 px */
+  --fs-h2: clamp(2.25rem, 1.4rem + 3.4vw, 4.5rem);          /* 36 → 72 px */
+  --fs-mega: clamp(2.75rem, 1.2rem + 6.2vw, 7.5rem);        /* titres de page */
+  --fs-h1: clamp(3.25rem, 0.9rem + 9.4vw, 12.5rem);         /* accueil */
+  --fs-giant: clamp(3.25rem, 0.8rem + 9.8vw, 12.5rem);      /* conclusion */
+
+  /* graisses : Space Grotesk 500 pour les titres, 300 pour l'accent ; Inter 400 / 500 */
+  --w-display: 500;
+  --w-accent: 300;
+  --w-text: 400;
+  --w-ui: 500;
+
+  /* approche : serrée en grand, neutre en texte, ouverte en petites capitales */
+  --ls-giant: -0.055em;
+  --ls-display: -0.045em;
+  --ls-h2: -0.035em;
+  --ls-h3: -0.022em;
+  --ls-body: -0.011em;
+  --ls-label: 0.08em;
+
+  /* interlignage */
+  --lh-display: 0.9;
+  --lh-h2: 0.98;
+  --lh-h3: 1.12;
+  --lh-lead: 1.42;
+  --lh-body: 1.62;
+
   --measure: 62ch;
 
   /* espace */

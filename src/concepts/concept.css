@@ -1,0 +1,30 @@
+/* ==========================================================================
+   Sites des concepts — socle commun
+   Mêmes familles et même échelle que le portfolio (Space Grotesk + Inter) ;
+   chaque marque y pose son propre univers (couleurs, rythme, compositions).
+   ========================================================================== */
+@import '@fontsource-variable/space-grotesk/wght.css';
+@import '@fontsource-variable/inter/opsz.css';
+@import '../styles/tokens.css';
+@import '../styles/base.css';
+
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* bandeau d'honnêteté : toujours visible en haut de page */
+.concept-bar {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 24px;
+  padding: 10px max(16px, var(--margin)); background: var(--ink); color: var(--ivory);
+  font-size: 0.8125rem; line-height: 1.4;
+}
+.concept-bar a { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.concept-bar__tag {
+  display: inline-block; margin-right: 10px; padding: 2px 8px; border-radius: var(--radius);
+  background: var(--ivory); color: var(--ink); font-size: var(--fs-label); font-weight: 600; letter-spacing: var(--ls-label); text-transform: uppercase;
+}
+.concept-bar__case { white-space: nowrap; font-weight: 500; }
+
+/* apparitions */
+[data-c-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 0.9s var(--ease-out), transform 1.1s var(--ease-out); }
+[data-c-reveal].is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { [data-c-reveal] { opacity: 1; transform: none; } }

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr" data-root="{{root}}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>PORTANT — vestiaire digital · concept NM Design</title>
+  <meta name="description" content="PORTANT, boutique fictive de vêtements imaginée par NM Design : on parcourt la collection comme un portant de showroom, cintre après cintre." />
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#efe9df" />
+  <link rel="icon" href="{{root}}favicon.svg" type="image/svg+xml" />
+  <script type="module" src="/src/concepts/portant/main.js"></script>
+</head>
+<body class="portant" data-concept="portant">
+  <a class="skip-link" href="#main">Aller au contenu</a>
+
+  <div class="concept-bar">
+    <p><span class="concept-bar__tag">Concept fictif</span> Boutique imaginée par <a href="{{href:home}}">Noah Milsztajn — NM Design</a>. Les vêtements sont des illustrations ; rien n'est vendu.</p>
+    <a class="concept-bar__case" href="{{href:home}}#/work/portant">Étude de cas <span aria-hidden="true">→</span></a>
+  </div>
+
+  <header class="pt-nav">
+    <a class="pt-nav__brand" href="#top" aria-label="PORTANT, haut de page">Portant</a>
+    <nav class="pt-nav__links" aria-label="Sections">
+      <a href="#collection">Collection</a>
+      <a href="#pieces">Pièces</a>
+      <a href="#maison">Maison</a>
+    </nav>
+    <div class="pt-bag">
+      <button type="button" class="pt-bag__toggle" aria-expanded="false" aria-controls="pt-bag-panel" data-bag-toggle>Sac <span data-bag-count>(0)</span></button>
+      <div class="pt-bag__panel" id="pt-bag-panel" hidden>
+        <p class="pt-bag__title">Votre sac</p>
+        <ul class="pt-bag__list" data-bag-list></ul>
+        <p class="pt-bag__total" data-bag-total></p>
+        <p class="pt-bag__note">Concept : aucun paiement, aucune commande. Le sac s'efface à la fermeture de la page.</p>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero : le portant -------------------------------------------------------- -->
+    <section class="pt-hero" id="top">
+      <div class="pt-hero__head">
+        <p class="pt-kicker">Collection 01 — Hiver</p>
+        <h1 class="pt-hero__title">Tout se choisit<br />à la main.</h1>
+        <p class="pt-hero__lead">Sept pièces, pas une de plus. Poussez les cintres, sortez celle qui vous parle, regardez-la de près.</p>
+      </div>
+      <div class="pt-hero__rack" data-rack-root></div>
+    </section>
+
+    <!-- Éditorial de marque ----------------------------------------------------- -->
+    <section class="pt-maison" id="maison">
+      <p class="pt-kicker">La maison</p>
+      <p class="pt-maison__text" data-c-reveal>Une boutique n'est pas une grille. <span>C'est un portant qu'on pousse, un tissu qu'on touche, une pièce qu'on tient à bout de bras avant de décider.</span></p>
+      <ol class="pt-principles">
+        <li data-c-reveal><span class="pt-principles__n">01</span><h3>Peu de pièces</h3><p>Sept par saison. Chacune doit pouvoir se porter avec toutes les autres.</p></li>
+        <li data-c-reveal><span class="pt-principles__n">02</span><h3>Des matières choisies</h3><p>Laine froide, popeline, mérinos, satin lavé : des tissus qu'on reconnaît les yeux fermés.</p></li>
+        <li data-c-reveal><span class="pt-principles__n">03</span><h3>Le prix juste</h3><p>Affiché partout, sans remise permanente ni prix barré. Il dit ce que coûte la pièce.</p></li>
+      </ol>
+    </section>
+
+    <!-- Focus sur les pièces ---------------------------------------------------- -->
+    <section class="pt-focus" id="pieces">
+      <header class="pt-head">
+        <p class="pt-kicker">En détail</p>
+        <h2 class="pt-h2">Deux pièces,<br />vues de près.</h2>
+      </header>
+      <article class="pt-feature" data-c-reveal>
+        <div class="pt-feature__stage pt-feature__stage--camel">
+          <img src="{{root}}media/works/portant/garments/coat-900.webp" alt="Le manteau droit en laine camel, sur son cintre" loading="lazy" decoding="async" width="900" height="1500" />
+        </div>
+        <div class="pt-feature__text">
+          <p class="pt-kicker">01 — Manteau</p>
+          <h3 class="pt-feature__name">Manteau droit</h3>
+          <p>Le manteau qu'on garde dix hivers. Une ligne droite, des épaules naturelles, une longueur sous le genou qui laisse marcher vite.</p>
+          <dl class="pt-specs">
+            <div><dt>Matière</dt><dd>Laine vierge et cachemire 80/20</dd></div>
+            <div><dt>Doublure</dt><dd>Viscose</dd></div>
+            <div><dt>Boutons</dt><dd>Corozo</dd></div>
+            <div><dt>Prix</dt><dd>420 €</dd></div>
+          </dl>
+          <button type="button" class="pt-link" data-show="0">Voir sur le portant <span aria-hidden="true">↑</span></button>
+        </div>
+      </article>
+      <article class="pt-feature pt-feature--flip" data-c-reveal>
+        <div class="pt-feature__stage pt-feature__stage--night">
+          <img src="{{root}}media/works/portant/garments/dress-900.webp" alt="La robe nuisette en satin noir, sur son cintre" loading="lazy" decoding="async" width="900" height="1500" />
+        </div>
+        <div class="pt-feature__text">
+          <p class="pt-kicker">05 — Robe</p>
+          <h3 class="pt-feature__name">Robe nuisette</h3>
+          <p>Coupée dans le biais : le satin tombe au lieu de tirer. Les bretelles se règlent, la longueur s'arrête au genou.</p>
+          <dl class="pt-specs">
+            <div><dt>Matière</dt><dd>Satin de soie lavée</dd></div>
+            <div><dt>Coupe</dt><dd>En biais</dd></div>
+            <div><dt>Entretien</dt><dd>Lavage à la main</dd></div>
+            <div><dt>Prix</dt><dd>260 €</dd></div>
+          </dl>
+          <button type="button" class="pt-link" data-show="4">Voir sur le portant <span aria-hidden="true">↑</span></button>
+        </div>
+      </article>
+    </section>
+
+    <!-- La collection : index typographique --------------------------------------- -->
+    <section class="pt-index" id="collection">
+      <header class="pt-head">
+        <p class="pt-kicker">Collection 01</p>
+        <h2 class="pt-h2">Toute la collection.</h2>
+      </header>
+      <ol class="pt-index__list" data-pt-index></ol>
+      <div class="pt-index__peek" aria-hidden="true"><img alt="" data-peek /></div>
+    </section>
+
+    <!-- Appel à l'action ------------------------------------------------------- -->
+    <section class="pt-cta">
+      <h2 class="pt-cta__title">Passez<br />en cabine.</h2>
+      <div class="pt-cta__actions">
+        <a class="pt-btn" href="#top">Retour au portant</a>
+        <a class="pt-btn pt-btn--ghost" href="{{href:home}}#/work/portant">Voir l'étude de cas</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pt-footer">
+    <p class="pt-footer__brand" aria-hidden="true">Portant</p>
+    <nav class="pt-footer__nav" aria-label="Pied de page">
+      <a href="#collection">Collection</a><a href="#pieces">Pièces</a><a href="#maison">Maison</a><a href="#top">Haut de page</a>
+    </nav>
+    <p class="pt-footer__legal">PORTANT est une boutique fictive, imaginée par Noah Milsztajn pour le portfolio <a href="{{href:home}}">NM Design</a>. Les vêtements sont des illustrations dessinées en code ; aucun produit n'est fabriqué ni vendu.</p>
+  </footer>
+</body>
+</html>

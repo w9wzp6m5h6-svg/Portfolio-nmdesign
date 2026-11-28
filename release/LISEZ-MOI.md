@@ -33,6 +33,10 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory dist
 
 Le site livré à la galerie (Cynthia Rimo, L'Empreinte Art Gallery, Valbonne) est inclus tel quel dans `dist/lempreinte/`. Dans le portfolio, le bouton « Explorer le site en direct » l'ouvre dans une fenêtre isolée, sans quitter la page. Il pèse environ 6,5 Mo et n'est chargé qu'à ce moment‑là.
 
+## Les concepts ÉLAN et PORTANT
+
+Deux sites de marques fictives sont inclus : `dist/concepts/elan/` (canette en 3D temps réel) et `dist/concepts/portant/` (boutique où l'on parcourt un portant). Ils sont reliés à leurs études de cas et portent un bandeau « Concept fictif ».
+
 ## Mettre en ligne
 
 Dépose le **contenu** de `dist/` sur n'importe quel hébergeur statique (Vercel, Netlify, Cloudflare Pages, OVH, o2switch…). Il fonctionne à la racine d'un domaine comme dans un sous‑dossier. Les en-têtes de sécurité sont inclus (`_headers`, `.htaccess`) : en FTP, pense à envoyer aussi les fichiers cachés (`.htaccess`, `.well-known/`).

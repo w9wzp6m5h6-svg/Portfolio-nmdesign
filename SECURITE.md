@@ -4,7 +4,7 @@ Ce document décrit ce qui protège le site, ce qui reste à activer **de ton c�
 
 ## 1. Le site en une phrase
 
-Site **statique** : 4 pages HTML, du JavaScript, des images et le site livré à la galerie L'Empreinte (un fichier HTML autonome). Il n'a ni serveur à lui, ni base de données, ni compte utilisateur, ni paiement, ni envoi de fichiers. Les attaques qui visent ces éléments (injection SQL, SSRF, injection de commande, vol de session, brute force d'un admin, upload piégé, CSRF) n'ont donc rien à viser. La seule donnée saisie par un visiteur est la demande de projet. Par défaut, elle prépare un e‑mail dans la messagerie du visiteur ; si `VITE_FORM_ENDPOINT` est défini, elle est envoyée à Formspree ou Web3Forms.
+Site **statique** : 4 pages HTML, les sites de deux concepts fictifs (ÉLAN, PORTANT), du JavaScript, des images et le site livré à la galerie L'Empreinte (un fichier HTML autonome). Il n'a ni serveur à lui, ni base de données, ni compte utilisateur, ni paiement, ni envoi de fichiers. Les attaques qui visent ces éléments (injection SQL, SSRF, injection de commande, vol de session, brute force d'un admin, upload piégé, CSRF) n'ont donc rien à viser. La seule donnée saisie par un visiteur est la demande de projet. Par défaut, elle prépare un e‑mail dans la messagerie du visiteur ; si `VITE_FORM_ENDPOINT` est défini, elle est envoyée à Formspree ou Web3Forms.
 
 ## 2. Ce qui est en place
 
@@ -15,6 +15,7 @@ Site **statique** : 4 pages HTML, du JavaScript, des images et le site livré à
 | Échappement de toutes les données insérées en HTML | `src/core/escape.js`, `src/core/css.js` | Une donnée ne peut pas devenir du code. |
 | Formulaire | `src/sections/commerce.js` | Champ piège anti‑robot, délai minimal de 3 s, longueurs maximales, validation, un seul envoi à la fois, 60 s entre deux envois, adresse d'envoi en HTTPS obligatoire (le build échoue sinon). Aucune fausse confirmation. |
 | Aucun tiers | — | Pas de script, police, traceur ni cookie externe. Polices et bibliothèques auto‑hébergées. Seule exception, à la demande du visiteur : voir « Site de L'Empreinte » ci‑dessous. |
+| Sites des concepts (ÉLAN, PORTANT) | `concepts/`, `src/concepts/` | Même CSP stricte que le portfolio (générée au build). Aucun formulaire, aucun envoi : le « sac » de PORTANT vit en mémoire et disparaît à la fermeture de la page. Pages marquées « Concept fictif », `noindex` et absentes du sitemap, pour qu'aucune marque inventée ne soit prise pour une vraie. |
 | Site de L'Empreinte (aperçu en direct) | `public/lempreinte/index.html`, `src/ui/live-site.js` | Chargé seulement au clic, dans une iframe `sandbox` **sans** `allow-same-origin` : origine opaque, aucun accès au portfolio (DOM, stockage, cookies), aucune navigation de la page parente. Vérifié par `check:security`. |
 | Serveur de démo local | `demo/serve.mjs` | N'écoute que sur ton ordinateur (127.0.0.1), ne sert que le dossier du site (ni `../`, ni lien symbolique, ni fichier caché), erreurs génériques, mêmes en-têtes que la production. |
 | Serveur de développement | `vite.config.js` | `npm run dev` n'est accessible que depuis ton ordinateur. Pour tester sur ton téléphone : `npm run dev -- --host`, uniquement sur un réseau de confiance. |

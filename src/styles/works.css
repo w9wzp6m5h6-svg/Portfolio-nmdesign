@@ -7,10 +7,10 @@
 .studio__k { color: var(--fg-3); }
 .studio__statement {
   max-width: 22ch;
-  font-size: clamp(2.1rem, 1rem + 4vw, 5.6rem); font-stretch: 112%; font-weight: 700;
+  font-size: clamp(2.1rem, 1rem + 4vw, 5.6rem); font-family: var(--f-display); font-weight: var(--w-display);
   line-height: 1; letter-spacing: -0.045em; text-wrap: balance;
 }
-.studio__statement em { font-family: var(--f-serif); font-style: italic; font-weight: 400; font-stretch: 100%; letter-spacing: -0.03em; }
+.studio__statement em { font-family: var(--f-display); font-weight: var(--w-accent); letter-spacing: -0.03em; }
 .studio__statement .w { display: inline; }
 /* le portrait, en pastille, au milieu de la phrase */
 .studio__face {
@@ -25,7 +25,7 @@
 .studio__portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
 .studio__portrait figcaption { margin-top: 12px; color: var(--fg-3); }
 .studio__list { grid-column: 6 / 13; display: grid; gap: clamp(32px, 4vw, 56px); padding-top: 8px; }
-.studio__list h3 { font-size: var(--fs-h3); font-stretch: 112%; font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; }
+.studio__list h3 { font-size: var(--fs-h3); font-family: var(--f-display); font-weight: var(--w-display); letter-spacing: var(--ls-h3); line-height: var(--lh-h3); }
 .studio__list p { margin-top: 10px; color: var(--fg-2); max-width: 42ch; }
 .studio__more { grid-column: 6 / 13; justify-self: start; }
 @media (max-width: 900px) {
@@ -44,7 +44,7 @@
 }
 .service__num { color: var(--fg-3); }
 .service__title {
-  font-size: clamp(1.9rem, 1rem + 3vw, 4.25rem); font-stretch: 115%; font-weight: 740;
+  font-size: clamp(1.9rem, 1rem + 3vw, 4.25rem); font-family: var(--f-display); font-weight: var(--w-display);
   line-height: 0.95; letter-spacing: -0.045em;
   transition: transform var(--d-hover) var(--ease-out);
 }

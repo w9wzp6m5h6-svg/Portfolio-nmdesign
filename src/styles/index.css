@@ -1,9 +1,7 @@
-/* Deux familles pour toute l'interface : Archivo (variable) et Instrument Serif italique.
-   Inter Tight n'est déclarée que pour le spécimen typographique de l'étude de cas Opale :
-   le navigateur ne télécharge un fichier de police que si un texte l'utilise. */
-@import '@fontsource-variable/archivo/wdth.css';
-@import '@fontsource/instrument-serif/400-italic.css';
-@import '@fontsource-variable/inter-tight/wght.css';
+/* Deux familles pour tout le site : Space Grotesk (titres) et Inter (texte, interface).
+   Fichiers auto-hébergés (Fontsource) : aucune requête vers un service tiers. */
+@import '@fontsource-variable/space-grotesk/wght.css';
+@import '@fontsource-variable/inter/opsz.css';
 
 @import './tokens.css';
 @import './base.css';
@@ -15,3 +13,5 @@
 @import './showcase.css';
 @import './project.css';
 @import './commerce.css';
+@import '../concepts/elan/swatch.css';
+@import '../concepts/portant/rack.css';

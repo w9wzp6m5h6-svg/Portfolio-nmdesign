@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Showcase des projets — section sombre, une mise en scène par projet
+   Showcase des projets — sur l'ivoire, une mise en scène par projet
    Système commun : plateau (couleur du projet, coins 18 px, profondeur au
    curseur), informations sobres, vues à parcourir. Les compositions changent
    selon showcase.layout : live · object · cinema · space · art · signal.
@@ -112,18 +112,17 @@
 .showcase__index {
   position: fixed; left: 50%; bottom: 24px; z-index: 20;
   display: flex; align-items: center; gap: 2px; padding: 6px;
-  border-radius: var(--radius); background: rgb(242 241 237 / 0.94); color: var(--ink);
-  box-shadow: 0 20px 50px -20px rgb(0 0 0 / 0.6);
+  border-radius: var(--radius); background: rgb(13 13 14 / 0.92); color: var(--ivory);
   font-size: var(--fs-label); font-weight: 600;
   transform: translate(-50%, 140%); opacity: 0; pointer-events: none;
   transition: transform 0.7s var(--ease-out), opacity 0.4s var(--ease-soft);
 }
 .showcase__index.is-on { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
-.showcase__index a { display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px; border-radius: var(--radius); color: rgb(13 13 14 / 0.72); transition: background-color var(--d-micro), color var(--d-micro); }
+.showcase__index a { display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px; border-radius: var(--radius); color: rgb(242 241 237 / 0.72); transition: background-color var(--d-micro), color var(--d-micro); }
 .showcase__index-name { max-width: 0; overflow: hidden; white-space: nowrap; transition: max-width 0.6s var(--ease-out); }
-.showcase__index a.is-active { background: var(--ink); color: var(--ivory); }
+.showcase__index a.is-active { background: var(--ivory); color: var(--ink); }
 .showcase__index a.is-active .showcase__index-name { max-width: 12em; }
-@media (hover: hover) { .showcase__index a:hover:not(.is-active) { color: var(--ink); } }
+@media (hover: hover) { .showcase__index a:hover:not(.is-active) { color: var(--ivory); } }
 @media (max-width: 1023px) { .showcase__index { display: none; } }
 
 /* Téléphone et tablette --------------------------------------------------- */

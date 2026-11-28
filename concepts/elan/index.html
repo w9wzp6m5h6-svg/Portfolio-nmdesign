@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="fr" data-root="{{root}}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>ÉLAN — énergie naturelle · concept NM Design</title>
+  <meta name="description" content="ÉLAN, marque fictive de boisson énergisante imaginée par NM Design : identité, packaging et site produit avec une canette en 3D temps réel." />
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#f2f1ed" />
+  <link rel="icon" href="{{root}}favicon.svg" type="image/svg+xml" />
+  <script type="module" src="/src/concepts/elan/main.js"></script>
+</head>
+<body class="elan" data-concept="elan">
+  <a class="skip-link" href="#main">Aller au contenu</a>
+
+  <div class="concept-bar">
+    <p><span class="concept-bar__tag">Concept fictif</span> Marque et produit imaginés par <a href="{{href:home}}">Noah Milsztajn — NM Design</a>. Rien n'est vendu.</p>
+    <a class="concept-bar__case" href="{{href:home}}#/work/elan">Étude de cas <span aria-hidden="true">→</span></a>
+  </div>
+
+  <header class="elan-nav">
+    <a class="elan-nav__brand" href="#top" aria-label="ÉLAN, haut de page">ÉLAN</a>
+    <nav class="elan-nav__links" aria-label="Sections">
+      <a href="#saveurs">Saveurs</a>
+      <a href="#composition">Composition</a>
+      <a href="#canette">La canette</a>
+    </nav>
+    <a class="elan-btn elan-btn--small" href="#top" data-pick>Choisir sa saveur</a>
+  </header>
+
+  <main id="main">
+    <!-- Hero : la canette au centre, le nom derrière -------------------------------->
+    <section class="elan-hero" id="top" data-can-root>
+      <p class="elan-hero__word" aria-hidden="true">ÉLAN</p>
+
+      <div class="elan-hero__intro">
+        <p class="elan-kicker">Énergie naturelle · 250 ml</p>
+        <h1 class="elan-hero__title">L’énergie,<br />sans détour.</h1>
+        <p class="elan-hero__lead">Caféine de guarana, zéro sucre ajouté, du vrai jus. Une canette qui dit tout ce qu’elle contient.</p>
+      </div>
+
+      <div class="elan-hero__stage">
+        <canvas class="elan-hero__canvas" data-can-canvas tabindex="0" aria-label="Canette ÉLAN en 3D. Glissez pour la faire tourner ; au clavier : flèches pour tourner, plus et moins pour zoomer, zéro pour revenir de face."></canvas>
+        <img class="elan-hero__fallback" data-can-fallback hidden src="{{root}}media/works/elan/elan_can_sanguine-1400.webp" alt="Canette ÉLAN Orange sanguine, de face" width="1400" height="1750" />
+      </div>
+
+      <div class="elan-hero__flavor" aria-live="polite">
+        <p class="elan-kicker" data-can-field="index">01 / 04</p>
+        <h2 class="elan-hero__name" data-can-field="name">Orange sanguine</h2>
+        <p class="elan-hero__notes" data-can-field="notes">Orange sanguine, gingembre frais, une pointe de sel</p>
+        <dl class="elan-facts">
+          <div><dt>Caféine</dt><dd data-can-field="caffeine">80 mg</dd></div>
+          <div><dt>Sucres ajoutés</dt><dd data-can-field="sugar">0 g</dd></div>
+          <div><dt>Énergie</dt><dd data-can-field="kcal">7 kcal</dd></div>
+        </dl>
+      </div>
+
+      <div class="elan-hero__bar">
+        <p class="elan-hint" aria-hidden="true"><span class="elan-hint__dot"></span>Glissez pour tourner · double-cliquez pour zoomer</p>
+        <div class="elan-hero__variants" data-can-variants role="group" aria-label="Choisir une saveur"></div>
+        <div class="elan-tools" role="group" aria-label="Caméra">
+          <button type="button" data-can-tool="front">Face</button>
+          <button type="button" data-can-tool="side">Profil</button>
+          <button type="button" data-can-tool="back">Dos</button>
+          <button type="button" data-can-tool="top">Dessus</button>
+          <button type="button" class="elan-tools__icon" data-can-tool="zoom-out" aria-label="Dézoomer">−</button>
+          <button type="button" class="elan-tools__icon" data-can-tool="zoom-in" aria-label="Zoomer">+</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Manifeste ---------------------------------------------------------------- -->
+    <section class="elan-manifesto">
+      <p class="elan-manifesto__text" data-c-reveal>Pas de taureau, pas de monstre, pas de promesse d’ailes. <span>Juste ce qu’il faut pour tenir l’après-midi — et le dire clairement sur la canette.</span></p>
+      <ul class="elan-figures">
+        <li data-c-reveal><strong>80<small>mg</small></strong><span>de caféine naturelle, issue du guarana</span></li>
+        <li data-c-reveal><strong>0<small>g</small></strong><span>de sucres ajoutés, dans les quatre saveurs</span></li>
+        <li data-c-reveal><strong>6<small>%</small></strong><span>de vrai jus de fruits pressé</span></li>
+      </ul>
+    </section>
+
+    <!-- Saveurs -------------------------------------------------------------------- -->
+    <section class="elan-flavors" id="saveurs">
+      <header class="elan-head">
+        <p class="elan-kicker">La gamme</p>
+        <h2 class="elan-h2">Quatre saveurs,<br />une même trajectoire.</h2>
+      </header>
+      <ul class="elan-flavors__list" data-elan-flavors></ul>
+    </section>
+
+    <!-- Composition -------------------------------------------------------------- -->
+    <section class="elan-compo" id="composition">
+      <header class="elan-head">
+        <p class="elan-kicker">Composition</p>
+        <h2 class="elan-h2">Cinq ingrédients.<br />Aucun secret.</h2>
+      </header>
+      <ol class="elan-compo__list" data-elan-ingredients></ol>
+      <p class="elan-compo__note">Teneur élevée en caféine (32 mg/100 ml). Déconseillé aux enfants et aux femmes enceintes ou allaitantes. Valeurs de concept, à titre d’illustration.</p>
+    </section>
+
+    <!-- La canette ----------------------------------------------------------------- -->
+    <section class="elan-can" id="canette">
+      <div class="elan-can__text">
+        <p class="elan-kicker">Le packaging</p>
+        <h2 class="elan-h2">Une trajectoire,<br />pas un animal.</h2>
+        <p>Les boissons énergisantes crient. ÉLAN trace une ligne : un arc bleu cobalt qui monte de bas en haut, comme une courbe d’effort. Le nom est posé à la verticale, lisible d’un seul coup d’œil dans un frigo.</p>
+        <p>L’aluminium reste visible au col et au fond. L’étiquette est vernie, la languette brossée. La couleur de fond change selon la saveur ; l’arc, lui, ne change jamais de forme.</p>
+      </div>
+      <figure class="elan-can__shot elan-can__shot--a">
+        <img src="{{root}}media/works/elan/elan_detail_top-1400.webp" srcset="{{root}}media/works/elan/elan_detail_top-800.webp 800w, {{root}}media/works/elan/elan_detail_top-1400.webp 1400w" sizes="(max-width: 900px) 92vw, 40vw" alt="Le dessus de la canette : col, sertissage et languette en aluminium brossé" loading="lazy" decoding="async" width="1400" height="1400" />
+        <figcaption>Col, sertissage, languette brossée.</figcaption>
+      </figure>
+      <figure class="elan-can__shot elan-can__shot--b">
+        <img src="{{root}}media/works/elan/elan_detail_back-1400.webp" srcset="{{root}}media/works/elan/elan_detail_back-800.webp 800w, {{root}}media/works/elan/elan_detail_back-1400.webp 1400w" sizes="(max-width: 900px) 92vw, 30vw" alt="Le côté de la canette : composition, valeurs nutritionnelles et mentions" loading="lazy" decoding="async" width="1400" height="1750" />
+        <figcaption>Le côté dit tout : composition, valeurs, mentions.</figcaption>
+      </figure>
+    </section>
+
+    <!-- Appel à l'action --------------------------------------------------------- -->
+    <section class="elan-cta">
+      <h2 class="elan-cta__title">Trouvez<br />votre élan.</h2>
+      <div class="elan-cta__actions">
+        <a class="elan-btn" href="#top" data-pick>Choisir sa saveur</a>
+        <a class="elan-btn elan-btn--ghost" href="{{href:home}}#/work/elan">Voir l’étude de cas</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="elan-footer">
+    <p class="elan-footer__brand" aria-hidden="true">ÉLAN</p>
+    <nav class="elan-footer__nav" aria-label="Pied de page">
+      <a href="#saveurs">Saveurs</a><a href="#composition">Composition</a><a href="#canette">La canette</a><a href="#top">Haut de page</a>
+    </nav>
+    <p class="elan-footer__legal">ÉLAN est une marque fictive, imaginée par Noah Milsztajn pour le portfolio <a href="{{href:home}}">NM Design</a>. Aucun produit n’est fabriqué ni vendu ; les valeurs nutritionnelles sont illustratives.</p>
+  </footer>
+</body>
+</html>

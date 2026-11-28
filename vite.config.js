@@ -12,6 +12,9 @@ const PAGES = {
   projects: { file: 'projets/index.html', url: 'projets/' },
   about: { file: 'a-propos/index.html', url: 'a-propos/' },
   offers: { file: 'offres/index.html', url: 'offres/' },
+  // sites des concepts (marques fictives) : hors sitemap, non indexés
+  elan: { file: 'concepts/elan/index.html', url: 'concepts/elan/', concept: true },
+  portant: { file: 'concepts/portant/index.html', url: 'concepts/portant/', concept: true },
 };
 
 /**
@@ -81,7 +84,7 @@ function seo(siteUrl) {
       });
       if (base) {
         const today = new Date().toISOString().slice(0, 10);
-        const urls = Object.values(PAGES).map((p) => `  <url><loc>${base}${p.url}</loc><lastmod>${today}</lastmod></url>`).join('\n');
+        const urls = Object.values(PAGES).filter((p) => !p.concept).map((p) => `  <url><loc>${base}${p.url}</loc><lastmod>${today}</lastmod></url>`).join('\n');
         this.emitFile({
           type: 'asset', fileName: 'sitemap.xml',
           source: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`,
@@ -181,6 +184,8 @@ export default defineConfig(({ mode }) => {
   return {
     // chemins relatifs : le build fonctionne à la racine d'un domaine, dans un sous-dossier ou en démo locale
     base: './',
+    // liens vers les sous-sites (concepts) : 'dossier/index.html' quand l'hébergeur ne sert pas les index
+    define: { __EXPLICIT_INDEX__: JSON.stringify(explicitIndex) },
     plugins: [pages({ explicitIndex }), seo(siteUrl), security({ enabled: !explicitIndex, endpoint, siteUrl })],
     build: {
       target: 'es2020',

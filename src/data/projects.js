@@ -66,6 +66,7 @@ export const projects = [
       { type: 'pair', items: [img('rimo', 'rimo_fiche', '16 / 10', L, 'Fiche de l’œuvre Pin Up : technique, dimensions, prix, disponibilité'), img('rimo', 'rimo_loupe', '16 / 10', L, 'La loupe sur l’œuvre Blanche Neige')], caption: 'Chaque œuvre a sa fiche : technique, format, prix, disponibilité et le mot de l’artiste. La loupe permet de lire la matière : timbres, bande dessinée, résine.' },
       { type: 'text', kicker: 'Direction artistique', title: 'Laisser la place à la peinture.', body: "Les œuvres de Cynthia Rimo sont saturées, graphiques, pleines de matière. L'interface fait l'inverse : un fond crème de mur d'exposition, une typographie condensée très affirmée pour les titres, un italique élégant pour la signature, et un seul rouge, celui des actions. Tout le reste s'efface devant les tableaux." },
       { type: 'image', size: 'inset', src: img('rimo', 'rimo_chezsoi', '16 / 10', L, 'Mise en situation : Blanche Neige au-dessus d’un canapé, mur vert sauge'), caption: '« Chez vous » : l’œuvre à l’échelle, au-dessus d’un canapé de 210 cm, sur cinq couleurs de mur.' },
+      { type: 'text', kicker: 'Expérience', title: 'Une visite, pas un catalogue.', body: "On entre dans une salle, pas dans une grille : les œuvres sont accrochées en perspective et l'on passe de l'une à l'autre comme on longe un mur. Chaque tableau ouvre sa fiche ; la loupe et la mise en situation répondent aux deux questions d'un acheteur : à quoi ressemble la matière, et quelle place l'œuvre prendra chez soi. La sélection et le message WhatsApp prérempli raccourcissent le chemin jusqu'à l'artiste." },
       {
         type: 'intentions',
         title: 'Ce que le site permet',
@@ -95,13 +96,103 @@ export const projects = [
   },
 
   /* ------------------------------------------------------------------ */
-  /* Concepts personnels                                                 */
+  /* Concepts personnels (jamais présentés comme des commandes client)    */
   /* ------------------------------------------------------------------ */
+  {
+    slug: 'elan',
+    tags: ['web', '3d', 'identity'],
+    selected: true,
+    num: '02',
+    title: 'ÉLAN',
+    subtitle: 'Marque de boisson énergisante et site produit, canette en 3D temps réel',
+    category: 'Product design · 3D temps réel',
+    status: 'Concept — 2026',
+    layout: 'g',
+    hero: img('elan', 'elan_duo', '16 / 10', L, 'Canette ÉLAN Myrtille cobalt sur le fond orange de la marque'),
+    cover: img('elan', 'elan_duo', '16 / 10', L, 'Canette ÉLAN Myrtille cobalt sur le fond orange de la marque'),
+    card: img('screens', 'ui_elan_d', '16 / 10', D, 'Site ÉLAN (concept) : la canette 3D au centre, le nom de la marque en fond'),
+    coverPos: '50% 45%',
+    showcase: { layout: 'space', thumbs: [t('elan', 'elan_duo'), t('elan', 'elan_lineup'), t('elan', 'elan_can_myrtille', P)] },
+    theme: { bg: '#ff5a1f', fg: '#0b0d1f', muted: '#3d1406', line: 'rgb(11 13 31 / 0.18)', accent: '#1e3bff', title: 'can', light: true },
+    meta: [
+      ['Type', 'Concept personnel'],
+      ['Année', '2026'],
+      ['Disciplines', 'Identité, packaging, 3D temps réel, site produit'],
+      ['Technique', 'Three.js, canette entièrement procédurale'],
+    ],
+    lead: "Une boisson énergisante qui ne crie pas. Pour ce concept, j'ai créé la marque, la canette et son site : une canette en 3D temps réel qu'on fait tourner, qu'on incline, dont on change la saveur, au milieu d'une interface volontairement calme.",
+    blocks: [
+      { type: 'can', title: 'La canette, en vrai', text: 'Faites-la tourner à la souris ou au doigt, inclinez-la, zoomez. Changez de saveur : l’étiquette se remplit de bas en haut.' },
+      { type: 'statement', text: 'Le produit est la seule couleur de la page.' },
+      { type: 'text', kicker: 'Identité', title: 'Une trajectoire, pas un animal.', body: "Le rayon des boissons énergisantes est saturé de taureaux, de griffes et de flammes. ÉLAN prend le contre-pied : un arc bleu cobalt qui monte comme une courbe d'effort, un nom posé à la verticale, une paire orange électrique et bleu cobalt qui s'inverse selon la saveur. Quatre déclinaisons, une seule forme." },
+      { type: 'image', size: 'wide', src: img('elan', 'elan_lineup', '16 / 10', L, 'Les quatre saveurs ÉLAN alignées : orange sanguine, myrtille, yuzu, cassis') },
+      { type: 'pair', items: [img('elan', 'elan_detail_top', '1 / 1', P, 'Le dessus de la canette : col, sertissage et languette en aluminium'), img('elan', 'elan_detail_back', '4 / 5', P, 'Le côté de la canette : composition, valeurs nutritionnelles et mentions')], caption: 'Rendus fixes produits par la même scène 3D que le site : ni montage, ni photographie.' },
+      { type: 'text', kicker: '3D temps réel', title: 'Aucun fichier 3D à télécharger.', body: "La canette est construite en code avec Three.js : profil tourné pour le fond embouti et le col, sertissage, languette extrudée. L'étiquette est dessinée dans un canvas, aux proportions exactes de la surface, pour chaque saveur. Un studio à bandes verticales donne les longs reflets de l'aluminium. Hors écran, la scène s'arrête ; sur téléphone, la résolution baisse." },
+      { type: 'intentions', title: 'Ce que la canette sait faire', items: [
+        ['Rotation libre et inertie', 'Souris, doigt ou clavier ; elle continue un peu sur sa lancée.', 'livré'],
+        ['Inclinaison et vues', 'Face, profil, dos, dessus : la caméra se place en douceur.', 'livré'],
+        ['Zoom', 'Boutons, pincement, Ctrl + molette, double clic.', 'livré'],
+        ['Quatre saveurs', "L'étiquette se remplit de bas en haut pendant que la canette fait un tour.", 'livré'],
+        ['Entrée en scène', 'La canette monte, tourne, se pose, puis flotte doucement.', 'livré'],
+        ['Mouvement réduit', 'Aucune animation automatique quand le système le demande.', 'livré'],
+      ] },
+      { type: 'screens', desktop: img('screens', 'ui_elan_d', '16 / 10', D, 'Site ÉLAN, version ordinateur'), mobile: img('screens', 'ui_elan_m', '9 / 19.5', M, 'Site ÉLAN, version téléphone'), caption: 'Le site de la marque : la canette au centre, le nom derrière, la page qui prend la teinte de la saveur.' },
+      { type: 'concept', href: 'concepts/elan/', title: 'Visiter le site ÉLAN', text: 'Le site complet du concept : hero en 3D, gamme, composition, packaging. Il s’ouvre dans cette fenêtre, avec un retour au portfolio.' },
+      { type: 'type', families: [['Space Grotesk', 'Logotype, titres, chiffres', 'ÉLAN'], ['Inter', 'Composition, mentions, interface', 'Aa']] },
+      { type: 'palette', colors: [['Orange électrique', '#ff5a1f'], ['Bleu cobalt', '#1e3bff'], ['Yuzu', '#d8f23e'], ['Cassis', '#7a3cff']] },
+    ],
+  },
+
+  {
+    slug: 'portant',
+    tags: ['web', 'identity'],
+    selected: true,
+    num: '03',
+    title: 'PORTANT',
+    subtitle: 'Boutique de vêtements où l’on parcourt la collection comme un portant de showroom',
+    category: 'Mode · E-commerce · Interaction',
+    status: 'Concept — 2026',
+    layout: 'h',
+    cover: img('portant', 'portant_rack', '16 / 10', L, 'Le portant PORTANT : sept pièces sur leurs cintres, le pull rouille au premier plan'),
+    card: img('screens', 'ui_portant_d', '16 / 10', D, 'Site PORTANT (concept) : le portant en hero, la pièce choisie au centre'),
+    hero: img('portant', 'portant_rack', '16 / 10', L, 'Le portant PORTANT : sept pièces sur leurs cintres'),
+    coverPos: '50% 42%',
+    showcase: { layout: 'cinema', thumbs: [t('portant', 'portant_rack'), t('screens', 'ui_portant_d', D), t('screens', 'ui_portant_m', M)] },
+    theme: { bg: '#efe9df', fg: '#16140f', muted: '#5f594f', line: 'rgb(22 20 15 / 0.14)', accent: '#a4522f', title: 'fashion', light: true },
+    meta: [
+      ['Type', 'Concept personnel'],
+      ['Année', '2026'],
+      ['Disciplines', 'Direction artistique, UX e-commerce, interaction'],
+      ['Visuels', 'Vêtements dessinés en code (illustrations)'],
+    ],
+    lead: "Une boutique en ligne sans grille de vignettes. PORTANT présente sa collection comme un portant de showroom : on pousse les cintres, la pièce choisie avance, son nom, son prix et ses tailles apparaissent. Le geste est physique ; l'interface reste presque invisible.",
+    blocks: [
+      { type: 'rack', title: 'Le portant, en vrai', text: 'Glissez la tringle à la souris ou au doigt, ou utilisez les flèches. Les cintres se balancent, la pièce choisie avance.' },
+      { type: 'statement', text: 'Choisir un vêtement, c’est un geste. Pas un clic sur une vignette.' },
+      { type: 'text', kicker: 'Interaction', title: 'Une petite simulation, pas un carrousel.', body: "La tringle a une position continue, une inertie au lâcher et un ressort qui pose la pièce la plus proche au centre. Chaque cintre est un pendule amorti, entraîné par l'accélération de sa propre position ; le tissu suit son cintre avec un léger retard. Loin du centre, les pièces se tassent et pivotent, comme sur un vrai portant." },
+      { type: 'image', size: 'wide', src: img('portant', 'portant_rack', '16 / 10', L, 'Le portant : sept pièces, le pull rouille au centre') },
+      { type: 'pair', items: [img('portant/garments', 'coat', '3 / 5', [480, 900], 'Le manteau droit en laine camel'), img('portant/garments', 'dress', '3 / 5', [480, 900], 'La robe nuisette en satin noir')], caption: 'Les vêtements sont des illustrations dessinées en code (SVG paramétrique) : volume, plis de gravité, trame du tissu, coutures. Pas de photographies.' },
+      { type: 'text', kicker: 'Direction artistique', title: 'Crème, encre, capitales.', body: "Un fond crème qui laisse la couleur aux vêtements, des capitales éditoriales en Space Grotesk, l'interface en Inter. Les prix sont affichés partout, les tailles épuisées barrées, le sac reste à portée. Rien ne clignote." },
+      { type: 'intentions', title: 'Ce que le portant sait faire', items: [
+        ['Glisser la tringle', 'Souris, doigt, geste horizontal du pavé tactile.', 'livré'],
+        ['Inertie et pose', 'La tringle continue sur sa lancée puis pose une pièce au centre.', 'livré'],
+        ['Balancement', "Chaque cintre réagit à l'accélération ; le tissu traîne un peu.", 'livré'],
+        ['Pièce au premier plan', 'Nom, prix, description, matière, tailles et bouton.', 'livré'],
+        ['Tailles et sac', 'Taille obligatoire, tailles épuisées barrées, sac en mémoire.', 'livré'],
+        ['Clavier', 'Flèches, Début, Fin, Entrée.', 'livré'],
+      ] },
+      { type: 'screens', desktop: img('screens', 'ui_portant_d', '16 / 10', D, 'Site PORTANT, version ordinateur'), mobile: img('screens', 'ui_portant_m', '9 / 19.5', M, 'Site PORTANT, version téléphone'), caption: 'Le portant en hero ; plus bas, deux pièces vues de près, la maison, et l’index de la collection.' },
+      { type: 'concept', href: 'concepts/portant/', title: 'Visiter la boutique PORTANT', text: 'Le site complet du concept : le portant, la maison, deux pièces en détail et la collection. Il s’ouvre dans cette fenêtre, avec un retour au portfolio.' },
+      { type: 'type', families: [['Space Grotesk', 'Nom, titres, prix', 'PORTANT'], ['Inter', 'Descriptions, tailles, interface', 'Aa']] },
+      { type: 'palette', colors: [['Crème', '#efe9df'], ['Encre', '#16140f'], ['Camel', '#b58b5e'], ['Rouille', '#a4522f']] },
+    ],
+  },
+
   {
     slug: 'stride',
     tags: ['web', '3d'], // filtres de la page Projets
     selected: true, // affiché sur l'accueil
-    num: '02',
+    num: '04',
     title: 'Stride',
     subtitle: "Expérience de lancement d'une chaussure de running en maille",
     category: 'Expérience produit · WebGL',
@@ -139,8 +230,7 @@ export const projects = [
   {
     slug: 'vanta',
     tags: ['3d', 'web'], // filtres de la page Projets
-    selected: true, // affiché sur l'accueil
-    num: '03',
+    num: '05',
     title: 'Vanta',
     subtitle: "Un configurateur cinématographique pour un grand tourisme concept",
     category: 'Automobile · Interface 3D',
@@ -171,69 +261,6 @@ export const projects = [
       { type: 'screens', desktop: img('screens', 'ui_vanta_d', '16 / 10', D, 'Configurateur Vanta, chapitre peinture'), mobile: img('screens', 'ui_vanta_m', '9 / 19.5', M, 'Configurateur Vanta sur mobile'), caption: "Chapitre 02, la peinture. L'interface nomme la finition, le rendu la prouve." },
       { type: 'statement', text: 'L’interface doit ressembler au tableau de bord, pas à la brochure.' },
       { type: 'palette', colors: [['Vide', '#080708'], ['Carmin', '#9d1f17'], ['Nacre', '#d9d6d2'], ['Graphite', '#2b2c2f']] },
-    ],
-  },
-
-  {
-    slug: 'opale',
-    tags: ['web', '3d'], // filtres de la page Projets
-    num: '04',
-    title: 'Maison Opale',
-    subtitle: "E-commerce éditorial pour une maison de lunettes imaginaire",
-    category: 'Luxe · E-commerce',
-    status: 'Concept — 2026',
-    layout: 'c',
-    cover: img('opale', 'glasses_cover', '16 / 10', L, 'Lunettes aviateur sur papier chaud, ombre longue'),
-    card: img('screens', 'ui_opale_d', '16 / 10', D, "Site Maison Opale (concept) : page produit, version ordinateur"), // vignette des grilles : le site, pas seulement l'objet
-    coverPos: '50% 50%',
-    showcase: { layout: 'object', thumbs: [t('opale', 'glasses_cover'), t('opale', 'glasses_front'), t('opale', 'glasses_top')] },
-    theme: { bg: '#efe9df', fg: '#1d1a16', muted: '#7d7466', line: 'rgb(29 26 22 / 0.14)', accent: '#9c7a44', title: 'serif', light: true },
-    meta: [
-      ['Type', 'Concept personnel'],
-      ['Année', '2026'],
-      ['Disciplines', 'Identité, direction artistique, UX e-commerce'],
-      ['Ton', 'Luxe discret'],
-    ],
-    lead: "Une boutique de luxe lente : peu de produits, une lumière généreuse, et une typographie qui fait la vente. Elle se lit comme un lookbook imprimé et s'achète comme une boutique moderne.",
-    blocks: [
-      { type: 'statement', text: "Le luxe, c'est l'assurance d'en montrer moins." },
-      { type: 'image', size: 'inset', src: img('opale', 'glasses_front', '16 / 10', L, 'Lunettes aviateur de face') },
-      { type: 'text', kicker: 'Direction', title: 'Papier, soleil et un serif.', body: "Des tons papier chauds, un serif contrasté en grand, et les longues ombres dures des campagnes d'été. Les visuels produit sont des rendus 3D : chaque image garde exactement le même angle de soleil, et la collection se lit comme une série." },
-      { type: 'screens', desktop: img('screens', 'ui_opale_d', '16 / 10', D, 'Page produit Maison Opale, desktop'), mobile: img('screens', 'ui_opale_m', '9 / 19.5', M, 'Page produit Maison Opale, mobile'), caption: 'Page produit : une image, un prix, une action. Les détails se déplient à la demande.' },
-      { type: 'image', size: 'wide', src: img('opale', 'glasses_top', '16 / 10', L, 'Lunettes aviateur vues de dessus, ombre dure') },
-      { type: 'type', families: [['Instrument Serif', 'Titres, accents en italique', 'Aa'], ['Inter Tight', 'Interface et texte courant', 'Aa']] },
-      { type: 'palette', colors: [['Papier', '#efe9df'], ['Sable', '#d8cfc1'], ['Encre', '#1d1a16'], ['Laiton', '#9c7a44']] },
-    ],
-  },
-
-  {
-    slug: 'rooms',
-    tags: ['web'], // filtres de la page Projets
-    num: '05',
-    title: 'Quiet Rooms',
-    subtitle: "Site d'un studio d'architecture intérieure",
-    category: 'Architecture · Intérieur',
-    status: 'Concept — 2026',
-    layout: 'd',
-    cover: img('rooms', 'interior_chair', '4 / 5', P, 'Fauteuil en velours orange dans une pièce ensoleillée'),
-    card: img('screens', 'ui_rooms_d', '16 / 10', D, "Site Quiet Rooms (concept) : page d'accueil, version ordinateur"), // vignette des grilles : le site, pas seulement l'objet
-    coverPos: '50% 60%',
-    hero: img('rooms', 'interior_cover', '16 / 10', L, 'Pièce ensoleillée avec un fauteuil en velours vert, un pouf et une lampe'),
-    showcase: { layout: 'space', thumbs: [t('rooms', 'interior_cover'), t('rooms', 'interior_pouf'), t('rooms', 'interior_chair', P)] },
-    theme: { bg: '#e4ddd3', fg: '#23201c', muted: '#776f64', line: 'rgb(35 32 28 / 0.14)', accent: '#b0532d', title: 'light', light: true },
-    meta: [
-      ['Type', 'Concept personnel'],
-      ['Année', '2026'],
-      ['Disciplines', 'Web design, motion, mise en scène 3D'],
-      ['Rythme', 'Lent'],
-    ],
-    lead: "Le site d'un studio imaginaire qui conçoit des espaces calmes. Il suit les règles de ses pièces : un objet par image, la lumière pour seul décor, et des transitions aussi lentes qu'une ombre qui passe.",
-    blocks: [
-      { type: 'statement', text: 'La lumière est la matière.' },
-      { type: 'pair', items: [img('rooms', 'interior_chair', '4 / 5', P, 'Fauteuil en velours Mango'), img('rooms', 'interior_pouf', '16 / 10', L, 'Pouf plissé en soie et lampe en verre')], caption: 'Pièces mises en scène en 3D temps réel : une fenêtre, un seul soleil, des meubles scannés.' },
-      { type: 'text', kicker: 'Motion', title: 'Des transitions aussi lentes qu’une ombre.', body: "Les pages se fondent dans le sens de la lumière. Rien ne rebondit. Le défilement ralentit sur les images et accélère sur le texte : le visiteur reste plus longtemps dans une pièce que dans un paragraphe." },
-      { type: 'screens', desktop: img('screens', 'ui_rooms_d', '16 / 10', D, "Page d'accueil Quiet Rooms, desktop"), mobile: img('screens', 'ui_rooms_m', '9 / 19.5', M, "Page d'accueil Quiet Rooms, mobile") },
-      { type: 'palette', colors: [['Enduit à la chaux', '#e4ddd3'], ['Pierre', '#bdb4a7'], ['Terre d’ombre', '#23201c'], ['Terre cuite', '#b0532d']] },
     ],
   },
 

@@ -44,7 +44,7 @@ const scrollShots = async (slug, n = 4) => {
 await scrollShots('stride', 6);
 
 // walk through every project with "next"
-for (const slug of ['vanta', 'opale', 'rooms', 'afterimage', 'oscillo']) {
+for (const slug of ['vanta', 'afterimage', 'oscillo', 'cynthia-rimo', 'elan', 'portant']) {
   await page.evaluate(() => { const s = document.querySelector('.project__scroller'); s.scrollTop = s.scrollHeight; });
   await page.waitForTimeout(900);
   await page.click('.p-next__link');

@@ -62,13 +62,25 @@ export function initProjectView() {
     lenis = null;
   }
 
+  const LIVE = {
+    afterimage: async () => (await import('./live/afterimage.js')).mountAfterimage,
+    oscillo: async () => (await import('./live/oscillo.js')).mountOscillo,
+    can: async () => {
+      const { mountCan } = await import('../concepts/elan/experience.js');
+      return (block) => mountCan(block.querySelector('[data-can-root]'), { autostart: false });
+    },
+    rack: async () => {
+      const { mountRack } = await import('../concepts/portant/rack.js');
+      return (block) => mountRack(block.querySelector('[data-rack-root]'), { compact: true });
+    },
+  };
+
   async function mountLive(block) {
     const kind = block.dataset.live;
-    const mod = kind === 'afterimage'
-      ? (await import('./live/afterimage.js')).mountAfterimage
-      : (await import('./live/oscillo.js')).mountOscillo;
-    if (!block.isConnected) return;
-    const live = mod(block);
+    const mod = await LIVE[kind]?.();
+    if (!mod || !block.isConnected) return;
+    const live = await mod(block);
+    if (!block.isConnected) { live.destroy(); return; }
     lives.push(live);
     triggers.push(ScrollTrigger.create({
       trigger: block, scroller, start: 'top bottom', end: 'bottom top',
