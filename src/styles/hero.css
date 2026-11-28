@@ -21,11 +21,12 @@
   font-size: 10vw;
   font-family: var(--f-display); font-weight: var(--w-display); line-height: 0.9; letter-spacing: var(--ls-giant);
 }
-.hero__line { display: block; overflow: hidden; overflow: clip; overflow-clip-margin: 0.06em; padding-bottom: 0.06em; white-space: nowrap; }
+.hero__line { display: block; white-space: nowrap; }
+/* chaque mot apparaît derrière son propre masque */
+.hero__mask { display: inline-block; vertical-align: top; overflow: hidden; overflow: clip; overflow-clip-margin: 0.06em; padding-bottom: 0.06em; }
 .hero__word { display: inline-block; }
-/* téléphone : trois lignes, pour garder un titre monumental */
-.hero__line--narrow { display: none; }
-@media (max-width: 600px) { .hero__line--wide { display: none; } .hero__line--narrow { display: block; } }
+/* téléphone : « Des / expériences. » sur deux lignes, pour garder un titre monumental (un seul texte dans le HTML) */
+@media (max-width: 600px) { .hero__line--split { white-space: normal; } .hero__line--split .hero__mask { display: block; } }
 .hero__word em { font-weight: var(--w-accent); color: var(--fg-3); letter-spacing: -0.05em; }
 .hero__foot { grid-column: 1 / 6; grid-row: 3; align-self: end; display: grid; gap: 22px; }
 .hero__pitch { max-width: 40ch; color: var(--fg-2); font-size: var(--fs-body); line-height: 1.55; }

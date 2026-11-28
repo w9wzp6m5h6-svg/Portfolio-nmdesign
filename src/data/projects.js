@@ -48,7 +48,7 @@ export const projects = [
     site: 'lempreinte/index.html',
     cover: img('rimo', 'rimo_d1', '16 / 10', L, 'Accueil du site de Cynthia Rimo : une œuvre pop art plein écran et le nom de l’artiste'),
     card: img('rimo', 'rimo_salle', '16 / 10', L, 'La salle virtuelle du site : les œuvres de Cynthia Rimo accrochées en perspective'),
-    coverPos: '50% 30%',
+    coverPos: '50% 82%', // la bobine de l'accueil montre le nom de l'artiste en bas de l'image
     showcase: { layout: 'live', thumbs: [t('rimo', 'rimo_salle'), t('rimo', 'rimo_fiche'), t('rimo', 'rimo_chezsoi'), t('rimo', 'rimo_vernissage')] },
     theme: { bg: '#f6f3ee', fg: '#141414', muted: '#6f6a63', line: 'rgb(20 20 20 / 0.14)', accent: '#d01d2b', title: 'gallery', light: true },
     meta: [

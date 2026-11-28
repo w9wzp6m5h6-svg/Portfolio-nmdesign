@@ -2,7 +2,7 @@
   <dialog class="sheet brief" id="brief" aria-labelledby="brief-title">
     <div class="sheet__panel" data-lenis-prevent>
       <div class="sheet__head">
-        <p class="label sheet__k">Start a project</p>
+        <p class="label sheet__k">Démarrer un projet</p>
         <button class="sheet__close label" type="button" data-close>Fermer<span class="project__close-x" aria-hidden="true"></span></button>
       </div>
       <h2 class="sheet__title" id="brief-title">Parlons de votre <em class="serif">projet.</em></h2>
@@ -100,18 +100,31 @@
         </section>
         <section id="legal-privacy" aria-labelledby="legal-h-privacy">
           <h3 id="legal-h-privacy">Confidentialité</h3>
-          <p>Ce site ne dépose aucun cookie, n'utilise aucun outil de mesure d'audience ni de publicité, et ne charge aucune police ou script depuis un service tiers. Une seule exception, à votre demande : le bouton « Explorer le site en direct » ouvre le site de L'Empreinte (Cynthia Rimo), qui charge ses polices depuis Google Fonts ; votre navigateur contacte alors les serveurs de Google.</p>
-          <p data-legal-form></p>
-          <p>Les informations transmises ne servent qu'à répondre à votre demande et à préparer une éventuelle proposition. Elles ne sont ni revendues ni partagées. Elles sont conservées le temps nécessaire à nos échanges, puis supprimées au plus tard trois ans après le dernier contact.</p>
-          <p>Conformément au RGPD, vous pouvez demander l'accès, la rectification ou la suppression de vos données en écrivant à <a data-legal-email href="#contact"></a>. Vous pouvez également adresser une réclamation à la CNIL.</p>
+          <h4>Responsable du traitement</h4>
+          <p>Noah Milsztajn (NM Design), joignable à l’adresse indiquée dans « Vos droits » ci-dessous.</p>
+          <h4>Données traitées</h4>
+          <ul class="legal__list">
+            <li><strong>Demande de projet.</strong> <span data-legal-form></span></li>
+            <li><strong>Échanges par e-mail.</strong> Les messages sont reçus sur une adresse Gmail : ils sont donc hébergés par Google.</li>
+            <li><strong>Journaux techniques.</strong> Comme tout hébergeur, Netlify enregistre des données de connexion (adresse IP, navigateur, pages demandées) pour servir le site et le protéger.</li>
+          </ul>
+          <h4>Finalités</h4>
+          <p>Répondre à votre demande, préparer une éventuelle proposition, assurer le fonctionnement et la sécurité du site. Aucune prospection, aucune revente, aucun profilage.</p>
+          <h4>Durée de conservation</h4>
+          <p>Les informations transmises sont conservées le temps nécessaire à nos échanges, puis supprimées au plus tard trois ans après le dernier contact.</p>
+          <h4>Cookies et mesure d’audience</h4>
+          <p>Ce site ne dépose aucun cookie, n’utilise aucun outil de mesure d’audience ni de publicité, et ne stocke rien dans votre navigateur. Ses polices et ses scripts sont hébergés avec lui. Une exception, à votre demande : le bouton « Explorer le site en direct » ouvre le site de L’Empreinte (Cynthia Rimo), qui charge ses polices depuis Google Fonts ; votre navigateur contacte alors les serveurs de Google.</p>
+          <h4>Liens externes</h4>
           <p>Le lien Instagram mène vers un service externe, soumis à sa propre politique de confidentialité.</p>
+          <h4>Vos droits</h4>
+          <p>Conformément au RGPD, vous pouvez demander l’accès, la rectification, l’effacement ou la limitation de vos données, et vous opposer à leur traitement, en écrivant à <a data-legal-email href="#contact"></a>. Vous pouvez aussi adresser une réclamation à la CNIL (cnil.fr).</p>
         </section>
       </div>
     </div>
   </dialog>
 
   <!-- Étude de cas (remplie par JS) -->
-  <div class="project" role="dialog" aria-modal="true" aria-labelledby="project-title" inert>
+  <div class="project" role="dialog" aria-modal="true" aria-label="Étude de cas" inert>
     <div class="project__media-clone" aria-hidden="true"></div>
     <div class="project__scroller">
       <div class="project__content"></div>

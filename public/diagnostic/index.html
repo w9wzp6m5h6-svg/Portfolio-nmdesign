@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; frame-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Diagnostic d'affichage — NM Design</title>
+  <link rel="stylesheet" href="diag.css" />
+</head>
+<body>
+  <main>
+    <p class="k">Outil de diagnostic · non référencé</p>
+    <h1>Le site s'affiche-t-il ici ?</h1>
+    <p class="lead">Si vous lisez ce texte, ce navigateur ouvre bien ce domaine. La page teste ensuite l'accueil du portfolio dans ce même navigateur.</p>
+    <section>
+      <h2>Rapport</h2>
+      <pre id="report">Analyse en cours…</pre>
+      <p class="actions">
+        <button type="button" id="copy">Copier le rapport</button>
+        <a href="../">Ouvrir le portfolio</a>
+      </p>
+      <p class="note" id="copied" aria-live="polite"></p>
+    </section>
+    <section>
+      <h2>Accueil chargé dans ce navigateur</h2>
+      <iframe id="frame" title="Accueil du portfolio (test)" src="about:blank"></iframe>
+    </section>
+  </main>
+  <script src="diag.js"></script>
+</body>
+</html>

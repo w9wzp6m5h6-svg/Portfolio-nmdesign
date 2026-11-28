@@ -80,6 +80,8 @@ function initBrief(openLegal) {
   const done = dialog.querySelector('.brief__done');
   const submitBtn = form.querySelector('[type="submit"]');
 
+  // sans service d'envoi, rien ne part automatiquement : le bouton le dit
+  if (!ENDPOINT) submitBtn.firstChild.textContent = 'Préparer mon e-mail';
   dialog.querySelector('[data-brief-how]').textContent = ENDPOINT
     ? 'Votre demande m’est transmise directement ; je vous réponds par e-mail.'
     : 'Votre messagerie s’ouvrira avec la demande pré-remplie : il vous restera à l’envoyer.';
@@ -237,7 +239,7 @@ function initLegal() {
   const rows = (pairs) => pairs.filter(([, v]) => v).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${v}</dd>`).join('');
 
   dialog.querySelector('[data-legal-editor]').innerHTML = rows([
-    ['Responsable', esc(site.name)],
+    ['Responsable et directeur de la publication', esc(site.name)],
     ['Activité', 'Web design et création numérique'],
     ['Statut', esc(L.status || '')],
     ['SIRET', esc(L.siret || '')],

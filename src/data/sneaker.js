@@ -12,7 +12,7 @@
  * Verified for the current model with the tools/render debug_hs_* scenes.
  */
 export const model = {
-  title: 'Knit<br />Runner <em class="serif">/01</em>',
+  title: 'Knit <br />Runner <em class="serif">/01</em>',
   // VITE_MODEL_FORMAT=json → packed models for hosts that refuse .glb (npm run build:artifact)
   hd: `models/sneaker-hd.${import.meta.env?.VITE_MODEL_FORMAT || 'glb'}`,
   lite: `models/sneaker-lite.${import.meta.env?.VITE_MODEL_FORMAT || 'glb'}`,

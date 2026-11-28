@@ -30,8 +30,8 @@ Le navigateur s'ouvre sur `http://127.0.0.1:4173/` (accessible depuis ton ordina
 
 | Quoi | Où |
 | --- | --- |
-| Mentions légales (statut, SIRET, adresse, hébergeur) | `src/data/site.js` → `legal` — **obligatoire avant publication** |
-| Adresse publique du site (canonical, sitemap) | `.env` → `SITE_URL` (voir `.env.example`) |
+| Mentions légales (statut, SIRET, adresse, adresse postale de l'hébergeur) | `src/data/site.js` → `legal` — **obligatoire pour une activité professionnelle** |
+| Adresse publique du site (canonical, og:url, sitemap) | `src/data/site.js` → `url` (actuellement https://nmdesignportfolio.netlify.app) ; `SITE_URL` dans `.env` la remplace si besoin |
 | Envoi direct du formulaire (facultatif) | `.env` → `VITE_FORM_ENDPOINT` (Formspree / Web3Forms) |
 | Modèle 3D Air Jordan 1 Travis Scott (Mocha) | non fourni — voir « Remplacer la sneaker 3D » |
 

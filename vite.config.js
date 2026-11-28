@@ -93,8 +93,8 @@ function seo(siteUrl) {
         this.warn('SITE_URL non défini : pas de sitemap.xml ni de balise canonical (voir MISE-EN-LIGNE.md).');
       }
       const L = site.legal || {};
-      if (!L.status || !L.siret || !L.host?.name) {
-        this.warn('Mentions légales incomplètes (statut, SIRET, hébergeur) : compléter site.legal dans src/data/site.js avant publication.');
+      if (!L.status || !L.siret || !L.host?.name || !L.host?.address) {
+        this.warn('Mentions légales incomplètes (statut, SIRET, adresse de l’hébergeur) : compléter site.legal dans src/data/site.js.');
       }
     },
   };
@@ -178,7 +178,7 @@ function security({ enabled, endpoint, siteUrl }) {
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, ROOT, '');
-  const siteUrl = process.env.SITE_URL || env.SITE_URL || '';
+  const siteUrl = process.env.SITE_URL || env.SITE_URL || site.url || '';
   const explicitIndex = (process.env.ARTIFACT || env.ARTIFACT) === '1';
   const endpoint = process.env.VITE_FORM_ENDPOINT || env.VITE_FORM_ENDPOINT || '';
   return {

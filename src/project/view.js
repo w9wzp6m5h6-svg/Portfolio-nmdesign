@@ -94,6 +94,7 @@ export function initProjectView() {
     current = p;
     applyTheme(p);
     content.innerHTML = renderProject(p, nextOf(p));
+    root.setAttribute('aria-labelledby', 'project-title'); // le titre n'existe que projet ouvert
     applyCss(content);
     barIndex.textContent = `${p.num} / ${String(projects.length).padStart(2, '0')} — ${p.title}`;
     scroller.scrollTop = 0;
@@ -236,6 +237,7 @@ export function initProjectView() {
     gsap.set(scroller, { clearProps: 'clipPath' });
     teardown();
     content.innerHTML = '';
+    root.removeAttribute('aria-labelledby');
     current = null;
     setBehindInert(false);
     unlockScroll('project');

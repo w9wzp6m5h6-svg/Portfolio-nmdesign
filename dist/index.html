@@ -1,10 +1,6 @@
 <!doctype html>
 <html lang="fr" data-root="./">
 <head>
-  <title>NM Design — Noah Milsztajn, web designer &amp; créatif digital · Côte d'Azur</title>
-  <meta name="description" content="NM Design, studio de design digital de Noah Milsztajn : sites web sur mesure, UI/UX, direction artistique, motion et 3D pour artistes, galeries, restaurants et marques de la Côte d'Azur." />
-  <meta property="og:title" content="NM Design — Noah Milsztajn, web designer &amp; créatif digital" />
-  <meta property="og:description" content="Sites web, design digital et expériences interactives sur mesure. Basé sur la Côte d'Azur." />
   <meta charset="utf-8" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' blob:; font-src 'self'; connect-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -15,7 +11,7 @@
   <meta property="og:site_name" content="NM Design" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="fr_FR" />
-  <meta property="og:image" content="./media/og.jpg" />
+  <meta property="og:image" content="https://nmdesignportfolio.netlify.app/media/og.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="NM Design — studio de design digital de Noah Milsztajn" />
@@ -27,7 +23,7 @@
     "@graph": [
       {
         "@type": "Person",
-        "@id": "#noah",
+        "@id": "https://nmdesignportfolio.netlify.app/#noah", "url": "https://nmdesignportfolio.netlify.app/",
         "name": "Noah Milsztajn",
         "jobTitle": "Web designer & créatif digital — NM Design",
         "email": "mailto:nm.officestudiodesign@gmail.com",
@@ -36,12 +32,12 @@
       },
       {
         "@type": "ProfessionalService",
-        "@id": "#studio",
+        "@id": "https://nmdesignportfolio.netlify.app/#studio",
         "name": "NM Design",
         "description": "Sites et expériences numériques sur mesure : web design, UI/UX, direction artistique, motion et 3D.",
-        "founder": { "@id": "#noah" },
+        "founder": { "@id": "https://nmdesignportfolio.netlify.app/#noah" },
         "email": "nm.officestudiodesign@gmail.com",
-        "image": "/media/og.jpg",
+        "image": "https://nmdesignportfolio.netlify.app/media/og.jpg", "url": "https://nmdesignportfolio.netlify.app/",
         "priceRange": "À partir de 149 €",
         "areaServed": ["Valbonne", "Antibes", "Cannes", "Mougins", "Nice", "Beaulieu-sur-Mer", "Saint-Jean-Cap-Ferrat", "Côte d'Azur"],
         "sameAs": ["https://www.instagram.com/noah.mlzn_/"],
@@ -60,10 +56,16 @@
   }
   </script>
 
+  <title>NM Design — Noah Milsztajn, web designer &amp; créatif digital · Côte d'Azur</title>
+  <meta name="description" content="NM Design, studio de design digital de Noah Milsztajn : sites web sur mesure, UI/UX, direction artistique, motion et 3D pour artistes, galeries, restaurants et marques de la Côte d'Azur." />
+  <meta property="og:title" content="NM Design — Noah Milsztajn, web designer &amp; créatif digital" />
+  <meta property="og:description" content="Sites web, design digital et expériences interactives sur mesure. Basé sur la Côte d'Azur." />
+  <link rel="canonical" href="https://nmdesignportfolio.netlify.app/" />
+  <meta property="og:url" content="https://nmdesignportfolio.netlify.app/" />
   <script type="module" crossorigin src="./assets/escape-DgOtKD9r.js"></script>
   <script type="module" crossorigin src="./assets/preload-helper-PPVm8Dsz.js"></script>
-  <script type="module" crossorigin src="./assets/main-B65Yob1M.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/main-KHJrEFpb.css">
+  <script type="module" crossorigin src="./assets/main-BBbv6jJd.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/main-Fn-M5Gn0.css">
 </head>
 <body data-page="home">
   <a class="skip-link" href="#main">Aller au contenu</a>
@@ -114,14 +116,11 @@
         <p class="hero__meta label">NM Design · Côte d'Azur · à distance partout ailleurs</p>
       </div>
       <h1 class="hero__title">
-        <span class="visually-hidden">NM Design — Noah Milsztajn, web designer et créatif digital : pas des sites, des expériences. </span>
-        <span class="hero__line" aria-hidden="true"><span class="hero__word"><em>Pas des sites.</em></span></span>
-        <span class="hero__line hero__line--wide" aria-hidden="true"><span class="hero__word">Des expériences.</span></span>
-        <span class="hero__line hero__line--narrow" aria-hidden="true"><span class="hero__word">Des</span></span>
-        <span class="hero__line hero__line--narrow" aria-hidden="true"><span class="hero__word">expériences.</span></span>
+        <span class="hero__line"><span class="hero__mask"><span class="hero__word"><em>Pas des sites.</em></span></span></span>
+        <span class="hero__line hero__line--split"><span class="hero__mask"><span class="hero__word">Des</span></span> <span class="hero__mask"><span class="hero__word">expériences.</span></span></span>
       </h1>
       <div class="hero__foot" data-hero-fade>
-        <p class="hero__pitch">Sites sur mesure, interfaces et expériences interactives pour les marques, les artistes et les lieux. Direction artistique, design et développement : une seule personne, du premier croquis à la mise en ligne.</p>
+        <p class="hero__pitch">Sites sur mesure, interfaces et expériences interactives pour les marques, les artistes et les lieux. Direction artistique, design et développement.</p>
         <ul class="hero__skills label" aria-label="Domaines">
           <li>Direction artistique</li><li>Web design &amp; UI</li><li>Interaction &amp; 3D</li><li>Développement</li>
         </ul>
@@ -138,7 +137,6 @@
       <header class="section-head">
         <p class="section-head__num label">Projets sélectionnés — 2026</p>
         <h2 class="section-head__title" data-split>Un projet réel, des concepts poussés <em>jusqu'au bout.</em></h2>
-        <a class="section-head__more link-arrow" href="./projets/">Tous les projets <span aria-hidden="true">→</span></a>
       </header>
       <div class="showcase__list" data-works="home"></div>
       <div class="showcase__more">
@@ -149,12 +147,12 @@
     <!-- Le studio ---------------------------------------------------------->
     <section class="studio" id="studio" data-tone="light" data-section="studio" data-label="Le studio">
       <p class="studio__k label">Le studio</p>
-      <p class="studio__statement" data-words>Je ne veux pas seulement créer de beaux sites.
+      <p class="studio__statement" data-words>Chaque projet commence par
         <span class="studio__face" aria-hidden="true"><picture>
           <source type="image/webp" srcset="media/about/noah-square-800.webp 800w" sizes="160px" />
           <img src="./media/about/noah-square-800.webp" width="800" height="800" alt="" loading="lazy" decoding="async" />
         </picture></span>
-        Je veux créer des expériences <em class="serif">qui marquent.</em></p>
+        écouter. Le design vient ensuite, <em class="serif">jusqu’au moindre détail.</em></p>
       <div class="studio__facts">
         <figure class="studio__portrait">
           <picture>
@@ -217,7 +215,7 @@
       <h2 class="contact__title" data-split>Un projet en tête ? <em class="serif">Parlons-en.</em></h2>
       <div class="contact__row">
         <button class="contact__orb" type="button" data-open-brief data-magnetic>
-          <span class="contact__orb-in">Démarrer<br />un projet <span aria-hidden="true">→</span></span>
+          <span class="contact__orb-in">Démarrer <br />un projet <span aria-hidden="true">→</span></span>
         </button>
         <div class="contact__side">
           <p class="contact__intro">Racontez-moi votre activité et ce que vous imaginez. Je vous réponds avec une première orientation, puis une proposition claire.</p>
@@ -232,7 +230,7 @@
     <div class="footer__top">
       <a class="footer__brand" href="./" aria-label="NM Design — accueil">
         <svg class="mark" viewBox="-6 -6 132 112" fill="none" aria-hidden="true"><polyline class="mark__line" points="0,100 0,0 60,100 60,0 90,60 120,0 120,100" /></svg>
-        <span class="footer__claim">NM Design<span class="serif">Digital design &amp; creative experiences</span></span>
+        <span class="footer__claim">NM Design<span class="serif">Design digital &amp; expériences créatives</span></span>
       </a>
     </div>
     <div class="footer__cols">
@@ -273,7 +271,7 @@
   <dialog class="sheet brief" id="brief" aria-labelledby="brief-title">
     <div class="sheet__panel" data-lenis-prevent>
       <div class="sheet__head">
-        <p class="label sheet__k">Start a project</p>
+        <p class="label sheet__k">Démarrer un projet</p>
         <button class="sheet__close label" type="button" data-close>Fermer<span class="project__close-x" aria-hidden="true"></span></button>
       </div>
       <h2 class="sheet__title" id="brief-title">Parlons de votre <em class="serif">projet.</em></h2>
@@ -371,18 +369,31 @@
         </section>
         <section id="legal-privacy" aria-labelledby="legal-h-privacy">
           <h3 id="legal-h-privacy">Confidentialité</h3>
-          <p>Ce site ne dépose aucun cookie, n'utilise aucun outil de mesure d'audience ni de publicité, et ne charge aucune police ou script depuis un service tiers. Une seule exception, à votre demande : le bouton « Explorer le site en direct » ouvre le site de L'Empreinte (Cynthia Rimo), qui charge ses polices depuis Google Fonts ; votre navigateur contacte alors les serveurs de Google.</p>
-          <p data-legal-form></p>
-          <p>Les informations transmises ne servent qu'à répondre à votre demande et à préparer une éventuelle proposition. Elles ne sont ni revendues ni partagées. Elles sont conservées le temps nécessaire à nos échanges, puis supprimées au plus tard trois ans après le dernier contact.</p>
-          <p>Conformément au RGPD, vous pouvez demander l'accès, la rectification ou la suppression de vos données en écrivant à <a data-legal-email href="#contact"></a>. Vous pouvez également adresser une réclamation à la CNIL.</p>
+          <h4>Responsable du traitement</h4>
+          <p>Noah Milsztajn (NM Design), joignable à l’adresse indiquée dans « Vos droits » ci-dessous.</p>
+          <h4>Données traitées</h4>
+          <ul class="legal__list">
+            <li><strong>Demande de projet.</strong> <span data-legal-form></span></li>
+            <li><strong>Échanges par e-mail.</strong> Les messages sont reçus sur une adresse Gmail : ils sont donc hébergés par Google.</li>
+            <li><strong>Journaux techniques.</strong> Comme tout hébergeur, Netlify enregistre des données de connexion (adresse IP, navigateur, pages demandées) pour servir le site et le protéger.</li>
+          </ul>
+          <h4>Finalités</h4>
+          <p>Répondre à votre demande, préparer une éventuelle proposition, assurer le fonctionnement et la sécurité du site. Aucune prospection, aucune revente, aucun profilage.</p>
+          <h4>Durée de conservation</h4>
+          <p>Les informations transmises sont conservées le temps nécessaire à nos échanges, puis supprimées au plus tard trois ans après le dernier contact.</p>
+          <h4>Cookies et mesure d’audience</h4>
+          <p>Ce site ne dépose aucun cookie, n’utilise aucun outil de mesure d’audience ni de publicité, et ne stocke rien dans votre navigateur. Ses polices et ses scripts sont hébergés avec lui. Une exception, à votre demande : le bouton « Explorer le site en direct » ouvre le site de L’Empreinte (Cynthia Rimo), qui charge ses polices depuis Google Fonts ; votre navigateur contacte alors les serveurs de Google.</p>
+          <h4>Liens externes</h4>
           <p>Le lien Instagram mène vers un service externe, soumis à sa propre politique de confidentialité.</p>
+          <h4>Vos droits</h4>
+          <p>Conformément au RGPD, vous pouvez demander l’accès, la rectification, l’effacement ou la limitation de vos données, et vous opposer à leur traitement, en écrivant à <a data-legal-email href="#contact"></a>. Vous pouvez aussi adresser une réclamation à la CNIL (cnil.fr).</p>
         </section>
       </div>
     </div>
   </dialog>
 
   <!-- Étude de cas (remplie par JS) -->
-  <div class="project" role="dialog" aria-modal="true" aria-labelledby="project-title" inert>
+  <div class="project" role="dialog" aria-modal="true" aria-label="Étude de cas" inert>
     <div class="project__media-clone" aria-hidden="true"></div>
     <div class="project__scroller">
       <div class="project__content"></div>

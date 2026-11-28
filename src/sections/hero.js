@@ -58,14 +58,17 @@ export function initHero() {
   probe.style.cssText = 'position:absolute;left:-9999px;top:0;visibility:hidden;white-space:nowrap;font-size:100px;line-height:1;';
   document.body.append(probe);
   const measure = (el) => {
-    const cs = getComputedStyle(el.querySelector('em') || el);
+    const cs = getComputedStyle(el.querySelector('em') || el.querySelector('.hero__word') || el);
     Object.assign(probe.style, { fontFamily: cs.fontFamily, fontWeight: cs.fontWeight, fontStyle: cs.fontStyle, letterSpacing: `${parseFloat(cs.letterSpacing) / parseFloat(cs.fontSize) || 0}em` });
     probe.textContent = el.textContent;
     return probe.getBoundingClientRect().width;
   };
   function fit() {
     const available = title.getBoundingClientRect().width;
-    const widest = Math.max(...words.filter((w) => w.offsetParent !== null).map(measure));
+    // ordinateur : chaque ligne entière ; téléphone : « Des » et « expériences. » passent sur deux lignes
+    const narrow = window.matchMedia('(max-width: 600px)').matches;
+    const units = narrow ? [...title.querySelectorAll('.hero__line:not(.hero__line--split), .hero__line--split .hero__word')] : [...title.querySelectorAll('.hero__line')];
+    const widest = Math.max(...units.map(measure));
     if (!(widest > 0) || !(available > 0)) return;
     const size = Math.min((100 * available) / widest, window.innerHeight * (window.innerWidth > 900 ? 0.17 : 0.16));
     title.style.fontSize = `${Math.floor(size * 0.98)}px`;

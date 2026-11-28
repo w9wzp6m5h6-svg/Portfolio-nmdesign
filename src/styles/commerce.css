@@ -163,5 +163,8 @@
 
 .legal__body { display: grid; gap: 36px; margin-top: 32px; color: var(--fg-2); max-width: 62ch; }
 .legal__body section { display: grid; gap: 12px; }
-.legal__body h3 { font-size: var(--fs-label); font-weight: 700; color: var(--fg); margin-top: 12px; }
+.legal__body h3 { font-family: var(--f-display); font-size: var(--fs-h3); font-weight: var(--w-display); letter-spacing: var(--ls-h3); line-height: var(--lh-h3); color: var(--fg); margin-top: 12px; }
+.legal__body h4 { font-size: var(--fs-label); font-weight: 600; letter-spacing: var(--ls-label); text-transform: uppercase; color: var(--fg); margin-top: 8px; }
+.legal__list { display: grid; gap: 8px; padding-left: 1.1em; list-style: disc; }
+.legal__list strong { color: var(--fg); font-weight: 600; }
 .legal__body a { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }

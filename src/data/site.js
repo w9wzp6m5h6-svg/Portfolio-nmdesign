@@ -6,6 +6,8 @@
 export const site = {
   name: 'Noah Milsztajn',
   role: 'Web designer & créatif digital',
+  /** adresse publique actuelle du site (canonical, og:url, images de partage absolues, sitemap) */
+  url: 'https://nmdesignportfolio.netlify.app',
 
   email: 'nm.officestudiodesign@gmail.com',
   /** objet pré-rempli des liens e-mail et du formulaire */
@@ -25,7 +27,9 @@ export const site = {
     siret: '',         // ex. « 123 456 789 00012 »
     address: '',       // adresse professionnelle ou de domiciliation
     vatNote: '',       // ex. « TVA non applicable, art. 293 B du CGI » si c'est votre cas
-    host: { name: '', address: '', url: '' }, // ex. Netlify, Inc. — 512 2nd Street…
+    // hébergeur réel du site (en-tête « server: Netlify ») ; adresse postale à recopier depuis les
+    // conditions officielles de Netlify : les sources tierces se contredisent, rien n'est inventé ici
+    host: { name: 'Netlify, Inc.', address: '', url: 'https://www.netlify.com' },
   },
 };
 

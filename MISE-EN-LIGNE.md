@@ -72,3 +72,15 @@ Pour la recherche locale (« web designer Valbonne »…), crée aussi une fiche
 2. Sur app.netlify.com → le site → onglet **Deploys** → glisser le dossier `dist` dans la zone « Drag and drop your site output folder here ».
 3. L'ancienne version reste dans l'historique **Deploys** : en cas de problème, l'ouvrir puis **Publish deploy** pour revenir en arrière.
 4. Vérifier depuis Instagram (lien en bio, ou lien envoyé à soi-même en message privé) sur iPhone.
+
+
+## Instagram (iPhone) : vérifier et corriger un lien qui ne s'ouvre pas
+
+Le site ne contient plus rien de connu pour bloquer les navigateurs intégrés (voir SECURITE.md). Si le lien échoue encore depuis Instagram :
+
+1. **Page de diagnostic** : envoyez-vous en message privé Instagram le lien `https://nmdesignportfolio.netlify.app/diagnostic/`, ouvrez-le depuis Instagram, appuyez sur « Copier le rapport ». Cette page n'est liée nulle part et n'est pas indexée.
+   - Si elle **ne s'ouvre pas non plus** (alors qu'elle n'a presque rien) : le blocage vient d'Instagram (vérification du lien par Meta, réputation des adresses `netlify.app` partagées par des milliers de sites), pas du code.
+   - Si elle s'ouvre et que l'accueil affiche une erreur dans le cadre : le rapport donne l'erreur exacte.
+2. **Partage Meta** : collez l'adresse dans l'outil de débogage du partage de Meta (Sharing Debugger) et demandez une nouvelle analyse (« Scrape Again ») ; il signale aussi un lien bloqué.
+3. **Nom de domaine à vous** (le plus fiable) : un domaine personnel (ex. `nmdesign.fr`) relié au site Netlify évite la réputation partagée de `netlify.app`. Ensuite, mettre la nouvelle adresse dans `src/data/site.js` → `url`, puis reconstruire.
+4. Dans Instagram : menu ⋯ du navigateur intégré → paramètres du navigateur → effacer les données de navigation, puis réessayer.
