@@ -47,6 +47,15 @@ for (const f of files.filter((x) => TEXT.has(extname(x)) || x.endsWith('_headers
 ok('aucun secret dans les fichiers publiés', leaks.length === 0, leaks.join(' ; '));
 
 // 3. Chaque page a sa CSP, sans 'unsafe-inline' ni 'unsafe-eval', sans style="" ni script inline exécutable
+// Navigateurs intégrés (Instagram, Facebook, TikTok… sur iOS) : ils ouvrent le lien dans une fenêtre qu'ils
+// gardent liée à la leur. Cross-Origin-Opener-Policy: same-origin coupe ce lien : l'appli voit la page
+// « fermée », affiche une erreur de chargement et transmet « invalid.invalid » à Safari. À ne pas remettre.
+{
+  const served = [readFileSync('vercel.json', 'utf8'), files.includes('_headers') ? read('_headers') : '', files.includes('.htaccess') ? read('.htaccess') : ''].join('\n');
+  const coop = served.match(/Cross-Origin-Opener-Policy["\s:,]+(?:"value":\s*)?"?([a-z-]+)/i)?.[1];
+  ok('pas de Cross-Origin-Opener-Policy bloquant pour les navigateurs intégrés (Instagram iOS)', !coop || coop === 'unsafe-none', coop);
+}
+
 // Site de L'Empreinte : œuvre livrée telle quelle (fichier d'origine non modifié). Il n'est jamais
 // exécuté dans le contexte du portfolio : l'aperçu le charge dans une iframe isolée (sandbox sans
 // allow-same-origin), à la demande. On vérifie ces garanties plutôt que la CSP du portfolio.

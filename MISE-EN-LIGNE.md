@@ -64,3 +64,11 @@ Pour la recherche locale (« web designer Valbonne »…), crée aussi une fiche
 ## 6. Lien direct pour ta prospection
 
 `https://ton-domaine.fr/#demarrer` (ou `/offres/#demarrer`) ouvre directement le formulaire de demande de projet — utile dans ta bio Instagram ou tes messages.
+
+
+## Mettre à jour un site Netlify déposé à la main (Netlify Drop)
+
+1. `npm run build` (ou récupérer le dossier `dist/` de l'archive).
+2. Sur app.netlify.com → le site → onglet **Deploys** → glisser le dossier `dist` dans la zone « Drag and drop your site output folder here ».
+3. L'ancienne version reste dans l'historique **Deploys** : en cas de problème, l'ouvrir puis **Publish deploy** pour revenir en arrière.
+4. Vérifier depuis Instagram (lien en bio, ou lien envoyé à soi-même en message privé) sur iPhone.

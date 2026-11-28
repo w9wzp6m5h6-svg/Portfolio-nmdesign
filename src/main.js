@@ -26,29 +26,38 @@ if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
 document.querySelectorAll('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
 
-initScroll();
-initPageTransitions();
-initHeader();
-initMenu();
-initCursorTag();
-initLiveSites();
-const hero = initHero();
-initWorks();
-initStudio();
-initObject();
-initContact();
-initAbout();
-const projectView = initProjectView();
-const commerce = initCommerce();
-initTone();
-hero.play();
+// Chaque module démarre isolément : une erreur propre à un navigateur (navigateur intégré d'une appli,
+// WebView ancienne, WebGL refusé…) reste dans son module et ne laisse jamais la page à moitié prête.
+const safe = (name, fn, fallback) => {
+  try { return fn(); } catch (err) { console.error(`[NM] ${name} :`, err); return fallback; }
+};
+// filet de sécurité : si l'entrée du titre ne peut pas se jouer, le titre s'affiche tel quel
+const showHero = () => document.querySelectorAll('.hero__word, [data-hero-fade]').forEach((el) => { el.style.transform = ''; el.style.opacity = ''; el.style.visibility = ''; });
+
+safe('défilement', initScroll);
+safe('transitions', initPageTransitions);
+safe('en-tête', initHeader);
+safe('menu', initMenu);
+safe('curseur', initCursorTag);
+safe('site en direct', initLiveSites);
+const hero = safe('accueil', initHero, null);
+safe('projets', initWorks);
+safe('studio', initStudio);
+safe('lab 3D', initObject);
+safe('contact', initContact);
+safe('à propos', initAbout);
+const projectView = safe('études de cas', initProjectView, { openFromURL() {} });
+const commerce = safe('offres', initCommerce, { openFromURL() {} });
+safe('tons', initTone);
+if (!hero || safe('entrée', () => { hero.play(); return true; }, false) === false) showHero();
 
 // les révélations au défilement découpent les lignes : on attend les vraies polices
-document.fonts.ready.then(() => {
-  initReveals();
-  ScrollTrigger.refresh();
-  projectView.openFromURL();
-  commerce.openFromURL();
+const fontsReady = document.fonts?.ready || Promise.resolve();
+fontsReady.then(() => {
+  safe('révélations', initReveals);
+  safe('mise en page', () => ScrollTrigger.refresh());
+  safe('lien vers un projet', () => projectView.openFromURL());
+  safe('lien vers une offre', () => commerce.openFromURL());
   // ancre de section dans l'URL (ex. lien partagé vers #object)
   // getElementById : une ancre arbitraire (ex. « #1abc », « #<x> ») ne peut ni planter ni cibler autre chose qu'un id
   let anchor = null;

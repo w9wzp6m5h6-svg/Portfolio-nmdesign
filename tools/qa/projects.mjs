@@ -61,7 +61,7 @@ check('Esc closes overlay', !(await page.evaluate(() => document.querySelector('
 check('page interactive again', await page.evaluate(() => document.querySelector('main').inert === false));
 
 // browser back closes
-await page.click('.case__media[data-project="vanta"]');
+await page.click('.case__media[data-project="elan"]');
 await page.waitForTimeout(2400);
 await page.goBack();
 await page.waitForTimeout(1800);

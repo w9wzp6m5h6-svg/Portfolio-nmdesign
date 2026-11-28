@@ -24,6 +24,8 @@ Site **statique** : 4 pages HTML, les sites de deux concepts fictifs (ÉLAN, POR
 | Vérifications automatiques | `.github/workflows/securite.yml` | À chaque pull request et push sur `main` : audit des dépendances, build, contrôle du dossier publié (`npm run check:security`). |
 | Mises à jour | `.github/dependabot.yml` | Propositions de mises à jour hebdomadaires (npm) et mensuelles (actions GitHub), à relire avant fusion. |
 
+**Navigateurs intégrés (Instagram, Facebook, TikTok… sur iPhone) :** le site n'envoie volontairement **pas** l'en-tête `Cross-Origin-Opener-Policy: same-origin`. Ces applis ouvrent les liens dans une fenêtre qu'elles gardent liée à la leur ; cet en-tête coupe le lien, l'appli croit la page fermée, affiche une erreur de chargement et transmet l'adresse fictive `invalid.invalid` à Safari. Pour un site vitrine sans compte ni donnée sensible, il n'apporte rien. `npm run check:security` échoue s'il revient.
+
 **Exceptions de la CSP, et pourquoi :**
 - `'wasm-unsafe-eval'` : le modèle 3D est compressé (meshopt) et décodé par du WebAssembly. Cette exception autorise la compilation WebAssembly, **pas** l'exécution de JavaScript arbitraire (`eval` reste bloqué).
 - Une empreinte `sha256` : le seul bloc `<style>` du site, dans `<noscript>`, pour les visiteurs sans JavaScript.
