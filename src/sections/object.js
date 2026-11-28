@@ -51,7 +51,7 @@ export function initObject() {
     b.type = 'button';
     b.className = 'hotspot';
     b.setAttribute('aria-label', `Détail ${i + 1} : ${h.label}`);
-    b.innerHTML = `<span class="hotspot__dot"></span><span class="hotspot__label mono">${String(i + 1).padStart(2, '0')} ${esc(h.label)}</span>`;
+    b.innerHTML = `<span class="hotspot__dot"></span><span class="hotspot__label label">${String(i + 1).padStart(2, '0')} ${esc(h.label)}</span>`;
     b.addEventListener('click', () => selectSpot(i));
     layer.append(b);
     return b;

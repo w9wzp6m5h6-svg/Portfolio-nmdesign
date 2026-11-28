@@ -6,7 +6,7 @@
   <meta property="og:title" content="Projets — NM Design" />
   <meta property="og:description" content="Un projet réel pour une galerie d'art à Valbonne et des concepts de design digital, 3D et interaction." />
   <meta charset="utf-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'sha256-MJiHiHTEvesL0GlZ5Jp+GDvi5DGuZ5KB+AP2EPVCY30='; img-src 'self' blob:; font-src 'self'; connect-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' blob:; font-src 'self'; connect-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="author" content="Noah Milsztajn — NM Design" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -60,37 +60,13 @@
   }
   </script>
 
-  <script type="module" crossorigin src="../assets/main-BqEBfw2-.js"></script>
-  <link rel="stylesheet" crossorigin href="../assets/main-DDBHXF4e.css">
+  <script type="module" crossorigin src="../assets/main-Ctv3EDtk.js"></script>
+  <link rel="stylesheet" crossorigin href="../assets/main-RyS2yjwE.css">
 </head>
-<body class="is-loading" data-page="projects">
+<body data-page="projects">
   <a class="skip-link" href="#main">Aller au contenu</a>
 
-  <!-- Intro : scène en profondeur ; le logo NM se trace puis rejoint l'en-tête -->
-  <div class="intro">
-    <div class="intro__light" aria-hidden="true"></div>
-    <div class="intro__stage" aria-hidden="true">
-      <div class="intro__world">
-        <i class="intro__plane intro__plane--1"></i>
-        <i class="intro__plane intro__plane--2"></i>
-        <i class="intro__plane intro__plane--3"></i>
-        <i class="intro__plane intro__plane--4"></i>
-        <i class="intro__plane intro__plane--5"></i>
-        <i class="intro__plane intro__plane--6"></i>
-      </div>
-    </div>
-    <div class="intro__core" aria-hidden="true">
-      <svg class="intro__mark mark" viewBox="-6 -6 132 112" fill="none">
-        <polyline class="mark__line" points="0,100 0,0 60,100 60,0 90,60 120,0 120,100" />
-      </svg>
-      <p class="intro__word"><span class="intro__word-in">NM Design</span></p>
-    </div>
-    <p class="intro__meta mono" aria-hidden="true"><span>Studio de design digital</span><span class="intro__count">000</span></p>
-    <button class="intro__skip mono" type="button">Passer l'intro</button>
-  </div>
-
-
-  <!-- En-tête ------------------------------------------------------------->
+  <!-- En-tête : logo NM (se trace à l'arrivée et au survol), navigation, appel à l'action -->
   <header class="header">
     <a class="header__brand" href="../" aria-label="NM Design — accueil">
       <svg class="mark mark--brand" viewBox="-6 -6 132 112" fill="none" aria-hidden="true">
@@ -102,9 +78,10 @@
       <a href="../projets/" data-nav="projects"><span class="roll" data-text="Projets">Projets</span></a>
       <a href="../a-propos/" data-nav="about"><span class="roll" data-text="À propos">À propos</span></a>
       <a href="../offres/" data-nav="offers"><span class="roll" data-text="Offres">Offres</span></a>
-      <a href="#contact" data-nav="contact" class="header__cta"><span class="roll" data-text="Contact">Contact</span></a>
+      <a href="#contact" data-nav="contact"><span class="roll" data-text="Contact">Contact</span></a>
     </nav>
-    <button class="header__menu mono" type="button" aria-expanded="false" aria-controls="menu">
+    <button class="header__cta btn" type="button" data-open-brief>Démarrer un projet<span class="btn__arrow" aria-hidden="true">→</span></button>
+    <button class="header__menu" type="button" aria-expanded="false" aria-controls="menu">
       <span class="header__menu-label">Menu</span>
       <span class="header__menu-icon" aria-hidden="true"><i></i><i></i></span>
     </button>
@@ -114,71 +91,74 @@
   <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu" inert>
     <div class="menu__bg"></div>
     <nav class="menu__nav" aria-label="Menu">
-      <a href="../" data-nav="home"><span class="menu__num mono">01</span><span class="menu__label">Accueil</span></a>
-      <a href="../projets/" data-nav="projects"><span class="menu__num mono">02</span><span class="menu__label">Projets</span></a>
-      <a href="../a-propos/" data-nav="about"><span class="menu__num mono">03</span><span class="menu__label">À propos</span></a>
-      <a href="../offres/" data-nav="offers"><span class="menu__num mono">04</span><span class="menu__label">Offres</span></a>
-      <a href="#contact"><span class="menu__num mono">05</span><span class="menu__label">Contact</span></a>
+      <a href="../" data-nav="home"><span class="menu__num label">01</span><span class="menu__label">Accueil</span></a>
+      <a href="../projets/" data-nav="projects"><span class="menu__num label">02</span><span class="menu__label">Projets</span></a>
+      <a href="../a-propos/" data-nav="about"><span class="menu__num label">03</span><span class="menu__label">À propos</span></a>
+      <a href="../offres/" data-nav="offers"><span class="menu__num label">04</span><span class="menu__label">Offres</span></a>
+      <a href="#contact"><span class="menu__num label">05</span><span class="menu__label">Contact</span></a>
     </nav>
-    <div class="menu__foot mono" data-menu-contact></div>
+    <div class="menu__foot">
+      <button class="btn menu__cta" type="button" data-open-brief>Démarrer un projet<span class="btn__arrow" aria-hidden="true">→</span></button>
+      <div class="menu__contact label" data-menu-contact></div>
+    </div>
   </div>
 
 
   <main id="main">
-    <header class="page-head" id="top" data-section="projects" data-label="Projets">
-      <p class="page-head__k mono">Projets</p>
+    <header class="page-head" id="top" data-tone="light" data-section="projects" data-label="Projets">
+      <p class="page-head__k label">Projets</p>
       <h1 class="page-head__title">Réalisations <em>&amp; concepts</em></h1>
-      <p class="page-head__lead">Un projet réel, conçu pour une galerie d'art à Valbonne, et des concepts personnels : chacun explore une direction artistique jusqu'au bout. Les concepts ne sont pas des commandes clients.</p>
+      <p class="page-head__lead">Un projet réel, la galerie numérique de Cynthia Rimo à L'Empreinte, Valbonne, et des concepts personnels : chacun explore une direction artistique jusqu'au bout. Les concepts ne sont pas des commandes clients.</p>
     </header>
 
-    <section class="works works--all" id="work" aria-label="Tous les projets">
+    <section class="showcase showcase--all" id="work" data-tone="dark" aria-label="Tous les projets">
       <h2 class="visually-hidden">Tous les projets</h2>
-      <div class="works__filters" role="group" aria-label="Filtrer les projets" data-filters>
+      <div class="showcase__filters" role="group" aria-label="Filtrer les projets" data-filters>
         <button class="chip" type="button" aria-pressed="true" data-filter="all">Tous</button>
         <button class="chip" type="button" aria-pressed="false" data-filter="real">Projet réel</button>
         <button class="chip" type="button" aria-pressed="false" data-filter="web">Sites web</button>
         <button class="chip" type="button" aria-pressed="false" data-filter="3d">3D &amp; WebGL</button>
         <button class="chip" type="button" aria-pressed="false" data-filter="identity">Identité &amp; génératif</button>
-        <span class="works__count mono" aria-live="polite" data-count></span>
+        <span class="showcase__count label" aria-live="polite" data-count></span>
       </div>
-      <div class="works__grid" data-works="all"></div>
+      <div class="showcase__list" data-works="all"></div>
     </section>
 
     <!-- L'objet (sneaker 3D) --------------------------------------------->
-    <section class="object" id="object" data-section="lab" data-label="Lab 3D" aria-label="Sneaker 3D interactive">
+    <section class="object" data-tone="light" id="object" data-section="lab" data-label="Lab 3D" aria-label="Sneaker 3D interactive">
       <div class="object__stage">
         <canvas class="object__gl" role="img"></canvas>
         <div class="object__hotspots"></div>
-        <div class="object__loading mono" aria-live="polite"><span class="object__loading-bar"><i></i></span><span class="object__loading-text">Chargement de l'objet — 0 %</span></div>
+        <div class="object__loading label" aria-live="polite"><span class="object__loading-bar"><i></i></span><span class="object__loading-text">Chargement de l'objet — 0 %</span></div>
       </div>
 
       <div class="object__ui">
         <header class="object__head">
-          <p class="mono object__kicker">Lab — objet interactif</p>
+          <p class="label object__kicker">Lab — objet interactif</p>
           <h2 class="object__title">Knit<br />Runner <em class="serif">/01</em></h2>
           <p class="object__lead">Une sneaker en 3D temps réel, mise en scène dans le navigateur. Faites-la pivoter, zoomez, explorez ses détails, changez de coloris.</p>
         </header>
 
         <div class="object__panel" aria-live="polite">
-          <p class="mono object__panel-k">Détail <span class="object__panel-i">—</span></p>
+          <p class="label object__panel-k">Détail <span class="object__panel-i">—</span></p>
           <h3 class="object__panel-t">Choisissez un point</h3>
           <p class="object__panel-d">Sélectionnez un repère sur la chaussure : la caméra vient se placer sur ce détail.</p>
         </div>
 
         <div class="object__controls">
           <fieldset class="object__group">
-            <legend class="mono">Coloris</legend>
+            <legend class="label">Coloris</legend>
             <div class="object__swatches" data-variants></div>
           </fieldset>
           <fieldset class="object__group">
-            <legend class="mono">Vue</legend>
+            <legend class="label">Vue</legend>
             <div class="object__seg" role="group">
               <button type="button" class="chip is-active" data-mode="studio" aria-pressed="true">Studio</button>
               <button type="button" class="chip" data-mode="xray" aria-pressed="false">Rayons X</button>
             </div>
           </fieldset>
           <div class="object__group object__group--zoom">
-            <span class="mono">Zoom</span>
+            <span class="label">Zoom</span>
             <div class="object__seg">
               <button type="button" class="chip chip--icon" data-zoom="-1" aria-label="Dézoomer">−</button>
               <button type="button" class="chip chip--icon" data-zoom="1" aria-label="Zoomer">+</button>
@@ -186,27 +166,32 @@
             </div>
           </div>
         </div>
-        <p class="object__hint mono" aria-hidden="true"><span class="object__hint-icon"></span><span class="object__hint-text">Glissez pour faire pivoter</span></p>
+        <p class="object__hint label" aria-hidden="true"><span class="object__hint-icon"></span><span class="object__hint-text">Glissez pour faire pivoter</span></p>
       </div>
-      <p class="object__credit mono"></p>
+      <p class="object__credit label"></p>
     </section>
 
-    <!-- Contact ------------------------------------------------------------>
-    <section class="contact" id="contact" data-section="contact" data-label="Contact">
+    <!-- Fin de site : une conclusion, pas un formulaire de plus -------------->
+    <section class="contact" id="contact" data-tone="dark" data-section="contact" data-label="Contact">
       <svg class="contact__mark" viewBox="-6 -6 132 112" fill="none" aria-hidden="true">
         <polyline class="contact__line" points="0,100 0,0 60,100 60,0 90,60 120,0 120,100" />
       </svg>
-      <div class="contact__content">
-        <p class="mono contact__kicker">Contact</p>
-        <h2 class="contact__title">Un projet en tête ? <em class="serif">Parlons-en.</em></h2>
-        <p class="contact__intro">Racontez-moi votre activité et ce que vous imaginez. Je vous réponds avec une première orientation, puis une proposition claire.</p>
-        <div class="contact__actions" data-contact></div>
+      <p class="label contact__kicker">Contact</p>
+      <h2 class="contact__title" data-split>Un projet en tête ? <em class="serif">Parlons-en.</em></h2>
+      <div class="contact__row">
+        <button class="contact__orb" type="button" data-open-brief data-magnetic>
+          <span class="contact__orb-in">Démarrer<br />un projet <span aria-hidden="true">→</span></span>
+        </button>
+        <div class="contact__side">
+          <p class="contact__intro">Racontez-moi votre activité et ce que vous imaginez. Je vous réponds avec une première orientation, puis une proposition claire.</p>
+          <div class="contact__actions" data-contact></div>
+        </div>
       </div>
     </section>
 
   </main>
 
-  <footer class="footer">
+  <footer class="footer" data-tone="dark">
     <div class="footer__top">
       <a class="footer__brand" href="../" aria-label="NM Design — accueil">
         <svg class="mark" viewBox="-6 -6 132 112" fill="none" aria-hidden="true"><polyline class="mark__line" points="0,100 0,0 60,100 60,0 90,60 120,0 120,100" /></svg>
@@ -215,7 +200,7 @@
     </div>
     <div class="footer__cols">
       <nav class="footer__col" aria-label="Plan du site">
-        <p class="footer__k mono">Navigation</p>
+        <p class="footer__k label">Navigation</p>
         <ul>
           <li><a href="../">Accueil</a></li>
           <li><a href="../projets/">Projets</a></li>
@@ -225,11 +210,11 @@
         </ul>
       </nav>
       <div class="footer__col">
-        <p class="footer__k mono">Contact</p>
+        <p class="footer__k label">Contact</p>
         <ul data-footer-contact></ul>
       </div>
       <div class="footer__col">
-        <p class="footer__k mono">Informations</p>
+        <p class="footer__k label">Informations</p>
         <ul>
           <li><button class="footer__link" type="button" data-open-legal="legal">Mentions légales</button></li>
           <li><button class="footer__link" type="button" data-open-legal="privacy">Confidentialité</button></li>
@@ -237,13 +222,13 @@
         </ul>
       </div>
       <div class="footer__col">
-        <p class="footer__k mono">Studio</p>
+        <p class="footer__k label">Studio</p>
         <p class="footer__zone">Noah Milsztajn, designer indépendant. Côte d'Azur — Valbonne, Antibes, Cannes, Nice. Projets à distance partout ailleurs.</p>
       </div>
     </div>
     <div class="footer__row">
-      <span class="mono">© <span data-year>2026</span> NM Design — Noah Milsztajn</span>
-      <span class="mono footer__credits">Modèles 3D : Shopify (CC BY 4.0), Darmstadt Graphics Group / Eric Chadwick (CC BY 4.0), Wayfair (CC0 / CC BY 4.0), via Khronos glTF Sample Assets. Les concepts présentés sont des projets personnels.</span>
+      <span class="label">© <span data-year>2026</span> NM Design — Noah Milsztajn</span>
+      <span class="label footer__credits">Modèles 3D : Shopify (CC BY 4.0), Darmstadt Graphics Group / Eric Chadwick (CC BY 4.0), Wayfair (CC0 / CC BY 4.0), via Khronos glTF Sample Assets. Les concepts présentés sont des projets personnels.</span>
     </div>
   </footer>
 
@@ -251,8 +236,8 @@
   <dialog class="sheet brief" id="brief" aria-labelledby="brief-title">
     <div class="sheet__panel" data-lenis-prevent>
       <div class="sheet__head">
-        <p class="mono sheet__k">Start a project</p>
-        <button class="sheet__close mono" type="button" data-close>Fermer<span class="project__close-x" aria-hidden="true"></span></button>
+        <p class="label sheet__k">Start a project</p>
+        <button class="sheet__close label" type="button" data-close>Fermer<span class="project__close-x" aria-hidden="true"></span></button>
       </div>
       <h2 class="sheet__title" id="brief-title">Parlons de votre <em class="serif">projet.</em></h2>
       <p class="sheet__intro">Quelques questions pour comprendre votre besoin. Je vous réponds avec une première orientation, puis une proposition claire si nous avançons ensemble. Les champs marqués * sont obligatoires.</p>
@@ -318,7 +303,7 @@
         <p class="brief__error field--wide" role="alert" hidden></p>
         <div class="brief__submit field--wide">
           <button class="btn" type="submit">Envoyer ma demande<span class="btn__arrow" aria-hidden="true">→</span></button>
-          <p class="brief__how mono" data-brief-how></p>
+          <p class="brief__how label" data-brief-how></p>
         </div>
       </form>
 
@@ -334,8 +319,8 @@
   <dialog class="sheet legal" id="legal" aria-labelledby="legal-title">
     <div class="sheet__panel" data-lenis-prevent>
       <div class="sheet__head">
-        <p class="mono sheet__k">Informations</p>
-        <button class="sheet__close mono" type="button" data-close>Fermer<span class="project__close-x" aria-hidden="true"></span></button>
+        <p class="label sheet__k">Informations</p>
+        <button class="sheet__close label" type="button" data-close>Fermer<span class="project__close-x" aria-hidden="true"></span></button>
       </div>
       <h2 class="sheet__title" id="legal-title">Mentions légales</h2>
       <div class="legal__body">
@@ -349,7 +334,7 @@
         </section>
         <section id="legal-privacy" aria-labelledby="legal-h-privacy">
           <h3 id="legal-h-privacy">Confidentialité</h3>
-          <p>Ce site ne dépose aucun cookie, n'utilise aucun outil de mesure d'audience ni de publicité, et ne charge aucune police ou script depuis un service tiers.</p>
+          <p>Ce site ne dépose aucun cookie, n'utilise aucun outil de mesure d'audience ni de publicité, et ne charge aucune police ou script depuis un service tiers. Une seule exception, à votre demande : le bouton « Explorer le site en direct » ouvre le site de L'Empreinte (Cynthia Rimo), qui charge ses polices depuis Google Fonts ; votre navigateur contacte alors les serveurs de Google.</p>
           <p data-legal-form></p>
           <p>Les informations transmises ne servent qu'à répondre à votre demande et à préparer une éventuelle proposition. Elles ne sont ni revendues ni partagées. Elles sont conservées le temps nécessaire à nos échanges, puis supprimées au plus tard trois ans après le dernier contact.</p>
           <p>Conformément au RGPD, vous pouvez demander l'accès, la rectification ou la suppression de vos données en écrivant à <a data-legal-email href="#contact"></a>. Vous pouvez également adresser une réclamation à la CNIL.</p>
@@ -366,14 +351,13 @@
       <div class="project__content"></div>
     </div>
     <div class="project__bar">
-      <span class="mono project__bar-index"></span>
-      <button class="project__close mono" type="button"><span>Fermer</span><span class="project__close-x" aria-hidden="true"></span></button>
+      <span class="label project__bar-index"></span>
+      <button class="project__close label" type="button"><span>Fermer</span><span class="project__close-x" aria-hidden="true"></span></button>
     </div>
     <div class="project__progress" aria-hidden="true"><i></i></div>
   </div>
 
-  <div class="cursor-tag mono" aria-hidden="true"><span class="cursor-tag__text"></span></div>
-  <noscript><style>.intro{display:none}</style></noscript>
+  <div class="cursor-tag label" aria-hidden="true"><span class="cursor-tag__text"></span></div>
 
 </body>
 </html>

@@ -3,6 +3,7 @@
  * so the same system produces six distinct layouts.
  */
 import { esc } from '../core/escape.js';
+import { asset } from '../core/asset.js';
 
 const USES_3D_ASSETS = ['stride', 'vanta', 'opale', 'rooms'];
 
@@ -12,12 +13,12 @@ export function figure(img, { cls = '', sizes = '100vw', eager = false } = {}) {
   </figure>`;
 }
 
-const caption = (text) => (text ? `<figcaption class="p-caption mono" data-reveal>${esc(text)}</figcaption>` : '');
+const caption = (text) => (text ? `<figcaption class="p-caption label" data-reveal>${esc(text)}</figcaption>` : '');
 
 const renderers = {
   text: (b) => `
     <section class="p-block p-grid p-text">
-      <p class="p-text__kicker mono" data-reveal>${esc(b.kicker)}</p>
+      <p class="p-text__kicker label" data-reveal>${esc(b.kicker)}</p>
       <h3 class="p-text__title" data-split>${esc(b.title)}</h3>
       <p class="p-text__body" data-reveal>${esc(b.body)}</p>
     </section>`,
@@ -38,7 +39,7 @@ const renderers = {
       <div class="p-grid p-pair ${b.flip ? 'is-flip' : ''}">
         ${b.items.map((img) => figure(img, { sizes: '(max-width: 900px) 100vw, 50vw' })).join('')}
       </div>
-      ${b.caption ? `<div class="p-grid"><p class="p-pair__caption p-caption mono" data-reveal>${esc(b.caption)}</p></div>` : ''}
+      ${b.caption ? `<div class="p-grid"><p class="p-pair__caption p-caption label" data-reveal>${esc(b.caption)}</p></div>` : ''}
     </section>`,
 
   gallery: (b) => `
@@ -57,22 +58,22 @@ const renderers = {
 
   palette: (b) => `
     <section class="p-block">
-      <p class="mono p-caption p-caption--head" data-reveal>Palette</p>
+      <p class="label p-caption p-caption--head" data-reveal>Palette</p>
       <div class="p-grid p-palette">
         ${b.colors.map(([n, hex]) => {
           const light = parseInt(hex.slice(1, 3), 16) * 0.299 + parseInt(hex.slice(3, 5), 16) * 0.587 + parseInt(hex.slice(5, 7), 16) * 0.114 > 150;
-          return `<div class="p-swatch mono" data-reveal data-css="background:${hex};color:${light ? '#111' : '#f3f1ea'}"><span>${esc(n)}</span><span>${hex.toUpperCase()}</span></div>`;
+          return `<div class="p-swatch label" data-reveal data-css="background:${hex};color:${light ? '#111' : '#f3f1ea'}"><span>${esc(n)}</span><span>${hex.toUpperCase()}</span></div>`;
         }).join('')}
       </div>
     </section>`,
 
   type: (b) => `
     <section class="p-block">
-      <p class="mono p-caption p-caption--head" data-reveal>Typographie</p>
+      <p class="label p-caption p-caption--head" data-reveal>Typographie</p>
       <div class="p-grid p-type">
         ${b.families.map(([name, role, glyph]) => `
           <div class="p-type__item" data-reveal>
-            <p class="mono">${esc(name)}</p>
+            <p class="label">${esc(name)}</p>
             <div class="p-type__glyph" data-css="font-family:'${name}', '${name} Variable', serif;${name.includes('Serif') ? 'font-style:italic' : ''}">${esc(glyph)}</div>
             <p>${esc(role)}</p>
           </div>`).join('')}
@@ -98,14 +99,32 @@ const renderers = {
       <ol class="p-intentions__list">
         ${b.items.map(([t, d, status], i) => `
           <li data-reveal>
-            <span class="p-intentions__n mono">${String(i + 1).padStart(2, '0')}</span>
+            <span class="p-intentions__n label">${String(i + 1).padStart(2, '0')}</span>
             <div><h4>${esc(t)}</h4><p>${esc(d)}</p></div>
-            ${status ? `<span class="p-intentions__s mono">${esc(status)}</span>` : ''}
+            ${status ? `<span class="p-intentions__s label">${esc(status)}</span>` : ''}
           </li>`).join('')}
       </ol>
     </section>`,
 
   /** Captures du site réel : rien n'est affiché tant qu'aucune capture n'est fournie */
+  // le vrai site livré, chargé à la demande dans un cadre isolé (ui/live-site.js)
+  site: (b) => `
+    <section class="p-block p-site" data-site>
+      <div class="p-site__head" data-reveal>
+        <h3 class="p-site__title">${esc(b.title)}</h3>
+        <p class="p-site__text">${esc(b.text)}</p>
+      </div>
+      <div class="p-site__window" data-reveal>
+        <div class="p-site__bar"><span aria-hidden="true"><i></i><i></i><i></i></span><button class="p-site__full" type="button" data-site-full hidden>Plein écran ↗</button></div>
+        <div class="p-site__screen">
+          <img class="p-site__poster" src="${b.poster.src}" srcset="${b.poster.srcset}" sizes="(max-width: 1100px) 100vw, 1100px" alt="${esc(b.poster.alt)}" loading="lazy" decoding="async" />
+          <div class="p-site__frame" data-site-frame></div>
+          <button class="btn p-site__go" type="button" data-site-launch="${asset(b.src)}" data-site-title="Site de Cynthia Rimo — L’Empreinte, aperçu interactif">Explorer le site en direct<span class="btn__arrow" aria-hidden="true">→</span></button>
+        </div>
+      </div>
+      <p class="p-site__note label">Chargé seulement si vous le demandez, dans un cadre isolé qui ne communique pas avec ce portfolio. Le site charge ses polices depuis Google Fonts.</p>
+    </section>`,
+
   captures: (b) => (b.items?.length
     ? `<section class="p-block"><div class="p-grid p-gallery">${b.items.map((im) => figure(im, { sizes: '(max-width: 900px) 100vw, 33vw' })).join('')}</div>${caption(b.caption)}</section>`
     : ''),
@@ -133,7 +152,7 @@ export function renderProject(p, next) {
       <header class="p-hero">
         ${p.heroPlain ? '<div class="p-hero__wall" aria-hidden="true"></div>' : `<div class="p-hero__media">${figure(hero, { eager: true }).replace('data-parallax', 'data-hero-media').replace(/data-css="aspect-ratio:[^"]+"/, 'data-css="position:absolute;inset:0"')}</div>`}
         <div class="p-hero__content">
-          <p class="p-hero__num mono" data-hero-fade>${p.real ? '<span class="p-badge">Projet réel</span>' : ''}${p.num} — ${esc(p.category)}</p>
+          <p class="p-hero__num label" data-hero-fade>${p.real ? '<span class="p-badge">Projet réel</span>' : ''}${p.num} — ${esc(p.category)}</p>
           <h2 class="p-hero__title p-title" id="project-title" data-style="${p.theme.title}" data-hero-title>${esc(p.title)}</h2>
           <p class="p-hero__sub" data-hero-fade>${esc(p.subtitle)}</p>
         </div>
@@ -141,8 +160,8 @@ export function renderProject(p, next) {
       <div class="p-body">
         <section class="p-grid p-intro">
           <dl class="p-intro__meta" data-reveal>
-            ${p.meta.map(([k, v]) => `<div><dt class="mono">${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}
-            <div><dt class="mono">Statut</dt><dd>${esc(p.status)}</dd></div>
+            ${p.meta.map(([k, v]) => `<div><dt class="label">${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('')}
+            <div><dt class="label">Statut</dt><dd>${esc(p.status)}</dd></div>
           </dl>
           <p class="p-intro__lead" data-split>${esc(p.lead)}</p>
         </section>
@@ -150,11 +169,11 @@ export function renderProject(p, next) {
       </div>
       <footer class="p-next">
         <a class="p-next__link" href="#/work/${next.slug}" data-next="${next.slug}" data-cursor="Projet suivant">
-          <span class="p-next__k mono">Projet suivant — ${next.num}</span>
+          <span class="p-next__k label">Projet suivant — ${next.num}</span>
           <span class="p-next__title">${esc(next.title)}</span>
           <span class="p-next__thumb"><img src="${next.cover.src.replace(/-\d+\.webp$/, '-800.webp')}" alt="" loading="lazy" decoding="async" /></span>
         </a>
-        <p class="p-next__credits mono">${p.real ? 'Projet réel, réalisé pour L’Empreinte — Art Gallery (Cynthia Rimo), à Valbonne.' : `${esc(p.status)}. Concept personnel de Noah Milsztajn, pas une commande client.`}${USES_3D_ASSETS.includes(p.slug) ? ' Modèles 3D : Khronos glTF Sample Assets (licences en pied de page).' : ''}</p>
+        <p class="p-next__credits label">${p.real ? 'Projet réel, réalisé pour L’Empreinte — Art Gallery (Cynthia Rimo), à Valbonne.' : `${esc(p.status)}. Concept personnel de Noah Milsztajn, pas une commande client.`}${USES_3D_ASSETS.includes(p.slug) ? ' Modèles 3D : Khronos glTF Sample Assets (licences en pied de page).' : ''}</p>
       </footer>
     </article>`;
 }

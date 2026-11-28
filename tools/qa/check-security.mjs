@@ -40,13 +40,25 @@ const PATTERNS = [
 const TEXT = new Set(['.html', '.js', '.css', '.txt', '.json', '.xml', '.svg', '.webmanifest']);
 const leaks = [];
 for (const f of files.filter((x) => TEXT.has(extname(x)) || x.endsWith('_headers') || x.endsWith('.htaccess'))) {
-  const text = read(f);
+  // les images intégrées (data:…;base64) peuvent contenir par hasard une suite qui ressemble à une clé
+  const text = read(f).replace(/data:[a-z/+.-]+;base64,[A-Za-z0-9+/=]+/g, '');
   PATTERNS.forEach(([re, label]) => { if (re.test(text)) leaks.push(`${f} : ${label}`); });
 }
 ok('aucun secret dans les fichiers publiés', leaks.length === 0, leaks.join(' ; '));
 
 // 3. Chaque page a sa CSP, sans 'unsafe-inline' ni 'unsafe-eval', sans style="" ni script inline exécutable
-for (const f of files.filter((x) => x.endsWith('.html'))) {
+// Site de L'Empreinte : œuvre livrée telle quelle (fichier d'origine non modifié). Il n'est jamais
+// exécuté dans le contexte du portfolio : l'aperçu le charge dans une iframe isolée (sandbox sans
+// allow-same-origin), à la demande. On vérifie ces garanties plutôt que la CSP du portfolio.
+const DEMO = 'lempreinte/index.html';
+if (files.includes(DEMO)) {
+  const js = files.filter((x) => x.startsWith('assets/') && x.endsWith('.js')).map(read).join('\n');
+  // la liste sandbox peut être une constante séparée après minification : on cherche la chaîne
+  const sandbox = js.match(/["'`](allow-scripts[^"'`]*)["'`]/)?.[1] || '';
+  ok('démo L\'Empreinte chargée dans une iframe isolée (allow-scripts, sans allow-same-origin)',
+    sandbox && /\bsandbox\b/.test(js) && !js.includes('allow-same-origin'), sandbox || 'iframe non trouvée');
+}
+for (const f of files.filter((x) => x.endsWith('.html') && x !== DEMO)) {
   const html = read(f);
   const csp = html.match(/<meta http-equiv="Content-Security-Policy" content="([^"]+)"/)?.[1] || '';
   ok(`${f} : CSP présente et stricte`, /default-src 'self'/.test(csp) && /script-src 'self'/.test(csp) && !csp.includes("'unsafe-inline'") && !csp.includes("'unsafe-eval'") && !/\s\*(\s|;|$)/.test(csp), csp ? '' : 'absente');
@@ -62,6 +74,8 @@ for (const f of files.filter((x) => x.endsWith('.html'))) {
 
 // 4. En-têtes HTTP prêts pour l'hébergeur
 const REQUIRED = ['Content-Security-Policy', 'Strict-Transport-Security', 'X-Content-Type-Options', 'X-Frame-Options', 'Referrer-Policy', 'Permissions-Policy'];
+// cadrage : uniquement par le site lui-même (aperçu de L'Empreinte), jamais par un autre site
+ok('vercel.json : cadrage limité au site lui-même', /frame-ancestors 'self'/.test(readFileSync('vercel.json', 'utf8')) && /SAMEORIGIN/.test(readFileSync('vercel.json', 'utf8')));
 for (const f of ['_headers', '.htaccess']) {
   const text = existsSync(join(dist, f)) ? read(f) : '';
   const missing = REQUIRED.filter((h) => !text.includes(h));

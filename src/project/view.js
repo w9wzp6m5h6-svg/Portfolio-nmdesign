@@ -146,6 +146,24 @@ export function initProjectView() {
 
   /* ---------- open / close ---------- */
 
+  // Précédent / Suivant du navigateur : si une animation est en cours, la page
+  // s'aligne sur l'URL dès qu'elle se termine (sinon le retour serait ignoré).
+  let pendingSync = false;
+  function syncToURL() {
+    if (busy) { pendingSync = true; return; }
+    const m = location.hash.match(ROUTE);
+    if (m && !current) {
+      const link = document.querySelector(`[data-works] a[data-project="${m[1]}"]`) || document.querySelector(`a[data-project="${m[1]}"]`);
+      open(m[1], { card: link?.closest('[data-project-card]') || link });
+    }
+    else if (!m && current) { pushedState = false; close({ fromHistory: true }); }
+    else if (m && current && current.slug !== m[1]) goNext(bySlug(m[1]));
+  }
+  function settle() {
+    busy = false;
+    if (pendingSync) { pendingSync = false; syncToURL(); }
+  }
+
   async function open(slug, { card = null, instant = false } = {}) {
     const p = bySlug(slug);
     if (!p || busy) return;
@@ -159,7 +177,7 @@ export function initProjectView() {
     setBehindInert(true);
 
     const media = card?.querySelector('[data-project-media]');
-    const fromImg = media?.querySelector('img');
+    const fromImg = media?.querySelector('img.is-on') || media?.querySelector('img');
     const d = env.reducedMotion || instant ? 0 : 1;
 
     if (media && fromImg && d) {
@@ -189,7 +207,7 @@ export function initProjectView() {
     // opacity only: a visibility:hidden bar would make the close button unfocusable
     gsap.fromTo(root.querySelector('.project__bar'), { opacity: 0 }, { opacity: 1, duration: 0.6 });
     closeBtn.focus({ preventScroll: true });
-    busy = false;
+    settle();
   }
 
   async function close({ fromHistory = false } = {}) {
@@ -210,13 +228,14 @@ export function initProjectView() {
     setBehindInert(false);
     unlockScroll('project');
     document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#f3f2ee');
-    if (!fromHistory) {
+    // l'URL n'est corrigée que si elle désigne encore l'étude (le visiteur a pu faire Précédent entre-temps)
+    if (!fromHistory && ROUTE.test(location.hash)) {
       if (pushedState) history.back();
       else history.replaceState(null, '', location.pathname + '#work');
     }
     pushedState = false;
     if (returnFocus?.isConnected) returnFocus.focus({ preventScroll: true });
-    busy = false;
+    settle();
   }
 
   async function goNext(p) {
@@ -234,7 +253,7 @@ export function initProjectView() {
     if (heroImg) gsap.fromTo(heroImg, { scale: 1.2 }, { scale: 1, duration: 1.8 * d, ease: 'expo.out' });
     heroIn(0.5 * d);
     closeBtn.focus({ preventScroll: true });
-    busy = false;
+    settle();
   }
 
   /* ---------- events ---------- */
@@ -266,12 +285,7 @@ export function initProjectView() {
 
   closeBtn.addEventListener('click', () => close());
 
-  window.addEventListener('popstate', () => {
-    const m = location.hash.match(ROUTE);
-    if (m && !current) open(m[1], { card: document.querySelector(`a[data-project="${m[1]}"]`)?.closest('[data-project-card]') });
-    else if (!m && current) { pushedState = false; close({ fromHistory: true }); }
-    else if (m && current && current.slug !== m[1]) goNext(bySlug(m[1]));
-  });
+  window.addEventListener('popstate', syncToURL);
 
   root.addEventListener('keydown', (e) => {
     if (!current) return;

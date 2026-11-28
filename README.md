@@ -34,7 +34,6 @@ Le navigateur s'ouvre sur `http://127.0.0.1:4173/` (accessible depuis ton ordina
 | Adresse publique du site (canonical, sitemap) | `.env` → `SITE_URL` (voir `.env.example`) |
 | Envoi direct du formulaire (facultatif) | `.env` → `VITE_FORM_ENDPOINT` (Formspree / Web3Forms) |
 | Modèle 3D Air Jordan 1 Travis Scott (Mocha) | non fourni — voir « Remplacer la sneaker 3D » |
-| Site de L'Empreinte (fichier HTML source), captures et statut des fonctionnalités | non fournis — voir ci‑dessous |
 
 La marche à suivre complète (domaine, hébergement, formulaire, Google Search Console) est dans **`MISE-EN-LIGNE.md`**.
 
@@ -44,12 +43,13 @@ E‑mail, Instagram, objet des e‑mails et informations légales sont centralis
 
 `tools/retouch-portrait.py` produit les versions du site (carré pour ordinateur, 4:5 pour mobile) depuis l'original conservé hors git dans `tools/source-photos/`. Retouche sobre : courbe tonale, étalonnage ocre, clarté et netteté légères, vignettage, grain fin. La source fait 1163 × 775 px : l'agrandissement ×2 est une interpolation, il n'ajoute pas de vrai détail (une vraie version 4K demande une photo source en haute définition).
 
-### L'Empreinte — Art Gallery, Cynthia Rimo (projet réel)
+### L'Empreinte — la galerie numérique de Cynthia Rimo (projet réel)
 
-- **Depuis le fichier source du site** (recommandé) : `node tools/integrate-gallery.mjs "chemin/vers/Cynthia Rimo — L'Empreinte Art Gallery, Valbonne(1).html"`. Le fichier n'est pas modifié : l'outil capture l'expérience (ordinateur et téléphone), produit les WebP dans `public/media/works/rimo/` et un rapport `tools/render/out/gallery-report.json` (titres de sections, liens, URL déclarée) pour rédiger l'étude de cas à partir de ce que le site contient vraiment. Ensuite : `card: img('rimo', 'rimo_d1', '16 / 10', D, '…')` et le bloc `captures` du projet `cynthia-rimo`. Aucune URL n'est publiée tant qu'elle n'est pas vérifiée en ligne.
-
-- **Captures du vrai site** : dépose les images (WebP de préférence, 800 / 1400 / 2200 px de large, nommées `rimo_xxx-800.webp`, etc.) dans `public/media/works/rimo/`, puis renseigne le bloc `captures` du projet dans `src/data/projects.js` avec `img('rimo', 'rimo_xxx', '16 / 10')`. Tant qu'il est vide, rien ne s'affiche (aucune fausse capture).
-- **Statut des fonctionnalités** : dans le bloc `intentions`, ajoute un 3e élément à chaque ligne : `'livré'`, `'intégré'`, `'prévu'` ou `'prototype'`. Il apparaît alors sous forme d'étiquette. Sans statut, la liste est présentée comme les intentions de conception du projet.
+- **Le vrai site est intégré** : `public/lempreinte/index.html` est le fichier livré à la galerie, **copié sans aucune modification** (même empreinte SHA-256 que l'original). Il est publié tel quel à `/lempreinte/` et sert d'aperçu en direct dans la scène du projet (accueil, page Projets) et dans l'étude de cas (bloc `site`).
+- **Chargement à la demande** : le fichier pèse ≈ 6,5 Mo (œuvres embarquées). Il n'est jamais chargé avec la page : seulement quand le visiteur clique sur « Explorer le site en direct ». Il s'ouvre alors dans une iframe isolée (`sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"`, sans `allow-same-origin`) : ses scripts tournent, mais il ne peut ni lire ni modifier le portfolio. Bouton « Plein écran » à côté.
+- **Captures** : `public/media/works/rimo/` contient les vues du site (salle, fiche d'œuvre, loupe, « chez soi », filtres, sélection, vernissage, mobile), produites depuis ce fichier avec `node tools/integrate-gallery.mjs "chemin/vers/le-fichier.html"`. Pour une nouvelle version du site : remplace `public/lempreinte/index.html` par le nouveau fichier, relance l'outil, puis `npm run build`.
+- **Statut des fonctionnalités** : dans le bloc `intentions`, le 3e élément de chaque ligne (`'livré'`, `'intégré'`, `'prévu'`, `'prototype'`) s'affiche en étiquette. Les 9 fonctionnalités listées sont présentes dans le fichier livré (`'intégré'`).
+- Aucune URL publique n'est indiquée : le fichier n'en déclare pas. Ajoute-la dans `src/data/projects.js` (`live`) seulement une fois vérifiée en ligne.
 
 ### Remplacer la sneaker 3D
 
@@ -64,19 +64,21 @@ Rotation, zoom, X‑Ray, éclairage et version mobile fonctionnent avec n'import
 
 ## Direction artistique
 
-- **Concept « Bright Creative Studio »** : ivoire `#f3f2ee`, blanc pur, gris très clairs, argent (filets, reflets au survol des boutons et des écrans) et graphite `#111113` pour le contraste. Aucune couleur vive dans l'interface : la couleur vient des projets (chaque scène et chaque étude de cas a sa palette). Une seule zone sombre : le contact et le pied de page, en générique de fin. Variables sémantiques dans `tokens.css` (`--bg`, `--fg`, `--fg-2`…), contrastes AA mesurés.
-- **Typographie** : Archivo Expanded (mot-symbole et titres de page), Instrument Serif italique (contrepoint éditorial), Inter Tight (texte et titres de section), Geist Mono (navigation, métadonnées). Échelle unique dans `tokens.css` : texte 16–17 px, chapeau 18–22 px, titres de section 28–46 px, titre de page 40–72 px. Un seul très grand élément sur le site : « NM DESIGN » en page d'accueil.
-- **Grille** : 12 colonnes, mêmes marges partout. Axe A (colonne 1) pour les libellés, axe B (colonne 4) pour les titres et textes.
-- **Monogramme NM** (logo original, inchangé) : un seul trait continu. Il se trace pendant l'intro, rejoint sa place dans l'en-tête, puis revient en grand dans le contact, où ses sommets réagissent comme une corde qu'on pince.
-- **Intro** (`src/ui/intro.js`) : scène en profondeur en CSS 3D (plans flottants, caméra qui avance, lumière douce), ~2,5 s à la première visite de la session, passable (bouton, clic, Échap, molette), simple fondu ensuite et en mouvement réduit.
-- **Hero** : les écrans des projets flottent en perspective autour du mot-symbole, suivent le pointeur et ouvrent leur étude de cas.
-- **Projets** : chaque projet est une scène (plateau à sa couleur, écran du site au premier plan, rendu en arrière-plan avec parallaxe, titre dans la typographie de son identité).
-- **Mouvement** : deux courbes pour tout le site (`--ease-out` pour les arrivées, `--ease-in-out` pour les transitions) et des durées partagées (`src/styles/tokens.css`).
+- **Deux tons, un seul système** : ivoire `#f2f1ed` et encre `#0d0d0e`. Les sections portent `data-tone="light"` ou `data-tone="dark"` ; en défilant, la page bascule entièrement de ton (fond et texte, transition de 0,9 s déclenchée à 55 % de l'écran, `src/ui/tone.js`). Les nuances secondaires dérivent de la couleur courante (`color-mix`), les contrastes AA sont mesurés dans les deux tons. Aucun filet ni cadre décoratif : la structure vient de l'espace, de la taille et du ton.
+- **Deux familles, pas une de plus** : Archivo (variable, chasse 62–125 % et graisse 100–900 ; titres très larges, texte, libellés en chasse étroite) et Instrument Serif italique (le mot qui compte dans chaque titre). Plus de mono. Inter Tight n'est chargé que pour le spécimen typographique du projet Opale.
+- **La couleur vient des projets** : l'interface reste ivoire / encre ; chaque scène et chaque étude de cas a sa palette.
+- **Monogramme NM** (logo original, inchangé) : il se trace dans l'en-tête au chargement et au survol, et revient en grand, discret, à la fin du contact.
+- **Entrée immédiate** : plus d'intro. Le hero arrive en ~1,2 s sans jamais bloquer le défilement : titre « Des sites qui marquent *les esprits.* », et une bobine des projets (défilement automatique, pause au survol, au focus, hors écran ; boutons précédent / suivant / pause ; inclinaison et reflet au curseur).
+- **Showcase** : une section sombre où chaque projet a sa mise en scène (`showcase.layout` dans `projects.js`) — `live` (le vrai site de L'Empreinte, explorable sur place), `object` (rendu + écran du site flottant devant), `cinema` (pleine largeur 21:9), `space` (portrait vertical), `art` (œuvres), `signal` (Oscillo : le signal se dessine en direct et réagit au curseur). Vues à parcourir sur chaque scène, profondeur au curseur, apparition en rideau, index flottant des projets sur grand écran, transition partagée de l'image vers l'étude de cas.
+- **Studio et services** : une phrase avec le portrait glissé dans le texte, puis quatre grandes lignes de services ; au survol, la ligne avance, les autres s'effacent, le texte apparaît et son pictogramme se trace.
+- **Contact** : conclusion sombre, titre géant, bouton rond magnétique « Démarrer un projet » et coordonnées en grand.
+- **Menu** : sombre, plein écran, grands libellés (la page courante en italique), bouton projet et contact en pied. L'en-tête se masque en descendant et revient en remontant.
+- **Mouvement** : courbes et durées partagées (`src/styles/tokens.css`) ; tout est coupé ou réduit avec `prefers-reduced-motion`.
 
 ## Structure
 
 ```
-index.html                 Accueil : hero NM DESIGN, projets sélectionnés, présentation courte, contact
+index.html                 Accueil : hero (titre + bobine des projets), showcase, studio, services, contact
 projets/index.html         Projets : tous les projets (filtres), lab 3D, contact
 a-propos/index.html        À propos : portrait, récit, qualités, parcours, approche, contact
 offres/index.html          Offres : formules et tarifs, compléments, offre de lancement, méthode, contact
@@ -87,11 +89,13 @@ src/
   data/                    contenu : site.js, projects.js, sneaker.js
   core/                    env (capacités appareil), scroll (Lenis+GSAP), split (découpe texte),
                            escape (échappement HTML), css (styles dynamiques compatibles CSP)
-  ui/                      intro (séquence d'entrée), header, menu, cursor-tag, reveals, transitions (fondu entre pages)
-  sections/                hero (constellation d'écrans), works (scènes des projets), object (3D), about, contact, commerce (formulaire, mentions)
+  ui/                      header, menu, tone (bascule clair / sombre), live-site (aperçu isolé du site de L'Empreinte),
+                           cursor-tag, reveals, transitions (fondu entre pages)
+  sections/                hero (titre + bobine), works (showcase : une scène par projet), studio, object (3D),
+                           about, contact, commerce (formulaire, mentions)
   three/                   sneaker-stage (viewer 3D du lab), variants
   project/                 view (overlay + routes #/work/…), blocks (mises en page), live/ (pièces temps réel)
-  styles/                  tokens, base, chrome, hero, works, object, about-contact, project, commerce
+  styles/                  tokens, base, chrome, hero, showcase, works (studio + services), object, about-contact, project, commerce
 public/
   models/                  sneaker-hd.glb (1.8 Mo) · sneaker-lite.glb (0.55 Mo, mobile / appareils modestes)
 dist/                      version de production (générée par npm run build), avec _headers, .htaccess, .well-known/security.txt
@@ -100,6 +104,7 @@ vercel.json                en-têtes HTTP de sécurité (source unique, dérivé
 SECURITE.md                protections en place, actions manuelles, incident, restauration
 demo/                      serveur local sans dépendance + lanceurs Mac / Windows
   media/works/<projet>/    visuels WebP responsive (800 / 1400 / 2200 px)
+  lempreinte/index.html    le site livré à la galerie, copié tel quel (aperçu en direct, iframe isolée)
 tools/                     outils de production (non publiés)
   fetch-models.sh          télécharge les modèles 3D sources
   render/                  rig de rendu Three.js → visuels des projets (node tools/render/render.mjs <scene>)
@@ -108,14 +113,14 @@ tools/                     outils de production (non publiés)
   optimize-images.mjs      PNG → WebP responsive
   prepare-sneaker.mjs      optimise un modèle .glb pour la scène 3D
   qa/                      tests Playwright (captures, interactions, projets, objet 3D, perf) + check-security.mjs
-  integrate-gallery.mjs    intègre le site de L'Empreinte depuis son fichier HTML (captures + rapport)
+  integrate-gallery.mjs    captures du site de L'Empreinte depuis son fichier HTML (+ rapport)
 ```
 
 ### Ajouter ou modifier un projet
 
-`selected: true` place un projet dans la sélection de l'accueil (trois projets) ; `tags` alimente les filtres de la page Projets (`real`, `web`, `3d`, `identity`).
+`selected: true` place un projet dans le showcase de l'accueil (quatre projets) ; `tags` alimente les filtres de la page Projets (`real`, `web`, `3d`, `identity`).
 
-Tout est dans `src/data/projects.js` : titre, catégorie, statut, thème (couleurs + style de titre), et une liste de `blocks` (`text`, `statement`, `image`, `pair`, `gallery`, `chapters`, `screens`, `palette`, `type`, `live`). Chaque projet peut composer sa page différemment.
+Tout est dans `src/data/projects.js` : titre, catégorie, statut, thème (couleurs + style de titre), et une liste de `blocks` (`site`, `text`, `statement`, `image`, `pair`, `gallery`, `chapters`, `screens`, `palette`, `type`, `live`), et `showcase` (mise en scène dans la liste : `layout`, `thumbs`). Chaque projet peut composer sa page différemment.
 
 ### Régénérer les visuels
 
@@ -130,11 +135,11 @@ node tools/optimize-images.mjs
 
 ## Performance & accessibilité
 
-- Aucune bibliothèque 3D sur l'accueil : l'intro et le hero sont en CSS 3D (transformations GPU). Three.js (≈135 Ko gzip) n'est chargé que sur la page Projets, quand le lab approche ; le modèle est initialisé en temps calme (`requestIdleCallback`).
-- Le flottement du hero et les parallaxes s'arrêtent hors écran et quand l'onglet est caché.
+- Aucune bibliothèque 3D sur l'accueil : profondeur et inclinaisons en CSS 3D (transformations GPU). Three.js (≈135 Ko gzip) n'est chargé que sur la page Projets, quand le lab approche ; le modèle est initialisé en temps calme (`requestIdleCallback`).
+- La bobine du hero, le signal d'Oscillo et les parallaxes s'arrêtent hors écran et quand l'onglet est caché. Le site de L'Empreinte (6,5 Mo) n'est chargé qu'au clic.
 - Rendu à la demande : la scène 3D ne redessine que si quelque chose bouge ; toutes les boucles s'arrêtent hors écran et quand l'onglet est caché.
 - Mode « lite » automatique (mobile, ≤ 4 cœurs, peu de mémoire, Save‑Data) : modèle allégé, résolution réduite.
-- `prefers-reduced-motion` : pas de smooth scroll, pas d'intro animée, pas de déformation, contenus visibles immédiatement.
+- `prefers-reduced-motion` : pas de smooth scroll, pas de défilement automatique, pas de déformation ni d'inclinaison, contenus visibles immédiatement.
 - Navigation clavier complète : lien d'évitement, focus visibles, menu et projets avec piège de focus + Échap, viewer 3D pilotable aux flèches et +/−.
 
 ## Crédits

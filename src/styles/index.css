@@ -1,8 +1,9 @@
+/* Deux familles pour toute l'interface : Archivo (variable) et Instrument Serif italique.
+   Inter Tight n'est déclarée que pour le spécimen typographique de l'étude de cas Opale :
+   le navigateur ne télécharge un fichier de police que si un texte l'utilise. */
 @import '@fontsource-variable/archivo/wdth.css';
-@import '@fontsource/instrument-serif/400.css';
 @import '@fontsource/instrument-serif/400-italic.css';
 @import '@fontsource-variable/inter-tight/wght.css';
-@import '@fontsource-variable/geist-mono/wght.css';
 
 @import './tokens.css';
 @import './base.css';
@@ -11,5 +12,6 @@
 @import './works.css';
 @import './object.css';
 @import './about-contact.css';
+@import './showcase.css';
 @import './project.css';
 @import './commerce.css';

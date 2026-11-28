@@ -25,7 +25,7 @@ await page.waitForTimeout(4000);
 // open first project from its card
 await page.evaluate(() => document.getElementById('work').scrollIntoView());
 await page.waitForTimeout(2500);
-await page.click('.scene__link[data-project="stride"]');
+await page.click('.case__media[data-project="stride"]');
 await page.waitForTimeout(2600);
 check('hash is #/work/stride', (await page.evaluate(() => location.hash)) === '#/work/stride');
 check('overlay open', await page.evaluate(() => document.querySelector('.project').classList.contains('is-open')));
@@ -61,7 +61,7 @@ check('Esc closes overlay', !(await page.evaluate(() => document.querySelector('
 check('page interactive again', await page.evaluate(() => document.querySelector('main').inert === false));
 
 // browser back closes
-await page.click('.scene__link[data-project="opale"]');
+await page.click('.case__media[data-project="vanta"]');
 await page.waitForTimeout(2400);
 await page.goBack();
 await page.waitForTimeout(1800);

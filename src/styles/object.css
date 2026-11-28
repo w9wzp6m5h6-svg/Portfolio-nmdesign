@@ -3,14 +3,14 @@
    ========================================================================== */
 
 .object {
+  /* le lab est un studio photo clair : son ton ne dépend pas de la section voisine */
+  --bg: var(--ivory); --fg: var(--ink); color: var(--fg);
   position: relative;
   height: 100vh;  height: 100svh; min-height: 720px; max-height: 1200px;
   /* studio photo clair : fond sans couture, lumière douce au centre */
   background: radial-gradient(110% 85% at 55% 45%, #ffffff 0%, #ecebe7 58%, var(--bg) 100%);
   overflow: hidden; overflow: clip;
   isolation: isolate;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
 }
 
 .object__stage { position: absolute; inset: 0; z-index: 0; }
@@ -87,18 +87,17 @@
 .object__head { grid-area: head; max-width: 440px; }
 .object__kicker { color: var(--fg-3); margin-bottom: 18px; }
 .object__title {
-  font-family: var(--f-display); font-variation-settings: 'wdth' 125; font-weight: 800;
-  text-transform: uppercase; letter-spacing: -0.035em; line-height: 0.86;
+  font-stretch: 115%; font-weight: 760;
+  letter-spacing: -0.045em; line-height: 0.9;
   font-size: var(--fs-h2);
 }
-.object__title em { font-family: var(--f-serif); text-transform: none; letter-spacing: -0.02em; font-weight: 400; color: var(--accent); font-variation-settings: normal; }
+.object__title em { font-family: var(--f-serif); font-style: italic; letter-spacing: -0.02em; font-weight: 400; color: var(--accent); font-stretch: 100%; }
 .object__lead { margin-top: 20px; color: var(--fg-3); max-width: 34ch; font-size: var(--fs-small); }
 
 .object__panel {
   grid-area: panel; align-self: end;
   max-width: 340px;
   padding: 18px 20px 20px;
-  border: 1px solid var(--line);
   background: var(--white);
   box-shadow: var(--shadow-1);
   border-radius: 10px;
@@ -113,15 +112,15 @@
   display: grid; gap: 18px; justify-items: end;
 }
 .object__group { display: flex; align-items: center; gap: 14px; }
-.object__group legend, .object__group > .mono { color: var(--fg-3); float: left; margin-right: 14px; }
+.object__group legend, .object__group > .label { color: var(--fg-3); float: left; margin-right: 14px; }
 .object__group legend + * { display: inline-flex; }
 .object__seg { display: inline-flex; gap: 6px; }
 .object__swatches { display: inline-flex; gap: 6px; }
 .swatch {
   display: inline-flex; align-items: center; gap: 8px;
   min-height: 36px; padding: 0 14px 0 8px;
-  border: 1px solid var(--line-strong); border-radius: 100px;
-  font-family: var(--f-mono); font-size: var(--fs-micro); text-transform: uppercase;
+  border: 0; border-radius: var(--radius); background: var(--tint);
+  font-size: var(--fs-label); font-weight: 500;
   color: var(--fg-2);
   transition: border-color var(--d-micro), color var(--d-micro), background-color var(--d-micro);
 }
@@ -170,7 +169,7 @@
   .object__hint { order: 2; margin: 14px 0 0; align-self: center; }
   .object__controls { order: 3; align-self: stretch; justify-items: start; gap: 16px; padding: 24px var(--margin) 0; }
   .object__group { flex-wrap: wrap; gap: 10px; }
-  .object__group legend, .object__group > .mono { float: none; width: 100%; margin: 0 0 2px; }
+  .object__group legend, .object__group > .label { float: none; width: 100%; margin: 0 0 2px; }
   .object__panel { order: 4; align-self: stretch; max-width: none; margin: 24px var(--margin) 0; }
   .object__credit { order: 5; position: static; max-width: none; text-align: left; padding: 24px var(--margin) 40px; }
   .swatch__name { display: inline; }

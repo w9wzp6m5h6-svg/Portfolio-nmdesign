@@ -29,6 +29,10 @@ python3 -m http.server 4173 --bind 127.0.0.1 --directory dist
 | `source/` | Le code source complet du projet, pour le modifier plus tard (`npm install`, puis `npm run dev` / `npm run build`). Voir `source/README.md`. |
 | `CREDITS.md` | Licences des modèles 3D, polices et bibliothèques. |
 
+## Le site de L'Empreinte
+
+Le site livré à la galerie (Cynthia Rimo, L'Empreinte Art Gallery, Valbonne) est inclus tel quel dans `dist/lempreinte/`. Dans le portfolio, le bouton « Explorer le site en direct » l'ouvre dans une fenêtre isolée, sans quitter la page. Il pèse environ 6,5 Mo et n'est chargé qu'à ce moment‑là.
+
 ## Mettre en ligne
 
 Dépose le **contenu** de `dist/` sur n'importe quel hébergeur statique (Vercel, Netlify, Cloudflare Pages, OVH, o2switch…). Il fonctionne à la racine d'un domaine comme dans un sous‑dossier. Les en-têtes de sécurité sont inclus (`_headers`, `.htaccess`) : en FTP, pense à envoyer aussi les fichiers cachés (`.htaccess`, `.well-known/`).
@@ -40,5 +44,4 @@ Dépose le **contenu** de `dist/` sur n'importe quel hébergeur statique (Vercel
 ## À compléter
 
 - **Mentions légales** (statut, SIRET, hébergeur) : `source/src/data/site.js`, puis `npm run build`.
-- **Site de L'Empreinte (Cynthia Rimo)** : envoie le fichier HTML source, il s'intègre en une commande (`tools/integrate-gallery.mjs`, voir `source/README.md`).
 - **Modèle 3D Air Jordan 1 Travis Scott (Mocha) :** à intégrer quand tu m'enverras le fichier `.glb` — marche à suivre dans `source/README.md`.

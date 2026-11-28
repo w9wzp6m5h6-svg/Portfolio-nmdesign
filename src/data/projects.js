@@ -25,6 +25,9 @@ const img = (project, name, ratio, widths = L, alt = '') => ({
   alt,
 });
 
+/** Vignette du showcase (image d'un projet, sans légende : décorative à côté du visuel principal) */
+const t = (project, name, widths = L) => img(project, name, '16 / 10', widths, '');
+
 export const projects = [
   /* ------------------------------------------------------------------ */
   /* Projet réel                                                         */
@@ -36,46 +39,58 @@ export const projects = [
     real: true,
     num: '01',
     title: 'L’Empreinte',
-    subtitle: "Site et expérience digitale de la galerie d'art de Cynthia Rimo, à Valbonne",
-    category: 'Art gallery · Expérience digitale',
+    subtitle: 'La galerie numérique de Cynthia Rimo, artiste permanente de L’Empreinte Art Gallery à Valbonne',
+    category: 'Art gallery · Site réel',
     status: 'Projet réel',
     layout: 'feature',
-    heroPlain: true, // en-tête composé en HTML : le nom reste entier sur mobile
-    cover: img('rimo', 'rimo_cover', '16 / 9', L, "L'Empreinte, galerie d'art de Cynthia Rimo à Valbonne : composition typographique sur fond blanc"),
-    coverPos: '22% 50%',
-    theme: { bg: '#f5f3ef', fg: '#151413', muted: '#77726a', line: 'rgb(21 20 19 / 0.14)', accent: '#b3261e', title: 'gallery', light: true },
+    heroPlain: true, // en-tête typographique : le vrai site suit juste en dessous, en direct
+    // le vrai site, livré tel quel (fichier d'origine non modifié), ouvert dans un cadre isolé
+    site: 'lempreinte/index.html',
+    cover: img('rimo', 'rimo_d1', '16 / 10', L, 'Accueil du site de Cynthia Rimo : une œuvre pop art plein écran et le nom de l’artiste'),
+    card: img('rimo', 'rimo_salle', '16 / 10', L, 'La salle virtuelle du site : les œuvres de Cynthia Rimo accrochées en perspective'),
+    coverPos: '50% 30%',
+    showcase: { layout: 'live', thumbs: [t('rimo', 'rimo_salle'), t('rimo', 'rimo_fiche'), t('rimo', 'rimo_chezsoi'), t('rimo', 'rimo_vernissage')] },
+    theme: { bg: '#f6f3ee', fg: '#141414', muted: '#6f6a63', line: 'rgb(20 20 20 / 0.14)', accent: '#d01d2b', title: 'gallery', light: true },
     meta: [
       ['Type', 'Projet réel'],
-      ['Pour', "L'Empreinte — Art Gallery, Cynthia Rimo, Valbonne"],
-      ['Ma contribution', "Direction artistique, conception de l'expérience numérique"],
-      ['Domaine', 'Art & culture'],
+      ['Pour', 'Cynthia Rimo — L’Empreinte Art Gallery, Valbonne'],
+      ['Ma contribution', 'Direction artistique, design et conception de l’expérience'],
+      ['Contenu', '16 œuvres, fiches, salle virtuelle, page Vernissage'],
     ],
-    lead: "Une galerie doit montrer des œuvres, mais surtout donner envie de les acquérir. Pour L'Empreinte, la galerie de Cynthia Rimo à Valbonne, j'ai imaginé une expérience numérique pensée comme une visite : beaucoup de blanc, des œuvres qui respirent, et un chemin direct vers l'échange.",
+    lead: "Une galerie doit montrer des œuvres, mais surtout donner envie de les acquérir. Pour Cynthia Rimo, artiste permanente de L’Empreinte à Valbonne, j'ai conçu une galerie numérique pensée comme une visite : une salle où l'on passe d'une œuvre à l'autre, des fiches qui disent tout, et un chemin direct vers l'artiste.",
     blocks: [
-      { type: 'statement', text: 'Le site devait vendre des œuvres, pas seulement présenter une galerie.' },
+      { type: 'site', src: 'lempreinte/index.html', title: 'Le site, en direct', text: 'Le vrai site, chargé à la demande dans un cadre isolé. Parcourez la salle, ouvrez une fiche, essayez la loupe ou la mise en situation.', poster: img('rimo', 'rimo_d1', '16 / 10', L, 'Accueil du site de Cynthia Rimo') },
+      { type: 'statement', text: 'Le site devait vendre des œuvres, pas seulement présenter une artiste.' },
+      { type: 'image', size: 'full', src: img('rimo', 'rimo_salle', '16 / 10', L, 'La salle virtuelle : les œuvres accrochées en perspective'), caption: 'La salle : les seize œuvres accrochées en perspective. On passe de l’une à l’autre au clic, aux flèches ou en faisant glisser.' },
       { type: 'text', kicker: 'Le problème', title: 'De la vitrine au parcours.', body: "Sur beaucoup de sites de galerie, les œuvres défilent comme un catalogue : petites, toutes identiques, sans format ni contexte. Or un tableau s'achète quand on peut s'en approcher, comprendre ses dimensions et l'imaginer chez soi. L'enjeu : recréer ce rapport physique à l'écran, puis rendre la prise de contact immédiate." },
-      { type: 'text', kicker: 'Direction artistique', title: "Le blanc d'un musée.", body: "Un fond blanc cassé, une typographie discrète, des marges généreuses : l'interface s'efface pour que chaque œuvre occupe l'espace comme sur un mur d'exposition. Les animations restent lentes et élégantes, à la manière d'un regard qui se pose sur un tableau." },
+      { type: 'pair', items: [img('rimo', 'rimo_fiche', '16 / 10', L, 'Fiche de l’œuvre Pin Up : technique, dimensions, prix, disponibilité'), img('rimo', 'rimo_loupe', '16 / 10', L, 'La loupe sur l’œuvre Blanche Neige')], caption: 'Chaque œuvre a sa fiche : technique, format, prix, disponibilité et le mot de l’artiste. La loupe permet de lire la matière : timbres, bande dessinée, résine.' },
+      { type: 'text', kicker: 'Direction artistique', title: 'Laisser la place à la peinture.', body: "Les œuvres de Cynthia Rimo sont saturées, graphiques, pleines de matière. L'interface fait l'inverse : un fond crème de mur d'exposition, une typographie condensée très affirmée pour les titres, un italique élégant pour la signature, et un seul rouge, celui des actions. Tout le reste s'efface devant les tableaux." },
+      { type: 'image', size: 'inset', src: img('rimo', 'rimo_chezsoi', '16 / 10', L, 'Mise en situation : Blanche Neige au-dessus d’un canapé, mur vert sauge'), caption: '« Chez vous » : l’œuvre à l’échelle, au-dessus d’un canapé de 210 cm, sur cinq couleurs de mur.' },
       {
         type: 'intentions',
-        title: "Ce que l'expérience a été conçue pour permettre",
-        // status possible : 'livré' | 'intégré' | 'prévu' | 'prototype' — à renseigner une fois vérifié
+        title: 'Ce que le site permet',
+        // statuts vérifiés dans le fichier livré, fonction par fonction, dans un navigateur
         items: [
-          ['Présentation immersive des œuvres', 'Chaque tableau en grand format, avec le temps de le regarder.'],
-          ['Zoom sur les œuvres', "S'approcher de la matière, de la touche et des détails."],
-          ['Dimensions et prix', 'Les informations utiles pour décider, sans détour.'],
-          ['Œuvres en situation', "Visualiser certaines œuvres dans un intérieur, à l'échelle d'une pièce."],
-          ['Contact via WhatsApp', "Un parcours d'achat ou d'échange direct avec la galerie."],
-          ['Événements et vernissages', 'Une section pour faire vivre la galerie au-delà de ses murs.'],
-          ['Navigation intuitive et responsive', "Pensée pour le téléphone autant que pour l'ordinateur."],
+          ['Salle d’exposition virtuelle', 'Les seize œuvres en perspective, parcourues au clic, aux flèches ou en glissant.', 'intégré'],
+          ['Fiche de chaque œuvre', 'Technique, dimensions, prix, disponibilité et le texte de l’artiste.', 'intégré'],
+          ['Loupe', 'S’approcher de la matière, au survol ou au doigt.', 'intégré'],
+          ['Mise en situation « chez vous »', 'L’œuvre à l’échelle au-dessus d’un canapé, sur cinq couleurs de mur.', 'intégré'],
+          ['Filtres', 'Par prix, par technique et par format.', 'intégré'],
+          ['Ma sélection', 'Mettre des œuvres de côté, voir le total, l’envoyer en un geste.', 'intégré'],
+          ['Acquérir une œuvre', 'Un message WhatsApp prérempli avec le nom de l’œuvre.', 'intégré'],
+          ['Vernissages & événements', 'Une page dédiée, en quatre chapitres photographiques.', 'intégré'],
+          ['Visiter la galerie', 'L’adresse à Valbonne, l’itinéraire et les contacts directs.', 'intégré'],
         ],
       },
+      { type: 'pair', items: [img('rimo', 'rimo_filtres', '16 / 10', L, 'Filtres : trois œuvres sur seize avec la technique Timbres'), img('rimo', 'rimo_selection', '16 / 10', L, 'Ma sélection : trois œuvres, le total et l’envoi par WhatsApp')], caption: 'Trouver son œuvre par prix, technique ou format, puis envoyer sa sélection à la galerie.' },
+      { type: 'image', size: 'full', src: img('rimo', 'rimo_vernissage', '16 / 10', L, 'La page Vernissage : reportage photo à la galerie'), caption: 'La page Vernissage : un reportage en quatre chapitres, l’atmosphère, les œuvres, les rencontres, les souvenirs.' },
+      { type: 'screens', desktop: img('rimo', 'rimo_d4', '16 / 10', L, 'Index des œuvres, version ordinateur'), mobile: img('rimo', 'rimo_m_salle', '9 / 19.5', M, 'La galerie sur téléphone'), caption: 'Sur téléphone, la galerie se recompose : l’œuvre d’abord, le parcours ensuite.' },
       { type: 'chapters', title: 'Ma contribution', items: [
         ['Direction artistique', "Univers visuel, palette, typographie, rythme et ton de l'interface."],
-        ['Expérience numérique', 'Le parcours des œuvres, les interactions avec les tableaux et le chemin vers le contact.'],
-        ['Design orienté vente', 'Placer les informations de décision (format, prix, mise en situation) au bon moment du parcours.'],
+        ['Expérience numérique', 'La salle, les fiches, la loupe, la mise en situation et le chemin vers le contact.'],
+        ['Design orienté vente', 'Les informations de décision (format, prix, disponibilité) au bon moment du parcours, et l’achat en un message.'],
       ] },
-      { type: 'captures', items: [] }, // captures du site réel : à ajouter dans public/media/works/rimo/
-      { type: 'palette', colors: [['Mur', '#f5f3ef'], ['Encre', '#151413'], ['Pierre', '#d9d4cb'], ['Pastille rouge', '#b3261e']] },
+      { type: 'palette', colors: [['Mur', '#f6f3ee'], ['Sable', '#eee9e1'], ['Encre', '#141414'], ['Rouge', '#d01d2b']] },
     ],
   },
 
@@ -95,6 +110,7 @@ export const projects = [
     cover: img('stride', 'shoe_cover', '16 / 10', L, 'Chaussure noire en maille flottant au-dessus de son ombre'),
     card: img('screens', 'ui_stride_d', '16 / 10', D, "Site Stride (concept) : page de lancement de la chaussure, version ordinateur"), // vignette des grilles : le site, pas seulement l'objet
     coverPos: '50% 55%',
+    showcase: { layout: 'object', thumbs: [t('stride', 'shoe_cover'), t('stride', 'shoe_beach'), t('stride', 'shoe_midnight'), t('stride', 'shoe_profile')] },
     theme: { bg: '#0c0c0d', fg: '#edebe5', muted: '#8f949b', line: 'rgb(237 235 229 / 0.14)', accent: '#ff5a4e', title: 'display' },
     meta: [
       ['Type', 'Concept personnel'],
@@ -123,6 +139,7 @@ export const projects = [
   {
     slug: 'vanta',
     tags: ['3d', 'web'], // filtres de la page Projets
+    selected: true, // affiché sur l'accueil
     num: '03',
     title: 'Vanta',
     subtitle: "Un configurateur cinématographique pour un grand tourisme concept",
@@ -133,6 +150,7 @@ export const projects = [
     card: img('screens', 'ui_vanta_d', '16 / 10', D, "Site Vanta (concept) : configurateur, chapitre peinture, version ordinateur"), // vignette des grilles : le site, pas seulement l'objet
     coverPos: '35% 50%',
     hero: img('vanta', 'car_cover', '16 / 10', L, 'Voiture concept graphite dans un studio sombre'),
+    showcase: { layout: 'cinema', thumbs: [t('vanta', 'car_side'), t('vanta', 'car_front'), t('vanta', 'car_top'), t('vanta', 'car_cover')] },
     theme: { bg: '#080708', fg: '#f1ece8', muted: '#958a86', line: 'rgb(241 236 232 / 0.12)', accent: '#d63a2c', title: 'display' },
     meta: [
       ['Type', 'Concept personnel'],
@@ -159,7 +177,6 @@ export const projects = [
   {
     slug: 'opale',
     tags: ['web', '3d'], // filtres de la page Projets
-    selected: true, // affiché sur l'accueil
     num: '04',
     title: 'Maison Opale',
     subtitle: "E-commerce éditorial pour une maison de lunettes imaginaire",
@@ -169,6 +186,7 @@ export const projects = [
     cover: img('opale', 'glasses_cover', '16 / 10', L, 'Lunettes aviateur sur papier chaud, ombre longue'),
     card: img('screens', 'ui_opale_d', '16 / 10', D, "Site Maison Opale (concept) : page produit, version ordinateur"), // vignette des grilles : le site, pas seulement l'objet
     coverPos: '50% 50%',
+    showcase: { layout: 'object', thumbs: [t('opale', 'glasses_cover'), t('opale', 'glasses_front'), t('opale', 'glasses_top')] },
     theme: { bg: '#efe9df', fg: '#1d1a16', muted: '#7d7466', line: 'rgb(29 26 22 / 0.14)', accent: '#9c7a44', title: 'serif', light: true },
     meta: [
       ['Type', 'Concept personnel'],
@@ -201,6 +219,7 @@ export const projects = [
     card: img('screens', 'ui_rooms_d', '16 / 10', D, "Site Quiet Rooms (concept) : page d'accueil, version ordinateur"), // vignette des grilles : le site, pas seulement l'objet
     coverPos: '50% 60%',
     hero: img('rooms', 'interior_cover', '16 / 10', L, 'Pièce ensoleillée avec un fauteuil en velours vert, un pouf et une lampe'),
+    showcase: { layout: 'space', thumbs: [t('rooms', 'interior_cover'), t('rooms', 'interior_pouf'), t('rooms', 'interior_chair', P)] },
     theme: { bg: '#e4ddd3', fg: '#23201c', muted: '#776f64', line: 'rgb(35 32 28 / 0.14)', accent: '#b0532d', title: 'light', light: true },
     meta: [
       ['Type', 'Concept personnel'],
@@ -230,6 +249,7 @@ export const projects = [
     cover: img('afterimage', 'art_cover', '21 / 9', L, 'Champ de lumière génératif en ambre et noir'),
     coverPos: '50% 50%',
     live: 'afterimage',
+    showcase: { layout: 'art', thumbs: [t('afterimage', 'art_cover'), t('afterimage', 'art_a', P), t('afterimage', 'art_b', P), t('afterimage', 'art_c', P)] },
     theme: { bg: '#050506', fg: '#e9e8f0', muted: '#8a8a99', line: 'rgb(233 232 240 / 0.12)', accent: '#ffb547', title: 'mono' },
     meta: [
       ['Type', 'Exploration personnelle'],
@@ -249,6 +269,7 @@ export const projects = [
   {
     slug: 'oscillo',
     tags: ['identity', 'web'], // filtres de la page Projets
+    selected: true, // affiché sur l'accueil
     num: '07',
     title: 'Oscillo',
     subtitle: "Identité et expérience digitale d'un festival sonore imaginaire",
@@ -259,6 +280,7 @@ export const projects = [
     card: img('screens', 'ui_oscillo_d', '16 / 10', D, "Site du festival Oscillo (concept) : page d'accueil, version ordinateur"), // vignette des grilles : le site, pas seulement l'objet
     coverPos: '50% 50%',
     live: 'oscillo',
+    showcase: { layout: 'signal', thumbs: [t('oscillo', 'osc_cover'), t('oscillo', 'osc_posters'), t('oscillo', 'osc_system')] },
     theme: { bg: '#1b2bff', fg: '#f3f1ea', muted: '#b9bdf5', line: 'rgb(243 241 234 / 0.22)', accent: '#e6ff3b', title: 'wide' },
     meta: [
       ['Type', 'Concept personnel'],

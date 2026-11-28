@@ -13,7 +13,7 @@ await page.screenshot({ path: 'tools/qa/out/hover-hero.png' });
 // card hover
 await page.evaluate(() => document.getElementById('work').scrollIntoView());
 await page.waitForTimeout(3000);
-const box = await page.locator('.scene__link[data-project="stride"] .scene__stage').boundingBox();
+const box = await page.locator('#case-stride .case__stage').boundingBox();
 await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2, { steps: 5 });
 await page.waitForTimeout(1300);
 await page.screenshot({ path: 'tools/qa/out/hover-card.png' });

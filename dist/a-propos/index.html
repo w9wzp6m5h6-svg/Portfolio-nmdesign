@@ -6,7 +6,7 @@
   <meta property="og:title" content="À propos — NM Design" />
   <meta property="og:description" content="Le parcours et l'approche de Noah Milsztajn, designer autodidacte et fondateur de NM Design." />
   <meta charset="utf-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'sha256-MJiHiHTEvesL0GlZ5Jp+GDvi5DGuZ5KB+AP2EPVCY30='; img-src 'self' blob:; font-src 'self'; connect-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' blob:; font-src 'self'; connect-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="author" content="Noah Milsztajn — NM Design" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
@@ -60,37 +60,13 @@
   }
   </script>
 
-  <script type="module" crossorigin src="../assets/main-BqEBfw2-.js"></script>
-  <link rel="stylesheet" crossorigin href="../assets/main-DDBHXF4e.css">
+  <script type="module" crossorigin src="../assets/main-Ctv3EDtk.js"></script>
+  <link rel="stylesheet" crossorigin href="../assets/main-RyS2yjwE.css">
 </head>
-<body class="is-loading" data-page="about">
+<body data-page="about">
   <a class="skip-link" href="#main">Aller au contenu</a>
 
-  <!-- Intro : scène en profondeur ; le logo NM se trace puis rejoint l'en-tête -->
-  <div class="intro">
-    <div class="intro__light" aria-hidden="true"></div>
-    <div class="intro__stage" aria-hidden="true">
-      <div class="intro__world">
-        <i class="intro__plane intro__plane--1"></i>
-        <i class="intro__plane intro__plane--2"></i>
-        <i class="intro__plane intro__plane--3"></i>
-        <i class="intro__plane intro__plane--4"></i>
-        <i class="intro__plane intro__plane--5"></i>
-        <i class="intro__plane intro__plane--6"></i>
-      </div>
-    </div>
-    <div class="intro__core" aria-hidden="true">
-      <svg class="intro__mark mark" viewBox="-6 -6 132 112" fill="none">
-        <polyline class="mark__line" points="0,100 0,0 60,100 60,0 90,60 120,0 120,100" />
-      </svg>
-      <p class="intro__word"><span class="intro__word-in">NM Design</span></p>
-    </div>
-    <p class="intro__meta mono" aria-hidden="true"><span>Studio de design digital</span><span class="intro__count">000</span></p>
-    <button class="intro__skip mono" type="button">Passer l'intro</button>
-  </div>
-
-
-  <!-- En-tête ------------------------------------------------------------->
+  <!-- En-tête : logo NM (se trace à l'arrivée et au survol), navigation, appel à l'action -->
   <header class="header">
     <a class="header__brand" href="../" aria-label="NM Design — accueil">
       <svg class="mark mark--brand" viewBox="-6 -6 132 112" fill="none" aria-hidden="true">
@@ -102,9 +78,10 @@
       <a href="../projets/" data-nav="projects"><span class="roll" data-text="Projets">Projets</span></a>
       <a href="../a-propos/" data-nav="about"><span class="roll" data-text="À propos">À propos</span></a>
       <a href="../offres/" data-nav="offers"><span class="roll" data-text="Offres">Offres</span></a>
-      <a href="#contact" data-nav="contact" class="header__cta"><span class="roll" data-text="Contact">Contact</span></a>
+      <a href="#contact" data-nav="contact"><span class="roll" data-text="Contact">Contact</span></a>
     </nav>
-    <button class="header__menu mono" type="button" aria-expanded="false" aria-controls="menu">
+    <button class="header__cta btn" type="button" data-open-brief>Démarrer un projet<span class="btn__arrow" aria-hidden="true">→</span></button>
+    <button class="header__menu" type="button" aria-expanded="false" aria-controls="menu">
       <span class="header__menu-label">Menu</span>
       <span class="header__menu-icon" aria-hidden="true"><i></i><i></i></span>
     </button>
@@ -114,25 +91,28 @@
   <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu" inert>
     <div class="menu__bg"></div>
     <nav class="menu__nav" aria-label="Menu">
-      <a href="../" data-nav="home"><span class="menu__num mono">01</span><span class="menu__label">Accueil</span></a>
-      <a href="../projets/" data-nav="projects"><span class="menu__num mono">02</span><span class="menu__label">Projets</span></a>
-      <a href="../a-propos/" data-nav="about"><span class="menu__num mono">03</span><span class="menu__label">À propos</span></a>
-      <a href="../offres/" data-nav="offers"><span class="menu__num mono">04</span><span class="menu__label">Offres</span></a>
-      <a href="#contact"><span class="menu__num mono">05</span><span class="menu__label">Contact</span></a>
+      <a href="../" data-nav="home"><span class="menu__num label">01</span><span class="menu__label">Accueil</span></a>
+      <a href="../projets/" data-nav="projects"><span class="menu__num label">02</span><span class="menu__label">Projets</span></a>
+      <a href="../a-propos/" data-nav="about"><span class="menu__num label">03</span><span class="menu__label">À propos</span></a>
+      <a href="../offres/" data-nav="offers"><span class="menu__num label">04</span><span class="menu__label">Offres</span></a>
+      <a href="#contact"><span class="menu__num label">05</span><span class="menu__label">Contact</span></a>
     </nav>
-    <div class="menu__foot mono" data-menu-contact></div>
+    <div class="menu__foot">
+      <button class="btn menu__cta" type="button" data-open-brief>Démarrer un projet<span class="btn__arrow" aria-hidden="true">→</span></button>
+      <div class="menu__contact label" data-menu-contact></div>
+    </div>
   </div>
 
 
   <main id="main">
-    <header class="page-head" id="top" data-section="about" data-label="À propos">
-      <p class="page-head__k mono">À propos</p>
+    <header class="page-head" id="top" data-tone="light" data-section="about" data-label="À propos">
+      <p class="page-head__k label">À propos</p>
       <h1 class="page-head__title">Je m'appelle <em>Noah.</em></h1>
       <p class="page-head__lead">Designer autodidacte et fondateur de NM Design. Je conçois des expériences numériques qui mêlent direction artistique, design d'interface, 3D et interaction.</p>
     </header>
 
     <!-- Portrait, récit, qualités, parcours ------------------------------->
-    <section class="about" id="about" aria-label="Portrait et parcours">
+    <section class="about" data-tone="light" id="about" aria-label="Portrait et parcours">
 
       <div class="about__intro">
         <figure class="portrait" data-portrait>
@@ -146,7 +126,7 @@
             </div>
           </div>
           <span class="portrait__name serif" aria-hidden="true">Noah</span>
-          <figcaption class="portrait__cap mono"><span>Noah Milsztajn</span><span>Fondateur de NM Design</span></figcaption>
+          <figcaption class="portrait__cap label"><span>Noah Milsztajn</span><span>Fondateur de NM Design</span></figcaption>
         </figure>
 
         <div class="about__text">
@@ -160,7 +140,7 @@
       </div>
 
       <div class="about__skills">
-        <p class="mono about__skills-k">Ce que le terrain m'a appris</p>
+        <p class="label about__skills-k">Ce que le terrain m'a appris</p>
         <ul class="about__skills-list" data-reveal>
           <li>Discipline</li><li>Adaptabilité</li><li>Sens du détail</li><li>Organisation</li><li>Réactivité</li>
           <li>Autonomie</li><li>Travail d'équipe</li><li>Apprendre vite</li><li>Comprendre les besoins</li><li>Résoudre les problèmes</li>
@@ -169,45 +149,45 @@
 
       <div class="journey" data-journey>
         <header class="journey__head">
-          <p class="mono journey__k">Parcours</p>
+          <p class="label journey__k">Parcours</p>
           <h2 class="journey__title" data-split>Cinq chapitres, <em class="serif">une même exigence.</em></h2>
         </header>
         <div class="journey__layout">
           <div class="journey__aside" aria-hidden="true">
             <span class="journey__num"><span class="journey__num-inner">01</span></span>
             <span class="journey__bar"><i></i></span>
-            <span class="journey__total mono">/ 05</span>
+            <span class="journey__total label">/ 05</span>
           </div>
           <ol class="journey__list">
             <li class="chapter" data-chapter="01">
-              <p class="chapter__k mono">01 — Les premières expériences</p>
+              <p class="chapter__k label">01 — Les premières expériences</p>
               <h3 class="chapter__t">Apprendre avec les mains</h3>
               <p class="chapter__d">Travail manuel, paysage, apprentissage : ma découverte du monde professionnel. Le goût du travail bien fait, et l'idée qu'un résultat se construit geste après geste.</p>
-              <p class="chapter__tags mono">Paysage · Apprentissage · Travail manuel</p>
+              <p class="chapter__tags label">Paysage · Apprentissage · Travail manuel</p>
             </li>
             <li class="chapter" data-chapter="02">
-              <p class="chapter__k mono">02 — Le terrain</p>
+              <p class="chapter__k label">02 — Le terrain</p>
               <h3 class="chapter__t">Tenir le rythme</h3>
               <p class="chapter__d">La restauration et le service, dans des établissements exigeants : Ambrosia à Beaulieu-sur-Mer, Léo Léa à Saint-Jean-Cap-Ferrat, le Café des Arcades à Valbonne. Un service ne pardonne pas l'approximation : il faut être rapide, précis, organisé, et attentif à chaque personne.</p>
-              <p class="chapter__tags mono">Service · Organisation · Travail d'équipe</p>
+              <p class="chapter__tags label">Service · Organisation · Travail d'équipe</p>
             </li>
             <li class="chapter" data-chapter="03">
-              <p class="chapter__k mono">03 — La curiosité</p>
+              <p class="chapter__k label">03 — La curiosité</p>
               <h3 class="chapter__t">Regarder les écrans autrement</h3>
               <p class="chapter__d">La découverte du design, du web et de la création digitale. Comprendre pourquoi certains sites, certaines marques, certaines images marquent plus que d'autres, et vouloir savoir comment ils sont faits.</p>
-              <p class="chapter__tags mono">Design · Web · Outils créatifs</p>
+              <p class="chapter__tags label">Design · Web · Outils créatifs</p>
             </li>
             <li class="chapter" data-chapter="04">
-              <p class="chapter__k mono">04 — L'autodidacte</p>
+              <p class="chapter__k label">04 — L'autodidacte</p>
               <h3 class="chapter__t">Apprendre en faisant</h3>
               <p class="chapter__d">Me former seul : étudier les univers qui m'inspirent, tester des outils, construire des projets, casser, recommencer. Chaque problème résolu devient une compétence, et chaque échec une indication.</p>
-              <p class="chapter__tags mono">Expérimentation · Persévérance · Résolution de problèmes</p>
+              <p class="chapter__tags label">Expérimentation · Persévérance · Résolution de problèmes</p>
             </li>
             <li class="chapter" data-chapter="05">
-              <p class="chapter__k mono">05 — La création numérique</p>
+              <p class="chapter__k label">05 — La création numérique</p>
               <h3 class="chapter__t">Aujourd'hui</h3>
               <p class="chapter__d">Direction artistique, design d'interface, sites web, 3D, interactions et expériences immersives. Le même sens du détail qu'en salle, appliqué à l'écran.</p>
-              <p class="chapter__tags mono">Direction artistique · Interface · 3D · Interaction</p>
+              <p class="chapter__tags label">Direction artistique · Interface · 3D · Interaction</p>
             </li>
           </ol>
         </div>
@@ -215,12 +195,12 @@
     </section>
 
     <!-- Approche ------------------------------------------------------------>
-    <section class="manifesto" aria-labelledby="approach-title">
-      <h2 class="manifesto__eyebrow mono" id="approach-title">Approche</h2>
+    <section class="manifesto" data-tone="light" aria-labelledby="approach-title">
+      <h2 class="manifesto__eyebrow label" id="approach-title">Approche</h2>
       <p class="manifesto__text" data-words>
         Je conçois des interfaces, des identités et des expériences web où <em>le design et le code</em> ne font qu'un. Peu d'éléments à l'écran, chacun à sa place, et un mouvement qui a <em>du sens.</em>
       </p>
-      <ul class="manifesto__fields mono" aria-label="Domaines">
+      <ul class="manifesto__fields label" aria-label="Domaines">
         <li><span>01</span>Direction artistique</li>
         <li><span>02</span>Design d'interface &amp; web</li>
         <li><span>03</span>3D &amp; motion design</li>
@@ -228,22 +208,27 @@
       </ul>
     </section>
 
-    <!-- Contact ------------------------------------------------------------>
-    <section class="contact" id="contact" data-section="contact" data-label="Contact">
+    <!-- Fin de site : une conclusion, pas un formulaire de plus -------------->
+    <section class="contact" id="contact" data-tone="dark" data-section="contact" data-label="Contact">
       <svg class="contact__mark" viewBox="-6 -6 132 112" fill="none" aria-hidden="true">
         <polyline class="contact__line" points="0,100 0,0 60,100 60,0 90,60 120,0 120,100" />
       </svg>
-      <div class="contact__content">
-        <p class="mono contact__kicker">Contact</p>
-        <h2 class="contact__title">Un projet en tête ? <em class="serif">Parlons-en.</em></h2>
-        <p class="contact__intro">Racontez-moi votre activité et ce que vous imaginez. Je vous réponds avec une première orientation, puis une proposition claire.</p>
-        <div class="contact__actions" data-contact></div>
+      <p class="label contact__kicker">Contact</p>
+      <h2 class="contact__title" data-split>Un projet en tête ? <em class="serif">Parlons-en.</em></h2>
+      <div class="contact__row">
+        <button class="contact__orb" type="button" data-open-brief data-magnetic>
+          <span class="contact__orb-in">Démarrer<br />un projet <span aria-hidden="true">→</span></span>
+        </button>
+        <div class="contact__side">
+          <p class="contact__intro">Racontez-moi votre activité et ce que vous imaginez. Je vous réponds avec une première orientation, puis une proposition claire.</p>
+          <div class="contact__actions" data-contact></div>
+        </div>
       </div>
     </section>
 
   </main>
 
-  <footer class="footer">
+  <footer class="footer" data-tone="dark">
     <div class="footer__top">
       <a class="footer__brand" href="../" aria-label="NM Design — accueil">
         <svg class="mark" viewBox="-6 -6 132 112" fill="none" aria-hidden="true"><polyline class="mark__line" points="0,100 0,0 60,100 60,0 90,60 120,0 120,100" /></svg>
@@ -252,7 +237,7 @@
     </div>
     <div class="footer__cols">
       <nav class="footer__col" aria-label="Plan du site">
-        <p class="footer__k mono">Navigation</p>
+        <p class="footer__k label">Navigation</p>
         <ul>
           <li><a href="../">Accueil</a></li>
           <li><a href="../projets/">Projets</a></li>
@@ -262,11 +247,11 @@
         </ul>
       </nav>
       <div class="footer__col">
-        <p class="footer__k mono">Contact</p>
+        <p class="footer__k label">Contact</p>
         <ul data-footer-contact></ul>
       </div>
       <div class="footer__col">
-        <p class="footer__k mono">Informations</p>
+        <p class="footer__k label">Informations</p>
         <ul>
           <li><button class="footer__link" type="button" data-open-legal="legal">Mentions légales</button></li>
           <li><button class="footer__link" type="button" data-open-legal="privacy">Confidentialité</button></li>
@@ -274,13 +259,13 @@
         </ul>
       </div>
       <div class="footer__col">
-        <p class="footer__k mono">Studio</p>
+        <p class="footer__k label">Studio</p>
         <p class="footer__zone">Noah Milsztajn, designer indépendant. Côte d'Azur — Valbonne, Antibes, Cannes, Nice. Projets à distance partout ailleurs.</p>
       </div>
     </div>
     <div class="footer__row">
-      <span class="mono">© <span data-year>2026</span> NM Design — Noah Milsztajn</span>
-      <span class="mono footer__credits">Modèles 3D : Shopify (CC BY 4.0), Darmstadt Graphics Group / Eric Chadwick (CC BY 4.0), Wayfair (CC0 / CC BY 4.0), via Khronos glTF Sample Assets. Les concepts présentés sont des projets personnels.</span>
+      <span class="label">© <span data-year>2026</span> NM Design — Noah Milsztajn</span>
+      <span class="label footer__credits">Modèles 3D : Shopify (CC BY 4.0), Darmstadt Graphics Group / Eric Chadwick (CC BY 4.0), Wayfair (CC0 / CC BY 4.0), via Khronos glTF Sample Assets. Les concepts présentés sont des projets personnels.</span>
     </div>
   </footer>
 
@@ -288,8 +273,8 @@
   <dialog class="sheet brief" id="brief" aria-labelledby="brief-title">
     <div class="sheet__panel" data-lenis-prevent>
       <div class="sheet__head">
-        <p class="mono sheet__k">Start a project</p>
-        <button class="sheet__close mono" type="button" data-close>Fermer<span class="project__close-x" aria-hidden="true"></span></button>
+        <p class="label sheet__k">Start a project</p>
+        <button class="sheet__close label" type="button" data-close>Fermer<span class="project__close-x" aria-hidden="true"></span></button>
       </div>
       <h2 class="sheet__title" id="brief-title">Parlons de votre <em class="serif">projet.</em></h2>
       <p class="sheet__intro">Quelques questions pour comprendre votre besoin. Je vous réponds avec une première orientation, puis une proposition claire si nous avançons ensemble. Les champs marqués * sont obligatoires.</p>
@@ -355,7 +340,7 @@
         <p class="brief__error field--wide" role="alert" hidden></p>
         <div class="brief__submit field--wide">
           <button class="btn" type="submit">Envoyer ma demande<span class="btn__arrow" aria-hidden="true">→</span></button>
-          <p class="brief__how mono" data-brief-how></p>
+          <p class="brief__how label" data-brief-how></p>
         </div>
       </form>
 
@@ -371,8 +356,8 @@
   <dialog class="sheet legal" id="legal" aria-labelledby="legal-title">
     <div class="sheet__panel" data-lenis-prevent>
       <div class="sheet__head">
-        <p class="mono sheet__k">Informations</p>
-        <button class="sheet__close mono" type="button" data-close>Fermer<span class="project__close-x" aria-hidden="true"></span></button>
+        <p class="label sheet__k">Informations</p>
+        <button class="sheet__close label" type="button" data-close>Fermer<span class="project__close-x" aria-hidden="true"></span></button>
       </div>
       <h2 class="sheet__title" id="legal-title">Mentions légales</h2>
       <div class="legal__body">
@@ -386,7 +371,7 @@
         </section>
         <section id="legal-privacy" aria-labelledby="legal-h-privacy">
           <h3 id="legal-h-privacy">Confidentialité</h3>
-          <p>Ce site ne dépose aucun cookie, n'utilise aucun outil de mesure d'audience ni de publicité, et ne charge aucune police ou script depuis un service tiers.</p>
+          <p>Ce site ne dépose aucun cookie, n'utilise aucun outil de mesure d'audience ni de publicité, et ne charge aucune police ou script depuis un service tiers. Une seule exception, à votre demande : le bouton « Explorer le site en direct » ouvre le site de L'Empreinte (Cynthia Rimo), qui charge ses polices depuis Google Fonts ; votre navigateur contacte alors les serveurs de Google.</p>
           <p data-legal-form></p>
           <p>Les informations transmises ne servent qu'à répondre à votre demande et à préparer une éventuelle proposition. Elles ne sont ni revendues ni partagées. Elles sont conservées le temps nécessaire à nos échanges, puis supprimées au plus tard trois ans après le dernier contact.</p>
           <p>Conformément au RGPD, vous pouvez demander l'accès, la rectification ou la suppression de vos données en écrivant à <a data-legal-email href="#contact"></a>. Vous pouvez également adresser une réclamation à la CNIL.</p>
@@ -403,14 +388,13 @@
       <div class="project__content"></div>
     </div>
     <div class="project__bar">
-      <span class="mono project__bar-index"></span>
-      <button class="project__close mono" type="button"><span>Fermer</span><span class="project__close-x" aria-hidden="true"></span></button>
+      <span class="label project__bar-index"></span>
+      <button class="project__close label" type="button"><span>Fermer</span><span class="project__close-x" aria-hidden="true"></span></button>
     </div>
     <div class="project__progress" aria-hidden="true"><i></i></div>
   </div>
 
-  <div class="cursor-tag mono" aria-hidden="true"><span class="cursor-tag__text"></span></div>
-  <noscript><style>.intro{display:none}</style></noscript>
+  <div class="cursor-tag label" aria-hidden="true"><span class="cursor-tag__text"></span></div>
 
 </body>
 </html>

@@ -4,17 +4,18 @@ Ce document décrit ce qui protège le site, ce qui reste à activer **de ton c�
 
 ## 1. Le site en une phrase
 
-Site **statique** : 4 pages HTML, du JavaScript et des images. Il n'a ni serveur à lui, ni base de données, ni compte utilisateur, ni paiement, ni envoi de fichiers. Les attaques qui visent ces éléments (injection SQL, SSRF, injection de commande, vol de session, brute force d'un admin, upload piégé, CSRF) n'ont donc rien à viser. La seule donnée saisie par un visiteur est la demande de projet. Par défaut, elle prépare un e‑mail dans la messagerie du visiteur ; si `VITE_FORM_ENDPOINT` est défini, elle est envoyée à Formspree ou Web3Forms.
+Site **statique** : 4 pages HTML, du JavaScript, des images et le site livré à la galerie L'Empreinte (un fichier HTML autonome). Il n'a ni serveur à lui, ni base de données, ni compte utilisateur, ni paiement, ni envoi de fichiers. Les attaques qui visent ces éléments (injection SQL, SSRF, injection de commande, vol de session, brute force d'un admin, upload piégé, CSRF) n'ont donc rien à viser. La seule donnée saisie par un visiteur est la demande de projet. Par défaut, elle prépare un e‑mail dans la messagerie du visiteur ; si `VITE_FORM_ENDPOINT` est défini, elle est envoyée à Formspree ou Web3Forms.
 
 ## 2. Ce qui est en place
 
 | Protection | Où | Effet |
 | --- | --- | --- |
 | **Content‑Security‑Policy** stricte sur chaque page | générée au build (`vite.config.js`, plugin `nm-security`) | Le navigateur n'exécute que les scripts du site : pas de script injecté, pas d'`eval`, pas de style injecté, aucune connexion vers un domaine tiers (sauf le service de formulaire configuré). |
-| En-têtes HTTP de sécurité | `vercel.json` → `dist/_headers` (Netlify, Cloudflare Pages) et `dist/.htaccess` (Apache) | HTTPS forcé (HSTS), anti‑iframe (clickjacking), `nosniff`, Referrer‑Policy, caméra / micro / géolocalisation / paiement coupés. |
+| En-têtes HTTP de sécurité | `vercel.json` → `dist/_headers` (Netlify, Cloudflare Pages) et `dist/.htaccess` (Apache) | HTTPS forcé (HSTS), anti‑iframe (clickjacking : le site ne peut être affiché dans une iframe que par lui‑même, `frame-ancestors 'self'` + `X-Frame-Options: SAMEORIGIN`), `nosniff`, Referrer‑Policy, caméra / micro / géolocalisation / paiement coupés. |
 | Échappement de toutes les données insérées en HTML | `src/core/escape.js`, `src/core/css.js` | Une donnée ne peut pas devenir du code. |
 | Formulaire | `src/sections/commerce.js` | Champ piège anti‑robot, délai minimal de 3 s, longueurs maximales, validation, un seul envoi à la fois, 60 s entre deux envois, adresse d'envoi en HTTPS obligatoire (le build échoue sinon). Aucune fausse confirmation. |
-| Aucun tiers | — | Pas de script, police, traceur ni cookie externe. Polices et bibliothèques auto‑hébergées. |
+| Aucun tiers | — | Pas de script, police, traceur ni cookie externe. Polices et bibliothèques auto‑hébergées. Seule exception, à la demande du visiteur : voir « Site de L'Empreinte » ci‑dessous. |
+| Site de L'Empreinte (aperçu en direct) | `public/lempreinte/index.html`, `src/ui/live-site.js` | Chargé seulement au clic, dans une iframe `sandbox` **sans** `allow-same-origin` : origine opaque, aucun accès au portfolio (DOM, stockage, cookies), aucune navigation de la page parente. Vérifié par `check:security`. |
 | Serveur de démo local | `demo/serve.mjs` | N'écoute que sur ton ordinateur (127.0.0.1), ne sert que le dossier du site (ni `../`, ni lien symbolique, ni fichier caché), erreurs génériques, mêmes en-têtes que la production. |
 | Serveur de développement | `vite.config.js` | `npm run dev` n'est accessible que depuis ton ordinateur. Pour tester sur ton téléphone : `npm run dev -- --host`, uniquement sur un réseau de confiance. |
 | Secrets | `.gitignore` | Tous les fichiers `.env*` sont ignorés par Git, sauf `.env.example`. |
@@ -26,6 +27,8 @@ Site **statique** : 4 pages HTML, du JavaScript et des images. Il n'a ni serveur
 - `'wasm-unsafe-eval'` : le modèle 3D est compressé (meshopt) et décodé par du WebAssembly. Cette exception autorise la compilation WebAssembly, **pas** l'exécution de JavaScript arbitraire (`eval` reste bloqué).
 - Une empreinte `sha256` : le seul bloc `<style>` du site, dans `<noscript>`, pour les visiteurs sans JavaScript.
 - `blob:` (images, connexions) : three.js extrait les textures du fichier `.glb` sous forme de `blob:` locaux.
+
+**Site de L'Empreinte — pourquoi il a ses propres règles :** c'est le fichier livré à la galerie, publié **tel quel** à `/lempreinte/` (le modifier changerait l'œuvre). Il contient ses propres scripts et styles en ligne et charge ses deux polices depuis Google Fonts : la CSP stricte du portfolio ne lui est donc pas appliquée (les en-têtes HTTP communs, eux, s'appliquent). Les garanties sont ailleurs : il ne contient ni formulaire, ni traceur, ni appel à un service ; il n'est jamais exécuté dans le contexte du portfolio (iframe isolée, voir tableau) et il n'est chargé que si le visiteur clique sur « Explorer le site en direct ». À ce moment‑là seulement, le navigateur du visiteur contacte Google Fonts ; la politique de confidentialité du site le mentionne.
 
 ### Vérifier soi-même
 

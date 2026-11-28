@@ -13,17 +13,17 @@ const page = await ctx.newPage();
 const errs = [];
 page.on('pageerror', (e) => errs.push(e.message));
 
-// skip intro
+// arrivée : aucun écran bloquant, le titre et les actions sont là tout de suite
 await page.goto(BASE + '/');
-await page.waitForTimeout(500);
-const t0 = Date.now();
-await page.click('.intro__skip', { force: true }).catch(() => {});
-await page.waitForFunction(() => !document.querySelector('.intro'), null, { timeout: 8000 }).catch(() => {});
-ok('skip intro removes the intro quickly', !(await page.evaluate(() => !!document.querySelector('.intro'))), `${Date.now() - t0} ms`);
+await page.waitForTimeout(1300);
+ok('no blocking intro: hero title and actions visible within 1.3 s', await page.evaluate(() => {
+  const t = document.querySelector('.hero__title').getBoundingClientRect();
+  const a = document.querySelector('.hero__actions .btn');
+  return !document.querySelector('.intro') && t.height > 0 && getComputedStyle(a).visibility === 'visible' && +getComputedStyle(a.closest('[data-hero-fade]')).opacity > 0.9;
+}));
 
 // 3D gestures (le lab est sur la page Projets)
 await page.goto(BASE + '/projets/');
-await page.waitForFunction(() => !document.querySelector('.intro'), null, { timeout: 8000 });
 await page.evaluate(() => document.getElementById('object').scrollIntoView());
 await page.waitForFunction(() => document.querySelector('.object').classList.contains('is-ready'), null, { timeout: 60000 });
 await page.waitForTimeout(1500);
@@ -55,11 +55,5 @@ await page.waitForTimeout(1000);
 const enabled = await page.evaluate(() => [...document.querySelectorAll('.object__controls button')].every((b) => !b.disabled));
 ok('all 3D controls enabled after load', enabled);
 
-// repeat visit: shortened intro
-const p2 = await ctx.newPage();
-await p2.goto(BASE + '/');
-const t1 = Date.now();
-await p2.waitForFunction(() => !document.querySelector('.intro'), null, { timeout: 15000 });
-ok('repeat visit: shorter intro', Date.now() - t1 < 4000, `${Date.now() - t1} ms`);
 ok('no JS errors', errs.length === 0, errs.join(' | '));
 await browser.close();

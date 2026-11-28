@@ -2,8 +2,8 @@
   <dialog class="sheet brief" id="brief" aria-labelledby="brief-title">
     <div class="sheet__panel" data-lenis-prevent>
       <div class="sheet__head">
-        <p class="mono sheet__k">Start a project</p>
-        <button class="sheet__close mono" type="button" data-close>Fermer<span class="project__close-x" aria-hidden="true"></span></button>
+        <p class="label sheet__k">Start a project</p>
+        <button class="sheet__close label" type="button" data-close>Fermer<span class="project__close-x" aria-hidden="true"></span></button>
       </div>
       <h2 class="sheet__title" id="brief-title">Parlons de votre <em class="serif">projet.</em></h2>
       <p class="sheet__intro">Quelques questions pour comprendre votre besoin. Je vous réponds avec une première orientation, puis une proposition claire si nous avançons ensemble. Les champs marqués * sont obligatoires.</p>
@@ -69,7 +69,7 @@
         <p class="brief__error field--wide" role="alert" hidden></p>
         <div class="brief__submit field--wide">
           <button class="btn" type="submit">Envoyer ma demande<span class="btn__arrow" aria-hidden="true">→</span></button>
-          <p class="brief__how mono" data-brief-how></p>
+          <p class="brief__how label" data-brief-how></p>
         </div>
       </form>
 
@@ -85,8 +85,8 @@
   <dialog class="sheet legal" id="legal" aria-labelledby="legal-title">
     <div class="sheet__panel" data-lenis-prevent>
       <div class="sheet__head">
-        <p class="mono sheet__k">Informations</p>
-        <button class="sheet__close mono" type="button" data-close>Fermer<span class="project__close-x" aria-hidden="true"></span></button>
+        <p class="label sheet__k">Informations</p>
+        <button class="sheet__close label" type="button" data-close>Fermer<span class="project__close-x" aria-hidden="true"></span></button>
       </div>
       <h2 class="sheet__title" id="legal-title">Mentions légales</h2>
       <div class="legal__body">
@@ -100,7 +100,7 @@
         </section>
         <section id="legal-privacy" aria-labelledby="legal-h-privacy">
           <h3 id="legal-h-privacy">Confidentialité</h3>
-          <p>Ce site ne dépose aucun cookie, n'utilise aucun outil de mesure d'audience ni de publicité, et ne charge aucune police ou script depuis un service tiers.</p>
+          <p>Ce site ne dépose aucun cookie, n'utilise aucun outil de mesure d'audience ni de publicité, et ne charge aucune police ou script depuis un service tiers. Une seule exception, à votre demande : le bouton « Explorer le site en direct » ouvre le site de L'Empreinte (Cynthia Rimo), qui charge ses polices depuis Google Fonts ; votre navigateur contacte alors les serveurs de Google.</p>
           <p data-legal-form></p>
           <p>Les informations transmises ne servent qu'à répondre à votre demande et à préparer une éventuelle proposition. Elles ne sont ni revendues ni partagées. Elles sont conservées le temps nécessaire à nos échanges, puis supprimées au plus tard trois ans après le dernier contact.</p>
           <p>Conformément au RGPD, vous pouvez demander l'accès, la rectification ou la suppression de vos données en écrivant à <a data-legal-email href="#contact"></a>. Vous pouvez également adresser une réclamation à la CNIL.</p>
@@ -117,11 +117,10 @@
       <div class="project__content"></div>
     </div>
     <div class="project__bar">
-      <span class="mono project__bar-index"></span>
-      <button class="project__close mono" type="button"><span>Fermer</span><span class="project__close-x" aria-hidden="true"></span></button>
+      <span class="label project__bar-index"></span>
+      <button class="project__close label" type="button"><span>Fermer</span><span class="project__close-x" aria-hidden="true"></span></button>
     </div>
     <div class="project__progress" aria-hidden="true"><i></i></div>
   </div>
 
-  <div class="cursor-tag mono" aria-hidden="true"><span class="cursor-tag__text"></span></div>
-  <noscript><style>.intro{display:none}</style></noscript>
+  <div class="cursor-tag label" aria-hidden="true"><span class="cursor-tag__text"></span></div>

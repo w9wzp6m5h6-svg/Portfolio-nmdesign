@@ -1,6 +1,6 @@
 /**
- * Fullscreen menu (≤900px). Clip-path curtain + staggered links,
- * focus trap, Escape to close, scroll lock while open.
+ * Menu plein écran (≤ 900 px) : rideau sombre, liens qui montent un à un,
+ * piège de focus, Échap pour fermer, défilement bloqué pendant l'ouverture.
  */
 import { gsap, lockScroll, unlockScroll } from '../core/scroll.js';
 import { env } from '../core/env.js';
@@ -25,6 +25,7 @@ export function initMenu() {
     tl?.kill();
     const d = env.reducedMotion ? 0 : 1;
 
+    document.documentElement.classList.toggle('menu-open', open);
     if (open) {
       menu.inert = false;
       menu.classList.add('is-open');
@@ -47,7 +48,7 @@ export function initMenu() {
 
   toggle.addEventListener('click', () => setOpen(!open));
   menu.addEventListener('click', (e) => {
-    if (e.target.closest('a')) setOpen(false, { returnFocus: false });
+    if (e.target.closest('a, [data-open-brief]')) setOpen(false, { returnFocus: false });
   });
   document.addEventListener('keydown', (e) => {
     if (!open) return;

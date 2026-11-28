@@ -2,6 +2,10 @@
 
 Except **L’Empreinte — Art Gallery** (a real project for Cynthia Rimo’s gallery in Valbonne), all projects on this site are **self-initiated concepts or personal explorations** by Noah Milsztajn. None of the concepts is presented as commissioned client work.
 
+## L’Empreinte — Art Gallery
+
+The site shown in the case study (`public/lempreinte/index.html`, screenshots in `public/media/works/rimo/`) is the site delivered for Cynthia Rimo, permanent artist at L’Empreinte Art Gallery, Valbonne. **The artworks it displays are by Cynthia Rimo** and remain her property; they appear here only as part of the project. The site loads Archivo and Bodoni Moda from Google Fonts (SIL Open Font License 1.1) when the live preview is opened.
+
 ## 3D assets
 
 All from the [Khronos glTF Sample Assets](https://github.com/KhronosGroup/glTF-Sample-Assets) repository. Staging, lighting, materials overrides, renders and interaction are original work for this site.
@@ -21,8 +25,7 @@ Changes made: textures recompressed to WebP and resized, geometry quantised (mes
 
 - Archivo: Omnibus-Type
 - Instrument Serif: Instrument
-- Inter Tight: Rasmus Andersson
-- Geist Mono: Vercel
+- Inter Tight: Rasmus Andersson (Maison Opale type specimen only)
 
 ## Libraries (MIT)
 

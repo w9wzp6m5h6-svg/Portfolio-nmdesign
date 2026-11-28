@@ -117,7 +117,7 @@ if (base) {
     const brokenMain = await page.evaluate(() => [...document.querySelectorAll('main img')].filter((i) => i.complete && i.naturalWidth === 0).map((i) => i.src));
     ok(`[${label}] /projets/: no broken images`, brokenMain.length === 0, brokenMain.join(', '));
     const fonts = await page.evaluate(() => [...document.fonts].filter((f) => f.status === 'loaded').map((f) => f.family));
-    ok(`[${label}] fonts loaded`, ['Archivo Variable', 'Instrument Serif', 'Inter Tight Variable', 'Geist Mono Variable'].every((f) => fonts.some((x) => x.includes(f))), [...new Set(fonts)].join(', '));
+    ok(`[${label}] fonts loaded (2 familles, aucune mono)`, ['Archivo Variable', 'Instrument Serif'].every((f) => fonts.some((x) => x.includes(f))) && !fonts.some((x) => /mono/i.test(x)), [...new Set(fonts)].join(', '));
     ok(`[${label}] three.js chunk loaded`, [...loaded].some((u) => /three\.module-.*\.js/.test(u)));
     ok(`[${label}] no failed requests`, bad.length === 0, bad.slice(0, 6).join(' | '));
     ok(`[${label}] no JS errors`, errs.length === 0, errs.slice(0, 4).join(' | '));

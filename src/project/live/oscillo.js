@@ -91,9 +91,9 @@ export function mountOscillo(block) {
   let raf = 0; let running = false; let last = 0;
 
   controls.innerHTML = `
-    <label class="mono">Mot <input type="text" value="${state.text}" maxlength="12" spellcheck="false" autocomplete="off" aria-label="Mot à encoder" data-osc-text /></label>
-    <label class="mono">Fréquence <input type="range" min="0" max="1" step="0.01" value="${state.freq}" data-osc-freq /></label>
-    <label class="mono">Amplitude <input type="range" min="0" max="1" step="0.01" value="${state.amp}" data-osc-amp /></label>
+    <label class="label">Mot <input type="text" value="${state.text}" maxlength="12" spellcheck="false" autocomplete="off" aria-label="Mot à encoder" data-osc-text /></label>
+    <label class="label">Fréquence <input type="range" min="0" max="1" step="0.01" value="${state.freq}" data-osc-freq /></label>
+    <label class="label">Amplitude <input type="range" min="0" max="1" step="0.01" value="${state.amp}" data-osc-amp /></label>
     <button type="button" class="chip" aria-pressed="true" data-osc-play>Signal actif</button>`;
   controls.querySelector('[data-osc-text]').addEventListener('input', (e) => { state.text = e.target.value.replace(/[^\p{L}\p{N} &-]/gu, '') || ' '; draw(); });
   controls.querySelector('[data-osc-freq]').addEventListener('input', (e) => { state.freq = +e.target.value; draw(); });
@@ -125,7 +125,8 @@ export function mountOscillo(block) {
       color: OSC_COLORS.fg, accent: OSC_COLORS.accent, rows: W < 700 ? 30 : 46,
     });
     ctx.fillStyle = OSC_COLORS.fg;
-    ctx.font = `${Math.round(W * 0.012 + 8)}px "Geist Mono Variable", monospace`;
+    ctx.font = `${Math.round(W * 0.012 + 8)}px "Archivo Variable", system-ui, sans-serif`;
+    ctx.fontStretch = "condensed";
     ctx.textBaseline = 'top';
     ctx.fillText(`F ${(20 + state.freq * 180).toFixed(0)} HZ   A ${(state.amp * 100).toFixed(0)}%`, pad, pad * 0.6);
     ctx.textAlign = 'right';

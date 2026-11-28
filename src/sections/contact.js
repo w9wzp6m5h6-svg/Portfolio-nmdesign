@@ -1,7 +1,9 @@
 /**
- * Contact — the NM signature returns as a giant single line. It draws itself
- * on arrival, then behaves like a string: vertices are springs the cursor
- * (or a finger) can pluck. Actions are rendered from site config only.
+ * Fin de site.
+ *  - le monogramme NM revient en un seul grand trait : il se trace à l'arrivée,
+ *    puis se comporte comme une corde que le curseur (ou le doigt) peut pincer ;
+ *  - le bouton rond « Démarrer un projet » est magnétique : il glisse vers le curseur ;
+ *  - coordonnées construites uniquement depuis src/data/site.js.
  */
 import { gsap, ScrollTrigger } from '../core/scroll.js';
 import { env } from '../core/env.js';
@@ -11,26 +13,24 @@ import { esc as escAttr } from '../core/escape.js';
 
 function renderActions(root) {
   const lines = [];
-  let cta = '';
   if (site.email) {
-    cta = `<button class="btn contact__cta" type="button" data-open-brief>Parlons de votre projet<span class="btn__arrow" aria-hidden="true">→</span></button>`;
     lines.push(`
       <li class="contact__line-item">
-        <span class="mono contact__label">Me contacter par e-mail</span>
+        <span class="label contact__label">Me contacter par e-mail</span>
         <a class="contact__value" href="${escAttr(mailto())}">${escAttr(site.email)}</a>
-        <button class="chip contact__copy" type="button" data-copy="${escAttr(site.email)}">Copier<span class="contact__copied mono" aria-live="polite">Adresse copiée</span></button>
+        <button class="chip contact__copy" type="button" data-copy="${escAttr(site.email)}">Copier<span class="contact__copied label" aria-live="polite">Adresse copiée</span></button>
       </li>`);
   }
   site.socials.forEach((s) => {
     lines.push(`
       <li class="contact__line-item">
-        <span class="mono contact__label">${escAttr(s.label)}</span>
+        <span class="label contact__label">${escAttr(s.label)}</span>
         <a class="contact__value" href="${escAttr(s.url)}" target="_blank" rel="noopener noreferrer">${escAttr(s.handle || s.label)}<span aria-hidden="true"> ↗</span><span class="visually-hidden"> (nouvel onglet)</span></a>
       </li>`);
   });
   root.innerHTML = lines.length
-    ? `${cta}<ul class="contact__list">${lines.join('')}</ul>`
-    : '<p class="contact__note mono">Coordonnées bientôt disponibles.</p>';
+    ? `<ul class="contact__list">${lines.join('')}</ul>`
+    : '<p class="contact__note label">Coordonnées bientôt disponibles.</p>';
 
   root.querySelector('[data-copy]')?.addEventListener('click', async (e) => {
     const b = e.currentTarget;
@@ -57,6 +57,23 @@ export function initContact() {
   const line = svg.querySelector('.contact__line');
   renderActions(section.querySelector('[data-contact]'));
 
+  // bouton magnétique (pointeur fin uniquement)
+  const orb = section.querySelector('[data-magnetic]');
+  if (orb && !env.reducedMotion && matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const inner = orb.querySelector('.contact__orb-in');
+    const ox = gsap.quickTo(orb, 'x', { duration: 0.8, ease: 'power3.out' });
+    const oy = gsap.quickTo(orb, 'y', { duration: 0.8, ease: 'power3.out' });
+    const ix = gsap.quickTo(inner, 'x', { duration: 0.8, ease: 'power3.out' });
+    const iy = gsap.quickTo(inner, 'y', { duration: 0.8, ease: 'power3.out' });
+    orb.addEventListener('pointermove', (e) => {
+      const r = orb.getBoundingClientRect();
+      const dx = e.clientX - (r.left + r.width / 2);
+      const dy = e.clientY - (r.top + r.height / 2);
+      ox(dx * 0.28); oy(dy * 0.28); ix(dx * 0.12); iy(dy * 0.12);
+    });
+    orb.addEventListener('pointerleave', () => { ox(0); oy(0); ix(0); iy(0); });
+  }
+
   const base = line.getAttribute('points').trim().split(/\s+/).map((p) => p.split(',').map(Number));
   const pts = base.map(([x, y]) => ({ x, y, vx: 0, vy: 0, bx: x, by: y }));
   const len = line.getTotalLength();
@@ -69,8 +86,8 @@ export function initContact() {
     scrollTrigger: { trigger: section, start: 'top 60%', once: true },
     onComplete: () => gsap.set(line, { clearProps: 'strokeDasharray,strokeDashoffset' }),
   });
-  gsap.fromTo(svg, { color: '#2a2b2f' }, {
-    color: '#8d9096', ease: 'none',
+  gsap.fromTo(svg, { color: '#1d1d20' }, {
+    color: '#4b4c51', ease: 'none',
     scrollTrigger: { trigger: section, start: 'top 80%', end: 'top 20%', scrub: true },
   });
 
