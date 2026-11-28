@@ -16,8 +16,8 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-stopped { overflow: hidden; overflow: clip; }
 
 body {
-  background: var(--ink);
-  color: var(--bone);
+  background: var(--bg);
+  color: var(--fg);
   font-family: var(--f-sans);
   font-size: var(--fs-body);
   line-height: 1.55;
@@ -72,7 +72,7 @@ em { font-style: normal; }
 /* utilities ------------------------------------------------------------- */
 .skip-link {
   position: fixed; left: var(--margin); top: 12px; z-index: 200;
-  padding: 10px 14px; background: var(--bone); color: var(--ink);
+  padding: 10px 14px; background: var(--fg); color: var(--bg);
   font-family: var(--f-mono); font-size: var(--fs-micro); text-transform: uppercase;
   transform: translateY(-160%);
   transition: transform var(--d-micro) var(--ease-out);
@@ -102,34 +102,35 @@ em { font-style: normal; }
   border: 1px solid var(--line-strong);
   border-radius: 100px;
   font-family: var(--f-mono); font-size: var(--fs-micro); text-transform: uppercase; letter-spacing: 0.02em;
-  color: var(--bone-dim);
+  color: var(--fg-2);
   transition: color var(--d-micro) var(--ease-soft), background-color var(--d-micro) var(--ease-soft), border-color var(--d-micro) var(--ease-soft);
 }
 .chip:disabled, .swatch:disabled { opacity: 0.4; cursor: default; }
 .chip--icon { width: 36px; padding: 0; font-size: 15px; }
-.chip.is-active, .chip[aria-pressed='true'] { background: var(--bone); color: var(--ink); border-color: var(--bone); }
+.chip.is-active, .chip[aria-pressed='true'] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
 @media (hover: hover) {
-  .chip:hover:not(.is-active):not([aria-pressed='true']) { border-color: var(--bone); color: var(--bone); }
+  .chip:hover:not(.is-active):not([aria-pressed='true']) { border-color: var(--fg); color: var(--fg); }
 }
 
 .btn {
   position: relative; display: inline-flex; align-items: center; gap: 14px;
   min-height: 48px; padding: 0 22px; border-radius: var(--radius);
-  background: var(--bone); color: var(--ink);
+  background: var(--fg); color: var(--bg);
   font-family: var(--f-mono); font-size: var(--fs-micro); text-transform: uppercase; letter-spacing: 0.06em;
   overflow: hidden; isolation: isolate;
+  transition: color var(--d-hover) var(--ease-out), box-shadow var(--d-hover) var(--ease-out);
 }
+/* survol : un reflet argenté balaie le bouton */
 .btn::before {
   content: ''; position: absolute; inset: 0; z-index: -1;
-  background: var(--accent);
+  background: var(--metal);
   transform: translateY(101%);
   transition: transform var(--d-hover) var(--ease-out);
 }
-.btn--ghost { background: transparent; color: var(--bone); box-shadow: inset 0 0 0 1px var(--line-strong); }
+.btn--ghost { background: transparent; color: var(--fg); box-shadow: inset 0 0 0 1px var(--line-strong); }
 @media (hover: hover) {
   .btn:hover::before { transform: none; }
-  .btn:hover { color: var(--accent-ink); }
-  .btn--ghost:hover { box-shadow: inset 0 0 0 1px var(--accent); }
+  .btn:hover { color: var(--fg); box-shadow: inset 0 0 0 1px var(--line-strong); }
 }
 .btn__arrow { transition: transform var(--d-hover) var(--ease-out); }
 @media (hover: hover) { .btn:hover .btn__arrow { transform: translateX(4px); } }
@@ -161,7 +162,7 @@ em { font-style: normal; }
   padding: 0 var(--margin);
   margin-bottom: clamp(40px, 5vw, 72px);
 }
-.section-head__num { grid-column: 1 / 4; color: var(--fog); padding-top: 0.55em; }
+.section-head__num { grid-column: 1 / 4; color: var(--fg-3); padding-top: 0.55em; }
 .section-head__title {
   grid-column: 4 / 11;
   font-size: var(--fs-h2); font-weight: 500;
@@ -174,7 +175,7 @@ em { font-style: normal; }
 }
 .section-head__note {
   grid-column: 4 / 10;
-  color: var(--fog); font-size: var(--fs-body); max-width: 52ch;
+  color: var(--fg-3); font-size: var(--fs-body); max-width: 52ch;
 }
 .section-head__more { grid-column: 11 / 13; justify-self: end; align-self: end; }
 @media (max-width: 900px) {
@@ -187,18 +188,18 @@ em { font-style: normal; }
   display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: 20px;
   padding: calc(var(--header-h) + clamp(56px, 9vw, 128px)) var(--margin) clamp(48px, 6vw, 88px);
 }
-.page-head__k { grid-column: 1 / 4; color: var(--fog); padding-top: 0.9em; }
+.page-head__k { grid-column: 1 / 4; color: var(--fg-3); padding-top: 0.9em; }
 .page-head__title {
   grid-column: 4 / 13;
   font-family: var(--f-display); font-variation-settings: 'wdth' 125; font-weight: 800;
-  text-transform: uppercase; font-size: min(var(--fs-mega), 10vw); line-height: 0.92; letter-spacing: -0.035em;
+  text-transform: uppercase; font-size: min(var(--fs-mega), 8.6vw); line-height: 0.92; letter-spacing: -0.035em; /* 8.6vw : « RÉALISATIONS » tient entier dès 320 px */
   text-wrap: balance; overflow-wrap: break-word;
 }
 .page-head__title em {
   font-family: var(--f-serif); font-weight: 400; font-style: italic; text-transform: none;
   font-variation-settings: normal; letter-spacing: -0.02em;
 }
-.page-head__lead { grid-column: 4 / 10; color: var(--bone-dim); font-size: var(--fs-lead); line-height: 1.45; max-width: 54ch; }
+.page-head__lead { grid-column: 4 / 10; color: var(--fg-2); font-size: var(--fs-lead); line-height: 1.45; max-width: 54ch; }
 @media (max-width: 900px) {
   .page-head__k, .page-head__title, .page-head__lead { grid-column: 1 / -1; }
   .page-head__k { padding-top: 0; }
@@ -208,12 +209,12 @@ em { font-style: normal; }
 .link-arrow {
   display: inline-flex; align-items: center; gap: 10px;
   font-family: var(--f-mono); font-size: var(--fs-micro); text-transform: uppercase; letter-spacing: 0.04em;
-  color: var(--bone); padding: 10px 0; border-bottom: 1px solid var(--line-strong);
+  color: var(--fg); padding: 10px 0; border-bottom: 1px solid var(--line-strong);
   transition: border-color var(--d-micro), color var(--d-micro);
 }
 .link-arrow span { transition: transform var(--d-hover) var(--ease-out); }
 @media (hover: hover) {
-  .link-arrow:hover { border-color: var(--bone); }
+  .link-arrow:hover { border-color: var(--fg); }
   .link-arrow:hover span { transform: translateX(4px); }
 }
 

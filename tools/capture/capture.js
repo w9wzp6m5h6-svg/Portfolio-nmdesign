@@ -41,7 +41,7 @@ const pieces = {
     }
   },
 
-  /** Cynthia Rimo — couverture typographique (aucune capture ni œuvre inventée) */
+  /** L'Empreinte (Cynthia Rimo) — couverture typographique (aucune capture ni œuvre inventée) */
   async rimo_cover() {
     canvas.width = W; canvas.height = H;
     const g = canvas.getContext('2d');
@@ -59,10 +59,10 @@ const pieces = {
     // name
     g.fillStyle = ink; g.textBaseline = 'alphabetic';
     g.font = `400 ${H * 0.25}px "Instrument Serif"`;
-    g.fillText('Cynthia', pad - H * 0.01, H * 0.5);
-    g.font = `italic 400 ${H * 0.25}px "Instrument Serif"`;
-    g.fillText('Rimo', pad + H * 0.18, H * 0.72);
-    mono(g, "GALERIE D'ART — VALBONNE", pad, H * 0.8, H * 0.022, '#77726a');
+    g.fillText('L’Empreinte', pad - H * 0.01, H * 0.5);
+    g.font = `italic 400 ${H * 0.13}px "Instrument Serif"`;
+    g.fillText('Art Gallery', pad + H * 0.36, H * 0.68);
+    mono(g, 'CYNTHIA RIMO — VALBONNE', pad, H * 0.8, H * 0.022, '#77726a');
     // cartel (museum label)
     const cw = W * 0.2, ch = H * 0.2, cx = W - pad - cw, cy = H - pad * 0.9 - ch;
     g.save(); g.shadowColor = 'rgba(0,0,0,0.12)'; g.shadowBlur = W * 0.01; g.shadowOffsetY = W * 0.003;

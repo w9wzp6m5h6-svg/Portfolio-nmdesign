@@ -10,7 +10,7 @@ Le site est prêt techniquement. Ces étapes demandent **ton intervention** (com
 
 ## 2. Héberger
 
-Recommandé : **Vercel** (import du dépôt GitHub, Vite détecté tout seul, en-têtes de sécurité de `vercel.json` appliqués). Autres choix : Netlify, Cloudflare Pages (fichier `_headers` inclus), OVH, o2switch (fichier `.htaccess` inclus). Évite GitHub Pages : il n'accepte pas les en-têtes de sécurité. Relie ensuite ton domaine dans l'interface de l'hébergeur (il donne les enregistrements DNS à copier chez le registrar) et active le HTTPS (automatique chez Vercel, Netlify, Cloudflare).
+Recommandé : **Vercel**. `vercel.json` fixe tout : framework Vite, installation `npm ci`, build `npm run build`, dossier `dist`, barre oblique finale sur les URL, en-têtes de sécurité et cache des fichiers versionnés. Node.js 20.9 ou plus récent (`engines` dans `package.json`). Autres choix : Netlify, Cloudflare Pages (fichier `_headers` inclus), OVH, o2switch (fichier `.htaccess` inclus). Évite GitHub Pages : il n'accepte pas les en-têtes de sécurité. Relie ensuite ton domaine dans l'interface de l'hébergeur (il donne les enregistrements DNS à copier chez le registrar) et active le HTTPS (automatique chez Vercel, Netlify, Cloudflare).
 
 **Sécurité des comptes** (double authentification Gmail, GitHub, hébergeur, domaine ; réglages Vercel) : suis `SECURITE.md`, section 3.
 

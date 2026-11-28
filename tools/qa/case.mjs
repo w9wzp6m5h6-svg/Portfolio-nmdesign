@@ -10,7 +10,7 @@ await page.goto(`${BASE}/`, { waitUntil: 'networkidle' });
 await page.waitForTimeout(3500);
 await page.evaluate(() => document.getElementById('work').scrollIntoView());
 await page.waitForTimeout(2500);
-await page.click(`.card__link[data-slug="${slug}"]`);
+await page.click(`.scene__link[data-project="${slug}"]`);
 await page.waitForTimeout(3000);
 const sh = await page.evaluate(() => document.querySelector('.project__scroller').scrollHeight);
 const vh = await page.evaluate(() => innerHeight);

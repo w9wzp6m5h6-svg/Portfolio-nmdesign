@@ -6,11 +6,11 @@
   <meta property="og:title" content="Offres &amp; tarifs — NM Design" />
   <meta property="og:description" content="Des formules claires à partir de 149 €, un travail sur mesure, une méthode en six étapes." />
   <meta charset="utf-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'sha256-E3b3UNecR6Zv6qZvbrpJJEbi0FM5ax2mfdsUj3ohteQ='; img-src 'self' blob:; font-src 'self'; connect-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'sha256-MJiHiHTEvesL0GlZ5Jp+GDvi5DGuZ5KB+AP2EPVCY30='; img-src 'self' blob:; font-src 'self'; connect-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="author" content="Noah Milsztajn — NM Design" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
-  <meta name="theme-color" content="#0b0b0c" />
+  <meta name="theme-color" content="#f3f2ee" />
   <meta name="format-detection" content="telephone=no" />
   <meta property="og:site_name" content="NM Design" />
   <meta property="og:type" content="website" />
@@ -60,24 +60,33 @@
   }
   </script>
 
-  <script type="module" crossorigin src="../assets/main-Cx7TYStq.js"></script>
-  <link rel="stylesheet" crossorigin href="../assets/main-DtoS5CoT.css">
+  <script type="module" crossorigin src="../assets/main-BqEBfw2-.js"></script>
+  <link rel="stylesheet" crossorigin href="../assets/main-DDBHXF4e.css">
 </head>
 <body class="is-loading" data-page="offers">
   <a class="skip-link" href="#main">Aller au contenu</a>
 
-  <!-- Intro / chargement -------------------------------------------------->
-  <div class="loader" aria-hidden="true">
-    <div class="loader__inner">
-      <svg class="loader__mark mark" viewBox="-6 -6 132 112" fill="none">
-        <polyline class="mark__line" points="0,100 0,0 60,100 60,0 90,60 120,0 120,100" />
-      </svg>
-      <div class="loader__meta">
-        <span class="mono">NM Design</span>
-        <span class="mono loader__count"><span class="loader__num">000</span></span>
+  <!-- Intro : scène en profondeur ; le logo NM se trace puis rejoint l'en-tête -->
+  <div class="intro">
+    <div class="intro__light" aria-hidden="true"></div>
+    <div class="intro__stage" aria-hidden="true">
+      <div class="intro__world">
+        <i class="intro__plane intro__plane--1"></i>
+        <i class="intro__plane intro__plane--2"></i>
+        <i class="intro__plane intro__plane--3"></i>
+        <i class="intro__plane intro__plane--4"></i>
+        <i class="intro__plane intro__plane--5"></i>
+        <i class="intro__plane intro__plane--6"></i>
       </div>
     </div>
-    <button class="loader__skip mono" type="button" tabindex="-1">Passer l'intro</button>
+    <div class="intro__core" aria-hidden="true">
+      <svg class="intro__mark mark" viewBox="-6 -6 132 112" fill="none">
+        <polyline class="mark__line" points="0,100 0,0 60,100 60,0 90,60 120,0 120,100" />
+      </svg>
+      <p class="intro__word"><span class="intro__word-in">NM Design</span></p>
+    </div>
+    <p class="intro__meta mono" aria-hidden="true"><span>Studio de design digital</span><span class="intro__count">000</span></p>
+    <button class="intro__skip mono" type="button">Passer l'intro</button>
   </div>
 
 
@@ -123,7 +132,8 @@
     </header>
 
     <!-- Formules ------------------------------------------------------------>
-    <section class="offers" id="offers" aria-label="Formules et tarifs">
+    <section class="offers" id="offers" aria-labelledby="offers-title">
+      <h2 class="visually-hidden" id="offers-title">Formules et tarifs</h2>
 
       <div class="offers__intro">
         <p class="offers__kicker mono">Digital design / Creative experiences</p>
@@ -446,7 +456,7 @@
   </div>
 
   <div class="cursor-tag mono" aria-hidden="true"><span class="cursor-tag__text"></span></div>
-  <noscript><style>.loader{display:none}.hero__name{color:var(--bone)}</style></noscript>
+  <noscript><style>.intro{display:none}</style></noscript>
 
 </body>
 </html>

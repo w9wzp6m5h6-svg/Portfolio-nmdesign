@@ -98,7 +98,7 @@ const watch = (page) => {
   watch(page);
   await page.goto(BASE + '/', { waitUntil: 'networkidle' });
   await page.waitForTimeout(1500);
-  check('reduced motion: loader gone quickly', !(await page.evaluate(() => !!document.querySelector('.loader'))));
+  check('reduced motion: intro gone quickly', !(await page.evaluate(() => !!document.querySelector('.intro'))));
   check('reduced motion: name visible as text', await page.evaluate(() => getComputedStyle(document.querySelector('.hero__word')).color !== 'rgba(0, 0, 0, 0)'));
   check('reduced motion: no smooth-scroll class', !(await page.evaluate(() => document.documentElement.classList.contains('lenis'))));
   await page.screenshot({ path: 'tools/qa/out/reduced.png' });
@@ -116,7 +116,7 @@ for (const w of [320, 360, 390, 414, 600, 768, 834, 1024, 1180, 1280, 1440, 1920
     const offenders = [];
     document.querySelectorAll('body *').forEach((el) => {
       const r = el.getBoundingClientRect();
-      if (r.width && (r.right > vw + 1) && getComputedStyle(el).position !== 'fixed' && !el.closest('.hero__gl, .contact__mark, .project, .card__parallax, .object__stage, .loader')) offenders.push(`${el.tagName}.${[...el.classList].join('.')} → ${Math.round(r.right)}`);
+      if (r.width && (r.right > vw + 1) && getComputedStyle(el).position !== 'fixed' && !el.closest('.hero__space, .contact__mark, .project, .scene__stage, .object__stage, .intro')) offenders.push(`${el.tagName}.${[...el.classList].join('.')} → ${Math.round(r.right)}`);
     });
     return { scrollW: document.documentElement.scrollWidth, vw, offenders: offenders.slice(0, 5) };
   });

@@ -154,7 +154,7 @@ export function renderProject(p, next) {
           <span class="p-next__title">${esc(next.title)}</span>
           <span class="p-next__thumb"><img src="${next.cover.src.replace(/-\d+\.webp$/, '-800.webp')}" alt="" loading="lazy" decoding="async" /></span>
         </a>
-        <p class="p-next__credits mono">${p.real ? 'Projet réel, réalisé pour la galerie Cynthia Rimo à Valbonne.' : `${esc(p.status)}. Concept personnel de Noah Milsztajn, pas une commande client.`}${USES_3D_ASSETS.includes(p.slug) ? ' Modèles 3D : Khronos glTF Sample Assets (licences en pied de page).' : ''}</p>
+        <p class="p-next__credits mono">${p.real ? 'Projet réel, réalisé pour L’Empreinte — Art Gallery (Cynthia Rimo), à Valbonne.' : `${esc(p.status)}. Concept personnel de Noah Milsztajn, pas une commande client.`}${USES_3D_ASSETS.includes(p.slug) ? ' Modèles 3D : Khronos glTF Sample Assets (licences en pied de page).' : ''}</p>
       </footer>
     </article>`;
 }

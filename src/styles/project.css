@@ -3,7 +3,7 @@
    ========================================================================== */
 
 .project {
-  --p-bg: var(--ink); --p-fg: var(--bone); --p-muted: var(--fog); --p-line: var(--line); --p-accent: var(--accent);
+  --p-bg: var(--bg); --p-fg: var(--fg); --p-muted: var(--fg-3); --p-line: var(--line); --p-accent: var(--accent);
   position: fixed; inset: 0; z-index: var(--z-project);
   visibility: hidden;
   color: var(--p-fg);
@@ -63,7 +63,6 @@
 .project.is-light .p-hero__media::after {
   background: linear-gradient(180deg, rgb(0 0 0 / 0.08) 0%, rgb(0 0 0 / 0) 40%, rgb(0 0 0 / 0.38) 100%);
 }
-.p-hero__live { position: absolute; inset: 0; }
 .p-hero__content {
   position: absolute; left: var(--margin); right: var(--margin); bottom: var(--margin);
   display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gutter); align-items: end;

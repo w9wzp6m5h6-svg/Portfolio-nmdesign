@@ -5,7 +5,8 @@
 .object {
   position: relative;
   height: 100vh;  height: 100svh; min-height: 720px; max-height: 1200px;
-  background: radial-gradient(120% 90% at 55% 45%, #1e2023 0%, #0d0e0f 55%, var(--ink) 100%);
+  /* studio photo clair : fond sans couture, lumière douce au centre */
+  background: radial-gradient(110% 85% at 55% 45%, #ffffff 0%, #ecebe7 58%, var(--bg) 100%);
   overflow: hidden; overflow: clip;
   isolation: isolate;
   border-top: 1px solid var(--line);
@@ -22,11 +23,11 @@
 
 .object__loading {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-  display: grid; gap: 12px; justify-items: center; color: var(--fog);
+  display: grid; gap: 12px; justify-items: center; color: var(--fg-3);
   transition: opacity 0.6s var(--ease-out);
 }
 .object__loading-bar { width: 160px; height: 1px; background: var(--line); overflow: hidden; }
-.object__loading-bar i { display: block; height: 100%; background: var(--bone); transform-origin: left; transform: scaleX(0); }
+.object__loading-bar i { display: block; height: 100%; background: var(--fg); transform-origin: left; transform: scaleX(0); }
 .object.is-ready .object__loading { opacity: 0; pointer-events: none; }
 
 /* hotspots -------------------------------------------------------------- */
@@ -44,7 +45,7 @@
 .object.is-xray .hotspot { opacity: 0.35; }
 .hotspot__dot {
   position: relative; width: 14px; height: 14px; border-radius: 50%;
-  background: var(--bone);
+  background: var(--fg);
   box-shadow: 0 0 0 1px rgb(0 0 0 / 0.25);
   transition: transform var(--d-micro) var(--ease-out), background-color var(--d-micro);
 }
@@ -56,7 +57,7 @@
 .hotspot__label {
   position: absolute; left: 34px; top: 50%; transform: translate(-6px, -50%);
   padding: 6px 10px; border-radius: 100px;
-  background: var(--bone); color: var(--ink);
+  background: var(--fg); color: var(--bg);
   white-space: nowrap; opacity: 0; pointer-events: none;
   transition: opacity var(--d-micro) var(--ease-soft), transform var(--d-hover) var(--ease-out);
 }
@@ -84,36 +85,35 @@
 }
 .object__ui > * { pointer-events: auto; }
 .object__head { grid-area: head; max-width: 440px; }
-.object__kicker { color: var(--fog); margin-bottom: 18px; }
+.object__kicker { color: var(--fg-3); margin-bottom: 18px; }
 .object__title {
   font-family: var(--f-display); font-variation-settings: 'wdth' 125; font-weight: 800;
   text-transform: uppercase; letter-spacing: -0.035em; line-height: 0.86;
   font-size: var(--fs-h2);
 }
 .object__title em { font-family: var(--f-serif); text-transform: none; letter-spacing: -0.02em; font-weight: 400; color: var(--accent); font-variation-settings: normal; }
-.object__lead { margin-top: 20px; color: var(--fog); max-width: 34ch; font-size: var(--fs-small); }
+.object__lead { margin-top: 20px; color: var(--fg-3); max-width: 34ch; font-size: var(--fs-small); }
 
 .object__panel {
   grid-area: panel; align-self: end;
   max-width: 340px;
   padding: 18px 20px 20px;
   border: 1px solid var(--line);
-  background: rgb(19 20 22 / 0.55);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: var(--shadow-1);
+  border-radius: 10px;
 }
-.object__panel-k { color: var(--fog); display: flex; justify-content: space-between; }
+.object__panel-k { color: var(--fg-3); display: flex; justify-content: space-between; }
 .object__panel-i { color: var(--accent); }
 .object__panel-t { margin-top: 10px; font-size: var(--fs-h3); font-weight: 500; letter-spacing: -0.02em; line-height: 1.05; }
-.object__panel-d { margin-top: 10px; color: var(--fog); font-size: var(--fs-small); }
+.object__panel-d { margin-top: 10px; color: var(--fg-3); font-size: var(--fs-small); }
 
 .object__controls {
   grid-area: controls; justify-self: end; align-self: end;
   display: grid; gap: 18px; justify-items: end;
 }
 .object__group { display: flex; align-items: center; gap: 14px; }
-.object__group legend, .object__group > .mono { color: var(--fog); float: left; margin-right: 14px; }
+.object__group legend, .object__group > .mono { color: var(--fg-3); float: left; margin-right: 14px; }
 .object__group legend + * { display: inline-flex; }
 .object__seg { display: inline-flex; gap: 6px; }
 .object__swatches { display: inline-flex; gap: 6px; }
@@ -122,31 +122,31 @@
   min-height: 36px; padding: 0 14px 0 8px;
   border: 1px solid var(--line-strong); border-radius: 100px;
   font-family: var(--f-mono); font-size: var(--fs-micro); text-transform: uppercase;
-  color: var(--bone-dim);
+  color: var(--fg-2);
   transition: border-color var(--d-micro), color var(--d-micro), background-color var(--d-micro);
 }
 .swatch__chip { width: 20px; height: 20px; border-radius: 50%; background: var(--c1); position: relative; overflow: hidden; }
 .swatch__chip::after { content: ''; position: absolute; inset: 0; background: var(--c2); clip-path: polygon(100% 0, 100% 100%, 0 100%); }
-.swatch[aria-pressed='true'] { border-color: var(--bone); color: var(--bone); background: rgb(237 235 229 / 0.06); }
-@media (hover: hover) { .swatch:hover { border-color: var(--bone); color: var(--bone); } }
+.swatch[aria-pressed='true'] { border-color: var(--fg); color: var(--fg); background: var(--white); }
+@media (hover: hover) { .swatch:hover { border-color: var(--fg); color: var(--fg); } }
 
 .object__hint {
   grid-area: hint; justify-self: center; margin-top: 18px;
-  display: inline-flex; align-items: center; gap: 10px; color: var(--fog);
+  display: inline-flex; align-items: center; gap: 10px; color: var(--fg-3);
   pointer-events: none;
 }
 .object__hint-icon {
-  width: 28px; height: 14px; border: 1px solid var(--fog-2); border-radius: 10px; position: relative;
+  width: 28px; height: 14px; border: 1px solid var(--fg-4); border-radius: 10px; position: relative;
 }
 .object__hint-icon::after {
-  content: ''; position: absolute; top: 3px; left: 4px; width: 6px; height: 6px; border-radius: 50%; background: var(--bone);
+  content: ''; position: absolute; top: 3px; left: 4px; width: 6px; height: 6px; border-radius: 50%; background: var(--fg);
   animation: hint-drag 2.2s var(--ease-in-out) infinite;
 }
 @keyframes hint-drag { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(12px); } }
 
 .object__credit {
   position: absolute; right: var(--margin); top: calc(var(--header-h) + 16px); z-index: 3;
-  max-width: 260px; text-align: right; color: var(--fog-2); text-transform: none; letter-spacing: 0;
+  max-width: 260px; text-align: right; color: var(--fg-4); text-transform: none; letter-spacing: 0;
 }
 
 @media (max-width: 1100px) {

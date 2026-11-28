@@ -1,4 +1,4 @@
-# Noah Milsztajn — Portfolio V2
+# NM Design — portfolio de Noah Milsztajn
 
 Portfolio de Noah Milsztajn, designer numérique autodidacte : direction artistique, design d'interface, expériences web, 3D et interaction. Site entièrement en français.
 
@@ -34,7 +34,7 @@ Le navigateur s'ouvre sur `http://127.0.0.1:4173/` (accessible depuis ton ordina
 | Adresse publique du site (canonical, sitemap) | `.env` → `SITE_URL` (voir `.env.example`) |
 | Envoi direct du formulaire (facultatif) | `.env` → `VITE_FORM_ENDPOINT` (Formspree / Web3Forms) |
 | Modèle 3D Air Jordan 1 Travis Scott (Mocha) | non fourni — voir « Remplacer la sneaker 3D » |
-| Captures du site Cynthia Rimo et statut de ses fonctionnalités | non fournis — voir ci‑dessous |
+| Site de L'Empreinte (fichier HTML source), captures et statut des fonctionnalités | non fournis — voir ci‑dessous |
 
 La marche à suivre complète (domaine, hébergement, formulaire, Google Search Console) est dans **`MISE-EN-LIGNE.md`**.
 
@@ -44,7 +44,9 @@ E‑mail, Instagram, objet des e‑mails et informations légales sont centralis
 
 `tools/retouch-portrait.py` produit les versions du site (carré pour ordinateur, 4:5 pour mobile) depuis l'original conservé hors git dans `tools/source-photos/`. Retouche sobre : courbe tonale, étalonnage ocre, clarté et netteté légères, vignettage, grain fin. La source fait 1163 × 775 px : l'agrandissement ×2 est une interpolation, il n'ajoute pas de vrai détail (une vraie version 4K demande une photo source en haute définition).
 
-### Cynthia Rimo (projet réel)
+### L'Empreinte — Art Gallery, Cynthia Rimo (projet réel)
+
+- **Depuis le fichier source du site** (recommandé) : `node tools/integrate-gallery.mjs "chemin/vers/Cynthia Rimo — L'Empreinte Art Gallery, Valbonne(1).html"`. Le fichier n'est pas modifié : l'outil capture l'expérience (ordinateur et téléphone), produit les WebP dans `public/media/works/rimo/` et un rapport `tools/render/out/gallery-report.json` (titres de sections, liens, URL déclarée) pour rédiger l'étude de cas à partir de ce que le site contient vraiment. Ensuite : `card: img('rimo', 'rimo_d1', '16 / 10', D, '…')` et le bloc `captures` du projet `cynthia-rimo`. Aucune URL n'est publiée tant qu'elle n'est pas vérifiée en ligne.
 
 - **Captures du vrai site** : dépose les images (WebP de préférence, 800 / 1400 / 2200 px de large, nommées `rimo_xxx-800.webp`, etc.) dans `public/media/works/rimo/`, puis renseigne le bloc `captures` du projet dans `src/data/projects.js` avec `img('rimo', 'rimo_xxx', '16 / 10')`. Tant qu'il est vide, rien ne s'affiche (aucune fausse capture).
 - **Statut des fonctionnalités** : dans le bloc `intentions`, ajoute un 3e élément à chaque ligne : `'livré'`, `'intégré'`, `'prévu'` ou `'prototype'`. Il apparaît alors sous forme d'étiquette. Sans statut, la liste est présentée comme les intentions de conception du projet.
@@ -62,10 +64,13 @@ Rotation, zoom, X‑Ray, éclairage et version mobile fonctionnent avec n'import
 
 ## Direction artistique
 
-- **Palette** : encre `#0b0b0c`, graphite, os `#edebe5`, gris froid `#8f949b`, un seul accent « signal » `#ff4f2b`. Chaque projet a sa propre palette dans sa page.
+- **Concept « Bright Creative Studio »** : ivoire `#f3f2ee`, blanc pur, gris très clairs, argent (filets, reflets au survol des boutons et des écrans) et graphite `#111113` pour le contraste. Aucune couleur vive dans l'interface : la couleur vient des projets (chaque scène et chaque étude de cas a sa palette). Une seule zone sombre : le contact et le pied de page, en générique de fin. Variables sémantiques dans `tokens.css` (`--bg`, `--fg`, `--fg-2`…), contrastes AA mesurés.
 - **Typographie** : Archivo Expanded (mot-symbole et titres de page), Instrument Serif italique (contrepoint éditorial), Inter Tight (texte et titres de section), Geist Mono (navigation, métadonnées). Échelle unique dans `tokens.css` : texte 16–17 px, chapeau 18–22 px, titres de section 28–46 px, titre de page 40–72 px. Un seul très grand élément sur le site : « NM DESIGN » en page d'accueil.
 - **Grille** : 12 colonnes, mêmes marges partout. Axe A (colonne 1) pour les libellés, axe B (colonne 4) pour les titres et textes.
-- **Monogramme NM** : un seul trait continu. Le jambage droit du N est le jambage gauche du M. Il se dessine à l'intro, vole dans le header, puis revient en grand dans la section Contact, où ses sommets réagissent comme une corde qu'on pince.
+- **Monogramme NM** (logo original, inchangé) : un seul trait continu. Il se trace pendant l'intro, rejoint sa place dans l'en-tête, puis revient en grand dans le contact, où ses sommets réagissent comme une corde qu'on pince.
+- **Intro** (`src/ui/intro.js`) : scène en profondeur en CSS 3D (plans flottants, caméra qui avance, lumière douce), ~2,5 s à la première visite de la session, passable (bouton, clic, Échap, molette), simple fondu ensuite et en mouvement réduit.
+- **Hero** : les écrans des projets flottent en perspective autour du mot-symbole, suivent le pointeur et ouvrent leur étude de cas.
+- **Projets** : chaque projet est une scène (plateau à sa couleur, écran du site au premier plan, rendu en arrière-plan avec parallaxe, titre dans la typographie de son identité).
 - **Mouvement** : deux courbes pour tout le site (`--ease-out` pour les arrivées, `--ease-in-out` pour les transitions) et des durées partagées (`src/styles/tokens.css`).
 
 ## Structure
@@ -82,9 +87,9 @@ src/
   data/                    contenu : site.js, projects.js, sneaker.js
   core/                    env (capacités appareil), scroll (Lenis+GSAP), split (découpe texte),
                            escape (échappement HTML), css (styles dynamiques compatibles CSP)
-  ui/                      loader, header, menu, cursor-tag, reveals, transitions (fondu entre pages)
-  sections/                hero, works (accueil + page Projets), object (3D), about, contact, commerce (formulaire, mentions)
-  three/                   hero-gl (nom en WebGL), sneaker-stage (viewer 3D), variants
+  ui/                      intro (séquence d'entrée), header, menu, cursor-tag, reveals, transitions (fondu entre pages)
+  sections/                hero (constellation d'écrans), works (scènes des projets), object (3D), about, contact, commerce (formulaire, mentions)
+  three/                   sneaker-stage (viewer 3D du lab), variants
   project/                 view (overlay + routes #/work/…), blocks (mises en page), live/ (pièces temps réel)
   styles/                  tokens, base, chrome, hero, works, object, about-contact, project, commerce
 public/
@@ -103,6 +108,7 @@ tools/                     outils de production (non publiés)
   optimize-images.mjs      PNG → WebP responsive
   prepare-sneaker.mjs      optimise un modèle .glb pour la scène 3D
   qa/                      tests Playwright (captures, interactions, projets, objet 3D, perf) + check-security.mjs
+  integrate-gallery.mjs    intègre le site de L'Empreinte depuis son fichier HTML (captures + rapport)
 ```
 
 ### Ajouter ou modifier un projet
@@ -124,7 +130,8 @@ node tools/optimize-images.mjs
 
 ## Performance & accessibilité
 
-- Three.js est chargé à la demande (après le premier affichage) ; le modèle 3D n'est téléchargé que quand la section approche, puis initialisé en temps calme (`requestIdleCallback`).
+- Aucune bibliothèque 3D sur l'accueil : l'intro et le hero sont en CSS 3D (transformations GPU). Three.js (≈135 Ko gzip) n'est chargé que sur la page Projets, quand le lab approche ; le modèle est initialisé en temps calme (`requestIdleCallback`).
+- Le flottement du hero et les parallaxes s'arrêtent hors écran et quand l'onglet est caché.
 - Rendu à la demande : la scène 3D ne redessine que si quelque chose bouge ; toutes les boucles s'arrêtent hors écran et quand l'onglet est caché.
 - Mode « lite » automatique (mobile, ≤ 4 cœurs, peu de mémoire, Save‑Data) : modèle allégé, résolution réduite.
 - `prefers-reduced-motion` : pas de smooth scroll, pas d'intro animée, pas de déformation, contenus visibles immédiatement.
@@ -132,4 +139,4 @@ node tools/optimize-images.mjs
 
 ## Crédits
 
-Voir [`CREDITS.md`](CREDITS.md). Tous les projets présentés sont des concepts personnels, jamais des réalisations client.
+Voir [`CREDITS.md`](CREDITS.md). Hormis L'Empreinte (projet réel), les projets présentés sont des concepts personnels, jamais des réalisations client.

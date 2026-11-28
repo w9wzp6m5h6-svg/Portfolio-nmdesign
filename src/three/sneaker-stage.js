@@ -135,7 +135,7 @@ export class SneakerStage {
 
     this.shadow = new THREE.Mesh(
       new THREE.PlaneGeometry(1.35, 0.62),
-      new THREE.MeshBasicMaterial({ map: contactShadowTexture(), transparent: true, depthWrite: false, opacity: 0.9 })
+      new THREE.MeshBasicMaterial({ map: contactShadowTexture(), transparent: true, depthWrite: false, opacity: 0.6 })
     );
     this.shadow.rotation.x = -Math.PI / 2;
     this.shadow.position.y = 0.002;

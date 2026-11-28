@@ -1,7 +1,9 @@
 /**
  * Project case study overlay.
  *  - routes: #/work/<slug> (deep-linkable, back button closes)
- *  - open: the card image grows into the fullscreen hero (shared-element transition)
+ *  - open: the visual that was clicked grows into the fullscreen hero (shared-element transition).
+ *    Any link with data-project="slug" opens a case study; its closest [data-project-card]
+ *    holds the visual ([data-project-media]) used for the transition (hero screens, scenes, cards).
  *  - close: curtain wipe back to the grid, focus returns to the card
  *  - next: content wipes up, the next project's hero rises in
  */
@@ -149,14 +151,14 @@ export function initProjectView() {
     if (!p || busy) return;
     if (current && root.classList.contains('is-open')) { goNext(p); return; }
     busy = true;
-    returnFocus = card?.querySelector('.card__link') || document.activeElement;
+    returnFocus = card?.querySelector('a[data-project]') || document.activeElement;
     lockScroll('project');
     render(p);
     root.inert = false;
     root.classList.add('is-open');
     setBehindInert(true);
 
-    const media = card?.querySelector('.card__media');
+    const media = card?.querySelector('[data-project-media]');
     const fromImg = media?.querySelector('img');
     const d = env.reducedMotion || instant ? 0 : 1;
 
@@ -207,7 +209,7 @@ export function initProjectView() {
     current = null;
     setBehindInert(false);
     unlockScroll('project');
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0b0b0c');
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#f3f2ee');
     if (!fromHistory) {
       if (pushedState) history.back();
       else history.replaceState(null, '', location.pathname + '#work');
@@ -238,13 +240,13 @@ export function initProjectView() {
   /* ---------- events ---------- */
 
   document.addEventListener('click', (e) => {
-    const card = e.target.closest('.card__link');
-    if (card) {
+    const link = e.target.closest('a[data-project]');
+    if (link && !root.contains(link)) {
       e.preventDefault();
-      const slug = card.dataset.slug;
+      const slug = link.dataset.project;
       history.pushState({ project: slug }, '', `#/work/${slug}`);
       pushedState = true;
-      open(slug, { card: card.closest('.card') });
+      open(slug, { card: link.closest('[data-project-card]') || link });
       return;
     }
     const next = e.target.closest('[data-next]');
@@ -266,7 +268,7 @@ export function initProjectView() {
 
   window.addEventListener('popstate', () => {
     const m = location.hash.match(ROUTE);
-    if (m && !current) open(m[1], { card: document.querySelector(`.card__link[data-slug="${m[1]}"]`)?.closest('.card') });
+    if (m && !current) open(m[1], { card: document.querySelector(`a[data-project="${m[1]}"]`)?.closest('[data-project-card]') });
     else if (!m && current) { pushedState = false; close({ fromHistory: true }); }
     else if (m && current && current.slug !== m[1]) goNext(bySlug(m[1]));
   });

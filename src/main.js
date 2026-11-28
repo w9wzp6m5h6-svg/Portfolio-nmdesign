@@ -1,10 +1,10 @@
 /**
- * Noah Milsztajn — Portfolio V2
- * Boot order: styles → smooth scroll → sections (static) → intro → hero arrival.
+ * NM Design — portfolio de Noah Milsztajn
+ * Démarrage : styles → défilement → sections → intro → arrivée du hero.
  */
 import './styles/index.css';
 import { initScroll, ScrollTrigger } from './core/scroll.js';
-import { runLoader } from './ui/loader.js';
+import { runIntro } from './ui/intro.js';
 import { initHeader } from './ui/header.js';
 import { initMenu } from './ui/menu.js';
 import { initCursorTag } from './ui/cursor-tag.js';
@@ -41,7 +41,7 @@ document.fonts.ready.then(() => {
   ScrollTrigger.refresh();
 });
 
-runLoader({ onReveal: () => hero.play() }).then(() => {
+runIntro({ onReveal: () => hero.play() }).then(() => {
   ScrollTrigger.refresh();
   projectView.openFromURL();
   commerce.openFromURL();

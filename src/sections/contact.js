@@ -69,8 +69,8 @@ export function initContact() {
     scrollTrigger: { trigger: section, start: 'top 60%', once: true },
     onComplete: () => gsap.set(line, { clearProps: 'strokeDasharray,strokeDashoffset' }),
   });
-  gsap.fromTo(svg, { color: '#1b1d20' }, {
-    color: '#3a3d42', ease: 'none',
+  gsap.fromTo(svg, { color: '#2a2b2f' }, {
+    color: '#8d9096', ease: 'none',
     scrollTrigger: { trigger: section, start: 'top 80%', end: 'top 20%', scrub: true },
   });
 

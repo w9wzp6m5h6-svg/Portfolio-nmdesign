@@ -1,4 +1,4 @@
-# Noah Milsztajn — Portfolio (version finale)
+# NM Design — portfolio de Noah Milsztajn
 
 ## Présenter le portfolio en 10 secondes
 
@@ -40,5 +40,5 @@ Dépose le **contenu** de `dist/` sur n'importe quel hébergeur statique (Vercel
 ## À compléter
 
 - **Mentions légales** (statut, SIRET, hébergeur) : `source/src/data/site.js`, puis `npm run build`.
-- **Captures du site Cynthia Rimo** et statut de ses fonctionnalités : marche à suivre dans `source/README.md`.
+- **Site de L'Empreinte (Cynthia Rimo)** : envoie le fichier HTML source, il s'intègre en une commande (`tools/integrate-gallery.mjs`, voir `source/README.md`).
 - **Modèle 3D Air Jordan 1 Travis Scott (Mocha) :** à intégrer quand tu m'enverras le fichier `.glb` — marche à suivre dans `source/README.md`.

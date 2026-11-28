@@ -14,8 +14,8 @@
   <main id="main">
     <!-- Hero -------------------------------------------------------------->
     <section class="hero" id="top" data-section="home" data-label="Accueil">
-      <canvas class="hero__gl" aria-hidden="true"></canvas>
       <p class="hero__eyebrow mono" data-intro><span>Studio de design digital</span><span>Noah Milsztajn — Côte d'Azur</span></p>
+      <div class="hero__space"><div class="hero__orbit"></div></div>
       <h1 class="hero__name">
         <span class="visually-hidden">NM Design — Noah Milsztajn, web designer et créatif digital</span>
         <span class="hero__line" aria-hidden="true"><span class="hero__word">NM</span></span>
@@ -34,7 +34,7 @@
     <section class="works works--home" id="work" data-section="work" data-label="Projets">
       <header class="section-head">
         <p class="section-head__num mono">Projets sélectionnés</p>
-        <h2 class="section-head__title">Un projet réel, des concepts poussés <em>jusqu'au bout.</em></h2>
+        <h2 class="section-head__title" data-split>Un projet réel, des concepts poussés <em>jusqu'au bout.</em></h2>
         <a class="section-head__more link-arrow" href="{{href:projects}}">Tous les projets <span aria-hidden="true">→</span></a>
       </header>
       <div class="works__grid" data-works="home"></div>
@@ -43,7 +43,42 @@
       </div>
     </section>
 
-    <!-- Présentation courte ----------------------------------------------->
+    <!-- Services -------------------------------------------------------->
+    <section class="services" id="services" data-section="services" data-label="Services">
+      <header class="section-head">
+        <p class="section-head__num mono">Services</p>
+        <h2 class="section-head__title" data-split>Des sites pensés comme une extension de <em>votre univers.</em></h2>
+        <a class="section-head__more link-arrow" href="{{href:offers}}">Formules dès 149 € <span aria-hidden="true">→</span></a>
+      </header>
+      <ol class="services__list">
+        <li class="service" data-reveal>
+          <svg class="service__glyph" viewBox="0 0 64 64" fill="none" aria-hidden="true"><circle class="service__stroke" cx="26" cy="28" r="16" /><rect class="service__stroke" x="30" y="30" width="24" height="24" /></svg>
+          <p class="service__num mono">01</p>
+          <h3 class="service__title">Direction artistique</h3>
+          <p class="service__text">Un univers visuel cohérent : palette, typographie, rythme et ton.</p>
+        </li>
+        <li class="service" data-reveal>
+          <svg class="service__glyph" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect class="service__stroke" x="6" y="12" width="52" height="40" rx="3" /><path class="service__stroke" d="M6 22h52M13 17h6M14 32h22M14 40h14" /></svg>
+          <p class="service__num mono">02</p>
+          <h3 class="service__title">Web design &amp; UI/UX</h3>
+          <p class="service__text">Des interfaces claires, pensées pour le téléphone autant que pour l'ordinateur.</p>
+        </li>
+        <li class="service" data-reveal>
+          <svg class="service__glyph" viewBox="0 0 64 64" fill="none" aria-hidden="true"><path class="service__stroke" d="M32 8 54 20v24L32 56 10 44V20Z" /><path class="service__stroke" d="M10 20l22 12 22-12M32 32v24" /></svg>
+          <p class="service__num mono">03</p>
+          <h3 class="service__title">Motion &amp; 3D</h3>
+          <p class="service__text">Des animations et des objets 3D qui donnent du relief à votre marque.</p>
+        </li>
+        <li class="service" data-reveal>
+          <svg class="service__glyph" viewBox="0 0 64 64" fill="none" aria-hidden="true"><path class="service__stroke" d="M18 12l26 20-12 2 7 15-6 3-7-15-8 8Z" /><circle class="service__stroke" cx="18" cy="12" r="8" /></svg>
+          <p class="service__num mono">04</p>
+          <h3 class="service__title">Interaction &amp; développement</h3>
+          <p class="service__text">Des interactions sur mesure, développées et mises en ligne avec soin.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Le studio ---------------------------------------------------------->
     <section class="intro-about" id="studio" data-section="studio" data-label="Le studio">
       <figure class="intro-about__media">
         <picture>
@@ -55,14 +90,11 @@
       </figure>
       <div class="intro-about__text">
         <p class="intro-about__k mono">Le studio</p>
-        <h2 class="intro-about__title">Je ne veux pas seulement créer de beaux sites. Je veux créer des expériences <em class="serif">qui marquent.</em></h2>
-        <p class="intro-about__body">NM Design, c'est moi, Noah : designer autodidacte, passé par la restauration et le travail manuel avant le numérique. J'en ai gardé la rigueur, le sens du détail et l'écoute. Je conçois chaque site comme une extension de votre univers, de la direction artistique au développement.</p>
-        <ul class="intro-about__fields mono" aria-label="Domaines">
-          <li>Direction artistique</li><li>Web design &amp; UI/UX</li><li>Motion &amp; 3D</li><li>Interaction</li>
-        </ul>
+        <h2 class="intro-about__title" data-split>Je ne veux pas seulement créer de beaux sites. Je veux créer des expériences <em class="serif">qui marquent.</em></h2>
+        <p class="intro-about__body">NM Design, c'est moi, Noah : designer autodidacte, passé par la restauration et le travail manuel. J'en ai gardé la rigueur, le sens du détail et l'écoute.</p>
         <div class="intro-about__links">
-          <a class="link-arrow" href="{{href:about}}">En savoir plus <span aria-hidden="true">→</span></a>
-          <a class="link-arrow" href="{{href:offers}}">Offres, à partir de 149 € <span aria-hidden="true">→</span></a>
+          <a class="link-arrow" href="{{href:about}}">Mon parcours <span aria-hidden="true">→</span></a>
+          <a class="link-arrow" href="{{href:offers}}">Offres et méthode <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </section>

@@ -17,11 +17,13 @@ page.on('pageerror', (e) => errs.push(e.message));
 await page.goto(BASE + '/');
 await page.waitForTimeout(500);
 const t0 = Date.now();
-await page.click('.loader__skip', { force: true }).catch(() => {});
-await page.waitForFunction(() => !document.querySelector('.loader'), null, { timeout: 8000 }).catch(() => {});
-ok('skip intro removes the loader quickly', !(await page.evaluate(() => !!document.querySelector('.loader'))), `${Date.now() - t0} ms`);
+await page.click('.intro__skip', { force: true }).catch(() => {});
+await page.waitForFunction(() => !document.querySelector('.intro'), null, { timeout: 8000 }).catch(() => {});
+ok('skip intro removes the intro quickly', !(await page.evaluate(() => !!document.querySelector('.intro'))), `${Date.now() - t0} ms`);
 
-// 3D gestures
+// 3D gestures (le lab est sur la page Projets)
+await page.goto(BASE + '/projets/');
+await page.waitForFunction(() => !document.querySelector('.intro'), null, { timeout: 8000 });
 await page.evaluate(() => document.getElementById('object').scrollIntoView());
 await page.waitForFunction(() => document.querySelector('.object').classList.contains('is-ready'), null, { timeout: 60000 });
 await page.waitForTimeout(1500);
@@ -57,7 +59,7 @@ ok('all 3D controls enabled after load', enabled);
 const p2 = await ctx.newPage();
 await p2.goto(BASE + '/');
 const t1 = Date.now();
-await p2.waitForFunction(() => !document.querySelector('.loader'), null, { timeout: 15000 });
+await p2.waitForFunction(() => !document.querySelector('.intro'), null, { timeout: 15000 });
 ok('repeat visit: shorter intro', Date.now() - t1 < 4000, `${Date.now() - t1} ms`);
 ok('no JS errors', errs.length === 0, errs.join(' | '));
 await browser.close();

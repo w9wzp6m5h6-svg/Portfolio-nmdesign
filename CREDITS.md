@@ -1,6 +1,6 @@
 # Credits
 
-All projects on this site are **self-initiated concepts or personal explorations** by Noah Milsztajn. None of them is presented as commissioned client work.
+Except **L’Empreinte — Art Gallery** (a real project for Cynthia Rimo’s gallery in Valbonne), all projects on this site are **self-initiated concepts or personal explorations** by Noah Milsztajn. None of the concepts is presented as commissioned client work.
 
 ## 3D assets
 

@@ -35,22 +35,22 @@ export const projects = [
     selected: true, // affiché sur l'accueil
     real: true,
     num: '01',
-    title: 'Cynthia Rimo',
-    subtitle: "Site et expérience digitale d'une galerie d'art à Valbonne",
-    category: 'Art & culture · Expérience digitale',
+    title: 'L’Empreinte',
+    subtitle: "Site et expérience digitale de la galerie d'art de Cynthia Rimo, à Valbonne",
+    category: 'Art gallery · Expérience digitale',
     status: 'Projet réel',
     layout: 'feature',
     heroPlain: true, // en-tête composé en HTML : le nom reste entier sur mobile
-    cover: img('rimo', 'rimo_cover', '16 / 9', L, 'Cynthia Rimo, galerie d’art à Valbonne : composition typographique sur fond blanc'),
+    cover: img('rimo', 'rimo_cover', '16 / 9', L, "L'Empreinte, galerie d'art de Cynthia Rimo à Valbonne : composition typographique sur fond blanc"),
     coverPos: '22% 50%',
     theme: { bg: '#f5f3ef', fg: '#151413', muted: '#77726a', line: 'rgb(21 20 19 / 0.14)', accent: '#b3261e', title: 'gallery', light: true },
     meta: [
       ['Type', 'Projet réel'],
-      ['Pour', 'Galerie Cynthia Rimo, Valbonne'],
+      ['Pour', "L'Empreinte — Art Gallery, Cynthia Rimo, Valbonne"],
       ['Ma contribution', "Direction artistique, conception de l'expérience numérique"],
       ['Domaine', 'Art & culture'],
     ],
-    lead: "Une galerie doit montrer des œuvres, mais surtout donner envie de les acquérir. Pour la galerie de Cynthia Rimo, à Valbonne, j'ai imaginé une expérience numérique pensée comme une visite : beaucoup de blanc, des œuvres qui respirent, et un chemin direct vers l'échange.",
+    lead: "Une galerie doit montrer des œuvres, mais surtout donner envie de les acquérir. Pour L'Empreinte, la galerie de Cynthia Rimo à Valbonne, j'ai imaginé une expérience numérique pensée comme une visite : beaucoup de blanc, des œuvres qui respirent, et un chemin direct vers l'échange.",
     blocks: [
       { type: 'statement', text: 'Le site devait vendre des œuvres, pas seulement présenter une galerie.' },
       { type: 'text', kicker: 'Le problème', title: 'De la vitrine au parcours.', body: "Sur beaucoup de sites de galerie, les œuvres défilent comme un catalogue : petites, toutes identiques, sans format ni contexte. Or un tableau s'achète quand on peut s'en approcher, comprendre ses dimensions et l'imaginer chez soi. L'enjeu : recréer ce rapport physique à l'écran, puis rendre la prise de contact immédiate." },
